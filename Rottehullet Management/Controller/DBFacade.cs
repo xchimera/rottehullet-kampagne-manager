@@ -90,9 +90,9 @@ namespace Controller
         /// <summary>
         /// bruges til at tjekke om brugeren er admin
         /// </summary>
-        /// <param name="brugernavn">brugerens brugernavn</param>
+        /// <param name="brugernavn">brugerens id</param>
         /// <returns>returnerer true hvis brugeren er admin ellers false</returns>
-        public bool CheckAdminRettighed(string brugernavn)
+        public bool CheckAdminRettighed(long brugerid)
         {
             cmd.CommandText = "checkadminrettighed";
             cmd.Parameters.Clear();
@@ -133,8 +133,11 @@ namespace Controller
 
             return false; 
         }
-
-        public void CheckRettighed(string brugerID)
+        /// <summary>
+        /// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
+        /// </summary>
+        /// <param name="brugerID">brugerens id</param>
+        public void CheckRettighed(long brugerID)
         {
             cmd.CommandText = "CheckOmTopbruger";
             cmd.Parameters.Clear();
@@ -199,14 +202,19 @@ namespace Controller
             }
         }
 
-
+        /// <summary>
+        /// bruges til at oprette en kampagne i databasen, lavet af Søren
+        /// </summary>
+        /// <param name="navn">kampagnens navn</param>
+        /// <param name="topbrugerID">topbrugerens id, altså den person der ejer kampagnen</param>
+        /// <returns>returnerer kampagnens id som int, eller 0 hvis der skete en fejl</returns>
         public int OpretKampagne(string navn, long topbrugerID)
         {
             cmd.CommandText = "OpretKampagne";
             cmd.Parameters.Clear();
             SqlParameter par;
             SqlDataReader reader;
-            int kampagneid;
+            int kampagneid = 0;
 
             par = new SqlParameter("@navn", SqlDbType.NVarChar);
             par.Value = navn;
@@ -227,6 +235,7 @@ namespace Controller
                 }
                 reader.Dispose();
                 conn.Close();
+                return kampagneid;
             }
             catch (SqlException)
             {
@@ -234,6 +243,69 @@ namespace Controller
                 {
                     conn.Close();
                 }
+                return kampagneid;
+            }
+        }
+        /// <summary>
+        /// tilføj en bruger til databasen, lavet af Denny og Søren
+        /// </summary>
+        /// <param name="email">brugerens email, bruges også til login</param>
+        /// <param name="navn">brugerens navn</param>
+        /// <param name="fødselsdag">brugerens fødselsdag</param>
+        /// <param name="tlf">brugerens almindelige telefon nummer</param>
+        /// <param name="nød_tlf">brugerens telefon nummer i tilfælde af en ulykke eller lignende</param>
+        /// <param name="vegetar">om brugeren er vegetar</param>
+        /// <param name="veganer">om brugeren er veganer</param>
+        /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
+        public bool TilføjBruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "TilføjBruger";
+            SqlParameter par;
+
+            par = new SqlParameter("@email", SqlDbType.NVarChar);
+            par.Value = email;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@navn", SqlDbType.NVarChar);
+            par.Value = navn;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@fødselsdag", SqlDbType.Date);
+            par.Value = fødselsdag;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@tlf", SqlDbType.BigInt);
+            par.Value = tlf;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@nød_tlf", SqlDbType.BigInt);
+            par.Value = nød_tlf;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@vegetar", SqlDbType.Bit);
+            par.Value = vegetar;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@veganer", SqlDbType.Bit);
+            par.Value = veganer;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
             }
         }
 
