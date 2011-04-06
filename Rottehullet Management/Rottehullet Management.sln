@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rottehullet_Management", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{F125B6F4-2532-4BED-A967-68D5C8281458}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{BEEDEA9B-5316-430E-8356-E5FAA143F068}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -39,6 +41,16 @@ Global
 		{F125B6F4-2532-4BED-A967-68D5C8281458}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F125B6F4-2532-4BED-A967-68D5C8281458}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F125B6F4-2532-4BED-A967-68D5C8281458}.Release|x86.ActiveCfg = Release|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
