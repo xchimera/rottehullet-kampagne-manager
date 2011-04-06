@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-    class BrugerCollection
+    public class BrugerCollection
     {
         private List<Bruger> ListBrugere;
 
@@ -21,8 +21,6 @@ namespace Model
         {
             ListBrugere.Add(new Bruger(email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer)); // smider den nye bruger i en liste (collection af brugere)
         }
-
-        //TODO: der skal laves et controllerkald
 
         #endregion
     }
