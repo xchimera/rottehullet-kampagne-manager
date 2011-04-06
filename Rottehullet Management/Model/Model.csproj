@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bruger.cs" />
+    <Compile Include="Kampagne.cs" />
+    <Compile Include="KampagneAttribut.cs" />
+    <Compile Include="KampagneMultiAttribut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
