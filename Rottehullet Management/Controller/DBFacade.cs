@@ -54,7 +54,7 @@ namespace Controller
             par = new SqlParameter("kodeord", SqlDbType.NVarChar);
             par.Value = kodeord;
             cmd.Parameters.Add(par);
-            //TODO: lav login færdig, modtager brugerid
+            //TODO: lav login færdig, modtager brugerid, lav en ny bruger
 
             try
             {
@@ -68,7 +68,7 @@ namespace Controller
                 }
                 conn.Close();
                 reader.Dispose();
-
+                
             }
             catch(SqlException)
             {
@@ -134,15 +134,18 @@ namespace Controller
             return false; 
         }
 
-        public bool CheckTopbrugerRettighed(string email)
+        public void CheckRettighed(string brugerID)
         {
-            cmd.CommandText = "checktopbrugerrettighed";
+            cmd.CommandText = "CheckOmTopbruger";
             cmd.Parameters.Clear();
             SqlParameter par;
             SqlDataReader reader;
+            string kampagneid;
+            string kampagnenavn;
+            string brugertype;
 
-            par = new SqlParameter("@email", SqlDbType.NVarChar);
-            par.Value = email;
+            par = new SqlParameter("@brugerID", SqlDbType.NVarChar);
+            par.Value = brugerID;
             cmd.Parameters.Add(par);
 
             try
@@ -150,7 +153,26 @@ namespace Controller
                 conn.Open();
                 reader = cmd.ExecuteReader();
 
-                if(
+                while (reader.Read())
+                {
+                    kampagneid = (string)reader["kamID"];
+                    kampagnenavn = (string)reader["navn"];
+                    brugertype = "0";
+
+                    kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
+                }
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
+            cmd.CommandText = "CheckOmSuperbruger";
+            
+        }
 
     }
 }
