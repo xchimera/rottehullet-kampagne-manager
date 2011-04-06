@@ -15,6 +15,7 @@ namespace Model
         private bool vegetar;
         private bool veganer;
 
+        // constructor en Bruger
         public Bruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
             this.email = email;
@@ -26,6 +27,8 @@ namespace Model
             this.veganer = veganer;
         }
 
+
+        // Properties
         public bool Veganer
         {
             get { return veganer; }
