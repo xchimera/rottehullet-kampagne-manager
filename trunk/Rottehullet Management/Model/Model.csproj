@@ -44,6 +44,7 @@
     <Compile Include="BrugerCollection.cs" />
     <Compile Include="Kampagne.cs" />
     <Compile Include="KampagneAttribut.cs" />
+    <Compile Include="KampagneCollection.cs" />
     <Compile Include="KampagneMultiAttribut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
