@@ -199,5 +199,44 @@ namespace Controller
             }
         }
 
+
+        public int OpretKampagne(string navn, long topbrugerID)
+        {
+            cmd.CommandText = "OpretKampagne";
+            cmd.Parameters.Clear();
+            SqlParameter par;
+            SqlDataReader reader;
+            int kampagneid;
+
+            par = new SqlParameter("@navn", SqlDbType.NVarChar);
+            par.Value = navn;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@topbrugerID", SqlDbType.BigInt);
+            par.Value = topbrugerID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    kampagneid = (int)reader["id"];
+                }
+                reader.Dispose();
+                conn.Close();
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
     }
 }
