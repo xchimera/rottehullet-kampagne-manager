@@ -310,5 +310,37 @@ namespace Controller
         }
 
 
+        public bool TilknytSuperbruger(long brugerID, long kampagneID)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "TilknytSuperbruger";
+            SqlParameter par;
+
+            par = new SqlParameter("@brugerID", SqlDbType.BigInt);
+            par.Value = brugerID;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+            par.Value = kampagneID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
+
     }
 }
