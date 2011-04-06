@@ -68,7 +68,7 @@ namespace Controller
                 }
                 conn.Close();
                 reader.Dispose();
-                
+                return true;
             }
             catch(SqlException)
             {
@@ -157,10 +157,12 @@ namespace Controller
                 {
                     kampagneid = (string)reader["kamID"];
                     kampagnenavn = (string)reader["navn"];
-                    brugertype = "0";
+                    brugertype = "0"; //senere lav en enum?
 
                     kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
                 }
+                reader.Dispose();
+                conn.Close();
             }
             catch (SqlException)
             {
@@ -171,7 +173,30 @@ namespace Controller
             }
 
             cmd.CommandText = "CheckOmSuperbruger";
-            
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    kampagneid = (string)reader["KamID"];
+                    kampagnenavn = (string)reader["navn"];
+                    brugertype = "1"; //senere lav en enum?
+
+                    kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
+                }
+                reader.Dispose();
+                conn.Close();
+            }
+            catch(SqlException)
+            {
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
         }
 
     }
