@@ -54,7 +54,7 @@ namespace Controller
             par = new SqlParameter("kodeord", SqlDbType.NVarChar);
             par.Value = kodeord;
             cmd.Parameters.Add(par);
-            //TODO: lav login færdig, modtager brugerid, lav en ny bruger
+            
 
             try
             {
@@ -136,6 +136,49 @@ namespace Controller
 
             return false; 
         }
+
+        public void HentAlleBrugere()
+        {
+            string email, navn;
+            DateTime fødselsdag;
+            long tlf, nød_tlf, brugerID;
+            bool vegetar, veganer;
+
+            cmd.CommandText = "HentAlleBrugere";
+            cmd.Parameters.Clear();
+            SqlDataReader reader;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    navn = (string)reader["navn"];
+                    email = (string)reader["email"];
+                    fødselsdag = (DateTime)reader["fødselsdag"];
+                    tlf = (long)reader["tlf"];
+                    nød_tlf = (long)reader["nød_tlf"];
+                    brugerID = (long)reader["brugerID"];
+                    vegetar = (bool)reader["vegetar"];
+                    veganer = (bool)reader["veganer"];
+
+                    kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+                }
+
+                reader.Dispose();
+                conn.Close();
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+        
 
         /// <summary>
         /// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
