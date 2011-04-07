@@ -10,9 +10,11 @@ namespace Controller
     {
         List<string[]> rettigheder;
         BrugerCollection brugercollection;
+		DBFacade dbFacade;
 
         public KampagneManager()
         {
+			dbFacade = new DBFacade(this);
             brugercollection = new BrugerCollection();
         }
 
