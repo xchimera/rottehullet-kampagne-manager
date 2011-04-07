@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Model;
+using Interfaces;
 
 namespace Controller
 {
@@ -10,12 +11,16 @@ namespace Controller
     {
         List<string[]> rettigheder;
         BrugerCollection brugercollection;
+		KampagneCollection kampagnecollection;
 		DBFacade dbFacade;
+		Kampagne nuværendeKampagne;
 
         public KampagneManager()
         {
 			dbFacade = new DBFacade(this);
             brugercollection = new BrugerCollection();
+			kampagnecollection = new KampagneCollection();
+			nuværendeKampagne = null;
         }
 
 
@@ -90,10 +95,15 @@ namespace Controller
         {
             if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
             {
-                return true;
+				nuværendeKampagne.Hjemmeside = hjemmeside;
             }
             return false;
         }
 
+		public IKampagne FindKampagne(string navn)
+		{
+			nuværendeKampagne = kampagnecollection.FindKampagne(navn);
+			return nuværendeKampagne;
+		}
     }
 }

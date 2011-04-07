@@ -6,7 +6,7 @@ using Interfaces;
 
 namespace Model
 {
-	class Kampagne : IKampagne
+	public class Kampagne : IKampagne
 	{
 		#region attributter
 		private int kampagneID;

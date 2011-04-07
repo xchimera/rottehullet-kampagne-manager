@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-	class KampagneCollection
+	public class KampagneCollection
 	{
 		List<Kampagne> kampagner;
 
