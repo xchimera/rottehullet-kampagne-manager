@@ -7,6 +7,7 @@ namespace Model
 {
     public class Bruger
     {
+        private long brugerID;
         private string email;
         private string navn;
         private DateTime fødselsdag;
@@ -16,8 +17,9 @@ namespace Model
         private bool veganer;
 
         // constructor en Bruger
-        public Bruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public Bruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
+            this.brugerID = brugerID;
             this.email = email;
             this.navn = navn;
             this.fødselsdag = fødselsdag;
