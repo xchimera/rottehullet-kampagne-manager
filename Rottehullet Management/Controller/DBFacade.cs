@@ -39,8 +39,8 @@ namespace Controller
         /// <returns>returnerer true hvis brugeren findes, ellers false</returns>
         public bool Login(string email, string kodeord)
         {
-            long brugerid;
-            string navn;
+            long brugerid = 0;
+            string navn =;
 
             cmd.CommandText = "BrugerLogin";
             cmd.Parameters.Clear();
@@ -68,7 +68,10 @@ namespace Controller
                 }
                 conn.Close();
                 reader.Dispose();
-                return true;
+
+                CheckRettighed(brugerid);
+                
+                return true;   
             }
             catch(SqlException)
             {
@@ -83,7 +86,7 @@ namespace Controller
 
         public bool Logud(string brugernavn)
         {
-
+            //TODO: lav logud
             return false;
         }
 
@@ -101,7 +104,7 @@ namespace Controller
             
 
             par = new SqlParameter("brugernavn", SqlDbType.NVarChar);
-            par.Value = brugernavn;
+            par.Value = brugerid;
             cmd.Parameters.Add(par);
 
             try
@@ -133,6 +136,7 @@ namespace Controller
 
             return false; 
         }
+
         /// <summary>
         /// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
         /// </summary>
@@ -246,6 +250,7 @@ namespace Controller
                 return kampagneid;
             }
         }
+
         /// <summary>
         /// tilføj en bruger til databasen, lavet af Denny og Søren
         /// </summary>
@@ -313,7 +318,12 @@ namespace Controller
             }
         }
 
-
+        /// <summary>
+        /// bruges til at tilknytte en bruger som superbruger til en kampagne
+        /// </summary>
+        /// <param name="brugerID">brugerens id</param>
+        /// <param name="kampagneID">kampagnens id der skal rettes på</param>
+        /// <returns>returnerer true hvis brugeren er tilknyttet, ellers false</returns>
         public bool TilknytSuperbruger(long brugerID, long kampagneID)
         {
             cmd.Parameters.Clear();
@@ -345,6 +355,12 @@ namespace Controller
             }
         }
 
+        /// <summary>
+        /// bruges til at rette et kampagnenavn
+        /// </summary>
+        /// <param name="navn">kampagnens navn</param>
+        /// <param name="kampagneID">kampagnens id der skal rettes på</param>
+        /// <returns>returnerer true hvis kampagnens navn er rettet, ellers false</returns>
         public bool RetKampagneNavn(string navn, long kampagneID)
         {
             cmd.Parameters.Clear();
@@ -376,7 +392,12 @@ namespace Controller
             }
         }
 
-
+        /// <summary>
+        /// bruges til at rette kampagnens beskrivelse
+        /// </summary>
+        /// <param name="beskrivelse">kampagnens beskrivelse</param>
+        /// <param name="kampagneID">kampagnens id der skal rettes på</param>
+        /// <returns>returnerer true hvis kampagnens beskrivelse er rettet, ellers false</returns>
         public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
         {
             cmd.Parameters.Clear();
@@ -408,6 +429,12 @@ namespace Controller
             }
         }
 
+        /// <summary>
+        /// bruges til at rette kampagnens hjemmeside adresse
+        /// </summary>
+        /// <param name="hjemmeside">kampagnens hjemmeside adresse</param>
+        /// <param name="kampagneID">kampagnens id der skal rettes på</param>
+        /// <returns>returnerer true hvis kampagnens hjemmeside adresse er rettet, ellers false</returns>
         public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
         {
             cmd.Parameters.Clear();

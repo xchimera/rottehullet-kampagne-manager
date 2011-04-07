@@ -36,5 +36,61 @@ namespace Controller
             return false;
         }
 
+
+        public bool login(string email, string kodeord)
+        {
+            if (dbFacade.Login(email, kodeord))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool OpretKampagne(string navn, long topbrugerID)
+        {
+            int kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
+            if (kampagneID > 0)
+            {//TODO: opret kampagne her
+                return true;
+            }
+            return false;
+        }
+
+        public bool TilknytSuperbruger(long brugerID, long kampagneID)
+        {
+            if (dbFacade.TilknytSuperbruger(brugerID, kampagneID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool RetKampagneNavn(string navn, long kampagneID)
+        {
+            if (dbFacade.RetKampagneNavn(navn, kampagneID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
+        {
+            if(dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
+        {
+            if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
