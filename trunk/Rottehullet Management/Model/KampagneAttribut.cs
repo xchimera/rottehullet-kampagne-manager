@@ -6,8 +6,8 @@ using Enum;
 
 namespace Model
 {
-    public class KampagneAttribut
-    {
+	public class KampagneAttribut
+	{
 		private int kampagneAttributID;
 		private string navn;
 		private Type type;
@@ -35,5 +35,5 @@ namespace Model
 		{
 			get { return kampagneAttributID; }
 		}
-    }
+	}
 }

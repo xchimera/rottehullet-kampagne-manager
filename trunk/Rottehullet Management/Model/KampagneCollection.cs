@@ -13,5 +13,21 @@ namespace Model
 		{
 			kampagner = new List<Kampagne>();
 		}
+
+		public void OpretKampagne(string navn, Bruger topbruger, int kampagneID)
+		{
+			Kampagne kampagne = new Kampagne(navn, topbruger, kampagneID);
+			kampagner.Add(kampagne);
+		}
+
+		public Kampagne FindKampagne(string navn)
+		{
+			foreach (Kampagne kampagne in kampagner)
+			{
+				if (kampagne.Navn == navn)
+					return kampagne;
+			}
+			return null;
+		}
 	}
 }
