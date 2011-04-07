@@ -25,10 +25,9 @@ namespace Controller
             rettigheder.Add(rettighed);
         }
 
-        //TODO: der skal laves C# til DBFacade til tilføj bruger
         public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
-            if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer) == null)
+            if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer))
             {
                 brugercollection.OpretBruger(email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
                 return true;
