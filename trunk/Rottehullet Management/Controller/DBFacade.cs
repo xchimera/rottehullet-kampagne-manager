@@ -255,6 +255,7 @@ namespace Controller
         /// tilføj en bruger til databasen, lavet af Denny og Søren
         /// </summary>
         /// <param name="email">brugerens email, bruges også til login</param>
+        /// <param name="kodeord">brugerens kodeord, bruges også til login</param>
         /// <param name="navn">brugerens navn</param>
         /// <param name="fødselsdag">brugerens fødselsdag</param>
         /// <param name="tlf">brugerens almindelige telefon nummer</param>
@@ -264,8 +265,11 @@ namespace Controller
         /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
         public bool OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
-            cmd.Parameters.Clear();
+            //string sqlfejl = null;
+
             cmd.CommandText = "TilføjBruger";
+            cmd.Parameters.Clear();
+
             SqlParameter par;
 
             par = new SqlParameter("@email", SqlDbType.NVarChar);
@@ -310,12 +314,22 @@ namespace Controller
 
             catch (SqlException)
             {
+                //if (e.Number == 2627)
+                //{
+                //    sqlfejl = "Brugeren findes allerede i systemet";
+                //}
+                //else
+                //{
+                //    sqlfejl = "der er sket en fejl under oprettelsen af Bruger" + e.Number;
+                //}
+
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
                 return false;
             }
+            //return sqlfejl;
         }
 
         /// <summary>
