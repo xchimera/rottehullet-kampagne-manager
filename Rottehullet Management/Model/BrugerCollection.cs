@@ -17,7 +17,7 @@ namespace Model
         #region Tilføj
 
 
-        public void Tilføjbruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public void OpretBruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
             ListBrugere.Add(new Bruger(email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer)); // smider den nye bruger i en liste (collection af brugere)
         }
