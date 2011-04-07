@@ -45,7 +45,7 @@ namespace Controller
             brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
         }
 
-        public bool login(string email, string kodeord)
+        public bool Login(string email, string kodeord)
         {
             if (dbFacade.Login(email, kodeord))
             {

@@ -6,14 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Controller;
 
 namespace Rottehullet_Management
 {
-    public partial class Form1 : Form
+    public partial class FrmHovedside : Form
     {
-        public Form1()
+        KampagneManager kampagnemanager;
+        
+        public FrmHovedside(KampagneManager kampagnemanager)
         {
             InitializeComponent();
+            this.kampagnemanager = kampagnemanager;
         }
     }
 }

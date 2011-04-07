@@ -63,15 +63,18 @@ namespace Controller
 
                 while(reader.Read())
                 {
-                    brugerid = (int)reader["brugerID"];
+                    brugerid = (long)reader["brugerID"];
                     navn = (string)reader["navn"];
                 }
                 conn.Close();
                 reader.Dispose();
 
                 CheckRettighed(brugerid);
-                
-                return true;   
+                if (brugerid > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch(SqlException)
             {
