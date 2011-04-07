@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
-	class Kampagne
+	class Kampagne : IKampagne
 	{
+		#region attributter
+		private int kampagneID;
 		private List<KampagneAttribut> attributter;
+		private string navn, hjemmeside, beskrivelse;
+		private Bruger topbruger;
+		#endregion
 
-		public Kampagne()
+		public Kampagne(string navn, Bruger topbruger, int kampagneID)
 		{
+			this.navn = navn;
+			this.topbruger = topbruger;
+			this.kampagneID = kampagneID;
 			attributter = new List<KampagneAttribut>();
 		}
 
-		public KampagneAttribut FindAttribut(string navn) {
+		public KampagneAttribut FindAttribut(string navn)
+		{
 			foreach (KampagneAttribut attribut in attributter)
 			{
 				if (attribut.Navn == navn)
@@ -75,5 +85,36 @@ namespace Model
 		{
 			attributter.Clear();
 		}
+
+		#region properties
+		public int KampagneID
+		{
+			get { return kampagneID; }
+		}
+
+		public string Beskrivelse
+		{
+			get { return beskrivelse; }
+			set { beskrivelse = value; }
+		}
+
+		public string Hjemmeside
+		{
+			get { return hjemmeside; }
+			set { hjemmeside = value; }
+		}
+
+		public string Navn
+		{
+			get { return navn; }
+			set { navn = value; }
+		}
+
+		public Bruger Topbruger
+		{
+			get { return topbruger; }
+			set { topbruger = value; }
+		}
+		#endregion
 	}
 }
