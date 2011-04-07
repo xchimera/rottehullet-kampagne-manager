@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BEEDEA9B-5316-430E-8356-E5FAA143F068}</ProjectGuid>
+    <ProjectGuid>{54968761-EC9C-4C40-AFE2-FD10E03B25F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <RootNamespace>Enum</RootNamespace>
+    <AssemblyName>Enum</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bruger.cs" />
-    <Compile Include="BrugerCollection.cs" />
-    <Compile Include="Kampagne.cs" />
-    <Compile Include="KampagneAttribut.cs" />
-    <Compile Include="KampagneCollection.cs" />
-    <Compile Include="KampagneMultiAttribut.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Enum\Enum.csproj">
-      <Project>{54968761-EC9C-4C40-AFE2-FD10E03B25F8}</Project>
-      <Name>Enum</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

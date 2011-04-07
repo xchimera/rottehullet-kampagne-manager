@@ -9,6 +9,11 @@ namespace Model
 	{
 		private List<KampagneAttribut> attributter;
 
+		public Kampagne()
+		{
+			attributter = new List<KampagneAttribut>();
+		}
+
 		public KampagneAttribut FindAttribut(string navn) {
 			foreach (KampagneAttribut attribut in attributter)
 			{

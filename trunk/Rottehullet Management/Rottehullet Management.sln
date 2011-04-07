@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{BEEDEA9B-5316-430E-8356-E5FAA143F068}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{54968761-EC9C-4C40-AFE2-FD10E03B25F8}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -51,6 +53,16 @@ Global
 		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BEEDEA9B-5316-430E-8356-E5FAA143F068}.Release|x86.ActiveCfg = Release|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{54968761-EC9C-4C40-AFE2-FD10E03B25F8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
