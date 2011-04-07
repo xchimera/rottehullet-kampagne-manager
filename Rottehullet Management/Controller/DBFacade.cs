@@ -345,6 +345,100 @@ namespace Controller
             }
         }
 
+        public bool RetKampagneNavn(string navn, long kampagneID)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "RetKampagneNavn";
+            SqlParameter par;
+
+            par = new SqlParameter("@navn", SqlDbType.NVarChar);
+            par.Value = navn;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kamID", SqlDbType.BigInt);
+            par.Value = kampagneID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
+
+        public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "RetKampagneBeskrivelse";
+            SqlParameter par;
+
+            par = new SqlParameter("@beskrivelse", SqlDbType.NVarChar);
+            par.Value = beskrivelse;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kamID", SqlDbType.BigInt);
+            par.Value = kampagneID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
+        public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "RetKampagneHjemmeside";
+            SqlParameter par;
+
+            par = new SqlParameter("@hjemmeside", SqlDbType.NVarChar);
+            par.Value = hjemmeside;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kamID", SqlDbType.BigInt);
+            par.Value = kampagneID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
 
     }
 }
