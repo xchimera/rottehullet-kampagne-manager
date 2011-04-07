@@ -20,6 +20,13 @@ namespace Model
 			return null;
 		}
 
+		/// <summary>
+		/// Opretter en single attribut og tilføjer den til listen
+		/// </summary>
+		/// <param name="navn"></param>
+		/// <param name="type"></param>
+		/// <param name="kampagneAttributID"></param>
+		/// <param name="position"></param>
 		public void TilføjSingleAttribut(string navn, Type type, int kampagneAttributID, int position)
 		{
 			KampagneAttribut attribut = new KampagneAttribut(navn, type, kampagneAttributID);
@@ -47,11 +54,18 @@ namespace Model
 			attribut.Valgmuligheder = valgmuligheder;
 		}
 
+		/// <summary>
+		/// Fjerner en attribut i listen udfra en position
+		/// </summary>
+		/// <param name="position"></param>
 		public void SletAttribut(int position)
 		{
 			attributter.RemoveAt(position);
 		}
 
+		/// <summary>
+		/// Tømmer listen over attributter.
+		/// </summary>
 		public void SletAttributter()
 		{
 			attributter.Clear();
