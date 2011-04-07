@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Interfaces
 {
-	interface IKampagne
+	public interface IKampagne
 	{
 		int KampagneID { get; }
 		string Navn { get; set; }
