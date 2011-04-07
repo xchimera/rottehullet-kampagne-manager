@@ -310,7 +310,7 @@ namespace Controller
         {
             //string sqlfejl = null;
 
-            cmd.CommandText = "TilføjBruger";
+            cmd.CommandText = "OpretBruger";
             cmd.Parameters.Clear();
 
             SqlParameter par;
