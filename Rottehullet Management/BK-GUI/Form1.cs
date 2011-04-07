@@ -20,26 +20,37 @@ namespace BK_GUI
 
         private void btnTilføjBruger_Click(object sender, EventArgs e)
         {
-            string email = Convert.ToString(txtMail.Text);
-            string kodeord = Convert.ToString(txtKodeord.Text);
-            string navn = Convert.ToString(txtNavn.Text);
-            DateTime fødselsdag = dtpFødselsdag.Value;
-            long tlf = long.Parse(txtTlf.Text);
-            long nød_tlf = long.Parse(txtNød_tlf.Text);
-            bool vegetar = false;
-            bool veganer = false;
-
-            if (chkVegetar.Checked)
+            try
             {
-                vegetar = true;
-            }
-            if (chkVeganer.Checked)
-            {
-                vegetar = true;
-                veganer = true;
-            }
+                string email = Convert.ToString(txtMail.Text);
+                string kodeord = Convert.ToString(txtKodeord.Text);
+                string navn = Convert.ToString(txtNavn.Text);
+                DateTime fødselsdag = dtpFødselsdag.Value;
+                long tlf = long.Parse(txtTlf.Text);
+                long nød_tlf = long.Parse(txtNød_tlf.Text);
+                bool vegetar = false;
+                bool veganer = false;
 
-            brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+                if (chkVegetar.Checked)
+                {
+                    vegetar = true;
+                }
+                if (chkVeganer.Checked)
+                {
+                    vegetar = true;
+                    veganer = true;
+                }
+
+                brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+
+            }
+            catch (FormatException)
+            {
+
+                MessageBox.Show("Indtast venligst korrekte værdier.", "Værdi Fejl", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
+            }
         }
     }
 }
