@@ -40,7 +40,7 @@ namespace Controller
         public bool Login(string email, string kodeord)
         {
             long brugerid = 0;
-            string navn =;
+            string navn;
 
             cmd.CommandText = "BrugerLogin";
             cmd.Parameters.Clear();

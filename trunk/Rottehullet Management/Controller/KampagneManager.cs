@@ -75,7 +75,7 @@ namespace Controller
 
         public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
         {
-            if(dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID)
+            if(dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID))
             {
                 return true;
             }
