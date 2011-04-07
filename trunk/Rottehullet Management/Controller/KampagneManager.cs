@@ -105,5 +105,14 @@ namespace Controller
 			nuværendeKampagne = kampagnecollection.FindKampagne(navn);
 			return nuværendeKampagne;
 		}
+
+		public bool TilføjSingleAttribut(string navn, Type type)
+		{
+			if (true)
+			{
+				
+			}
+			return false;
+		}
     }
 }

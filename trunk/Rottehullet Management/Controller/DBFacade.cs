@@ -526,6 +526,14 @@ namespace Controller
             }
         }
 
+		public int OpretKampagneSingleAttribut()
+		{
+			return -1;
+		}
 
+		public int OpretKampagneMultiAttribut()
+		{
+			return -1;
+		}
     }
 }
