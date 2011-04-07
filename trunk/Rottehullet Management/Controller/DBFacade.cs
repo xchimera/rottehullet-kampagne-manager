@@ -257,7 +257,7 @@ namespace Controller
         /// <param name="vegetar">om brugeren er vegetar</param>
         /// <param name="veganer">om brugeren er veganer</param>
         /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
-        public bool TilføjBruger(string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public bool OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "TilføjBruger";
@@ -265,6 +265,10 @@ namespace Controller
 
             par = new SqlParameter("@email", SqlDbType.NVarChar);
             par.Value = email;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kodeord", SqlDbType.NVarChar);
+            par.Value = kodeord;
             cmd.Parameters.Add(par);
 
             par = new SqlParameter("@navn", SqlDbType.NVarChar);
