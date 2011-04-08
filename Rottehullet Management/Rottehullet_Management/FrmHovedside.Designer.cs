@@ -77,7 +77,6 @@
 			// 
 			// button1
 			// 
-			this.button1.Image = global::Rottehullet_Management.Properties.Resources.edit;
 			this.button1.Location = new System.Drawing.Point(184, 15);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(21, 23);
@@ -86,7 +85,6 @@
 			// 
 			// button2
 			// 
-			this.button2.Image = global::Rottehullet_Management.Properties.Resources.edit;
 			this.button2.Location = new System.Drawing.Point(184, 46);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(22, 23);
@@ -95,7 +93,6 @@
 			// 
 			// button3
 			// 
-			this.button3.Image = global::Rottehullet_Management.Properties.Resources.edit;
 			this.button3.Location = new System.Drawing.Point(79, 83);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(22, 23);

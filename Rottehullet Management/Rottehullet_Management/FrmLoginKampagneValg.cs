@@ -16,10 +16,10 @@ namespace Rottehullet_Management
         
         public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager, List<string[]> kampagner)
 		{
-			Button[] knapper = {btnKampagne1,btnKampagne2,btnKampagne3};
-			this.kampagner = kampagner;
 
 			InitializeComponent();
+            Button[] knapper = {btnKampagne1, btnKampagne2, btnKampagne3 };
+            this.kampagner = kampagner;
 			this.kampagnemanager = kampagnemanager;
 			this.kampagner = kampagner;
 			for (int i = 0; i < kampagner.Count; i++)
