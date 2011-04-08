@@ -57,9 +57,15 @@ namespace Controller
         public bool OpretKampagne(string navn, long topbrugerID)
         {
             int kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
+            Bruger bruger;
             if (kampagneID > 0)
-            {//TODO: opret kampagne her
-                return true;
+            {
+                bruger = brugercollection.FindBruger(topbrugerID);
+                if (bruger != null)
+                {
+                    kampagnecollection.OpretKampagne(navn, bruger, kampagneID);
+                    return true;
+                }
             }
             return false;
         }
