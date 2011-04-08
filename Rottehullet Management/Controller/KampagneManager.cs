@@ -9,7 +9,7 @@ namespace Controller
 {
     public class KampagneManager
     {
-        List<string[]> rettigheder;
+        List<string[]> rettigheder = new List<string[]>();
         BrugerCollection brugercollection;
 		KampagneCollection kampagnecollection;
 		DBFacade dbFacade;
