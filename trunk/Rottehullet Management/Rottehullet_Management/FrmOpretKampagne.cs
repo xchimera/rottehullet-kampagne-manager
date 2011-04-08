@@ -27,7 +27,7 @@ namespace Rottehullet_Management
             IEnumerator brugeriterator = kampagnemanager.GetBrugerIterator();
             brugeriterator.Reset();
             lstBrugere.Items.Clear();
-
+            
             while (brugeriterator.MoveNext())
             {
                 ibruger = (IBruger)brugeriterator.Current;
@@ -82,7 +82,7 @@ namespace Rottehullet_Management
             int index = lstBrugere.SelectedIndices[0];
             ListViewItem item = lstBrugere.Items[index]; ;
 
-            if (kampagnemanager.OpretKampagne(item.SubItems[1].Text, Convert.ToInt64(item.SubItems[0].Text)))
+            if (kampagnemanager.OpretKampagne(txtKampagneNavn.Text, Convert.ToInt64(item.SubItems[0].Text)))
             {
                 MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " er oprettet");
                 this.Close();
