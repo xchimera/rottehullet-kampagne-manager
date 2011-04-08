@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enum;
 
 namespace Model
 {
@@ -9,7 +10,7 @@ namespace Model
 	{
 		private List<string> valgmuligheder;
 
-		public KampagneMultiAttribut(string navn, Type type, List<string> valgmuligheder, int kampagneAttributID)
+		public KampagneMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, long kampagneAttributID)
 			: base(navn, type, kampagneAttributID)
 		{
 			this.valgmuligheder = valgmuligheder;

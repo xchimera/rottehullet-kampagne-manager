@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Interfaces;
+using Enum;
 
 namespace Model
 {
@@ -51,26 +52,26 @@ namespace Model
 		/// <param name="type"></param>
 		/// <param name="kampagneAttributID"></param>
 		/// <param name="position"></param>
-		public void TilføjSingleAttribut(string navn, Type type, int kampagneAttributID, int position)
+		public void TilføjSingleAttribut(string navn, KampagneType type, long kampagneAttributID, int position)
 		{
 			KampagneAttribut attribut = new KampagneAttribut(navn, type, kampagneAttributID);
 			attributter[position] = attribut;
 		}
 
-		public void TilføjMultiAttribut(string navn, Type type, List<string> valgmuligheder, int kampagneAttributID, int position)
+		public void TilføjMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
 			attributter[position] = attribut;
 		}
 
-		public void RetSingleAttribut(string navn, Type type, int position)
+		public void RetSingleAttribut(string navn, KampagneType type, int position)
 		{
 			KampagneAttribut attribut = FindAttribut(navn);
 			attribut.Navn = navn;
 			attribut.Type = type;
 		}
 
-		public void RetMultiAttribut(string navn, Type type, List<string> valgmuligheder, int position)
+		public void RetMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, int position)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(navn);
 			attribut.Navn = navn;
