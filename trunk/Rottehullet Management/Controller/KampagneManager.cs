@@ -71,6 +71,10 @@ namespace Controller
 
 		public bool HentKampagneFraDatabase(long kamID)
 		{
+			if (!dbFacade.HentBrugereTilKampagne(kamID))
+			{
+				return false;
+			}
 			return (dbFacade.HentKampagne(kamID));
 		}
 
