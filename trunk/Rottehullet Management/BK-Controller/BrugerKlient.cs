@@ -19,9 +19,11 @@ namespace BK_Controller
 
         public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
-            if (brugerdbfacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer))
+            long brugerID = brugerdbfacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+            
+            if (brugerID>0)
             {
-                brugercollection.OpretBruger(email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+                brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
                 return true;
             }
             return false;
