@@ -181,9 +181,46 @@ namespace Controller
                 }
             }
         }
-        
 
-        /// <summary>
+
+		public void HentKampagne()
+		{
+			string navn, beskrivelse, hjemmeside;
+			long topbrugerID;
+			
+			cmd.CommandText = "HentKampagne";
+			cmd.Parameters.Clear();
+			SqlDataReader reader;
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					navn = (string)reader["navn"];
+					beskrivelse = (string)reader["beskrivelse"];
+					hjemmeside = (string)reader["hjemmeside"];
+					topbrugerID = (long)reader["topbrugerID"];
+
+					kampagnemanager.GenopretKampagne(topbrugerID, navn, beskrivelse, hjemmeside, topbrugerID);
+				}
+
+				reader.Dispose();
+				conn.Close();
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+			}
+		}
+
+
+		/// <summary>
         /// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
         /// </summary>
         /// <param name="brugerID">brugerens id</param>
