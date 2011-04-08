@@ -8,6 +8,12 @@ namespace BK_Controller
 {
     public class BrugerKlient
     {
+        /// <summary>
+        /// bruger her en anden databasefacade og controller da dette er brugerklienten
+        /// og ikke skal have så mange rettigheder som en superbruger eller admin.
+        /// normalt skulle der kun bruges en anden controller, men da dbfacaden for kampagnemanageren's constructor
+        /// forventer at det en kompagnemanager af objectet KampagneManager, blev vi nødt til at lave en separat controller og dbfacade.
+        /// </summary>
         BrugerDBFacade brugerdbfacade;
         BrugerCollection brugercollection;
 
