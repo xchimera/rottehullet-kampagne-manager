@@ -181,11 +181,64 @@ namespace Controller
             }
         }
 
+		public bool HentBrugereTilKampagne(long kamID)
+		{
+			long brugerID, tlf, nød_tlf;
+			string email, navn;
+			DateTime fødselsdag;
+			bool vegetar, veganer;
+
+			cmd.CommandText = "HentBrugereTilKampagne";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+			SqlDataReader reader;
+
+			par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			par.Value = kamID;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					brugerID = (long)reader["brugerID"];
+					email = (string)reader["email"];
+					navn = (string)reader["navn"];
+					fødselsdag = (DateTime)reader["fødselsdag"];
+					tlf = (long)reader["tlf"];
+					nød_tlf = (long)reader["nød_tlf"];
+					vegetar = (bool)reader["vegetar"];
+					veganer = (bool)reader["veganer"];
+
+					if (!kampagnemanager.Opretbruger(brugerID, email, "", navn, fødselsdag, tlf, nød_tlf, vegetar, veganer))
+					{
+						return false;
+					}
+				}
+
+				reader.Dispose();
+				conn.Close();
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+			return true;
+		}
 
 		public bool HentKampagne(long kamID)
 		{
 			//Opretning af selve kampagnen
-			string navn, beskrivelse, hjemmeside;
+			string navn;
+			string beskrivelse = "";
+			string hjemmeside = "";
 			long topbrugerID;
 			
 			cmd.CommandText = "HentKampagne";
@@ -209,7 +262,10 @@ namespace Controller
 					hjemmeside = (string)reader["hjemmeside"];
 					topbrugerID = (long)reader["topbrugerID"];
 
-					kampagnemanager.GenopretKampagne(topbrugerID, navn, beskrivelse, hjemmeside, topbrugerID);
+					if (!kampagnemanager.GenopretKampagne(topbrugerID, navn, beskrivelse, hjemmeside, topbrugerID))
+					{
+						return false;
+					}
 				}
 
 				reader.Dispose();

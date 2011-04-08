@@ -35,26 +35,32 @@ namespace Rottehullet_Management
 
 		private void btnKampagne1_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[0][0]), kampagner[0][1], kampagnemanager);
-			this.Hide();
-			hovedside.ShowDialog();
-			this.Close();
+			startKampagne(0);
 		}
 
 		private void btnKampagne2_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[1][0]), kampagner[1][1], kampagnemanager);
-			this.Hide();
-			hovedside.ShowDialog();
-			this.Close();
+			startKampagne(1);
 		}
 
 		private void btnKampagne3_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[2][0]), kampagner[2][1], kampagnemanager);
-			this.Hide();
-			hovedside.ShowDialog();
-			this.Close();
+			startKampagne(2);
+		}
+
+		private void startKampagne(int i)
+		{
+			if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(kampagner[i][0])))
+			{
+				FrmHovedside hovedside = new FrmHovedside(kampagner[i][1], kampagnemanager);
+				this.Hide();
+				hovedside.ShowDialog();
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
+			}
 		}
 	}
 }

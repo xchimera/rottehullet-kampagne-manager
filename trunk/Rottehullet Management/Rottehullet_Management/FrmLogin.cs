@@ -18,6 +18,7 @@ namespace Rottehullet_Management
         {
             InitializeComponent();
             kampagnemanager = new KampagneManager();
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -31,10 +32,17 @@ namespace Rottehullet_Management
 				}
 				if (kampagner.Count == 1)
 				{
-					FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[0][0]),kampagner[0][1],kampagnemanager);
-					this.Hide();
-					hovedside.ShowDialog();
-					this.Close();
+					if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(kampagner[0][0])))
+					{
+						FrmHovedside hovedside = new FrmHovedside(kampagner[0][1], kampagnemanager);
+						this.Hide();
+						hovedside.ShowDialog();
+						this.Close();
+					}
+					else
+					{
+						MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
+					}
 				}
 				else if (kampagner.Count > 1)
 				{

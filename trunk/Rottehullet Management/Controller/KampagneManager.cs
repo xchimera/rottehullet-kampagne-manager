@@ -82,7 +82,7 @@ namespace Controller
 			bruger = brugercollection.FindBruger(topbrugerID);
 			if (bruger != null)
 			{
-				kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
+				nuværendeKampagne = kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
 				return true;
 			}
 			return false;
