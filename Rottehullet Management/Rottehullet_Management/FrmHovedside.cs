@@ -16,12 +16,11 @@ namespace Rottehullet_Management
         KampagneManager kampagnemanager;
 		IKampagne Kampagne;
         
-        public FrmHovedside(long kampagneID, string navn, KampagneManager kampagnemanager)
+        public FrmHovedside(string navn, KampagneManager kampagnemanager)
         {
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
 
-			kampagnemanager.HentKampagneFraDatabase(kampagneID);
 			Kampagne = kampagnemanager.FindKampagne(navn);
 
 			txtNavn.Text = Kampagne.Navn;
