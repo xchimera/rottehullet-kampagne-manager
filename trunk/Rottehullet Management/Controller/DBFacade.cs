@@ -105,7 +105,6 @@ namespace Controller
             SqlParameter par;
             SqlDataReader reader;
             
-
             par = new SqlParameter("brugernavn", SqlDbType.NVarChar);
             par.Value = brugerid;
             cmd.Parameters.Add(par);
@@ -183,14 +182,20 @@ namespace Controller
         }
 
 
-		public void HentKampagne()
+		public bool HentKampagne(long kamID)
 		{
+			//Opretning af selve kampagnen
 			string navn, beskrivelse, hjemmeside;
 			long topbrugerID;
 			
 			cmd.CommandText = "HentKampagne";
 			cmd.Parameters.Clear();
+			SqlParameter par;
 			SqlDataReader reader;
+
+			par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			par.Value = kamID;
+			cmd.Parameters.Add(par);
 
 			try
 			{
@@ -216,7 +221,95 @@ namespace Controller
 				{
 					conn.Close();
 				}
+				return false;
 			}
+
+			////Hentning af attributter på kampagnen
+			//string attID, infotype, position;
+			////string navn; allerede defineret ovenfor
+			//List<string[]> attributliste = new List<string[]>();
+
+			//cmd.CommandText = "HentAttributter";
+			//cmd.Parameters.Clear();
+
+			//par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			//par.Value = kamID;
+			//cmd.Parameters.Add(par);
+
+			//try
+			//{
+			//    conn.Open();
+			//    reader = cmd.ExecuteReader();
+
+			//    while (reader.Read())
+			//    {
+			//        attID = Convert.ToString(reader["attID"]);
+			//        navn = (string)reader["navn"];
+			//        infotype = Convert.ToString(reader["infotype"]);
+			//        position = Convert.ToString(reader["position"]);
+			//        string[] attributarray = {position, attID, navn, infotype};
+			//        attributliste.Add(attributarray);
+			//    }
+			//    attributliste.Sort();
+				
+			//    reader.Dispose();
+			//    conn.Close();
+			//}
+			//catch (SqlException)
+			//{
+			//    if (conn.State == ConnectionState.Open)
+			//    {
+			//        conn.Close();
+			//    }
+			//}
+
+			//foreach (string[] attribut in attributliste)
+			//{
+			//    //Opsætning af attributter på kampagne
+			//    if (attribut[3] == "0")
+			//    {
+			//        GenopretSingleAttributter(attribut[1], attribut[2], attribut[3], attribut[0])
+			//    }
+			//    //Opsætning af entries på multiattributter på kampagne
+			//    string attID, infotype, position;
+			//    //string navn; allerede defineret ovenfor
+			//    List<string[]> attributliste = new List<string[]>();
+
+			//    cmd.CommandText = "HentAttributter";
+			//    cmd.Parameters.Clear();
+
+			//    par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			//    par.Value = kamID;
+			//    cmd.Parameters.Add(par);
+
+			//    try
+			//    {
+			//        conn.Open();
+			//        reader = cmd.ExecuteReader();
+
+			//        while (reader.Read())
+			//        {
+			//            attID = Convert.ToString(reader["attID"]);
+			//            navn = (string)reader["navn"];
+			//            infotype = Convert.ToString(reader["infotype"]);
+			//            position = Convert.ToString(reader["position"]);
+			//            string[] attributarray = { position, attID, navn, infotype };
+			//            attributliste.Add(attributarray);
+			//        }
+			//        attributliste.Sort();
+
+			//        reader.Dispose();
+			//        conn.Close();
+			//    }
+			//    catch (SqlException)
+			//    {
+			//        if (conn.State == ConnectionState.Open)
+			//        {
+			//            conn.Close();
+			//        }
+			//    }
+			//}
+			return true;
 		}
 
 
