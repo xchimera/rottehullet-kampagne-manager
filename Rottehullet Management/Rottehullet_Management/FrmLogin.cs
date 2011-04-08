@@ -18,7 +18,6 @@ namespace Rottehullet_Management
         {
             InitializeComponent();
             kampagnemanager = new KampagneManager();
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
