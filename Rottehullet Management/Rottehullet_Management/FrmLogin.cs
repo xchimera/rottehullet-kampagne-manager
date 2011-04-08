@@ -22,12 +22,31 @@ namespace Rottehullet_Management
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+			List<string[]> kampagner = new List<string[]>();
             if(kampagnemanager.Login(txtBrugernavn.Text.ToString(), txtKodeord.Text.ToString()))
             {
-                FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
-                this.Hide();
-                hovedside.ShowDialog();
-                this.Close();
+				foreach (string[] kampagne in kampagnemanager.GetRettigheder())
+				{
+					kampagner.Add(kampagne);
+				}
+				if (kampagner.Count == 1)
+				{
+					FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
+					this.Hide();
+					hovedside.ShowDialog();
+					this.Close();
+				}
+				else if (kampagner.Count > 1)
+				{
+					FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager, kampagner);
+					this.Hide();
+					loginKampagneValg.ShowDialog();
+					this.Close();
+				}
+				else
+				{
+					MessageBox.Show("Denne bruger er ikke i en spilledelse");
+				}
             }
             else
             {
