@@ -774,7 +774,7 @@ namespace Controller
 			}
 		}
 
-		public long OpretKampagneMultiAttributEntry(int attributID, string værdi)
+		public long OpretKampagneMultiAttributEntry(long attributID, string værdi)
 		{
 			cmd.Parameters.Clear();
 			cmd.CommandText = "OpretMultiAttributEntry";
