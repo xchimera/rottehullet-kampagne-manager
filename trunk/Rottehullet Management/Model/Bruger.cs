@@ -72,5 +72,10 @@ namespace Model
             get { return email; }
             set { email = value; }
         }
+
+        public long BrugerID
+        {
+            get { return brugerID; }
+        }
     }
 }

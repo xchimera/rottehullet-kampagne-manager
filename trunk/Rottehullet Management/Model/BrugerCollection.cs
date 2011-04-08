@@ -22,6 +22,18 @@ namespace Model
             ListBrugere.Add(new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer)); // smider den nye bruger i en liste (collection af brugere)
         }
 
+        public Bruger FindBruger(long brugerID)
+        {
+            foreach (Bruger bruger in ListBrugere)
+            {
+                if (brugerID == bruger.BrugerID)
+                {
+                    return bruger;
+                }
+            }
+            return null;
+        }
+
         #endregion
     }
 }
