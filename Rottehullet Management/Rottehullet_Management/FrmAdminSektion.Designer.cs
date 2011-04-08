@@ -70,7 +70,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "FrmAdminSektion";
-            this.Text = "FrmAdminSektion";
+            this.Text = "Administration";
             this.ResumeLayout(false);
 
         }

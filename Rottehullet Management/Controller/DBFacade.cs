@@ -450,7 +450,7 @@ namespace Controller
             cmd.CommandText = "OpretKampagne";
             cmd.Parameters.Clear();
             SqlParameter par;
-            SqlDataReader reader;
+            
             long kampagneid = 0;
             string tempid;
 
@@ -462,16 +462,19 @@ namespace Controller
             par.Value = topbrugerID;
             cmd.Parameters.Add(par);
 
+            par = new SqlParameter("@id", SqlDbType.BigInt);
+            par.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(par);
+
             
 
             try
             {
 
                 conn.Open();
-                //cmd.ExecuteNonQuery();
-                tempid = cmd.ExecuteScalar().ToString();
-                kampagneid = long.Parse(tempid);
+                cmd.ExecuteNonQuery();
                 conn.Close();
+                return (long)par.Value;
                
 
                 //conn.Open();
