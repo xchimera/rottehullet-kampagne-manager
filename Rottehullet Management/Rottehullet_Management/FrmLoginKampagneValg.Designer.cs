@@ -41,6 +41,7 @@
 			this.btnKampagne2.TabIndex = 1;
 			this.btnKampagne2.Text = "button1";
 			this.btnKampagne2.UseVisualStyleBackColor = true;
+			this.btnKampagne2.Click += new System.EventHandler(this.btnKampagne2_Click);
 			// 
 			// btnKampagne3
 			// 
@@ -51,6 +52,7 @@
 			this.btnKampagne3.TabIndex = 2;
 			this.btnKampagne3.Text = "Ingen Kampagne";
 			this.btnKampagne3.UseVisualStyleBackColor = true;
+			this.btnKampagne3.Click += new System.EventHandler(this.btnKampagne3_Click);
 			// 
 			// btnKampagne1
 			// 
