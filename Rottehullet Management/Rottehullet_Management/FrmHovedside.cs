@@ -14,10 +14,12 @@ namespace Rottehullet_Management
     {
         KampagneManager kampagnemanager;
         
-        public FrmHovedside(long kampagneID, KampagneManager kampagnemanager)
+        public FrmHovedside(long kampagneID, string navn, KampagneManager kampagnemanager)
         {
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
+
+			kampagnemanager.HentKampagneFraDatabase(kampagneID);
         }
     }
 }

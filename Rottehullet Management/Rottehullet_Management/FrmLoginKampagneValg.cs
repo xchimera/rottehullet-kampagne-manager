@@ -35,7 +35,7 @@ namespace Rottehullet_Management
 
 		private void btnKampagne1_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[0][0]), kampagnemanager);
+			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[0][0]), kampagner[0][1], kampagnemanager);
 			this.Hide();
 			hovedside.ShowDialog();
 			this.Close();
@@ -43,7 +43,7 @@ namespace Rottehullet_Management
 
 		private void btnKampagne2_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[1][0]), kampagnemanager);
+			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[1][0]), kampagner[1][1], kampagnemanager);
 			this.Hide();
 			hovedside.ShowDialog();
 			this.Close();
@@ -51,7 +51,7 @@ namespace Rottehullet_Management
 
 		private void btnKampagne3_Click(object sender, EventArgs e)
 		{
-			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[2][0]), kampagnemanager);
+			FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[2][0]), kampagner[2][1], kampagnemanager);
 			this.Hide();
 			hovedside.ShowDialog();
 			this.Close();

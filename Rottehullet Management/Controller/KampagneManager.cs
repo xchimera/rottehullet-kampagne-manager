@@ -70,6 +70,11 @@ namespace Controller
             return false;
         }
 
+		public bool HentKampagneFraDatabase(long kamID)
+		{
+			return (dbFacade.HentKampagne(kamID));
+		}
+
 		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)
 		{
 			Bruger bruger;
