@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
-    public class Bruger
+    public class Bruger : IBruger
     {
         private long brugerID;
         private string email;

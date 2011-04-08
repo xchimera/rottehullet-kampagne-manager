@@ -46,18 +46,16 @@ namespace Controller
             brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
         }
 
-        public bool Login(string email, string kodeord)
+        public long Login(string email, string kodeord)
         {
-            if (dbFacade.Login(email, kodeord))
-            {
-                return true;
-            }
-            return false;
+            long brugerID = dbFacade.Login(email, kodeord);
+
+            return brugerID;
         }
 
         public bool OpretKampagne(string navn, long topbrugerID)
         {
-            int kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
+            long kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
             Bruger bruger;
             if (kampagneID > 0)
             {
@@ -141,6 +139,13 @@ namespace Controller
 			return false;
 		}
 
+
+        public System.Collections.IEnumerator GetBrugerIterator()
+        {
+            return brugercollection.GetBrugerIterator();
+        }
+
+
 		public bool TilføjMultiAttribut(string navn, KampagneType type, int position, List<string> valgmuligheder)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
@@ -154,6 +159,7 @@ namespace Controller
 			}
 			return false;
 		}
+
 
 		public System.Collections.IEnumerable GetRettigheder()
 		{

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAdminSektion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdminSektion.Designer.cs">
+      <DependentUpon>FrmAdminSektion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLoginKampagneValg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,8 +70,17 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOpretKampagne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOpretKampagne.Designer.cs">
+      <DependentUpon>FrmOpretKampagne.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAdminSektion.resx">
+      <DependentUpon>FrmAdminSektion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmHovedside.resx">
       <DependentUpon>FrmHovedside.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginKampagneValg.resx">
       <DependentUpon>FrmLoginKampagneValg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOpretKampagne.resx">
+      <DependentUpon>FrmOpretKampagne.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
