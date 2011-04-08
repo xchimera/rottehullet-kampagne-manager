@@ -8,15 +8,15 @@ namespace Model
 {
 	class KampagneMultiAttribut : KampagneAttribut
 	{
-		private List<string> valgmuligheder;
+		private List<string[]> valgmuligheder;
 
-		public KampagneMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, long kampagneAttributID)
+		public KampagneMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, long kampagneAttributID)
 			: base(navn, type, kampagneAttributID)
 		{
 			this.valgmuligheder = valgmuligheder;
 		}
 
-		public List<string> Valgmuligheder
+		public List<string[]> Valgmuligheder
 		{
 			get { return valgmuligheder; }
 			set { valgmuligheder = value; }

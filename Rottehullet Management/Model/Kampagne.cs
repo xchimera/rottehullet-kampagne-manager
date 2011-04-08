@@ -58,7 +58,7 @@ namespace Model
 			attributter[position] = attribut;
 		}
 
-		public void TilføjMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, long kampagneAttributID, int position)
+		public void TilføjMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
 			attributter[position] = attribut;
