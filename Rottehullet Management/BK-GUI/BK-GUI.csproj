@@ -81,9 +81,9 @@
       <Project>{06FB3FBE-26A1-490B-858F-6E7FEBC8A09C}</Project>
       <Name>BK-Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BK-Model\BK-Model.csproj">
-      <Project>{79FB048D-BC3E-4A92-B77F-924BE44EA44F}</Project>
-      <Name>BK-Model</Name>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
+      <Name>Controller</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

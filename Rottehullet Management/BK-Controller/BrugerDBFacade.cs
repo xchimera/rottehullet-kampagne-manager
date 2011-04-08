@@ -101,14 +101,18 @@ namespace BK_Controller
         /// <param name="vegetar">om brugeren er vegetar</param>
         /// <param name="veganer">om brugeren er veganer</param>
         /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
-        public bool OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public long OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
         {
             //string sqlfejl = null;
 
+            string tempBrugerID;
+            long brugerID = 0;
             cmd.CommandText = "OpretBruger";
             cmd.Parameters.Clear();
 
+
             SqlParameter par;
+            SqlDataReader reader;
 
             par = new SqlParameter("@email", SqlDbType.NVarChar);
             par.Value = email;
@@ -142,12 +146,16 @@ namespace BK_Controller
             par.Value = veganer;
             cmd.Parameters.Add(par);
 
+
+
             try
             {
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
+                tempBrugerID = cmd.ExecuteScalar().ToString();
+                brugerID = long.Parse(tempBrugerID);
                 conn.Close();
-                return true;
+                return brugerID;
             }
 
             catch (SqlException)
@@ -165,7 +173,7 @@ namespace BK_Controller
                 {
                     conn.Close();
                 }
-                return false;
+                return brugerID;
             }
             //return sqlfejl;
         }

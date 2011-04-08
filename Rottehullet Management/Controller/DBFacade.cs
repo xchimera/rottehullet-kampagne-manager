@@ -318,6 +318,8 @@ namespace Controller
 
             SqlParameter par;
 
+            SqlDataReader reader;
+
             par = new SqlParameter("@email", SqlDbType.NVarChar);
             par.Value = email;
             cmd.Parameters.Add(par);
@@ -350,10 +352,14 @@ namespace Controller
             par.Value = veganer;
             cmd.Parameters.Add(par);
 
+
+
             try
             {
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
+                reader = cmd.ExecuteReader();
+                
                 conn.Close();
                 return true;
             }
