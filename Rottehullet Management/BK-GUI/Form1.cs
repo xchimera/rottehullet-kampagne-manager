@@ -4,11 +4,11 @@ using BK_Controller;
 
 namespace BK_GUI
 {
-    public partial class Form1 : Form
+    public partial class BK_Klient : Form
     {
         private readonly BrugerKlient brugerklient;
 
-        public Form1()
+        public BK_Klient()
         {
             InitializeComponent();
             brugerklient = new BrugerKlient();

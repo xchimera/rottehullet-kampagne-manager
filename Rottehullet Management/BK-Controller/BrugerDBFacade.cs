@@ -105,14 +105,13 @@ namespace BK_Controller
         {
             //string sqlfejl = null;
 
-            string tempBrugerID;
-            long brugerID = 0;
+            //string tempBrugerID;
+            //long brugerID = 0;
             cmd.CommandText = "OpretBruger";
             cmd.Parameters.Clear();
 
-
             SqlParameter par;
-            SqlDataReader reader;
+            //SqlDataReader reader;
 
             par = new SqlParameter("@email", SqlDbType.NVarChar);
             par.Value = email;
@@ -146,36 +145,26 @@ namespace BK_Controller
             par.Value = veganer;
             cmd.Parameters.Add(par);
 
-
+            par = new SqlParameter("@brugerID", SqlDbType.BigInt);
+            par.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(par);
 
             try
             {
                 conn.Open();
-                //cmd.ExecuteNonQuery();
-                tempBrugerID = cmd.ExecuteScalar().ToString();
-                brugerID = long.Parse(tempBrugerID);
+                cmd.ExecuteNonQuery();
                 conn.Close();
-                return brugerID;
+                return (long)par.Value;
             }
 
             catch (SqlException)
             {
-                //if (e.Number == 2627)
-                //{
-                //    sqlfejl = "Brugeren findes allerede i systemet";
-                //}
-                //else
-                //{
-                //    sqlfejl = "der er sket en fejl under oprettelsen af Bruger" + e.Number;
-                //}
-
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
-                return brugerID;
+                return (long)par.Value;
             }
-            //return sqlfejl;
         }
     }
 }
