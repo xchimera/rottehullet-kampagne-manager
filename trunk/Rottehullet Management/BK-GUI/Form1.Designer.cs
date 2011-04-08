@@ -1,6 +1,6 @@
 ﻿namespace BK_GUI
 {
-    partial class Form1
+    partial class BK_Klient
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,7 @@
             this.btnTilføjBruger.Location = new System.Drawing.Point(260, 208);
             this.btnTilføjBruger.Name = "btnTilføjBruger";
             this.btnTilføjBruger.Size = new System.Drawing.Size(75, 23);
-            this.btnTilføjBruger.TabIndex = 0;
+            this.btnTilføjBruger.TabIndex = 9;
             this.btnTilføjBruger.Text = "TilføjBruger";
             this.btnTilføjBruger.UseVisualStyleBackColor = true;
             this.btnTilføjBruger.Click += new System.EventHandler(this.btnTilføjBruger_Click);
@@ -85,14 +85,14 @@
             this.txtNavn.Location = new System.Drawing.Point(127, 93);
             this.txtNavn.Name = "txtNavn";
             this.txtNavn.Size = new System.Drawing.Size(100, 20);
-            this.txtNavn.TabIndex = 1;
+            this.txtNavn.TabIndex = 3;
             // 
             // txtTlf
             // 
             this.txtTlf.Location = new System.Drawing.Point(127, 160);
             this.txtTlf.Name = "txtTlf";
             this.txtTlf.Size = new System.Drawing.Size(100, 20);
-            this.txtTlf.TabIndex = 1;
+            this.txtTlf.TabIndex = 5;
             // 
             // label3
             // 
@@ -108,7 +108,7 @@
             this.txtKodeord.Location = new System.Drawing.Point(127, 67);
             this.txtKodeord.Name = "txtKodeord";
             this.txtKodeord.Size = new System.Drawing.Size(100, 20);
-            this.txtKodeord.TabIndex = 1;
+            this.txtKodeord.TabIndex = 2;
             // 
             // label4
             // 
@@ -140,7 +140,7 @@
             this.txtNød_tlf.Location = new System.Drawing.Point(127, 186);
             this.txtNød_tlf.Name = "txtNød_tlf";
             this.txtNød_tlf.Size = new System.Drawing.Size(100, 20);
-            this.txtNød_tlf.TabIndex = 1;
+            this.txtNød_tlf.TabIndex = 6;
             // 
             // label6
             // 
@@ -157,7 +157,7 @@
             this.chkVegetar.Location = new System.Drawing.Point(74, 212);
             this.chkVegetar.Name = "chkVegetar";
             this.chkVegetar.Size = new System.Drawing.Size(63, 17);
-            this.chkVegetar.TabIndex = 5;
+            this.chkVegetar.TabIndex = 7;
             this.chkVegetar.Text = "Vegetar";
             this.chkVegetar.UseVisualStyleBackColor = true;
             // 
@@ -167,11 +167,11 @@
             this.chkVeganer.Location = new System.Drawing.Point(170, 212);
             this.chkVeganer.Name = "chkVeganer";
             this.chkVeganer.Size = new System.Drawing.Size(66, 17);
-            this.chkVeganer.TabIndex = 6;
+            this.chkVeganer.TabIndex = 8;
             this.chkVeganer.Text = "Veganer";
             this.chkVeganer.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // BK_Klient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,8 +191,8 @@
             this.Controls.Add(this.txtNavn);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.btnTilføjBruger);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "BK_Klient";
+            this.Text = "BrugerKlient";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
