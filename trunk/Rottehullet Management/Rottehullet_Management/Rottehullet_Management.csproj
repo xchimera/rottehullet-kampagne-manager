@@ -100,12 +100,14 @@
       <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
       <Name>Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{954C3027-E37E-42B4-AC53-FCB94CA33C45}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

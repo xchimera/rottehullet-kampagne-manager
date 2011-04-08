@@ -31,12 +31,12 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.txtBeskrivelse = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.txtNavn = new System.Windows.Forms.TextBox();
+			this.txtHjemmeside = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -66,14 +66,14 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Beskrivelse";
 			// 
-			// textBox3
+			// txtBeskrivelse
 			// 
-			this.textBox3.Enabled = false;
-			this.textBox3.Location = new System.Drawing.Point(16, 114);
-			this.textBox3.Multiline = true;
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(175, 145);
-			this.textBox3.TabIndex = 5;
+			this.txtBeskrivelse.Enabled = false;
+			this.txtBeskrivelse.Location = new System.Drawing.Point(16, 114);
+			this.txtBeskrivelse.Multiline = true;
+			this.txtBeskrivelse.Name = "txtBeskrivelse";
+			this.txtBeskrivelse.Size = new System.Drawing.Size(175, 145);
+			this.txtBeskrivelse.TabIndex = 5;
 			// 
 			// button1
 			// 
@@ -99,33 +99,33 @@
 			this.button3.TabIndex = 8;
 			this.button3.UseVisualStyleBackColor = true;
 			// 
-			// textBox1
+			// txtNavn
 			// 
-			this.textBox1.Enabled = false;
-			this.textBox1.Location = new System.Drawing.Point(79, 15);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 9;
+			this.txtNavn.Enabled = false;
+			this.txtNavn.Location = new System.Drawing.Point(79, 15);
+			this.txtNavn.Name = "txtNavn";
+			this.txtNavn.Size = new System.Drawing.Size(100, 20);
+			this.txtNavn.TabIndex = 9;
 			// 
-			// textBox2
+			// txtHjemmeside
 			// 
-			this.textBox2.Enabled = false;
-			this.textBox2.Location = new System.Drawing.Point(79, 49);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(100, 20);
-			this.textBox2.TabIndex = 10;
+			this.txtHjemmeside.Enabled = false;
+			this.txtHjemmeside.Location = new System.Drawing.Point(79, 49);
+			this.txtHjemmeside.Name = "txtHjemmeside";
+			this.txtHjemmeside.Size = new System.Drawing.Size(100, 20);
+			this.txtHjemmeside.TabIndex = 10;
 			// 
 			// FrmHovedside
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(257, 291);
-			this.Controls.Add(this.textBox2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtHjemmeside);
+			this.Controls.Add(this.txtNavn);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.txtBeskrivelse);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -142,11 +142,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtBeskrivelse;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNavn;
+        private System.Windows.Forms.TextBox txtHjemmeside;
     }
 }
