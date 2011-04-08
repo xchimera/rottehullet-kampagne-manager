@@ -31,7 +31,7 @@ namespace Rottehullet_Management
 				}
 				if (kampagner.Count == 1)
 				{
-					FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
+					FrmHovedside hovedside = new FrmHovedside(Convert.ToInt64(kampagner[0][0]),kampagnemanager);
 					this.Hide();
 					hovedside.ShowDialog();
 					this.Close();
