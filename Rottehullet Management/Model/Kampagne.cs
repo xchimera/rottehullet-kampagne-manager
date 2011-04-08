@@ -9,15 +9,24 @@ namespace Model
 	public class Kampagne : IKampagne
 	{
 		#region attributter
-		private int kampagneID;
+		private long kampagneID;
 		private List<KampagneAttribut> attributter;
 		private string navn, hjemmeside, beskrivelse;
 		private Bruger topbruger;
 		#endregion
 
-		public Kampagne(string navn, Bruger topbruger, int kampagneID)
+		public Kampagne(string navn, Bruger topbruger, long kampagneID)
 		{
 			this.navn = navn;
+			this.topbruger = topbruger;
+			this.kampagneID = kampagneID;
+			attributter = new List<KampagneAttribut>();
+		}
+		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger)
+		{
+			this.navn = navn;
+			this.beskrivelse = beskrivelse;
+			this.hjemmeside = hjemmeside;
 			this.topbruger = topbruger;
 			this.kampagneID = kampagneID;
 			attributter = new List<KampagneAttribut>();
@@ -87,7 +96,7 @@ namespace Model
 		}
 
 		#region properties
-		public int KampagneID
+		public long KampagneID
 		{
 			get { return kampagneID; }
 		}

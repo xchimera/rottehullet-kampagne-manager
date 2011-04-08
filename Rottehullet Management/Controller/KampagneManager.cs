@@ -70,7 +70,19 @@ namespace Controller
             return false;
         }
 
-        public bool TilknytSuperbruger(long brugerID, long kampagneID)
+		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)
+		{
+			Bruger bruger;
+			bruger = brugercollection.FindBruger(topbrugerID);
+			if (bruger != null)
+			{
+				kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
+				return true;
+			}
+			return false;
+		}
+
+		public bool TilknytSuperbruger(long brugerID, long kampagneID)
         {
             if (dbFacade.TilknytSuperbruger(brugerID, kampagneID))
             {
