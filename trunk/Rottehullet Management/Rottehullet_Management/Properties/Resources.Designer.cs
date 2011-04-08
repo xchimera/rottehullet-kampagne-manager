@@ -59,12 +59,5 @@ namespace Rottehullet_Management.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static System.Drawing.Bitmap edit {
-            get {
-                object obj = ResourceManager.GetObject("edit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
