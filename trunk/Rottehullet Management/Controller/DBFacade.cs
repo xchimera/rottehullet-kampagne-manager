@@ -37,7 +37,7 @@ namespace Controller
         /// <param name="email">brugerens brugernavn</param>
         /// <param name="kodeord">brugerens kodeord</param>
         /// <returns>returnerer true hvis brugeren findes, ellers false</returns>
-        public bool Login(string email, string kodeord)
+        public long Login(string email, string kodeord)
         {
             long brugerid = 0;
             string navn;
@@ -69,12 +69,13 @@ namespace Controller
                 conn.Close();
                 reader.Dispose();
 
+                HentAlleBrugere();
                 CheckRettighed(brugerid);
                 if (brugerid > 0)
                 {
-                    return true;
+                    return brugerid;
                 }
-                return false;
+                return 0;
             }
             catch(SqlException)
             {
@@ -83,7 +84,7 @@ namespace Controller
                     conn.Close();
                 }
 
-            return false;
+            return 0;
             }
         }
 
@@ -444,13 +445,14 @@ namespace Controller
         /// <param name="navn">kampagnens navn</param>
         /// <param name="topbrugerID">topbrugerens id, altså den person der ejer kampagnen</param>
         /// <returns>returnerer kampagnens id som int, eller 0 hvis der skete en fejl</returns>
-        public int OpretKampagne(string navn, long topbrugerID)
+        public long OpretKampagne(string navn, long topbrugerID)
         {
             cmd.CommandText = "OpretKampagne";
             cmd.Parameters.Clear();
             SqlParameter par;
             SqlDataReader reader;
-            int kampagneid = 0;
+            long kampagneid = 0;
+            string tempid;
 
             par = new SqlParameter("@navn", SqlDbType.NVarChar);
             par.Value = navn;
@@ -460,17 +462,27 @@ namespace Controller
             par.Value = topbrugerID;
             cmd.Parameters.Add(par);
 
+            
+
             try
             {
-                conn.Open();
-                reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    kampagneid = (int)reader["id"];
-                }
-                reader.Dispose();
+                conn.Open();
+                //cmd.ExecuteNonQuery();
+                tempid = cmd.ExecuteScalar().ToString();
+                kampagneid = long.Parse(tempid);
                 conn.Close();
+               
+
+                //conn.Open();
+                //reader = cmd.ExecuteReader();
+
+                //while (reader.Read())
+                //{
+                //    kampagneid = (int)reader["id"];
+                //}
+                //reader.Dispose();
+                //conn.Close();
                 return kampagneid;
             }
             catch (SqlException)

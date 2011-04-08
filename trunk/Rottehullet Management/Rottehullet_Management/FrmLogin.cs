@@ -23,8 +23,16 @@ namespace Rottehullet_Management
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text);
 			List<string[]> kampagner = new List<string[]>();
-            if(kampagnemanager.Login(txtBrugernavn.Text.ToString(), txtKodeord.Text.ToString()))
+            if (brugerID == 9)
+            {
+                FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
+                this.Hide();
+                adminsektion.ShowDialog();
+                this.Close();
+            }
+            else if(brugerID > 0)
             {
 				foreach (string[] kampagne in kampagnemanager.GetRettigheder())
 				{

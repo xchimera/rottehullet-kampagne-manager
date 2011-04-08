@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,11 @@ namespace Model
                 }
             }
             return null;
+        }
+
+        public IEnumerator GetBrugerIterator()
+        {
+            return ListBrugere.GetEnumerator();
         }
 
         #endregion
