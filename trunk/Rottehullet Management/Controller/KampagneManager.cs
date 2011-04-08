@@ -114,5 +114,10 @@ namespace Controller
 			}
 			return false;
 		}
+
+		public System.Collections.IEnumerable GetRettigheder()
+		{
+			return rettigheder;
+		}
     }
 }
