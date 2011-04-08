@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using Interfaces;
+using Enum;
 
 namespace Controller
 {
@@ -129,11 +130,27 @@ namespace Controller
 			return nuværendeKampagne;
 		}
 
-		public bool TilføjSingleAttribut(string navn, Type type)
+		public bool TilføjSingleAttribut(string navn, KampagneType type, int position)
 		{
-			if (true)
+			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
+			if (id != -1)
 			{
-				
+				nuværendeKampagne.TilføjSingleAttribut(navn, type, id, position);
+				return true;
+			}
+			return false;
+		}
+
+		public bool TilføjMultiAttribut(string navn, KampagneType type, int position, List<string> valgmuligheder)
+		{
+			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
+			foreach (string valgmulighed in valgmuligheder)
+			{
+				//dbFacade.
+			}
+			if (id != -1)
+			{
+				nuværendeKampagne.TilføjMultiAttribut(navn, type, valgmuligheder, nuværendeKampagne.KampagneID, position);
 			}
 			return false;
 		}

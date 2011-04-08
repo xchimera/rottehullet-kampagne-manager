@@ -14,7 +14,7 @@ namespace Model
 			kampagner = new List<Kampagne>();
 		}
 
-		public void OpretKampagne(string navn, Bruger topbruger, int kampagneID)
+		public void OpretKampagne(string navn, Bruger topbruger, long kampagneID)
 		{
 			Kampagne kampagne = new Kampagne(navn, topbruger, kampagneID);
 			kampagner.Add(kampagne);

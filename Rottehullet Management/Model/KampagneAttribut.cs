@@ -8,18 +8,18 @@ namespace Model
 {
 	public class KampagneAttribut
 	{
-		private int kampagneAttributID;
+		private long kampagneAttributID;
 		private string navn;
-		private Type type;
+		private KampagneType type;
 
-		public KampagneAttribut(string navn, Type type, int kampagneAttributID)
+		public KampagneAttribut(string navn, KampagneType type, long kampagneAttributID)
 		{
 			this.navn = navn;
 			this.type = type;
 			this.kampagneAttributID = kampagneAttributID;
 		}
 
-		public Type Type
+		public KampagneType Type
 		{
 			get { return type; }
 			set { type = value; }
@@ -31,7 +31,7 @@ namespace Model
 			set { navn = value; }
 		}
 
-		public int KampagneAttributID
+		public long KampagneAttributID
 		{
 			get { return kampagneAttributID; }
 		}

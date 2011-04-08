@@ -7,7 +7,7 @@ namespace Interfaces
 {
 	public interface IKampagne
 	{
-		int KampagneID { get; }
+		long KampagneID { get; }
 		string Navn { get; set; }
 		string Beskrivelse { get; set; }
 		string Hjemmeside { get; set; }

@@ -5,5 +5,5 @@ using System.Text;
 
 namespace Enum
 {
-	enum Type { singleline, multiline, combo }
+	public enum KampagneType { singleline, multiline, combo }
 }
