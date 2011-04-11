@@ -34,10 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InputBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\test\ClassLibrary1\bin\Release\InputBox.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -118,6 +114,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\test\ClassLibrary1\InputBox.csproj">
+      <Project>{B37F4981-78AC-40B0-9AEA-B68129CB3EFF}</Project>
+      <Name>InputBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
       <Name>Controller</Name>
