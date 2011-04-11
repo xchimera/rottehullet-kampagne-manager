@@ -70,16 +70,16 @@ namespace Model
 			attributter[position] = attribut;
 		}
 
-		public void RetSingleAttribut(string navn, KampagneType type, int position)
+		public void RetSingleAttribut(int id, KampagneType type, int position)
 		{
-			KampagneAttribut attribut = FindAttribut(navn);
+			KampagneAttribut attribut = FindAttribut(id);
 			attribut.Navn = navn;
 			attribut.Type = type;
 		}
 
-		public void RetMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, int position)
+		public void RetMultiAttribut(int id, KampagneType type, List<string[]> valgmuligheder, int position)
 		{
-			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(navn);
+			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(id);
 			attribut.Navn = navn;
 			attribut.Type = type;
 			attribut.Valgmuligheder = valgmuligheder;
