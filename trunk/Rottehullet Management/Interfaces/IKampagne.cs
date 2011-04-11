@@ -11,6 +11,6 @@ namespace Interfaces
 		string Navn { get; set; }
 		string Beskrivelse { get; }
 		string Hjemmeside { get; }
-		IBruger Topbruger { get; }
+		//IBruger Topbruger { get; }
 	}
 }
