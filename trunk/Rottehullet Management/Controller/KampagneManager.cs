@@ -149,6 +149,11 @@ namespace Controller
 			return brugercollection.GetBrugerIterator();
 		}
 
+        public System.Collections.IEnumerator GetKampagneIterator()
+        {
+            return kampagnecollection.GetKampagneIterator();
+        }
+
 		public bool TilføjMultiAttribut(string navn, KampagneType type, int position, List<string> valgmuligheder)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
@@ -167,10 +172,12 @@ namespace Controller
 			return false;
 		}
 
-		public System.Collections.IEnumerable GetRettigheder()
+		public System.Collections.IEnumerator GetBrugersKampagneIterator()
 		{
-			return kampagneliste;
+			return kampagneliste.GetEnumerator();
 		}
+
+        
 
 		public int GetAntalKampagner()
 		{

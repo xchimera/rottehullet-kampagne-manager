@@ -16,6 +16,7 @@ namespace Rottehullet_Management
     {
         KampagneManager kampagnemanager;
 		IKampagne Kampagne;
+        long kampagneID;
         
         public FrmHovedside(string navn, KampagneManager kampagnemanager)
         {
@@ -24,6 +25,7 @@ namespace Rottehullet_Management
 
 			Kampagne = kampagnemanager.FindKampagne(navn);
 
+            this.kampagneID = Kampagne.KampagneID;            
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
@@ -46,6 +48,7 @@ namespace Rottehullet_Management
                 if (singleline.Text != "")
                 {
                     txtNavn.Text = singleline.Text;
+                    kampagnemanager.RetKampagneNavn(txtNavn.Text, kampagneID);
                 }
             }
         }
@@ -57,6 +60,7 @@ namespace Rottehullet_Management
             if (singleline.Lastbutton == 1)
             {
                 txtHjemmeside.Text = Text = singleline.Text;
+                kampagnemanager.RetKampagneHjemmeside(txtHjemmeside.Text, Kampagne.KampagneID);
             }
         }
 
@@ -69,6 +73,7 @@ namespace Rottehullet_Management
                 if (multiline.Text != "")
                 {
                     txtBeskrivelse.Text = multiline.Text;
+                    kampagnemanager.RetKampagneBeskrivelse(txtBeskrivelse.Text, Kampagne.KampagneID);
                 }
             }
         }
