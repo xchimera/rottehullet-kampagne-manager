@@ -186,18 +186,16 @@ namespace Controller
 			return kampagneliste;
 		}
 
-<<<<<<< .mine
         public System.Collections.IEnumerator GetBrugerKampagne()
         {
             return kampagneliste.GetEnumerator();
         }
 
-        
-=======
 		public IEnumerator HentAttributter()
 		{
 			return nuværendeKampagne.HentAttributter();
 		}
+
 		public IEnumerator HentValgmuligheder()
 		{
 			if (nuværendeAttribut.Type == KampagneType.Combo)
@@ -207,7 +205,6 @@ namespace Controller
 			}
 			return null;
 		}
->>>>>>> .r68
 
 		public int GetAntalKampagner()
 		{
