@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using Interfaces;
@@ -33,16 +34,21 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 		}
 
-		public KampagneAttribut FindAttribut(string navn)
+		public KampagneAttribut FindAttribut(int id)
 		{
 			foreach (KampagneAttribut attribut in attributter)
 			{
-				if (attribut.Navn == navn)
+				if (attribut.KampagneAttributID == id)
 				{
 					return attribut;
 				}
 			}
 			return null;
+		}
+
+		public IEnumerator HentAttributter()
+		{
+			return attributter.GetEnumerator();
 		}
 
 		/// <summary>
