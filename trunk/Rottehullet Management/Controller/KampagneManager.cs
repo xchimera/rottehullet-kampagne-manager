@@ -181,11 +181,19 @@ namespace Controller
 			return false;
 		}
 
-		public System.Collections.IEnumerator GetBrugersKampagneIterator()
+		public System.Collections.IEnumerable GetBrugersKampagneIterator()
 		{
-			return kampagneliste.GetEnumerator();
+			return kampagneliste;
 		}
 
+<<<<<<< .mine
+        public System.Collections.IEnumerator GetBrugerKampagne()
+        {
+            return kampagneliste.GetEnumerator();
+        }
+
+        
+=======
 		public IEnumerator HentAttributter()
 		{
 			return nuværendeKampagne.HentAttributter();
@@ -199,6 +207,7 @@ namespace Controller
 			}
 			return null;
 		}
+>>>>>>> .r68
 
 		public int GetAntalKampagner()
 		{
