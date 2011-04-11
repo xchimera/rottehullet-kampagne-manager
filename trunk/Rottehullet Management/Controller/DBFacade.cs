@@ -805,7 +805,47 @@ namespace Controller
 			}
 			catch (SqlException)
 			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
 				return -1;
+			}
+		}
+
+		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "RetMultiAttributEntry";
+			SqlParameter par;
+
+			par = new SqlParameter("@entryID", SqlDbType.BigInt);
+			par.Value = id;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@attID", SqlDbType.BigInt);
+			par.Value = attributID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@værdi", SqlDbType.NVarChar);
+			par.Value = værdi;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
 			}
 		}
     }

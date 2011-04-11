@@ -136,7 +136,7 @@ namespace Controller
 			return nuværendeKampagne;
 		}
 
-		public IKampagneAttribut FindKampagneAttribut(int id)
+		public IKampagneAttribut FindKampagneAttribut(long id)
 		{
 			nuværendeAttribut = nuværendeKampagne.FindAttribut(id);
 			return nuværendeAttribut;
@@ -225,6 +225,27 @@ namespace Controller
 
 			//Convert encoded bytes back to a 'readable' string
 			return BitConverter.ToString(encodedBytes);
+		}
+
+		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
+		{
+			KampagneMultiAttribut attribut = (KampagneMultiAttribut)nuværendeKampagne.FindAttribut(id);
+			if (dbFacade.RetKampagneMultiAttributEntry(id, attributID, værdi))
+			{
+				for (int i = 0; i < attribut.Valgmuligheder.Count; i++)
+				{
+					if (long.Parse(attribut.Valgmuligheder[i][1]) == id)
+					{
+						attribut.Valgmuligheder[i][0] = værdi;
+						break;
+					}
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

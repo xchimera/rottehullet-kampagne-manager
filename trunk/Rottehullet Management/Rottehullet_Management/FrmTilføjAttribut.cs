@@ -67,6 +67,7 @@ namespace Rottehullet_Management
 		{
 			ListViewItem item = new ListViewItem();
 			item.Text = txtValgmulighed.Text;
+			lstValgmuligheder.Items.Add(item);
 		}
 
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
