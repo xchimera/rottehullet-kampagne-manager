@@ -14,15 +14,17 @@ namespace Rottehullet_Management
 		Controller.KampagneManager kampagnemanager;
 		List<string[]> kampagner;
         
-        public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager, List<string[]> kampagner)
+        public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager)
 		{
-
 			InitializeComponent();
-			Button[] knapper = {btnKampagne1, btnKampagne2, btnKampagne3 };
-            this.kampagner = kampagner;
-			
+
+			Button[] knapper = { btnKampagne1, btnKampagne2, btnKampagne3 };
+			foreach (string[] kampagne in kampagnemanager.GetRettigheder())
+			{
+				kampagner.Add(kampagne);
+			}
 			this.kampagnemanager = kampagnemanager;
-			this.kampagner = kampagner;
+			
 			for (int i = 0; i < kampagner.Count; i++)
 			{
 				knapper[i].Text = kampagner[i][1];
