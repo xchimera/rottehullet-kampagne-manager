@@ -17,7 +17,7 @@ namespace Rottehullet_Management
         public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager)
 		{
 			InitializeComponent();
-
+			 
 			Button[] knapper = { btnKampagne1, btnKampagne2, btnKampagne3 };
 			foreach (string[] kampagne in kampagnemanager.GetRettigheder())
 			{
