@@ -37,9 +37,10 @@ namespace BK_GUI
                 }
                 if (chkVeganer.Checked)
                 {
-                    vegetar = true;
                     veganer = true;
                 }
+
+				kodeord = brugerklient.EncodePassword(kodeord);
 
                 brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
 

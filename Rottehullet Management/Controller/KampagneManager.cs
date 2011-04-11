@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 using Model;
 using Interfaces;
 using Enum;
@@ -47,6 +48,7 @@ namespace Controller
 
 		public long Login(string email, string kodeord)
 		{
+			kodeord = EncodePassword(kodeord);
 			long brugerID = dbFacade.Login(email, kodeord);
 
 			return brugerID;
@@ -173,6 +175,22 @@ namespace Controller
 		public int GetAntalKampagner()
 		{
 			return kampagneliste.Count();
+		}
+
+		public string EncodePassword(string originalPassword)
+		{
+			//Declarations
+			Byte[] originalBytes;
+			Byte[] encodedBytes;
+			MD5 md5;
+
+			//Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
+			md5 = new MD5CryptoServiceProvider();
+			originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword);
+			encodedBytes = md5.ComputeHash(originalBytes);
+
+			//Convert encoded bytes back to a 'readable' string
+			return BitConverter.ToString(encodedBytes);
 		}
 	}
 }
