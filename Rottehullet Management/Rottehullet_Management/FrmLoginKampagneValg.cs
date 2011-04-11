@@ -15,37 +15,42 @@ namespace Rottehullet_Management
 	public partial class FrmLoginKampagneValg : Form
 	{
 		KampagneManager kampagnemanager;
-
+        List<string[]> kampagneliste;
         Button button;
         
         public FrmLoginKampagneValg(KampagneManager kampagnemanager)
 		{
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
+            kampagneliste = new List<string[]>();
             OpdaterListView();			
 		}
 
         private void OpdaterListView()
         {
-            IKampagne ikampagne;
-            IEnumerator kampagneiterator = kampagnemanager.GetBrugersKampagneIterator();
+            string[] kampagne;
+            IEnumerator kampagneiterator = kampagnemanager.GetBrugerKampagne();
             kampagneiterator.Reset();
             lstKampagner.Items.Clear();
+            
 
             while (kampagneiterator.MoveNext())
             {
-                ikampagne = (IKampagne)kampagneiterator.Current;
-                ListViewItem kampagner = new ListViewItem();
+                kampagne = (string[])kampagneiterator.Current;
+                ListViewItem item = new ListViewItem();
 
-                kampagner.Text = ikampagne.KampagneID.ToString();
-                kampagner.SubItems.Add(ikampagne.Navn);
 
-                lstKampagner.Items.Add(kampagner);
+                item.Text = Convert.ToString(kampagne[0]);
+                item.SubItems.Add(Convert.ToString(kampagne[1]));
+
+                lstKampagner.Items.Add(item);
+
             }
+
         }
 
 
-		private void startKampagne(long kampagneID, string navn)
+        private void startKampagne(long kampagneID, string navn)
 		{
 			if (kampagnemanager.HentKampagneFraDatabase(kampagneID))
 			{
