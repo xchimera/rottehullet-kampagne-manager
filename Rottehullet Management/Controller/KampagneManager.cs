@@ -10,7 +10,7 @@ namespace Controller
 {
 	public class KampagneManager
 	{
-		List<string[]> rettigheder = new List<string[]>();
+		List<string[]> kampagneliste = new List<string[]>();
 		BrugerCollection brugercollection;
 		KampagneCollection kampagnecollection;
 		DBFacade dbFacade;
@@ -27,7 +27,7 @@ namespace Controller
 		public void IndsætRettighed(string kampagneID, string navn, string type)
 		{
 			string[] rettighed = new string[3] { kampagneID, navn, type };
-			rettigheder.Add(rettighed);
+			kampagneliste.Add(rettighed);
 		}
 
 		public bool Opretbruger(long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
@@ -167,7 +167,12 @@ namespace Controller
 
 		public System.Collections.IEnumerable GetRettigheder()
 		{
-			return rettigheder;
+			return kampagneliste;
+		}
+
+		public int GetAntalKampagner()
+		{
+			return kampagneliste.Count();
 		}
 	}
 }

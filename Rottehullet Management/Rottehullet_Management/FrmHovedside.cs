@@ -27,6 +27,14 @@ namespace Rottehullet_Management
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
+			if (kampagnemanager.GetAntalKampagner() > 1)
+			{
+				btnSkiftKampagne.Enabled = true;
+			}
+			else
+			{
+				btnSkiftKampagne.Enabled = false;
+			}
         }
 
         private void btnRedigerNavn_Click(object sender, EventArgs e)
@@ -40,8 +48,6 @@ namespace Rottehullet_Management
                     txtNavn.Text = singleline.Text;
                 }
             }
-            
-
         }
 
         private void btnRedigerHjemmeside_Click(object sender, EventArgs e)
@@ -66,5 +72,13 @@ namespace Rottehullet_Management
                 }
             }
         }
+
+		private void btnSkiftKampagne_Click(object sender, EventArgs e)
+		{
+			FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
+			this.Hide();
+			loginKampagneValg.ShowDialog();
+			this.Close();
+		}
     }
 }

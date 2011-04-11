@@ -24,7 +24,7 @@ namespace Rottehullet_Management
         {
             long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text);
 			List<string[]> kampagner = new List<string[]>();
-            if (brugerID == 9)
+			if (brugerID == 9)
             {
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
                 this.Hide();
@@ -53,7 +53,7 @@ namespace Rottehullet_Management
 				}
 				else if (kampagner.Count > 1)
 				{
-					FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager, kampagner);
+					FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
 					this.Hide();
 					loginKampagneValg.ShowDialog();
 					this.Close();
