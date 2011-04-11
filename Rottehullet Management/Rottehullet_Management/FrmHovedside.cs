@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Controller;
 using Interfaces;
+using InputBox;
 
 namespace Rottehullet_Management
 {
@@ -26,6 +27,44 @@ namespace Rottehullet_Management
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
+        }
+
+        private void btnRedigerNavn_Click(object sender, EventArgs e)
+        {
+            InputBoxSingleline singleline = new InputBoxSingleline();
+            singleline.ShowDialog();
+            if (singleline.Lastbutton == 1)
+            {
+                if (singleline.Text != "")
+                {
+                    txtNavn.Text = singleline.Text;
+                }
+            }
+            
+
+        }
+
+        private void btnRedigerHjemmeside_Click(object sender, EventArgs e)
+        {
+            InputBoxSingleline singleline = new InputBoxSingleline();
+            singleline.ShowDialog();
+            if (singleline.Lastbutton == 1)
+            {
+                txtHjemmeside.Text = Text = singleline.Text;
+            }
+        }
+
+        private void btnRedigerBeskrivelse_Click(object sender, EventArgs e)
+        {
+            InputBoxMultiline multiline = new InputBoxMultiline();
+            multiline.ShowDialog();
+            if (multiline.LastButton == 1)
+            {
+                if (multiline.Text != "")
+                {
+                    txtBeskrivelse.Text = multiline.Text;
+                }
+            }
         }
     }
 }
