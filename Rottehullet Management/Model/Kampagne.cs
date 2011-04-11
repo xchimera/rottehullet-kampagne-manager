@@ -34,7 +34,7 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 		}
 
-		public KampagneAttribut FindAttribut(int id)
+		public KampagneAttribut FindAttribut(long id)
 		{
 			foreach (KampagneAttribut attribut in attributter)
 			{

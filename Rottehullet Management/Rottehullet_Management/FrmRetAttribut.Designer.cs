@@ -33,13 +33,13 @@
 			this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.txtValgmulighed = new System.Windows.Forms.TextBox();
 			this.lstValgmuligheder = new System.Windows.Forms.ListView();
+			this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.btnRet = new System.Windows.Forms.Button();
 			this.cboType = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtNavn = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnRetValgmulighed = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnSletValgmulighed
@@ -50,6 +50,7 @@
 			this.btnSletValgmulighed.TabIndex = 17;
 			this.btnSletValgmulighed.Text = "Slet valgmulighed";
 			this.btnSletValgmulighed.UseVisualStyleBackColor = true;
+			this.btnSletValgmulighed.Click += new System.EventHandler(this.btnSletValgmulighed_Click);
 			// 
 			// btnTilføjValgmulighed
 			// 
@@ -85,6 +86,11 @@
 			this.lstValgmuligheder.TabIndex = 14;
 			this.lstValgmuligheder.UseCompatibleStateImageBehavior = false;
 			this.lstValgmuligheder.View = System.Windows.Forms.View.Details;
+			// 
+			// Id
+			// 
+			this.Id.Text = "Id";
+			this.Id.Width = 0;
 			// 
 			// btnRet
 			// 
@@ -133,26 +139,22 @@
 			this.label1.TabIndex = 9;
 			this.label1.Text = "Navn:";
 			// 
-			// Id
+			// btnRetValgmulighed
 			// 
-			this.Id.Text = "Id";
-			this.Id.Width = 0;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(227, 97);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(108, 23);
-			this.button1.TabIndex = 18;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnRetValgmulighed.Location = new System.Drawing.Point(227, 97);
+			this.btnRetValgmulighed.Name = "btnRetValgmulighed";
+			this.btnRetValgmulighed.Size = new System.Drawing.Size(108, 23);
+			this.btnRetValgmulighed.TabIndex = 18;
+			this.btnRetValgmulighed.Text = "Ret Valgmulighed";
+			this.btnRetValgmulighed.UseVisualStyleBackColor = true;
+			this.btnRetValgmulighed.Click += new System.EventHandler(this.btnRetValgmulighed_Click);
 			// 
 			// FrmRetAttribut
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(353, 322);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnRetValgmulighed);
 			this.Controls.Add(this.btnSletValgmulighed);
 			this.Controls.Add(this.btnTilføjValgmulighed);
 			this.Controls.Add(this.txtValgmulighed);
@@ -182,7 +184,7 @@
 		private System.Windows.Forms.TextBox txtNavn;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ColumnHeader Id;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnRetValgmulighed;
 
 	}
 }
