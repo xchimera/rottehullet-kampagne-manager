@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BK-GUI", "BK-GUI\BK-GUI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{954C3027-E37E-42B4-AC53-FCB94CA33C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputBox", "..\test\ClassLibrary1\InputBox.csproj", "{B37F4981-78AC-40B0-9AEA-B68129CB3EFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputBox", "ClassLibrary1\InputBox.csproj", "{B37F4981-78AC-40B0-9AEA-B68129CB3EFF}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
