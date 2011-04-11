@@ -37,6 +37,7 @@
             this.btnRedigerBeskrivelse = new System.Windows.Forms.Button();
             this.txtNavn = new System.Windows.Forms.TextBox();
             this.txtHjemmeside = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,6 +73,7 @@
             this.txtBeskrivelse.Location = new System.Drawing.Point(16, 114);
             this.txtBeskrivelse.Multiline = true;
             this.txtBeskrivelse.Name = "txtBeskrivelse";
+            this.txtBeskrivelse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtBeskrivelse.Size = new System.Drawing.Size(175, 145);
             this.txtBeskrivelse.TabIndex = 5;
             // 
@@ -88,7 +90,7 @@
             // 
             this.btnRedigerHjemmeside.Location = new System.Drawing.Point(184, 46);
             this.btnRedigerHjemmeside.Name = "btnRedigerHjemmeside";
-            this.btnRedigerHjemmeside.Size = new System.Drawing.Size(22, 23);
+            this.btnRedigerHjemmeside.Size = new System.Drawing.Size(21, 23);
             this.btnRedigerHjemmeside.TabIndex = 7;
             this.btnRedigerHjemmeside.UseVisualStyleBackColor = true;
             this.btnRedigerHjemmeside.Click += new System.EventHandler(this.btnRedigerHjemmeside_Click);
@@ -97,7 +99,7 @@
             // 
             this.btnRedigerBeskrivelse.Location = new System.Drawing.Point(79, 83);
             this.btnRedigerBeskrivelse.Name = "btnRedigerBeskrivelse";
-            this.btnRedigerBeskrivelse.Size = new System.Drawing.Size(22, 23);
+            this.btnRedigerBeskrivelse.Size = new System.Drawing.Size(21, 23);
             this.btnRedigerBeskrivelse.TabIndex = 8;
             this.btnRedigerBeskrivelse.UseVisualStyleBackColor = true;
             this.btnRedigerBeskrivelse.Click += new System.EventHandler(this.btnRedigerBeskrivelse_Click);
@@ -118,11 +120,21 @@
             this.txtHjemmeside.Size = new System.Drawing.Size(100, 20);
             this.txtHjemmeside.TabIndex = 10;
             // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(79, 280);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(93, 23);
+            this.btnOk.TabIndex = 11;
+            this.btnOk.Text = "Skift kampagne";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
             // FrmHovedside
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 291);
+            this.ClientSize = new System.Drawing.Size(257, 315);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtHjemmeside);
             this.Controls.Add(this.txtNavn);
             this.Controls.Add(this.btnRedigerBeskrivelse);
@@ -133,6 +145,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
             this.Name = "FrmHovedside";
             this.Text = "Kampagne Manager";
             this.ResumeLayout(false);
@@ -151,5 +164,6 @@
         private System.Windows.Forms.Button btnRedigerBeskrivelse;
         private System.Windows.Forms.TextBox txtNavn;
         private System.Windows.Forms.TextBox txtHjemmeside;
+        private System.Windows.Forms.Button btnOk;
     }
 }
