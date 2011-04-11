@@ -12,7 +12,7 @@ namespace Rottehullet_Management
 	public partial class FrmLoginKampagneValg : Form
 	{
 		Controller.KampagneManager kampagnemanager;
-		List<string[]> kampagner;
+		List<string[]> kampagner = new List<string[]>();
         
         public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager)
 		{
