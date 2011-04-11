@@ -71,7 +71,7 @@ namespace Model
 			attribut.Type = type;
 		}
 
-		public void RetMultiAttribut(string navn, KampagneType type, List<string> valgmuligheder, int position)
+		public void RetMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, int position)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(navn);
 			attribut.Navn = navn;
