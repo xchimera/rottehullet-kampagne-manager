@@ -114,6 +114,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\InputBox.csproj">
+      <Project>{B37F4981-78AC-40B0-9AEA-B68129CB3EFF}</Project>
+      <Name>InputBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
       <Name>Controller</Name>
