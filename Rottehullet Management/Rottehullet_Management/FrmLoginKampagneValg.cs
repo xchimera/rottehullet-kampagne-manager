@@ -1,60 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Interfaces;
+using Controller;
 
 namespace Rottehullet_Management
 {
 	public partial class FrmLoginKampagneValg : Form
 	{
-		Controller.KampagneManager kampagnemanager;
-		List<string[]> kampagner = new List<string[]>();
+		KampagneManager kampagnemanager;
+
+        Button button;
         
-        public FrmLoginKampagneValg(Controller.KampagneManager kampagnemanager)
+        public FrmLoginKampagneValg(KampagneManager kampagnemanager)
 		{
-			InitializeComponent();
-			 
-			Button[] knapper = { btnKampagne1, btnKampagne2, btnKampagne3 };
-			foreach (string[] kampagne in kampagnemanager.GetRettigheder())
+            InitializeComponent();
+            this.kampagnemanager = kampagnemanager;
+            OpdaterListView();			
+		}
+
+        private void OpdaterListView()
+        {
+            IKampagne ikampagne;
+            IEnumerator kampagneiterator = kampagnemanager.GetBrugersKampagneIterator();
+            kampagneiterator.Reset();
+            lstKampagner.Items.Clear();
+
+            while (kampagneiterator.MoveNext())
+            {
+                ikampagne = (IKampagne)kampagneiterator.Current;
+                ListViewItem kampagner = new ListViewItem();
+
+                kampagner.Text = ikampagne.KampagneID.ToString();
+                kampagner.SubItems.Add(ikampagne.Navn);
+
+                lstKampagner.Items.Add(kampagner);
+            }
+        }
+
+
+		private void startKampagne(long kampagneID, string navn)
+		{
+			if (kampagnemanager.HentKampagneFraDatabase(kampagneID))
 			{
-				kampagner.Add(kampagne);
-			}
-			this.kampagnemanager = kampagnemanager;
-			
-			for (int i = 0; i < kampagner.Count; i++)
-			{
-				knapper[i].Text = kampagner[i][1];
-				if (i>2)
-				{
-					knapper[i].Enabled = true;
-				}
-			}
-		}
-
-		private void btnKampagne1_Click(object sender, EventArgs e)
-		{
-			startKampagne(0);
-		}
-
-		private void btnKampagne2_Click(object sender, EventArgs e)
-		{
-			startKampagne(1);
-		}
-
-		private void btnKampagne3_Click(object sender, EventArgs e)
-		{
-			startKampagne(2);
-		}
-
-		private void startKampagne(int i)
-		{
-			if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(kampagner[i][0])))
-			{
-				FrmHovedside hovedside = new FrmHovedside(kampagner[i][1], kampagnemanager);
+				FrmHovedside hovedside = new FrmHovedside(navn, kampagnemanager);
 				this.Hide();
 				hovedside.ShowDialog();
 				this.Close();
@@ -64,5 +59,18 @@ namespace Rottehullet_Management
 				MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
 			}
 		}
+
+        private void btnVælgKampagne_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
+
+            if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
+            {
+                FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
+                this.Hide();
+                hovedside.ShowDialog();
+                this.Close();
+            }
+        }
 	}
 }

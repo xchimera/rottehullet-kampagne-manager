@@ -33,7 +33,7 @@ namespace Rottehullet_Management
             }
             else if(brugerID > 0)
             {
-				foreach (string[] kampagne in kampagnemanager.GetRettigheder())
+				foreach (string[] kampagne in kampagnemanager.GetBrugersKampagneIterator())
 				{
 					kampagner.Add(kampagne);
 				}
