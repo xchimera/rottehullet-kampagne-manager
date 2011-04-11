@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
@@ -16,6 +17,7 @@ namespace Controller
 		KampagneCollection kampagnecollection;
 		DBFacade dbFacade;
 		Kampagne nuværendeKampagne;
+		KampagneAttribut nuværendeAttribut;
 
 		public KampagneManager()
 		{
@@ -23,6 +25,7 @@ namespace Controller
 			brugercollection = new BrugerCollection();
 			kampagnecollection = new KampagneCollection();
 			nuværendeKampagne = null;
+			nuværendeAttribut = null;
 		}
 
 		public void IndsætRettighed(string kampagneID, string navn, string type)
@@ -133,6 +136,12 @@ namespace Controller
 			return nuværendeKampagne;
 		}
 
+		public IKampagneAttribut FindKampagneAttribut(int id)
+		{
+			nuværendeAttribut = nuværendeKampagne.FindAttribut(id);
+			return nuværendeAttribut;
+		}
+
 		public bool TilføjSingleAttribut(string navn, KampagneType type, int position)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
@@ -177,7 +186,19 @@ namespace Controller
 			return kampagneliste.GetEnumerator();
 		}
 
-        
+		public IEnumerator HentAttributter()
+		{
+			return nuværendeKampagne.HentAttributter();
+		}
+		public IEnumerator HentValgmuligheder()
+		{
+			if (nuværendeAttribut.Type == KampagneType.Combo)
+			{
+				KampagneMultiAttribut attribut = (KampagneMultiAttribut)nuværendeAttribut;
+				return attribut.Valgmuligheder.GetEnumerator();
+			}
+			return null;
+		}
 
 		public int GetAntalKampagner()
 		{

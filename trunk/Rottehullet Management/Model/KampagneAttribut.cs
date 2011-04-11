@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Enum;
+using Interfaces;
 
 namespace Model
 {
-	public class KampagneAttribut
+	public class KampagneAttribut : IKampagneAttribut
 	{
 		private long kampagneAttributID;
 		private string navn;

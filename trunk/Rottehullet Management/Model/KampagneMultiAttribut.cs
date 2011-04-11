@@ -6,7 +6,7 @@ using Enum;
 
 namespace Model
 {
-	class KampagneMultiAttribut : KampagneAttribut
+	public class KampagneMultiAttribut : KampagneAttribut
 	{
 		private List<string[]> valgmuligheder;
 

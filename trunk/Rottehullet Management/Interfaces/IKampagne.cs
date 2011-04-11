@@ -9,8 +9,8 @@ namespace Interfaces
 	{
 		long KampagneID { get; }
 		string Navn { get; set; }
-		string Beskrivelse { get; set; }
-		string Hjemmeside { get; set; }
-		//Bruger Topbruger { get; set; }
+		string Beskrivelse { get; }
+		string Hjemmeside { get; }
+		IBruger Topbruger { get; }
 	}
 }
