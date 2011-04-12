@@ -100,6 +100,7 @@
 			this.btnRet.TabIndex = 13;
 			this.btnRet.Text = "Ret";
 			this.btnRet.UseVisualStyleBackColor = true;
+			this.btnRet.Click += new System.EventHandler(this.btnRet_Click);
 			// 
 			// cboType
 			// 

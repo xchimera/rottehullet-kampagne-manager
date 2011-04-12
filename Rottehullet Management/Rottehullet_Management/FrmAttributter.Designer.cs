@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.lstAttributter = new System.Windows.Forms.ListView();
+			this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnTilføjAttrbut = new System.Windows.Forms.Button();
+			this.btnTilføjAttribut = new System.Windows.Forms.Button();
 			this.btnRetAttribut = new System.Windows.Forms.Button();
 			this.btnSletAttribut = new System.Windows.Forms.Button();
-			this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// lstAttributter
@@ -51,6 +51,11 @@
 			this.lstAttributter.UseCompatibleStateImageBehavior = false;
 			this.lstAttributter.View = System.Windows.Forms.View.Details;
 			// 
+			// Id
+			// 
+			this.Id.Text = "Id";
+			this.Id.Width = 0;
+			// 
 			// Navn
 			// 
 			this.Navn.Text = "Navn";
@@ -61,15 +66,15 @@
 			this.Type.Text = "Type";
 			this.Type.Width = 121;
 			// 
-			// btnTilføjAttrbut
+			// btnTilføjAttribut
 			// 
-			this.btnTilføjAttrbut.Location = new System.Drawing.Point(405, 23);
-			this.btnTilføjAttrbut.Name = "btnTilføjAttrbut";
-			this.btnTilføjAttrbut.Size = new System.Drawing.Size(111, 23);
-			this.btnTilføjAttrbut.TabIndex = 1;
-			this.btnTilføjAttrbut.Text = "Tilføj Attribut";
-			this.btnTilføjAttrbut.UseVisualStyleBackColor = true;
-			this.btnTilføjAttrbut.Click += new System.EventHandler(this.btnTilføjAttrbut_Click);
+			this.btnTilføjAttribut.Location = new System.Drawing.Point(405, 23);
+			this.btnTilføjAttribut.Name = "btnTilføjAttribut";
+			this.btnTilføjAttribut.Size = new System.Drawing.Size(111, 23);
+			this.btnTilføjAttribut.TabIndex = 1;
+			this.btnTilføjAttribut.Text = "Tilføj Attribut";
+			this.btnTilføjAttribut.UseVisualStyleBackColor = true;
+			this.btnTilføjAttribut.Click += new System.EventHandler(this.btnTilføjAttribut_Click);
 			// 
 			// btnRetAttribut
 			// 
@@ -79,6 +84,7 @@
 			this.btnRetAttribut.TabIndex = 2;
 			this.btnRetAttribut.Text = "Ret Attribut";
 			this.btnRetAttribut.UseVisualStyleBackColor = true;
+			this.btnRetAttribut.Click += new System.EventHandler(this.btnRetAttribut_Click);
 			// 
 			// btnSletAttribut
 			// 
@@ -89,11 +95,6 @@
 			this.btnSletAttribut.Text = "Slet Attribut";
 			this.btnSletAttribut.UseVisualStyleBackColor = true;
 			// 
-			// Id
-			// 
-			this.Id.Text = "Id";
-			this.Id.Width = 0;
-			// 
 			// FrmAttributter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,7 +102,7 @@
 			this.ClientSize = new System.Drawing.Size(528, 369);
 			this.Controls.Add(this.btnSletAttribut);
 			this.Controls.Add(this.btnRetAttribut);
-			this.Controls.Add(this.btnTilføjAttrbut);
+			this.Controls.Add(this.btnTilføjAttribut);
 			this.Controls.Add(this.lstAttributter);
 			this.Name = "FrmAttributter";
 			this.Text = "FrmAttributter";
@@ -114,7 +115,7 @@
 		private System.Windows.Forms.ListView lstAttributter;
 		private System.Windows.Forms.ColumnHeader Navn;
 		private System.Windows.Forms.ColumnHeader Type;
-		private System.Windows.Forms.Button btnTilføjAttrbut;
+		private System.Windows.Forms.Button btnTilføjAttribut;
 		private System.Windows.Forms.Button btnRetAttribut;
 		private System.Windows.Forms.Button btnSletAttribut;
 		private System.Windows.Forms.ColumnHeader Id;

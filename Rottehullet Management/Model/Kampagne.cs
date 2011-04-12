@@ -61,13 +61,13 @@ namespace Model
 		public void TilføjSingleAttribut(string navn, KampagneType type, long kampagneAttributID, int position)
 		{
 			KampagneAttribut attribut = new KampagneAttribut(navn, type, kampagneAttributID);
-			attributter[position] = attribut;
+			attributter.Insert(position, attribut);
 		}
 
 		public void TilføjMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
-			attributter[position] = attribut;
+			attributter.Insert(position, attribut);
 		}
 
 		public void RetSingleAttribut(int id, KampagneType type, int position)
@@ -83,6 +83,12 @@ namespace Model
 			attribut.Navn = navn;
 			attribut.Type = type;
 			attribut.Valgmuligheder = valgmuligheder;
+		}
+
+		public void FlytAttribut(KampagneAttribut attribut, int position)
+		{
+			attributter.Remove(attribut);
+			attributter.Insert(position, attribut);
 		}
 
 		/// <summary>
