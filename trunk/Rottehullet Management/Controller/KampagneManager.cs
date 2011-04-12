@@ -109,9 +109,9 @@ namespace Controller
             return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
         }
 
-        public KampagneMultiAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder, int position)
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type,  int position)
         {
-            return nuværendeKampagne.GenopretAttribut(attributID, navn, type, valgmuligheder);
+            return nuværendeKampagne.GenopretMultiAttribut(attributID, navn, type);
             //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
         }
 
