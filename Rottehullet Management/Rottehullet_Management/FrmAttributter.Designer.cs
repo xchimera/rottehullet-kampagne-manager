@@ -107,7 +107,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmAttributter";
-            this.Text = "FrmAttributter";
+            this.Text = "Attributter";
             this.ResumeLayout(false);
 
 		}

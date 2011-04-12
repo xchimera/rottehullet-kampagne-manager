@@ -168,7 +168,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmRetAttribut";
-            this.Text = "FrmRetAttribut";
+            this.Text = "Ret Attribut";
             this.ResumeLayout(false);
             this.PerformLayout();
 

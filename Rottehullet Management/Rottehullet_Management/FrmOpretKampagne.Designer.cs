@@ -130,7 +130,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmOpretKampagne";
-            this.Text = "Opret_kampagne";
+            this.Text = "Opret kampagne";
             this.Load += new System.EventHandler(this.Opret_kampagne_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
