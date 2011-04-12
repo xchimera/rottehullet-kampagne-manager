@@ -44,7 +44,16 @@ namespace Controller
 			return false;
 		}
 
-       
+        public void RetKampagneliste(long kampagneID, string navn)
+        {
+            foreach (string[] kampagne in kampagneliste)
+            {
+                if (kampagne[0] == kampagneID.ToString())
+                {
+                    kampagne[1] = navn;
+                }
+            }
+        }
 
 		public void TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
 		{
