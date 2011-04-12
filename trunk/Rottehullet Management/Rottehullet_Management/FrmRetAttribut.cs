@@ -57,18 +57,26 @@ namespace Rottehullet_Management
 			{
 				valgmulighed = (string[])iterator.Current;
 				linje = new ListViewItem();
-				linje.Text = valgmulighed[0];
-				linje.SubItems.Add(valgmulighed[1]);
+				linje.Text = valgmulighed[1];
+				linje.SubItems.Add(valgmulighed[0]);
 				lstValgmuligheder.Items.Add(linje);
 			}
 		}
 
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)
 		{
-			ListViewItem item = new ListViewItem();
-			item.Text = "";
-			item.SubItems.Add(txtValgmulighed.Text);
-			lstValgmuligheder.Items.Add(item);
+			long entryID = kampagneManager.TilføjMultiAttributEntry(txtValgmulighed.Text);
+			if (entryID != -1)
+			{
+				ListViewItem item = new ListViewItem();
+				item.Text = entryID.ToString();
+				item.SubItems.Add(txtValgmulighed.Text);
+				lstValgmuligheder.Items.Add(item);
+			}
+			else
+			{
+				MessageBox.Show("Der skete en fejl med databasen, prøv igen senere.", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
@@ -76,8 +84,7 @@ namespace Rottehullet_Management
 			ListViewItem linje = lstValgmuligheder.Items[lstValgmuligheder.SelectedIndices[0]];
 			if (linje.Text != "")
 			{
-				//TODO:
-				//Slet valgmulighed
+				kampagneManager.SletMultiAttributValgmulighed(long.Parse(linje.Text));
 			}
 			lstValgmuligheder.Items.Remove(linje);
 		}

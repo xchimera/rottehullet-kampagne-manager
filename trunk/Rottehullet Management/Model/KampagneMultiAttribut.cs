@@ -16,6 +16,23 @@ namespace Model
 			this.valgmuligheder = valgmuligheder;
 		}
 
+		public void TilføjValgmulighed(string[] valgmulighed)
+		{
+			valgmuligheder.Add(valgmulighed);
+		}
+
+		public void FjernValgmulighed(long entryID)
+		{
+			for (int i = 0; i < valgmuligheder.Count; i++)
+			{
+				if (long.Parse(valgmuligheder[i][1]) == entryID)
+				{
+					valgmuligheder.RemoveAt(i);
+					break;
+				}
+			}
+		}
+
 		public List<string[]> Valgmuligheder
 		{
 			get { return valgmuligheder; }

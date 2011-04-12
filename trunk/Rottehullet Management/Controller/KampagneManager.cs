@@ -193,6 +193,18 @@ namespace Controller
 			return false;
 		}
 
+		public long TilføjMultiAttributEntry(string værdi)
+		{
+			long entryID = dbFacade.OpretKampagneMultiAttributEntry(nuværendeAttribut.KampagneAttributID, værdi);
+			if (entryID != -1)
+			{
+				string[] valgmulighed = new string[2] { værdi, entryID.ToString() };
+				((KampagneMultiAttribut)nuværendeAttribut).TilføjValgmulighed(valgmulighed);
+				return entryID;
+			}
+			return -1;
+		}
+
 		public System.Collections.IEnumerable GetBrugersKampagneIterator()
 		{
 			return kampagneliste;
@@ -265,6 +277,26 @@ namespace Controller
 				nuværendeAttribut.Navn = navn;
 				nuværendeAttribut.Type = type;
 
+				return true;
+			}
+			return false;
+		}
+
+		public bool SletAttribut(long attID)
+		{
+			if (dbFacade.SletAttribut(attID))
+			{
+				nuværendeKampagne.SletAttribut(attID);
+				return true;
+			}
+			return false;
+		}
+
+		public bool SletMultiAttributValgmulighed(long entryID)
+		{
+			if (dbFacade.SletMultiAttributEntry(entryID))
+			{
+				((KampagneMultiAttribut)nuværendeAttribut).FjernValgmulighed(entryID);
 				return true;
 			}
 			return false;
