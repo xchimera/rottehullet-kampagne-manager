@@ -18,8 +18,7 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 		long attributId;
-        int position;
-
+		int position;
 		public FrmRetAttribut(KampagneManager kampagneManager, long id, int position)
 		{
 			this.kampagneManager = kampagneManager;
@@ -44,6 +43,7 @@ namespace Rottehullet_Management
 				btnTilføjValgmulighed.Enabled = true;
 				btnSletValgmulighed.Enabled = true;
 				lstValgmuligheder.Enabled = true;
+				opdaterListe();
 			}
 		}
 
