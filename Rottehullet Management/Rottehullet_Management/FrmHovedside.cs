@@ -49,6 +49,7 @@ namespace Rottehullet_Management
                 {
                     txtNavn.Text = singleline.Text;
                     kampagnemanager.RetKampagneNavn(txtNavn.Text, kampagneID);
+                    kampagnemanager.RetKampagneliste(kampagneID, txtNavn.Text);
                 }
             }
         }

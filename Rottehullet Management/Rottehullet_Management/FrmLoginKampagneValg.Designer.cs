@@ -75,6 +75,7 @@
             this.Controls.Add(this.btnVælgKampagne);
             this.Controls.Add(this.lstKampagner);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmLoginKampagneValg";
             this.Text = "Kampagner";
             this.ResumeLayout(false);
