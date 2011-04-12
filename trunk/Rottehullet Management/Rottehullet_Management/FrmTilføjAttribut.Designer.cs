@@ -150,7 +150,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmTilføjAttribut";
-            this.Text = "FrmTilføjAttribut";
+            this.Text = "Tilføj Attribut";
             this.ResumeLayout(false);
             this.PerformLayout();
 
