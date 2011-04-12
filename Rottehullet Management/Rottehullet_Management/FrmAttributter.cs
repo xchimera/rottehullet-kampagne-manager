@@ -66,5 +66,14 @@ namespace Rottehullet_Management
 			form.ShowDialog();
 			opdaterListe();
 		}
+
+		private void btnSletAttribut_Click(object sender, EventArgs e)
+		{
+			if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
+			{
+				MessageBox.Show("Der skete en fejl, da attributten skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			opdaterListe();
+		}
 	}
 }

@@ -92,12 +92,19 @@ namespace Model
 		}
 
 		/// <summary>
-		/// Fjerner en attribut i listen udfra en position
+		/// Fjerner en attribut i listen udfra et id
 		/// </summary>
 		/// <param name="position"></param>
-		public void SletAttribut(int position)
+		public void SletAttribut(long id)
 		{
-			attributter.RemoveAt(position);
+			for (int i = 0; i < attributter.Count; i++)
+			{
+				if (attributter[i].KampagneAttributID == id)
+				{
+					attributter.RemoveAt(i);
+					break;
+				}
+			}
 		}
 
 		/// <summary>

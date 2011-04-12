@@ -892,5 +892,61 @@ namespace Controller
 				return false;
 			}
 		}
+
+		public bool SletAttribut(long attID)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "SletAttribut";
+			SqlParameter par;
+
+			par = new SqlParameter("@attID", SqlDbType.BigInt);
+			par.Value = attID;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+
+		public bool SletMultiAttributEntry(long entryId)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "SletMultiAttribut";
+			SqlParameter par;
+
+			par = new SqlParameter("@entryID", SqlDbType.BigInt);
+			par.Value = entryId;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
     }
 }
