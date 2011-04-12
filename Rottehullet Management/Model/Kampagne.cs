@@ -41,9 +41,9 @@ namespace Model
             return singleattribut;
         }
 
-        public KampagneMultiAttribut GenopretAttribut(long attributID, string navn, KampagneType type, List<string[]> valgmuligheder)
+        public KampagneMultiAttribut GenopretMultiAttribut(long attributID, string navn, KampagneType type)
         {
-            KampagneMultiAttribut multiattribut = new KampagneMultiAttribut(navn, type, valgmuligheder, attributID);
+            KampagneMultiAttribut multiattribut = new KampagneMultiAttribut(navn, type, attributID);
             attributter.Add(multiattribut);
             return multiattribut;
         }

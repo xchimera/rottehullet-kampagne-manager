@@ -16,6 +16,12 @@ namespace Model
 			this.valgmuligheder = valgmuligheder;
 		}
 
+        public KampagneMultiAttribut(string navn, KampagneType type, long kampagneAttributID)
+            : base(navn, type, kampagneAttributID)
+        {
+            valgmuligheder = new List<string[]>();
+        }
+
 		public void TilføjValgmulighed(string[] valgmulighed)
 		{
 			valgmuligheder.Add(valgmulighed);

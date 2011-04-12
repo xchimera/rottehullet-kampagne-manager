@@ -45,12 +45,12 @@ namespace Model
             return null;
         }
 
-        public KampagneMultiAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder)
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type)
         {
             Kampagne kampagne = FindKampagne(kamID);
             if (kampagne != null)
             {
-                return kampagne.GenopretAttribut(attributID, navn, type, valgmuligheder);
+                return kampagne.GenopretMultiAttribut(attributID, navn, type);
             }
             return null;
         }

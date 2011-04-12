@@ -327,7 +327,7 @@ namespace Controller
                     {
                         if (tempid != attributID)
                         {
-                            attribut = kampagnemanager.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder, position);
+                            attribut = kampagnemanager.GenopretMultiAttribut(kamID, attributID, navn, type, position);
                         }
                         string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
                         attribut.TilføjValgmulighed(valg);
