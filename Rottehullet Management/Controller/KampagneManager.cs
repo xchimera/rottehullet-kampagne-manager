@@ -90,9 +90,12 @@ namespace Controller
 			{
 				return false;
 			}
-            dbFacade.HentAttributter(kamID);
-			return (dbFacade.HentKampagne(kamID));
 
+            if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID))
+            {
+                return true;
+            }
+            return false;
 		}
 
         public bool HentAttributterFraDatabase(long kamID)
@@ -106,9 +109,10 @@ namespace Controller
             return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
         }
 
-        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder, int position)
+        public KampagneMultiAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder, int position)
         {
-            return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
+            return nuværendeKampagne.GenopretAttribut(attributID, navn, type, valgmuligheder);
+            //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
         }
 
 		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)

@@ -265,7 +265,7 @@ namespace Controller
 					hjemmeside = (string)reader["hjemmeside"];
 					topbrugerID = (long)reader["topbrugerID"];
 
-					if (!kampagnemanager.GenopretKampagne(topbrugerID, navn, beskrivelse, hjemmeside, topbrugerID))
+					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID))
 					{
 						return false;
 					}
@@ -327,9 +327,9 @@ namespace Controller
                     {
                         if (tempid != attributID)
                         {
-                            attribut = (KampagneMultiAttribut)kampagnemanager.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder, position);
+                            attribut = kampagnemanager.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder, position);
                         }
-                        string[] valg = new string[2] { (string)reader["værdi"], (string)reader["entryID"] };
+                        string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
                         attribut.TilføjValgmulighed(valg);
                         
                     }
