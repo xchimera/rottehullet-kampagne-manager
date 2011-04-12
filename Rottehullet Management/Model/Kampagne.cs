@@ -34,6 +34,20 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 		}
 
+        public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneType type)
+        {
+            KampagneAttribut singleattribut = new KampagneAttribut(navn, type, attributID);
+            attributter.Add(singleattribut);
+            return singleattribut;
+        }
+
+        public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneType type, List<string[]> valgmuligheder)
+        {
+            KampagneMultiAttribut multiattribut = new KampagneMultiAttribut(navn, type, valgmuligheder, attributID);
+            attributter.Add(multiattribut);
+            return multiattribut;
+        }
+
 		public KampagneAttribut FindAttribut(long id)
 		{
 			foreach (KampagneAttribut attribut in attributter)

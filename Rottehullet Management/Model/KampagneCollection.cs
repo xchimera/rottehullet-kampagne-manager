@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Enum;
 namespace Model
 {
 	public class KampagneCollection
@@ -27,6 +27,45 @@ namespace Model
 			kampagner.Add(kampagne);
 			return kampagner[kampagner.Count - 1];
 		}
+        /// <summary>
+        /// genopret single attribut
+        /// </summary>
+        /// <param name="kamID">kampagne ID</param>
+        /// <param name="attributID">attributtens ID</param>
+        /// <param name="navn">attributtens navn</param>
+        /// <param name="type">attributtens type</param>
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type)
+        {
+            Kampagne kampagne = FindKampagne(kamID);
+            if (kampagne != null)
+            {
+                return kampagne.GenopretAttribut(attributID, navn, type);
+                
+            }
+            return null;
+        }
+
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder)
+        {
+            Kampagne kampagne = FindKampagne(kamID);
+            if (kampagne != null)
+            {
+                return kampagne.GenopretAttribut(attributID, navn, type, valgmuligheder);
+            }
+            return null;
+        }
+
+        public Kampagne FindKampagne(long kampagneID)
+        {
+            foreach (Kampagne kampagne in kampagner)
+            {
+                if (kampagne.KampagneID == kampagneID)
+                {
+                    return kampagne;
+                }
+            }
+            return null;
+        }
 
 		public Kampagne FindKampagne(string navn)
 		{

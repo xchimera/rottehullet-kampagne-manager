@@ -90,8 +90,26 @@ namespace Controller
 			{
 				return false;
 			}
+            dbFacade.HentAttributter(kamID);
 			return (dbFacade.HentKampagne(kamID));
+
 		}
+
+        public bool HentAttributterFraDatabase(long kamID)
+        {
+
+            return false;
+        }
+
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        {
+            return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
+        }
+
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, List<string[]> valgmuligheder, int position)
+        {
+            return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
+        }
 
 		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)
 		{
