@@ -80,17 +80,26 @@ namespace Rottehullet_Management
         private void btnOpretKampagne_Click(object sender, EventArgs e)
         {
             int index = lstBrugere.SelectedIndices[0];
-            ListViewItem item = lstBrugere.Items[index]; ;
+            ListViewItem item = lstBrugere.Items[index];
 
-            if (kampagnemanager.OpretKampagne(txtKampagneNavn.Text, Convert.ToInt64(item.SubItems[0].Text)))
+            try
             {
-                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " er oprettet");
-                this.Close();
+                if (txtKampagneNavn.Text != "")
+                {
+                    if (kampagnemanager.OpretKampagne(txtKampagneNavn.Text, Convert.ToInt64(item.SubItems[0].Text)))
+                    {
+                        MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " er oprettet");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i oprettelse af Kampagne", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Close();
+                    }
+                }
             }
-            else
+            catch (FormatException)
             {
-                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i oprettelse af Kampagne", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
             }
         }
     }
