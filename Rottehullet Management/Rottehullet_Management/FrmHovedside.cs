@@ -85,5 +85,12 @@ namespace Rottehullet_Management
 			loginKampagneValg.ShowDialog();
 			this.Close();
 		}
+
+        private void btnRetAttributter_Click(object sender, EventArgs e)
+        {
+            FrmAttributter attributter = new FrmAttributter(kampagnemanager);
+            attributter.ShowDialog();
+            
+        }
     }
 }

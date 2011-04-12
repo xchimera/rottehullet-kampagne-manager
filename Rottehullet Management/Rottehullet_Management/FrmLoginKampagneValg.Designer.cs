@@ -39,6 +39,7 @@
             this.lstKampagner.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.KampagneID,
             this.Navn});
+            this.lstKampagner.FullRowSelect = true;
             this.lstKampagner.Location = new System.Drawing.Point(12, 12);
             this.lstKampagner.Name = "lstKampagner";
             this.lstKampagner.Size = new System.Drawing.Size(283, 135);
@@ -58,7 +59,7 @@
             // 
             // btnVælgKampagne
             // 
-            this.btnVælgKampagne.Location = new System.Drawing.Point(103, 153);
+            this.btnVælgKampagne.Location = new System.Drawing.Point(105, 153);
             this.btnVælgKampagne.Name = "btnVælgKampagne";
             this.btnVælgKampagne.Size = new System.Drawing.Size(93, 23);
             this.btnVælgKampagne.TabIndex = 1;
@@ -73,6 +74,7 @@
             this.ClientSize = new System.Drawing.Size(307, 188);
             this.Controls.Add(this.btnVælgKampagne);
             this.Controls.Add(this.lstKampagner);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmLoginKampagneValg";
             this.Text = "Kampagner";
             this.ResumeLayout(false);
