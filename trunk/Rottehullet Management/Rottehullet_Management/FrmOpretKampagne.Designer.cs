@@ -31,11 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtKampagneNavn = new System.Windows.Forms.TextBox();
             this.lstBrugere = new System.Windows.Forms.ListView();
+            this.BrugerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSøgBruger = new System.Windows.Forms.TextBox();
-            this.BrugerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOpretKampagne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -68,6 +68,11 @@
             this.lstBrugere.UseCompatibleStateImageBehavior = false;
             this.lstBrugere.View = System.Windows.Forms.View.Details;
             // 
+            // BrugerID
+            // 
+            this.BrugerID.Text = "";
+            this.BrugerID.Width = 0;
+            // 
             // Navn
             // 
             this.Navn.Text = "Navn";
@@ -99,11 +104,6 @@
             this.txtSøgBruger.TabIndex = 9;
             this.txtSøgBruger.TextChanged += new System.EventHandler(this.txtSøgBruger_TextChanged);
             // 
-            // BrugerID
-            // 
-            this.BrugerID.Text = "";
-            this.BrugerID.Width = 0;
-            // 
             // btnOpretKampagne
             // 
             this.btnOpretKampagne.Location = new System.Drawing.Point(16, 226);
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 444);
+            this.ClientSize = new System.Drawing.Size(235, 327);
             this.Controls.Add(this.btnOpretKampagne);
             this.Controls.Add(this.txtSøgBruger);
             this.Controls.Add(this.label5);
@@ -126,6 +126,8 @@
             this.Controls.Add(this.lstBrugere);
             this.Controls.Add(this.txtKampagneNavn);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmOpretKampagne";
             this.Text = "Opret_kampagne";
             this.Load += new System.EventHandler(this.Opret_kampagne_Load);
