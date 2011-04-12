@@ -79,6 +79,7 @@
 			this.lstValgmuligheder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Id,
             this.Navn});
+			this.lstValgmuligheder.FullRowSelect = true;
 			this.lstValgmuligheder.Location = new System.Drawing.Point(12, 93);
 			this.lstValgmuligheder.MultiSelect = false;
 			this.lstValgmuligheder.Name = "lstValgmuligheder";
@@ -168,9 +169,10 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "FrmRetAttribut";
-			this.Text = "FrmRetAttribut";
+			this.Text = "Ret Attribut";
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 
 		#endregion
