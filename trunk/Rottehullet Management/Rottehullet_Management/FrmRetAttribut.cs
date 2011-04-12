@@ -18,7 +18,7 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 		long attributId;
-		int position
+        int position;
 
 		public FrmRetAttribut(KampagneManager kampagneManager, long id, int position)
 		{
