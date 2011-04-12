@@ -20,6 +20,13 @@ namespace InputBox
             InitializeComponent();
         }
 
+        public InputBoxSingleline(string text)
+        {
+            InitializeComponent();
+            this.text = text;
+            txtText.Text = text;
+        }
+
         private void btnOk_Click_1(object sender, EventArgs e)
         {
             text = txtText.Text;
