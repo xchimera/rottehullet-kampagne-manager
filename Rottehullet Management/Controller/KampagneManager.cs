@@ -62,7 +62,7 @@ namespace Controller
 
 		public long Login(string email, string kodeord)
 		{
-			kodeord = EncodePassword(kodeord);
+			kodeord = KrypterKodeord(kodeord);
 			long brugerID = dbFacade.Login(email, kodeord);
 
 			return brugerID;
@@ -223,7 +223,7 @@ namespace Controller
 			return kampagneliste.Count();
 		}
 
-		public string EncodePassword(string originalPassword)
+		public string KrypterKodeord(string originalPassword)
 		{
 			//Declarations
 			Byte[] originalBytes;
