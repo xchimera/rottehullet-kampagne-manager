@@ -18,13 +18,15 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 		long attributId;
+		int position
 
-		public FrmRetAttribut(KampagneManager kampagneManager, long id)
+		public FrmRetAttribut(KampagneManager kampagneManager, long id, int position)
 		{
 			this.kampagneManager = kampagneManager;
 			InitializeComponent();
 
 			this.attributId = id;
+			this.position = position;
 			IKampagneAttribut kampagneAttribut = kampagneManager.FindKampagneAttribut(id);
 
 			txtNavn.Text = kampagneAttribut.Navn;
@@ -104,7 +106,7 @@ namespace Rottehullet_Management
 
 		private void btnRet_Click(object sender, EventArgs e)
 		{
-			kampagneManager.RetAttribut(txtNavn.Text, (KampagneType)cboType.SelectedIndex, 
+			kampagneManager.RetAttribut(txtNavn.Text, (KampagneType)cboType.SelectedIndex, position);
 			this.Close();
 		}
 	}
