@@ -61,6 +61,7 @@ namespace Rottehullet_Management
 				}
 				kampagneManager.TilføjMultiAttribut(txtNavn.Text, type, position, valgmuligheder);
 			}
+			this.Close();
 		}
 
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)

@@ -848,5 +848,49 @@ namespace Controller
 				return false;
 			}
 		}
+
+		public bool RetAttribut(long attID, string navn, int type, long kampagneID, int position)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "RetAttribut";
+			SqlParameter par;
+
+			par = new SqlParameter("@attID", SqlDbType.BigInt);
+			par.Value = attID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			par.Value = kampagneID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@navn", SqlDbType.NVarChar);
+			par.Value = navn;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@infotype", SqlDbType.Int);
+			par.Value = type;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@position", SqlDbType.Int);
+			par.Value = position;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
     }
 }

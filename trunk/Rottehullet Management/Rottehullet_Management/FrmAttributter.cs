@@ -21,15 +21,16 @@ namespace Rottehullet_Management
 		{
 			this.kampagneManager = kampagneManager;
 			InitializeComponent();
-			opdaterList();
+			opdaterListe();
 		}
 
-		private void opdaterList()
+		private void opdaterListe()
 		{
+			lstAttributter.Items.Clear();
 			IEnumerator iterator = kampagneManager.HentAttributter();
 			IKampagneAttribut iKampagneAttribut;
 			ListViewItem linje;
-
+			iterator.Reset();
 			while (iterator.MoveNext())
 			{
 				iKampagneAttribut = (IKampagneAttribut)iterator.Current;
@@ -48,14 +49,22 @@ namespace Rottehullet_Management
 				{
 					linje.SubItems.Add("Enkeltlinjet tekstboks");
 				}
+				lstAttributter.Items.Add(linje);
 			}
 		}
 
-		private void btnTilføjAttrbut_Click(object sender, EventArgs e)
+		private void btnTilføjAttribut_Click(object sender, EventArgs e)
 		{
 			FrmTilføjAttribut form = new FrmTilføjAttribut(kampagneManager, lstAttributter.Items.Count);
 			form.ShowDialog();
-			opdaterList();
+			opdaterListe();
+		}
+
+		private void btnRetAttribut_Click(object sender, EventArgs e)
+		{
+			FrmRetAttribut form = new FrmRetAttribut(kampagneManager, long.Parse(lstAttributter.SelectedItems[0].Text));
+			form.ShowDialog();
+			opdaterListe();
 		}
 	}
 }

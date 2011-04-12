@@ -188,6 +188,7 @@ namespace Controller
 			if (id != -1)
 			{
 				nuværendeKampagne.TilføjMultiAttribut(navn, type, valgmulighedsListe, nuværendeKampagne.KampagneID, position);
+				return true;
 			}
 			return false;
 		}
@@ -253,10 +254,20 @@ namespace Controller
 				}
 				return true;
 			}
-			else
+			
+			return false;
+		}
+
+		public bool RetAttribut(string navn, KampagneType type, int position)
+		{
+			if (dbFacade.RetAttribut(nuværendeAttribut.KampagneAttributID, navn, (int)type, nuværendeKampagne.KampagneID, position))
 			{
-				return false;
+				nuværendeAttribut.Navn = navn;
+				nuværendeAttribut.Type = type;
+
+				return true;
 			}
+			return false;
 		}
 	}
 }

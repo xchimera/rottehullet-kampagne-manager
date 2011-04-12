@@ -84,14 +84,15 @@ namespace Rottehullet_Management
 		{
 			if (lstValgmuligheder.SelectedIndices.Count == 1)
 			{
-				//TODO:
-				//Bank Søren i hovedet og bed ham give mulighed for at medsende nuværende tekststreng til inputbox
-				string tekst = "";
+				InputBoxSingleline inputboks = new InputBoxSingleline(lstValgmuligheder.SelectedItems[0].SubItems[1].Text);
+				inputboks.ShowDialog();
+
+				string tekst = inputboks.Text;
 				if (lstValgmuligheder.SelectedItems[0].Text != "")
 				{
 					if (kampagneManager.RetKampagneMultiAttributEntry(long.Parse(lstValgmuligheder.SelectedItems[0].Text), attributId, tekst))
 					{
-						lstValgmuligheder.SelectedItems[0].Text = tekst;
+						lstValgmuligheder.SelectedItems[0].SubItems[1].Text = tekst;
 					}
 				}
 				else
@@ -99,6 +100,12 @@ namespace Rottehullet_Management
 					lstValgmuligheder.SelectedItems[0].Text = tekst;
 				}
 			}
+		}
+
+		private void btnRet_Click(object sender, EventArgs e)
+		{
+			kampagneManager.RetAttribut(txtNavn.Text, (KampagneType)cboType.SelectedIndex, 
+			this.Close();
 		}
 	}
 }
