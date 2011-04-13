@@ -257,7 +257,7 @@ namespace Controller
 			return kampagneliste.Count();
 		}
 
-		public string KrypterKodeord(string originalPassword)
+		public string KrypterKodeord(string kodeord)
 		{
 			//Declarations
 			Byte[] originalBytes;
@@ -266,7 +266,7 @@ namespace Controller
 
 			//Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
 			md5 = new MD5CryptoServiceProvider();
-			originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword);
+			originalBytes = ASCIIEncoding.Default.GetBytes(kodeord);
 			encodedBytes = md5.ComputeHash(originalBytes);
 
 			//Convert encoded bytes back to a 'readable' string
