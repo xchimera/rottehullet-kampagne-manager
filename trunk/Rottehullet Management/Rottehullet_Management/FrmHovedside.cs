@@ -93,5 +93,11 @@ namespace Rottehullet_Management
             attributter.ShowDialog();
             
         }
+
+		private void btnOpstartScenarie_Click(object sender, EventArgs e)
+		{
+			FrmOpstartScenarie form = new FrmOpstartScenarie(kampagnemanager);
+			form.ShowDialog();
+		}
     }
 }
