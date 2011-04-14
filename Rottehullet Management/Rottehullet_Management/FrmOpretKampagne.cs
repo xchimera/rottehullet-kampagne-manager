@@ -98,8 +98,9 @@ namespace Rottehullet_Management
                     }
                 }
             }
-            catch (FormatException)
+            catch (ArgumentOutOfRangeException)
             {
+                MessageBox.Show("Vælg venligst en bruger");
             }
         }
     }

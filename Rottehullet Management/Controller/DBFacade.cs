@@ -816,6 +816,33 @@ namespace Controller
 			}
 		}
 
+        public bool RetKampagneStatus(long id, KampagneStatus status)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "RetKampagneStatus";
+            SqlParameter par;
+
+            par = new SqlParameter("@kamID", SqlDbType.BigInt);
+            par.Value = id;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
 		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
 		{
 			cmd.Parameters.Clear();

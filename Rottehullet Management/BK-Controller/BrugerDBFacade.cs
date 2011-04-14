@@ -126,6 +126,7 @@ namespace BK_Controller
                     brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, topbrugerID, status);
 
                     if (status == KampagneStatus.Åben)
+
                     {
 
                         kamtype = (KampagneAttributType)reader["infotype"];

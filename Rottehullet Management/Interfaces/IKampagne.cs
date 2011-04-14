@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enum;
 
 namespace Interfaces
 {
@@ -12,5 +13,7 @@ namespace Interfaces
 		string Beskrivelse { get; }
 		string Hjemmeside { get; }
 		//IBruger Topbruger { get; }
+        KampagneStatus Status { get; }
+
 	}
 }

@@ -77,8 +77,10 @@ namespace TestProject
 			string navn = "TestKampagne";
 			Bruger topbruger = null;
 			long kampagneID = 0;
+
 			KampagneStatus status = KampagneStatus.Åben;
 			Kampagne target = new Kampagne(navn, topbruger, kampagneID,status);
+
 			
 			//Test af opsætning af kampagne
 			string actualnavn = target.Navn;
