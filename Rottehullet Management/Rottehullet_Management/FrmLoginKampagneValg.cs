@@ -16,7 +16,6 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagnemanager;
         List<string[]> kampagneliste;
-        Button button;
         
         public FrmLoginKampagneValg(KampagneManager kampagnemanager)
 		{
