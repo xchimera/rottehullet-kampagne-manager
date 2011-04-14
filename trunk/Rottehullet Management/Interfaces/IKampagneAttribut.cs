@@ -8,7 +8,7 @@ namespace Interfaces
 {
 	public interface IKampagneAttribut
 	{
-		KampagneType Type { get; }
+		KampagneAttributType Type { get; }
 		long KampagneAttributID { get; }
 		string Navn { get; }
 

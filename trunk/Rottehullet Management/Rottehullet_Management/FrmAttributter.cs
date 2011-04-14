@@ -37,11 +37,11 @@ namespace Rottehullet_Management
 				linje = new ListViewItem();
 				linje.Text = iKampagneAttribut.KampagneAttributID.ToString();
 				linje.SubItems.Add(iKampagneAttribut.Navn);
-				if (iKampagneAttribut.Type == KampagneType.Combo)
+				if (iKampagneAttribut.Type == KampagneAttributType.Combo)
 				{
 					linje.SubItems.Add("Multiple Choice");
 				}
-				else if (iKampagneAttribut.Type == KampagneType.Multiline)
+				else if (iKampagneAttribut.Type == KampagneAttributType.Multiline)
 				{
 					linje.SubItems.Add("Flerlinjet tekstboks");
 				}

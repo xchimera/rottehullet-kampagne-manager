@@ -27,6 +27,7 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
 		}
+
 		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger, KampagneStatus status)
 		{
 			this.navn = navn;
@@ -55,14 +56,14 @@ namespace Model
 			scenarier.Add(scenarie);
 		}
 
-        public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneType type)
+        public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneAttribut singleattribut = new KampagneAttribut(navn, type, attributID);
             attributter.Add(singleattribut);
             return singleattribut;
         }
 
-        public KampagneMultiAttribut GenopretMultiAttribut(long attributID, string navn, KampagneType type)
+        public KampagneMultiAttribut GenopretMultiAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneMultiAttribut multiattribut = new KampagneMultiAttribut(navn, type, attributID);
             attributter.Add(multiattribut);
@@ -93,26 +94,26 @@ namespace Model
 		/// <param name="type"></param>
 		/// <param name="kampagneAttributID"></param>
 		/// <param name="position"></param>
-		public void TilføjSingleAttribut(string navn, KampagneType type, long kampagneAttributID, int position)
+		public void TilføjSingleAttribut(string navn, KampagneAttributType type, long kampagneAttributID, int position)
 		{
 			KampagneAttribut attribut = new KampagneAttribut(navn, type, kampagneAttributID);
 			attributter.Insert(position, attribut);
 		}
 
-		public void TilføjMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, long kampagneAttributID, int position)
+		public void TilføjMultiAttribut(string navn, KampagneAttributType type, List<string[]> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
 			attributter.Insert(position, attribut);
 		}
 
-		public void RetSingleAttribut(int id, KampagneType type, int position)
+		public void RetSingleAttribut(int id, KampagneAttributType type, int position)
 		{
 			KampagneAttribut attribut = FindAttribut(id);
 			attribut.Navn = navn;
 			attribut.Type = type;
 		}
 
-		public void RetMultiAttribut(int id, KampagneType type, List<string[]> valgmuligheder, int position)
+		public void RetMultiAttribut(int id, KampagneAttributType type, List<string[]> valgmuligheder, int position)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(id);
 			attribut.Navn = navn;

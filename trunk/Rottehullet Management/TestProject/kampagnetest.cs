@@ -77,7 +77,8 @@ namespace TestProject
 			string navn = "TestKampagne";
 			Bruger topbruger = null;
 			long kampagneID = 0;
-			Kampagne target = new Kampagne(navn, topbruger, kampagneID);
+			KampagneStatus status = KampagneStatus.Åben;
+			Kampagne target = new Kampagne(navn, topbruger, kampagneID,status);
 			
 			//Test af opsætning af kampagne
 			string actualnavn = target.Navn;
@@ -89,7 +90,7 @@ namespace TestProject
 			
 			//Oprettelse af multiattribut
 			string navn1 = "TestVariabel";
-			KampagneType type = KampagneType.Combo;
+			KampagneAttributType type = KampagneAttributType.Combo;
 			string[] entry1 = {"Entry1","0"};
 			string[] entry2 = {"Entry2","1"};
 			string[] entry3 = {"Entry3","2"};
@@ -104,7 +105,7 @@ namespace TestProject
 			actualAttribut = (KampagneMultiAttribut)(target.FindAttribut(id));
 			actualnavn = actualAttribut.Navn;
 			Assert.AreEqual(navn1, actualnavn);
-			KampagneType actualtype = actualAttribut.Type;
+			KampagneAttributType actualtype = actualAttribut.Type;
 			Assert.AreEqual(type, actualtype);
 			string[] actualentry = actualAttribut.Valgmuligheder[0];
 			Assert.AreEqual(entry1, actualentry);
@@ -115,7 +116,7 @@ namespace TestProject
 
 			//Ændring af entry
 			id = 0;
-			type = KampagneType.Combo;
+			type = KampagneAttributType.Combo;
 			entry2[0] = "ChangedEntry2";
 			valgmuligheder = new List<string[]>(new string[][] { entry1, entry2, entry3 });
 			position = 0;

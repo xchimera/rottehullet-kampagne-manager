@@ -34,7 +34,7 @@ namespace Model
         /// <param name="attributID">attributtens ID</param>
         /// <param name="navn">attributtens navn</param>
         /// <param name="type">attributtens type</param>
-        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type)
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type)
         {
             Kampagne kampagne = FindKampagne(kamID);
             if (kampagne != null)
@@ -45,7 +45,7 @@ namespace Model
             return null;
         }
 
-        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type)
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type)
         {
             Kampagne kampagne = FindKampagne(kamID);
             if (kampagne != null)

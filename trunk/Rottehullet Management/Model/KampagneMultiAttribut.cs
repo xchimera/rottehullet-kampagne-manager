@@ -10,13 +10,13 @@ namespace Model
 	{
 		private List<string[]> valgmuligheder;
 
-		public KampagneMultiAttribut(string navn, KampagneType type, List<string[]> valgmuligheder, long kampagneAttributID)
+		public KampagneMultiAttribut(string navn, KampagneAttributType type, List<string[]> valgmuligheder, long kampagneAttributID)
 			: base(navn, type, kampagneAttributID)
 		{
 			this.valgmuligheder = valgmuligheder;
 		}
 
-        public KampagneMultiAttribut(string navn, KampagneType type, long kampagneAttributID)
+        public KampagneMultiAttribut(string navn, KampagneAttributType type, long kampagneAttributID)
             : base(navn, type, kampagneAttributID)
         {
             valgmuligheder = new List<string[]>();

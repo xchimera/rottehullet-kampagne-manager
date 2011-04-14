@@ -11,16 +11,16 @@ namespace Model
 	{
 		private long kampagneAttributID;
 		private string navn;
-		private KampagneType type;
+		private KampagneAttributType type;
 
-		public KampagneAttribut(string navn, KampagneType type, long kampagneAttributID)
+		public KampagneAttribut(string navn, KampagneAttributType type, long kampagneAttributID)
 		{
 			this.navn = navn;
 			this.type = type;
 			this.kampagneAttributID = kampagneAttributID;
 		}
 
-		public KampagneType Type
+		public KampagneAttributType Type
 		{
 			get { return type; }
 			set { type = value; }

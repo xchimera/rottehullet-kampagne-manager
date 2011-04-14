@@ -107,12 +107,12 @@ namespace Controller
             return false;
         }
 
-        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
         {
             return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
         }
 
-        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type,  int position)
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type,  int position)
         {
             return nuværendeKampagne.GenopretMultiAttribut(attributID, navn, type);
             //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
@@ -178,7 +178,7 @@ namespace Controller
 			return nuværendeAttribut;
 		}
 
-		public bool TilføjSingleAttribut(string navn, KampagneType type, int position)
+		public bool TilføjSingleAttribut(string navn, KampagneAttributType type, int position)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
 			if (id != -1)
@@ -199,7 +199,7 @@ namespace Controller
             return kampagnecollection.GetKampagneIterator();
         }
 
-		public bool TilføjMultiAttribut(string navn, KampagneType type, int position, List<string> valgmuligheder)
+		public bool TilføjMultiAttribut(string navn, KampagneAttributType type, int position, List<string> valgmuligheder)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, nuværendeKampagne.KampagneID, position);
 			List<string[]> valgmulighedsListe = new List<string[]>();
@@ -247,7 +247,7 @@ namespace Controller
 
 		public IEnumerator HentValgmuligheder()
 		{
-			if (nuværendeAttribut.Type == KampagneType.Combo)
+			if (nuværendeAttribut.Type == KampagneAttributType.Combo)
 			{
 				KampagneMultiAttribut attribut = (KampagneMultiAttribut)nuværendeAttribut;
 				return attribut.Valgmuligheder.GetEnumerator();
@@ -295,7 +295,7 @@ namespace Controller
 			return false;
 		}
 
-		public bool RetAttribut(string navn, KampagneType type, int position)
+		public bool RetAttribut(string navn, KampagneAttributType type, int position)
 		{
 			if (dbFacade.RetAttribut(nuværendeAttribut.KampagneAttributID, navn, (int)type, nuværendeKampagne.KampagneID, position))
 			{
