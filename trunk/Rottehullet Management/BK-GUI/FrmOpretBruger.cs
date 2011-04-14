@@ -45,6 +45,7 @@ namespace BK_GUI
 				kodeord = brugerklient.KrypterKodeord(kodeord);
 
                 brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
+                
 
             }
             catch (FormatException)
