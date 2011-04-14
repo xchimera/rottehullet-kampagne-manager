@@ -52,9 +52,13 @@ namespace BK_GUI
             {
 
                 MessageBox.Show("Indtast venligst korrekte værdier.", "Værdi Fejl", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-
             }
+
+        }
+
+        private void btnAnnuller_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
