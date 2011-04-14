@@ -14,11 +14,14 @@ namespace Model
         private DateTime fødselsdag;
         private long tlf;
         private long nød_tlf;
+        private string allergi;
+        private string andet;
         private bool vegetar;
         private bool veganer;
+        
 
         // constructor en Bruger
-        public Bruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public Bruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet,string allergi)
         {
             this.brugerID = brugerID;
             this.email = email;
@@ -28,6 +31,8 @@ namespace Model
             this.nød_tlf = nød_tlf;
             this.vegetar = vegetar;
             this.veganer = veganer;
+            this.allergi = allergi;
+            this.andet = andet;
         }
 
 
@@ -77,6 +82,18 @@ namespace Model
         public long BrugerID
         {
             get { return brugerID; }
+        }
+
+        public string Allergi
+        {
+            get { return allergi; }
+            set { allergi = value; }
+        }
+
+        public string Andet
+        {
+            get { return andet; }
+            set { andet = value; }
         }
     }
 }
