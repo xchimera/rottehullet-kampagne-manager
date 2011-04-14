@@ -13,6 +13,7 @@ namespace Model
 		#region attributter
 		private long kampagneID;
 		private List<KampagneAttribut> attributter;
+		private List<Scenarie> scenarier;
 		private string navn, hjemmeside, beskrivelse;
 		private Bruger topbruger;
 		#endregion
@@ -23,6 +24,7 @@ namespace Model
 			this.topbruger = topbruger;
 			this.kampagneID = kampagneID;
 			attributter = new List<KampagneAttribut>();
+			scenarier = new List<Scenarie>();
 		}
 		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger)
 		{
@@ -32,6 +34,23 @@ namespace Model
 			this.topbruger = topbruger;
 			this.kampagneID = kampagneID;
 			attributter = new List<KampagneAttribut>();
+		}
+
+		/// <summary>
+		/// Tilføjer et scenarie til den pågældende Kampagne
+		/// </summary>
+		/// <param name="titel"></param>
+		/// <param name="beskrivelse"></param>
+		/// <param name="tid"></param>
+		/// <param name="sted"></param>
+		/// <param name="overnatning"></param>
+		/// <param name="spisning"></param>
+		/// <param name="spisningValgfri"></param>
+		/// <param name="overnatningValgfri"></param>
+		public void TilføjScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		{
+			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+			scenarier.Add(scenarie);
 		}
 
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneType type)

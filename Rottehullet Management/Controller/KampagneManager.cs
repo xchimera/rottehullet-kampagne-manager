@@ -18,6 +18,7 @@ namespace Controller
 		DBFacade dbFacade;
 		Kampagne nuværendeKampagne;
 		KampagneAttribut nuværendeAttribut;
+		Scenarie nuværendeScenarie;
 
 		public KampagneManager()
 		{
@@ -322,6 +323,15 @@ namespace Controller
 				return true;
 			}
 			return false;
+		}
+
+		public void TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		{
+			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, nuværendeKampagne.KampagneID);
+			if (id != -1)
+			{
+				nuværendeKampagne.TilføjScenarie((long)12321, titel, beskrivelse, tid, sted, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+			}
 		}
 	}
 }
