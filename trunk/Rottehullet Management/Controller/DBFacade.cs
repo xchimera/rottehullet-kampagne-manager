@@ -931,5 +931,68 @@ namespace Controller
 				return false;
 			}
 		}
+
+		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo, long kampagneID)
+		{
+			cmd.CommandText = "OpretScenarie";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+
+			par = new SqlParameter("@titel", SqlDbType.NVarChar);
+			par.Value = titel;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@beskrivelse", SqlDbType.NVarChar);
+			par.Value = beskrivelse;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@dato", SqlDbType.DateTime);
+			par.Value = tid;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@sted", SqlDbType.NVarChar);
+			par.Value = sted;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@overnatning", SqlDbType.Int);
+			par.Value = overnatning;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@overnatningValgfri", SqlDbType.Bit);
+			par.Value = overnatningValgfri;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@spisning", SqlDbType.Bit);
+			par.Value = spisning;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@spisningValgfri", SqlDbType.Bit);
+			par.Value = spisningValgfri;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+			par.Value = kampagneID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@scenarieID", SqlDbType.BigInt);
+			par.Direction = ParameterDirection.Output;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				return (long)par.Value;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return -1;
+			}
+		}
     }
 }
