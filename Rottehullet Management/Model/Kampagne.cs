@@ -47,9 +47,9 @@ namespace Model
 		/// <param name="spisning"></param>
 		/// <param name="spisningValgfri"></param>
 		/// <param name="overnatningValgfri"></param>
-		public void TilføjScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		public void TilføjScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
-			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
 			scenarier.Add(scenarie);
 		}
 

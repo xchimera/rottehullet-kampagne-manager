@@ -932,7 +932,7 @@ namespace Controller
 			}
 		}
 
-		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo, long kampagneID)
+		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo, long kampagneID)
 		{
 			cmd.CommandText = "OpretScenarie";
 			cmd.Parameters.Clear();
@@ -952,6 +952,10 @@ namespace Controller
 
 			par = new SqlParameter("@sted", SqlDbType.NVarChar);
 			par.Value = sted;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@pris", SqlDbType.Decimal);
+			par.Value = pris;
 			cmd.Parameters.Add(par);
 
 			par = new SqlParameter("@overnatning", SqlDbType.Int);
