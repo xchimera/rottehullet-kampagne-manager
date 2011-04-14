@@ -71,8 +71,12 @@
 			// 
 			// dtpTid
 			// 
+			this.dtpTid.CustomFormat = "dd-MM-yyyy                     kl. HH:mm";
+			this.dtpTid.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.dtpTid.Location = new System.Drawing.Point(86, 38);
 			this.dtpTid.Name = "dtpTid";
+			this.dtpTid.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.dtpTid.ShowUpDown = true;
 			this.dtpTid.Size = new System.Drawing.Size(200, 20);
 			this.dtpTid.TabIndex = 2;
 			// 
@@ -114,7 +118,7 @@
 			// txtPris
 			// 
 			this.txtPris.Location = new System.Drawing.Point(203, 65);
-			this.txtPris.Mask = "00000.00 kr";
+			this.txtPris.Mask = "00000.00";
 			this.txtPris.Name = "txtPris";
 			this.txtPris.Size = new System.Drawing.Size(83, 20);
 			this.txtPris.TabIndex = 7;

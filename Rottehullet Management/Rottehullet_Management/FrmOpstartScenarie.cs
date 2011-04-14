@@ -32,7 +32,25 @@ namespace Rottehullet_Management
 
 		private void btnOpret_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(txtPris.Text);
+			if (txtNavn.Text == "")
+			{
+				MessageBox.Show("Scenariet skal have et navn", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			if (txtSted.Text == "")
+			{
+				MessageBox.Show("Sted skal være udfyldt", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			if (txtBeskrivelse.Text == "")
+			{
+				MessageBox.Show("Beskrivelsen skal være udfyldt", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+
 		}
 	}
 }
