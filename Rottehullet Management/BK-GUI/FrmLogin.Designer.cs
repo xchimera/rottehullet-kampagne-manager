@@ -56,6 +56,7 @@
             // 
             this.txtKodeord.Location = new System.Drawing.Point(107, 128);
             this.txtKodeord.Name = "txtKodeord";
+            this.txtKodeord.PasswordChar = '*';
             this.txtKodeord.Size = new System.Drawing.Size(100, 20);
             this.txtKodeord.TabIndex = 2;
             // 
