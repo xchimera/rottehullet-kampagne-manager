@@ -15,7 +15,7 @@ namespace BK_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BK_Klient());
+            Application.Run(new FrmLogin());
         }
     }
 }
