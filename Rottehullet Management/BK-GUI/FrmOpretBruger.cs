@@ -25,6 +25,8 @@ namespace BK_GUI
                 string email = Convert.ToString(txtMail.Text);
                 string kodeord = Convert.ToString(txtKodeord.Text);
                 string navn = Convert.ToString(txtNavn.Text);
+                string allergi = Convert.ToString(txtAllergi.Text);
+                string andet = Convert.ToString(txtAndet.Text);
                 DateTime fødselsdag = dtpFødselsdag.Value;
                 long tlf = long.Parse(txtTlf.Text);
                 long nød_tlf = long.Parse(txtNød_tlf.Text);
@@ -42,7 +44,7 @@ namespace BK_GUI
 
 				kodeord = brugerklient.EncodePassword(kodeord);
 
-                brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+                brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 
             }
             catch (FormatException)

@@ -43,11 +43,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.chkVegetar = new System.Windows.Forms.CheckBox();
             this.chkVeganer = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtAllergi = new System.Windows.Forms.TextBox();
+            this.txtAndet = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnTilføjBruger
             // 
-            this.btnTilføjBruger.Location = new System.Drawing.Point(260, 208);
+            this.btnTilføjBruger.Location = new System.Drawing.Point(329, 93);
             this.btnTilføjBruger.Name = "btnTilføjBruger";
             this.btnTilføjBruger.Size = new System.Drawing.Size(75, 23);
             this.btnTilføjBruger.TabIndex = 9;
@@ -154,7 +158,7 @@
             // chkVegetar
             // 
             this.chkVegetar.AutoSize = true;
-            this.chkVegetar.Location = new System.Drawing.Point(74, 212);
+            this.chkVegetar.Location = new System.Drawing.Point(306, 185);
             this.chkVegetar.Name = "chkVegetar";
             this.chkVegetar.Size = new System.Drawing.Size(63, 17);
             this.chkVegetar.TabIndex = 7;
@@ -164,18 +168,56 @@
             // chkVeganer
             // 
             this.chkVeganer.AutoSize = true;
-            this.chkVeganer.Location = new System.Drawing.Point(170, 212);
+            this.chkVeganer.Location = new System.Drawing.Point(402, 185);
             this.chkVeganer.Name = "chkVeganer";
             this.chkVeganer.Size = new System.Drawing.Size(66, 17);
             this.chkVeganer.TabIndex = 8;
             this.chkVeganer.Text = "Veganer";
             this.chkVeganer.UseVisualStyleBackColor = true;
             // 
-            // BK_Klient
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(70, 232);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Allergi";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(314, 232);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Andet";
+            // 
+            // txtAllergi
+            // 
+            this.txtAllergi.Location = new System.Drawing.Point(111, 232);
+            this.txtAllergi.Multiline = true;
+            this.txtAllergi.Name = "txtAllergi";
+            this.txtAllergi.Size = new System.Drawing.Size(171, 100);
+            this.txtAllergi.TabIndex = 11;
+            // 
+            // txtAndet
+            // 
+            this.txtAndet.Location = new System.Drawing.Point(356, 232);
+            this.txtAndet.Multiline = true;
+            this.txtAndet.Name = "txtAndet";
+            this.txtAndet.Size = new System.Drawing.Size(208, 100);
+            this.txtAndet.TabIndex = 12;
+            // 
+            // FrmOpretBruger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 335);
+            this.ClientSize = new System.Drawing.Size(576, 344);
+            this.Controls.Add(this.txtAndet);
+            this.Controls.Add(this.txtAllergi);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.chkVeganer);
             this.Controls.Add(this.chkVegetar);
             this.Controls.Add(this.dtpFødselsdag);
@@ -191,7 +233,7 @@
             this.Controls.Add(this.txtNavn);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.btnTilføjBruger);
-            this.Name = "BK_Klient";
+            this.Name = "FrmOpretBruger";
             this.Text = "BrugerKlient";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -216,6 +258,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkVegetar;
         private System.Windows.Forms.CheckBox chkVeganer;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtAllergi;
+        private System.Windows.Forms.TextBox txtAndet;
     }
 }
 
