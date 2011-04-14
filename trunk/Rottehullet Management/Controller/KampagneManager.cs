@@ -118,13 +118,13 @@ namespace Controller
             //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
         }
 
-		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)
+		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID, KampagneStatus status)
 		{
 			Bruger bruger;
 			bruger = brugercollection.FindBruger(topbrugerID);
 			if (bruger != null)
 			{
-				nuværendeKampagne = kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
+				nuværendeKampagne = kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
 				return true;
 			}
 			return false;

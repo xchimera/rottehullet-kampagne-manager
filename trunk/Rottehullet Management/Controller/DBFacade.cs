@@ -247,6 +247,7 @@ namespace Controller
 			string beskrivelse = "";
 			string hjemmeside = "";
 			long topbrugerID;
+            KampagneStatus status;
 			
 			cmd.CommandText = "HentKampagne";
 			cmd.Parameters.Clear();
@@ -268,8 +269,9 @@ namespace Controller
 					beskrivelse = (string)reader["beskrivelse"];
 					hjemmeside = (string)reader["hjemmeside"];
 					topbrugerID = (long)reader["topbrugerID"];
+                    status = (KampagneStatus)reader["status"];
 
-					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID))
+					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
 					{
 						return false;
 					}
@@ -449,9 +451,15 @@ namespace Controller
             par.Value = topbrugerID;
             cmd.Parameters.Add(par);
 
+            par = new SqlParameter("@status", SqlDbType.Int);
+            par.Value = KampagneStatus.Oprettet;
+            cmd.Parameters.Add(par);
+
             par = new SqlParameter("@id", SqlDbType.BigInt);
             par.Direction = ParameterDirection.Output;
             cmd.Parameters.Add(par);
+
+
 
             
 
