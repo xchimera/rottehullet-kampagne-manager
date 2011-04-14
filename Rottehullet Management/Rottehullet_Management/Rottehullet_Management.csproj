@@ -82,6 +82,12 @@
     <Compile Include="FrmOpretKampagne.Designer.cs">
       <DependentUpon>FrmOpretKampagne.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOpstartScenarie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOpstartScenarie.Designer.cs">
+      <DependentUpon>FrmOpstartScenarie.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRetAttribut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOpretKampagne.resx">
       <DependentUpon>FrmOpretKampagne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOpstartScenarie.resx">
+      <DependentUpon>FrmOpstartScenarie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRetAttribut.resx">
       <DependentUpon>FrmRetAttribut.cs</DependentUpon>
