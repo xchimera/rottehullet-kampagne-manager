@@ -15,13 +15,14 @@ namespace Model
 		private bool spisning, spisningValgfri, overnatningValgfri;
 		List<string> deltagere;
 
-		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
 			this.id = id;
 			this.titel = titel;
 			this.beskrivelse = beskrivelse;
 			this.tid = tid;
 			this.sted = sted;
+			this.pris = pris;
 			this.overnatning = overnatning;
 			this.spisning = spisning;
 			this.spisningValgfri = spisningValgfri;
