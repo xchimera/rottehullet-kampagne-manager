@@ -33,7 +33,10 @@ namespace BK_GUI
 
             if (brugerID > 0)    //login succesfuldt
             {
-
+                FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
+                this.Hide();
+                loginkampagnevalg.ShowDialog();
+                this.Close();
             }
             else
             {

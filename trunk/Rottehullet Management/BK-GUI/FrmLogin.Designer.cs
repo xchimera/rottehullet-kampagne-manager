@@ -92,6 +92,7 @@
             // 
             // FrmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(283, 211);
@@ -101,6 +102,8 @@
             this.Controls.Add(this.txtKodeord);
             this.Controls.Add(this.txtBrugernavn);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.Text = "Login";
             this.ResumeLayout(false);

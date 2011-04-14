@@ -73,6 +73,20 @@ namespace BK_Controller
             return false;
         }
 
+        public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
+        {
+            if (kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, status) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public System.Collections.IEnumerator GetKampagneIterator()
+        {
+            return kampagnecollection.GetKampagneIterator();
+        }
+
 		public string KrypterKodeord(string originalPassword)
 		{
 			//Declarations
