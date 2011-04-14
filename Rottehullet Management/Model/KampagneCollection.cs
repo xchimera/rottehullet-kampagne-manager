@@ -17,7 +17,7 @@ namespace Model
 
 		public void OpretKampagne(string navn, Bruger topbruger, long kampagneID)
 		{
-			Kampagne kampagne = new Kampagne(navn, topbruger, kampagneID);
+			Kampagne kampagne = new Kampagne(navn, topbruger, kampagneID, KampagneStatus.Oprettet);
 			kampagner.Add(kampagne);
 		}
 

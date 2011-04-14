@@ -166,8 +166,8 @@ namespace Controller
                     tlf = (long)reader["tlf"];
                     nød_tlf = (long)reader["nød_tlf"];
                     brugerID = (long)reader["brugerID"];
-                    allergi = (string) reader["allergi"];
-                    vegetar = (bool)reader["vegetar"];
+					allergi = (string)reader["allergi"];
+					vegetar = (bool)reader["vegetar"];
                     veganer = (bool)reader["veganer"];
                     andet = (string) reader["andet"];
 
