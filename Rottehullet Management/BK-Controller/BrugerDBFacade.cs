@@ -101,7 +101,7 @@ namespace BK_Controller
         /// <param name="vegetar">om brugeren er vegetar</param>
         /// <param name="veganer">om brugeren er veganer</param>
         /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
-        public long OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public long OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
         {
             //string sqlfejl = null;
 
@@ -143,6 +143,14 @@ namespace BK_Controller
 
             par = new SqlParameter("@veganer", SqlDbType.Bit);
             par.Value = veganer;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@allergi", SqlDbType.NVarChar);
+            par.Value = allergi;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@andet", SqlDbType.NVarChar);
+            par.Value = andet;
             cmd.Parameters.Add(par);
 
             par = new SqlParameter("@brugerID", SqlDbType.BigInt);

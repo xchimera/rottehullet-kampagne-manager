@@ -144,7 +144,7 @@ namespace Controller
 
         public void HentAlleBrugere()
         {
-            string email, navn;
+            string email, navn, allergi, andet;
             DateTime fødselsdag;
             long tlf, nød_tlf, brugerID;
             bool vegetar, veganer;
@@ -166,10 +166,12 @@ namespace Controller
                     tlf = (long)reader["tlf"];
                     nød_tlf = (long)reader["nød_tlf"];
                     brugerID = (long)reader["brugerID"];
+                    allergi = (string) reader["allergi"];
                     vegetar = (bool)reader["vegetar"];
                     veganer = (bool)reader["veganer"];
+                    andet = (string) reader["andet"];
 
-                    kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer);
+                    kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
                 }
 
                 reader.Dispose();
@@ -187,7 +189,7 @@ namespace Controller
 		public bool HentBrugereTilKampagne(long kamID)
 		{
 			long brugerID, tlf, nød_tlf;
-			string email, navn;
+			string email, navn, allergi, andet;
 			DateTime fødselsdag;
 			bool vegetar, veganer;
 
@@ -215,8 +217,10 @@ namespace Controller
 					nød_tlf = (long)reader["nød_tlf"];
 					vegetar = (bool)reader["vegetar"];
 					veganer = (bool)reader["veganer"];
+				    allergi = (string)reader["allergi"];
+				    andet = (string) reader["andet"];
 
-					if (!kampagnemanager.Opretbruger(brugerID, email, "", navn, fødselsdag, tlf, nød_tlf, vegetar, veganer))
+					if (!kampagnemanager.Opretbruger(brugerID, email, "", navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet))
 					{
 						return false;
 					}
@@ -493,7 +497,7 @@ namespace Controller
         /// <param name="vegetar">om brugeren er vegetar</param>
         /// <param name="veganer">om brugeren er veganer</param>
         /// <returns>returnerer true hvis brugeren er oprettet, ellers false</returns>
-        public bool OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer)
+        public bool OpretBruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
         {
             //string sqlfejl = null;
 
@@ -534,6 +538,14 @@ namespace Controller
 
             par = new SqlParameter("@veganer", SqlDbType.Bit);
             par.Value = veganer;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@allergi", SqlDbType.NVarChar);
+            par.Value = allergi;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@andet", SqlDbType.NVarChar);
+            par.Value = andet;
             cmd.Parameters.Add(par);
 
 
