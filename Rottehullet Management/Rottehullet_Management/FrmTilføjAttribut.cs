@@ -47,7 +47,7 @@ namespace Rottehullet_Management
 
 		private void btnTilføj_Click(object sender, EventArgs e)
 		{
-			KampagneType type = (KampagneType)cboType.SelectedIndex;
+			KampagneAttributType type = (KampagneAttributType)cboType.SelectedIndex;
 			if (cboType.SelectedIndex != 2)
 			{
 				kampagneManager.TilføjSingleAttribut(txtNavn.Text, type, position);

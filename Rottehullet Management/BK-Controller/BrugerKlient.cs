@@ -50,12 +50,12 @@ namespace BK_Controller
             return brugerID;
         }
 
-        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
         {
             return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
         }
 
-        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
         {
             return kampagnecollection.GenopretMultiAttribut(kamID, attributID, navn, type);
             //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);

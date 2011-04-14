@@ -301,7 +301,7 @@ namespace Controller
 
             long attributID;
             string navn;
-            KampagneType type;
+            KampagneAttributType type;
             List<string[]> valgmuligheder = new List<string[]>();
             int position;
             KampagneMultiAttribut attribut = null;
@@ -318,18 +318,18 @@ namespace Controller
 
                 while (reader.Read())
                 {
-                    type = (KampagneType)reader["infotype"];
+                    type = (KampagneAttributType)reader["infotype"];
                     navn = (string)reader["navn"];
                     attributID = (long)reader["attID"];
                     position = (int)reader["position"];
 
 
 
-                    if (type == KampagneType.Singleline)
+                    if (type == KampagneAttributType.Singleline)
                     {
                         kampagnemanager.GenopretAttribut(kamID, attributID, navn, type, position);
                     }
-                    else if (type == KampagneType.Combo)
+                    else if (type == KampagneAttributType.Combo)
                     {
                         if (tempid != attributID)
                         {

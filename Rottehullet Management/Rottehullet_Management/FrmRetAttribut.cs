@@ -113,7 +113,7 @@ namespace Rottehullet_Management
 
 		private void btnRet_Click(object sender, EventArgs e)
 		{
-			kampagneManager.RetAttribut(txtNavn.Text, (KampagneType)cboType.SelectedIndex, position);
+			kampagneManager.RetAttribut(txtNavn.Text, (KampagneAttributType)cboType.SelectedIndex, position);
 			this.Close();
 		}
 	}

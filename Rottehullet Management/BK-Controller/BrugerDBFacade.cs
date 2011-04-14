@@ -100,11 +100,11 @@ namespace BK_Controller
             string beskrivelse;
             string hjemmeside;
             long topbrugerID;
-            KampagneStatus type;
+            KampagneStatus status;
 
             long attributID;
             string attributnavn;
-            KampagneType kamtype;
+            KampagneAttributType kamtype;
             List<string[]> valgmuligheder = new List<string[]>();
             int position;
             
@@ -121,24 +121,24 @@ namespace BK_Controller
                     beskrivelse = (string)reader["beskrivelse"];
                     hjemmeside = (string)reader["hjemmeside"];
                     topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
-                    type = (KampagneStatus)reader["type"];
+                    status = (KampagneStatus)reader["status"];
+					
+                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, topbrugerID, status);
 
-                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, topbrugerID);
-
-                    if (type == KampagneStatus.Åben)
+                    if (status == KampagneStatus.Åben)
                     {
 
-                        kamtype = (KampagneType)reader["infotype"];
+                        kamtype = (KampagneAttributType)reader["infotype"];
                         attributnavn = (string)reader["attributnavn"];
                         attributID = Convert.ToInt64(reader["attID"]);
                         position = (int)reader["position"];
 
-                        if (kamtype == KampagneType.Singleline)
+                        if (kamtype == KampagneAttributType.Singleline)
                         {
                             brugerklient.GenopretAttribut(kampagneID, attributID, attributnavn, kamtype, position);
                         }
 
-                        else if (kamtype == KampagneType.Combo)
+                        else if (kamtype == KampagneAttributType.Combo)
                         {
                             if (tempID != attributID)
                             {
