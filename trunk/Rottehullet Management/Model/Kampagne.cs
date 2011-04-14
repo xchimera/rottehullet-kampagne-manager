@@ -16,7 +16,9 @@ namespace Model
 		private List<Scenarie> scenarier;
 		private string navn, hjemmeside, beskrivelse;
 		private Bruger topbruger;
-		private KampagneStatus status;
+        private KampagneStatus status;
+
+
 		#endregion
 
 		public Kampagne(string navn, Bruger topbruger, long kampagneID, KampagneStatus status)
@@ -180,6 +182,12 @@ namespace Model
 			get { return topbruger; }
 			set { topbruger = value; }
 		}
+
+        public KampagneStatus Status
+        {
+            get { return status; }
+            set { status = value; }
+        }
 		#endregion
 	}
 }

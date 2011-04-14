@@ -25,6 +25,16 @@ namespace Rottehullet_Management
 
 			Kampagne = kampagnemanager.FindKampagne(navn);
 
+            if (Kampagne.Status == Enum.KampagneStatus.Åben)
+            {
+                btnÅbenKampagne.Hide();
+                btnLukKampagne.Enabled = true;
+            }
+            else if (Kampagne.Status == Enum.KampagneStatus.Oprettet || Kampagne.Status == Enum.KampagneStatus.Lukket)
+            {
+                btnLukKampagne.Hide();
+                btnÅbenKampagne.Enabled = true;
+            }
             this.kampagneID = Kampagne.KampagneID;            
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
@@ -99,5 +109,19 @@ namespace Rottehullet_Management
 			FrmOpstartScenarie form = new FrmOpstartScenarie(kampagnemanager);
 			form.ShowDialog();
 		}
+
+        private void btnÅbenKampagne_Click(object sender, EventArgs e)
+        {
+            kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Åben);
+            btnÅbenKampagne.Hide();
+            btnLukKampagne.Show();
+        }
+
+        private void btnLukKampagne_Click(object sender, EventArgs e)
+        {
+            kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Lukket);
+            btnLukKampagne.Hide();
+            btnÅbenKampagne.Show();
+        }
     }
 }

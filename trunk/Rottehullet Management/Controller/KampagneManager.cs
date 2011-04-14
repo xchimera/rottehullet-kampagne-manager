@@ -80,7 +80,7 @@ namespace Controller
 				bruger = brugercollection.FindBruger(topbrugerID);
 				if (bruger != null)
 				{
-					kampagnecollection.OpretKampagne(navn, bruger, kampagneID);
+					kampagnecollection.OpretKampagne(navn, bruger, kampagneID, KampagneStatus.Oprettet);
 					return true;
 				}
 			}
@@ -143,6 +143,7 @@ namespace Controller
 		{
 			if (dbFacade.RetKampagneNavn(navn, kampagneID))
 			{
+                nuværendeKampagne.Navn = navn;
 				return true;
 			}
 			return false;
@@ -152,6 +153,7 @@ namespace Controller
 		{
 			if (dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID))
 			{
+                nuværendeKampagne.Beskrivelse = beskrivelse;
 				return true;
 			}
 			return false;
@@ -162,9 +164,20 @@ namespace Controller
 			if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
 			{
 				nuværendeKampagne.Hjemmeside = hjemmeside;
+                return true;
 			}
 			return false;
 		}
+
+        public bool RetKampagneStatus(long kampagneID, KampagneStatus status)
+        {
+            if (dbFacade.RetKampagneStatus(kampagneID, status))
+            {
+                nuværendeKampagne.Status = status;
+                return true;
+            }
+            return false;
+        }
 
 		public IKampagne FindKampagne(string navn)
 		{
