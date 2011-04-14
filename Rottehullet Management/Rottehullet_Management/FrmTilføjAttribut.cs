@@ -78,5 +78,10 @@ namespace Rottehullet_Management
 				lstValgmuligheder.Items.RemoveAt(lstValgmuligheder.SelectedIndices[0]);
 			}
 		}
+
+		private void btnAnnuller_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
