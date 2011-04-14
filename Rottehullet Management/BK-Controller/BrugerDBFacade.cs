@@ -72,6 +72,7 @@ namespace BK_Controller
 
                 if (brugerid > 0)
                 {
+                    HentAlleKampagner();
                     return brugerid;
                 }
                 return 0;
@@ -123,10 +124,9 @@ namespace BK_Controller
                     topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
                     status = (KampagneStatus)reader["status"];
 					
-                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, topbrugerID, status);
+                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
 
                     if (status == KampagneStatus.Åben)
-
                     {
 
                         kamtype = (KampagneAttributType)reader["infotype"];
@@ -136,7 +136,7 @@ namespace BK_Controller
 
                         if (kamtype == KampagneAttributType.Singleline)
                         {
-                            brugerklient.GenopretAttribut(kampagneID, attributID, attributnavn, kamtype, position);
+                            brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
                         }
 
                         else if (kamtype == KampagneAttributType.Combo)
