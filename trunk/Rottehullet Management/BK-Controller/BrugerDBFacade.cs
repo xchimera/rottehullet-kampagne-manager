@@ -5,6 +5,8 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Data;
+using Model;
+using Enum;
 
 namespace BK_Controller
 {
@@ -36,7 +38,7 @@ namespace BK_Controller
         /// <param name="email">brugerens brugernavn</param>
         /// <param name="kodeord">brugerens kodeord</param>
         /// <returns>returnerer true hvis brugeren findes, ellers false</returns>
-        public bool Login(string email, string kodeord)
+        public long Login(string email, string kodeord)
         {
             long brugerid = 0;
             string navn;
@@ -53,41 +55,119 @@ namespace BK_Controller
             par = new SqlParameter("kodeord", SqlDbType.NVarChar);
             par.Value = kodeord;
             cmd.Parameters.Add(par);
-            //TODO: lav login færdig, modtager brugerid, lav en ny bruger
+
 
             try
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    brugerid = (int)reader["brugerID"];
+                    brugerid = (long)reader["brugerID"];
                     navn = (string)reader["navn"];
                 }
                 conn.Close();
                 reader.Dispose();
 
-                //CheckRettighed(brugerid);
-                
-                return true;   
+                if (brugerid > 0)
+                {
+                    return brugerid;
+                }
+                return 0;
             }
-            catch(SqlException)
+            catch (SqlException)
             {
-                if(conn.State == ConnectionState.Open)
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
 
-            return false;
+                return 0;
             }
         }
 
-        public bool Logud(string brugernavn)
+        public bool HentAlleKampagner()
         {
-            //TODO: lav logud
-            return false;
+            cmd.CommandText = "HentAlleKampagner";
+            cmd.Parameters.Clear();
+            SqlDataReader reader;
+            long tempID = 0;
+            KampagneMultiAttribut multiattribut = null;
+
+            long kampagneID;
+            string navn;
+            string beskrivelse;
+            string hjemmeside;
+            long topbrugerID;
+            KampagneStatus type;
+
+            long attributID;
+            string attributnavn;
+            KampagneType kamtype;
+            List<string[]> valgmuligheder = new List<string[]>();
+            int position;
+            
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    kampagneID = Convert.ToInt64(reader["kamID"]);
+                    navn = (string)reader["navn"];
+                    beskrivelse = (string)reader["beskrivelse"];
+                    hjemmeside = (string)reader["hjemmeside"];
+                    topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
+                    type = (KampagneStatus)reader["type"];
+
+                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, topbrugerID);
+
+                    if (type == KampagneStatus.Åben)
+                    {
+
+                        kamtype = (KampagneType)reader["infotype"];
+                        attributnavn = (string)reader["attributnavn"];
+                        attributID = Convert.ToInt64(reader["attID"]);
+                        position = (int)reader["position"];
+
+                        if (kamtype == KampagneType.Singleline)
+                        {
+                            brugerklient.GenopretAttribut(kampagneID, attributID, attributnavn, kamtype, position);
+                        }
+
+                        else if (kamtype == KampagneType.Combo)
+                        {
+                            if (tempID != attributID)
+                            {
+                                multiattribut = brugerklient.GenopretMultiAttribut(kampagneID, attributID, attributnavn, kamtype, position);
+                            }
+                            string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
+                            multiattribut.TilføjValgmulighed(valg);
+                        }
+                        tempID = attributID;
+                    }
+                }
+                conn.Close();
+                reader.Dispose();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+
+
+
+
         }
+
 
         /// <summary>
         /// tilføj en bruger til databasen, lavet af Denny og Søren
