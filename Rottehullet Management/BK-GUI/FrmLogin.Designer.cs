@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBrugernavn = new System.Windows.Forms.TextBox();
+            this.txtKodeord = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblOpretBruger = new System.Windows.Forms.Label();
@@ -45,19 +45,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Brugernavn";
             // 
-            // textBox1
+            // txtBrugernavn
             // 
-            this.textBox1.Location = new System.Drawing.Point(107, 102);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtBrugernavn.Location = new System.Drawing.Point(107, 102);
+            this.txtBrugernavn.Name = "txtBrugernavn";
+            this.txtBrugernavn.Size = new System.Drawing.Size(100, 20);
+            this.txtBrugernavn.TabIndex = 1;
             // 
-            // textBox2
+            // txtKodeord
             // 
-            this.textBox2.Location = new System.Drawing.Point(107, 128);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.txtKodeord.Location = new System.Drawing.Point(107, 128);
+            this.txtKodeord.Name = "txtKodeord";
+            this.txtKodeord.Size = new System.Drawing.Size(100, 20);
+            this.txtKodeord.TabIndex = 2;
             // 
             // label2
             // 
@@ -76,6 +76,7 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lblOpretBruger
             // 
@@ -96,8 +97,8 @@
             this.Controls.Add(this.lblOpretBruger);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtKodeord);
+            this.Controls.Add(this.txtBrugernavn);
             this.Controls.Add(this.label1);
             this.Name = "FrmLogin";
             this.Text = "Login";
@@ -109,8 +110,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtBrugernavn;
+        private System.Windows.Forms.TextBox txtKodeord;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblOpretBruger;

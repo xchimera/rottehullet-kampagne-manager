@@ -6,6 +6,8 @@ using System.Text;
 using System.Security.Cryptography;
 using Model;
 using Controller;
+using Enum;
+
 namespace BK_Controller
 {
     public class BrugerKlient
@@ -18,11 +20,13 @@ namespace BK_Controller
         /// </summary>
         BrugerDBFacade brugerdbfacade;
         BrugerCollection brugercollection;
+        KampagneCollection kampagnecollection;
 
         public BrugerKlient()
         {
             brugerdbfacade = new BrugerDBFacade(this);
             brugercollection = new BrugerCollection();
+            kampagnecollection = new KampagneCollection();
         }
 
         public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
@@ -37,7 +41,38 @@ namespace BK_Controller
             return false;
         }
 
-		public string EncodePassword(string originalPassword)
+        public long Login(string email, string kodeord)
+        {
+            kodeord = KrypterKodeord(kodeord);
+            long brugerID = brugerdbfacade.Login(email, kodeord);
+
+            return brugerID;
+        }
+
+        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        {
+            return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
+        }
+
+        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
+        {
+            return nuværendeKampagne.GenopretMultiAttribut(attributID, navn, type);
+            //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
+        }
+
+        public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID)
+        {
+            Bruger bruger;
+            bruger = brugercollection.FindBruger(topbrugerID);
+            if (bruger != null)
+            {
+                kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
+                return true;
+            }
+            return false;
+        }
+
+		public string KrypterKodeord(string originalPassword)
 		{
 			//Declarations
 			Byte[] originalBytes;

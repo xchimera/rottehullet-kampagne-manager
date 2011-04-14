@@ -42,7 +42,7 @@ namespace BK_GUI
                     veganer = true;
                 }
 
-				kodeord = brugerklient.EncodePassword(kodeord);
+				kodeord = brugerklient.KrypterKodeord(kodeord);
 
                 brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 
