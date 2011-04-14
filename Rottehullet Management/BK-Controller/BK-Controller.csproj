@@ -77,10 +77,17 @@
       <Project>{54968761-EC9C-4C40-AFE2-FD10E03B25F8}</Project>
       <Name>Enum</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{954C3027-E37E-42B4-AC53-FCB94CA33C45}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{BEEDEA9B-5316-430E-8356-E5FAA143F068}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

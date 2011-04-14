@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using Model;
 using Controller;
 using Enum;
+using Interfaces;
 
 namespace BK_Controller
 {
@@ -56,7 +57,7 @@ namespace BK_Controller
 
         public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneType type, int position)
         {
-            return nuværendeKampagne.GenopretMultiAttribut(attributID, navn, type);
+            return kampagnecollection.GenopretMultiAttribut(kamID, attributID, navn, type);
             //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
         }
 
