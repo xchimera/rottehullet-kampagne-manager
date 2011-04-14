@@ -16,9 +16,10 @@ namespace Model
 		private List<Scenarie> scenarier;
 		private string navn, hjemmeside, beskrivelse;
 		private Bruger topbruger;
+        private KampagneStatus status
 		#endregion
 
-		public Kampagne(string navn, Bruger topbruger, long kampagneID)
+		public Kampagne(string navn, Bruger topbruger, long kampagneID, KampagneStatus status)
 		{
 			this.navn = navn;
 			this.topbruger = topbruger;
@@ -26,13 +27,14 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
 		}
-		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger)
+		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger, KampagneStatus status)
 		{
 			this.navn = navn;
 			this.beskrivelse = beskrivelse;
 			this.hjemmeside = hjemmeside;
 			this.topbruger = topbruger;
 			this.kampagneID = kampagneID;
+            this.status = status;
 			attributter = new List<KampagneAttribut>();
 		}
 

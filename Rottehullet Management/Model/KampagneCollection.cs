@@ -21,9 +21,9 @@ namespace Model
 			kampagner.Add(kampagne);
 		}
 
-		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, Bruger bruger)
+		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, Bruger bruger, KampagneStatus status)
 		{
-			Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger);
+			Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
 			kampagner.Add(kampagne);
 			return kampagner[kampagner.Count - 1];
 		}
