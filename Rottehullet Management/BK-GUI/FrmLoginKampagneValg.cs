@@ -45,5 +45,13 @@ namespace BK_GUI
             }
 
         }
+
+        private void btnVælgKampagne_Click(object sender, EventArgs e)
+        {
+            FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient);
+            this.Hide();
+            frmhovedside.ShowDialog();
+            this.Close();
+        }
     }
 }
