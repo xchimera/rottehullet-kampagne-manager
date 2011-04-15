@@ -23,22 +23,21 @@ namespace Rottehullet_Management
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
 
-			Kampagne = kampagnemanager.FindKampagne(navn);
+			Kampagne = kampagnemanager.Kampagne;
 
-            if (Kampagne.Status == Enum.KampagneStatus.Åben)
-            {
-                btnÅbenKampagne.Hide();
-                btnLukKampagne.Enabled = true;
-            }
-            else if (Kampagne.Status == Enum.KampagneStatus.Oprettet || Kampagne.Status == Enum.KampagneStatus.Lukket)
-            {
-                btnLukKampagne.Hide();
-                btnÅbenKampagne.Enabled = true;
-            }
             this.kampagneID = Kampagne.KampagneID;            
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
+
+			if (Kampagne.Status != Enum.KampagneStatus.Åben)
+			{
+				btnÅbenKampagne.Text = "Åben Kampagne";
+			}
+			else
+			{
+				btnÅbenKampagne.Text = "Luk Kampagne";
+			}
 			if (kampagnemanager.GetAntalKampagner() > 1)
 			{
 				btnSkiftKampagne.Enabled = true;
@@ -46,6 +45,7 @@ namespace Rottehullet_Management
 			else
 			{
 				btnSkiftKampagne.Enabled = false;
+				btnSkiftKampagne.Visible = false;
 			}
         }
 
@@ -112,16 +112,18 @@ namespace Rottehullet_Management
 
         private void btnÅbenKampagne_Click(object sender, EventArgs e)
         {
-            kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Åben);
-            btnÅbenKampagne.Hide();
-            btnLukKampagne.Show();
-        }
-
-        private void btnLukKampagne_Click(object sender, EventArgs e)
-        {
-            kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Lukket);
-            btnLukKampagne.Hide();
-            btnÅbenKampagne.Show();
+			if (Kampagne.Status != Enum.KampagneStatus.Åben)
+			{
+				//Denne del køres når knappen hedder Åben Kampagne (når KampagneStatus er "Lukket" eller "Oprette)
+				kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Åben);
+				btnÅbenKampagne.Text = "Luk Kampagne";
+			}
+			else
+			{
+				//Denne del køres når knappen hedder Luk Kampagne
+				kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Lukket);
+				btnÅbenKampagne.Text = "Åben Kampagne";
+			}
         }
     }
 }
