@@ -34,7 +34,5 @@ namespace BK_GUI
             scenarietilmelding.ShowDialog();
             this.Show();
         }
-
-
     }
 }
