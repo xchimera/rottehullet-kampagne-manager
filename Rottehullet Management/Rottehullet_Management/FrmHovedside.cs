@@ -70,7 +70,7 @@ namespace Rottehullet_Management
             singleline.ShowDialog();
             if (singleline.Lastbutton == 1)
             {
-                txtHjemmeside.Text = Text = singleline.Text;
+                txtHjemmeside.Text = singleline.Text;
                 kampagnemanager.RetKampagneHjemmeside(txtHjemmeside.Text, Kampagne.KampagneID);
             }
         }
