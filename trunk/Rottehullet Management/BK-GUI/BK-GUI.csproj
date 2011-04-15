@@ -64,8 +64,17 @@
     <Compile Include="FrmLoginKampagneValg.Designer.cs">
       <DependentUpon>FrmLoginKampagneValg.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHovedSide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHovedSide.Designer.cs">
+      <DependentUpon>FrmHovedSide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmHovedSide.resx">
+      <DependentUpon>FrmHovedSide.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOpretBruger.resx">
       <DependentUpon>FrmOpretBruger.cs</DependentUpon>
     </EmbeddedResource>

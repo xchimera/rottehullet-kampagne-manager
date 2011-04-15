@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.lstKampagner = new System.Windows.Forms.ListView();
-            this.btnVælgKampagne = new System.Windows.Forms.Button();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnVælgKampagne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstKampagner
@@ -47,15 +47,6 @@
             this.lstKampagner.UseCompatibleStateImageBehavior = false;
             this.lstKampagner.View = System.Windows.Forms.View.Details;
             // 
-            // btnVælgKampagne
-            // 
-            this.btnVælgKampagne.Location = new System.Drawing.Point(99, 177);
-            this.btnVælgKampagne.Name = "btnVælgKampagne";
-            this.btnVælgKampagne.Size = new System.Drawing.Size(94, 23);
-            this.btnVælgKampagne.TabIndex = 1;
-            this.btnVælgKampagne.Text = "Vælg kampagne";
-            this.btnVælgKampagne.UseVisualStyleBackColor = true;
-            // 
             // ID
             // 
             this.ID.Text = "";
@@ -65,6 +56,16 @@
             // 
             this.Navn.Text = "Navn";
             this.Navn.Width = 256;
+            // 
+            // btnVælgKampagne
+            // 
+            this.btnVælgKampagne.Location = new System.Drawing.Point(99, 177);
+            this.btnVælgKampagne.Name = "btnVælgKampagne";
+            this.btnVælgKampagne.Size = new System.Drawing.Size(94, 23);
+            this.btnVælgKampagne.TabIndex = 1;
+            this.btnVælgKampagne.Text = "Vælg kampagne";
+            this.btnVælgKampagne.UseVisualStyleBackColor = true;
+            this.btnVælgKampagne.Click += new System.EventHandler(this.btnVælgKampagne_Click);
             // 
             // FrmLoginKampagneValg
             // 
