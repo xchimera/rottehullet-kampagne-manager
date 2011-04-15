@@ -70,6 +70,12 @@
     <Compile Include="FrmHovedSide.Designer.cs">
       <DependentUpon>FrmHovedSide.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmScenarieTilmelding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmScenarieTilmelding.Designer.cs">
+      <DependentUpon>FrmScenarieTilmelding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmHovedSide.resx">
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginKampagneValg.resx">
       <DependentUpon>FrmLoginKampagneValg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmScenarieTilmelding.resx">
+      <DependentUpon>FrmScenarieTilmelding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

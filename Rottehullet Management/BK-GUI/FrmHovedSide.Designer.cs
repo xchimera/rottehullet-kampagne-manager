@@ -31,7 +31,7 @@
             this.lstkaraktere = new System.Windows.Forms.ListView();
             this.btnNyKarakter = new System.Windows.Forms.Button();
             this.btnNyOpdaterDisabled = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnTilmeldTilScenarie = new System.Windows.Forms.Button();
             this.btnSkiftKampagne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,14 +61,15 @@
             this.btnNyOpdaterDisabled.Text = "Ny/Opdater/Disabled";
             this.btnNyOpdaterDisabled.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnTilmeldTilScenarie
             // 
-            this.button3.Location = new System.Drawing.Point(53, 304);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(153, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Tilmeld Karakter til Scenarie";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTilmeldTilScenarie.Location = new System.Drawing.Point(53, 304);
+            this.btnTilmeldTilScenarie.Name = "btnTilmeldTilScenarie";
+            this.btnTilmeldTilScenarie.Size = new System.Drawing.Size(153, 23);
+            this.btnTilmeldTilScenarie.TabIndex = 3;
+            this.btnTilmeldTilScenarie.Text = "Tilmeld Karakter til Scenarie";
+            this.btnTilmeldTilScenarie.UseVisualStyleBackColor = true;
+            this.btnTilmeldTilScenarie.Click += new System.EventHandler(this.btnTilmeldTilScenarie_Click);
             // 
             // btnSkiftKampagne
             // 
@@ -86,7 +87,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 438);
             this.Controls.Add(this.btnSkiftKampagne);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnTilmeldTilScenarie);
             this.Controls.Add(this.btnNyOpdaterDisabled);
             this.Controls.Add(this.btnNyKarakter);
             this.Controls.Add(this.lstkaraktere);
@@ -101,7 +102,7 @@
         private System.Windows.Forms.ListView lstkaraktere;
         private System.Windows.Forms.Button btnNyKarakter;
         private System.Windows.Forms.Button btnNyOpdaterDisabled;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnTilmeldTilScenarie;
         private System.Windows.Forms.Button btnSkiftKampagne;
     }
 }
