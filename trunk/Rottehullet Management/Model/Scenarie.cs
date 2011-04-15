@@ -90,6 +90,12 @@ namespace Model
 			get { return spisning; }
 			set { spisning = value; }
 		}
+
+		public string AndetInfo
+		{
+			get { return andetInfo; }
+			set { andetInfo = value; }
+		}
 		#endregion
 	}
 }

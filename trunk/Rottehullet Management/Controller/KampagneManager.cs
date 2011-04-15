@@ -312,13 +312,34 @@ namespace Controller
 		#endregion
 
 		#region Scenarie
-		public void TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
 			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, kampagne.KampagneID);
 			if (id != -1)
 			{
 				kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+				return true;
 			}
+			return false;
+		}
+
+		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		{
+			if (dbFacade.RetScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, nuværendeScenarie.Id)
+			{
+				nuværendeScenarie.Titel = titel;
+				nuværendeScenarie.Beskrivelse = beskrivelse;
+				nuværendeScenarie.Tid = tid;
+				nuværendeScenarie.Sted = sted;
+				nuværendeScenarie.Pris = pris;
+				nuværendeScenarie.Overnatning = overnatning;
+				nuværendeScenarie.Spisning = spisning;
+				nuværendeScenarie.SpisningValgfri = spisningValgfri;
+				nuværendeScenarie.OvernatningValgfri = overnatningValgfri;
+				nuværendeScenarie.AndetInfo = andetInfo;
+				return true;
+			}
+			return false;
 		}
 		#endregion
 
