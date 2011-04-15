@@ -32,6 +32,8 @@ namespace Rottehullet_Management
 
 		private void btnOpret_Click(object sender, EventArgs e)
 		{
+			int overnatning;
+
 			if (txtNavn.Text == "")
 			{
 				MessageBox.Show("Scenariet skal have et navn", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -50,7 +52,18 @@ namespace Rottehullet_Management
 				return;
 			}
 
+			if (chkOvernatning.Checked)
+				overnatning = int.Parse(txtAntalDage.Text);
+			else
+				overnatning = 0;
 
+			kampagneManager.TilføjScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text);
+			this.Close();
+		}
+
+		private void btnAnnuller_Click(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 	}
 }
