@@ -116,5 +116,10 @@ namespace Rottehullet_Management
 			kampagneManager.RetAttribut(txtNavn.Text, (KampagneAttributType)cboType.SelectedIndex, position);
 			this.Close();
 		}
+
+		private void btnAnnuller_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

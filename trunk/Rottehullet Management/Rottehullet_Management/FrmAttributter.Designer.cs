@@ -35,6 +35,7 @@
 			this.btnTilføjAttribut = new System.Windows.Forms.Button();
 			this.btnRetAttribut = new System.Windows.Forms.Button();
 			this.btnSletAttribut = new System.Windows.Forms.Button();
+			this.btnTilbage = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lstAttributter
@@ -97,11 +98,22 @@
 			this.btnSletAttribut.UseVisualStyleBackColor = true;
 			this.btnSletAttribut.Click += new System.EventHandler(this.btnSletAttribut_Click);
 			// 
+			// btnTilbage
+			// 
+			this.btnTilbage.Location = new System.Drawing.Point(406, 333);
+			this.btnTilbage.Name = "btnTilbage";
+			this.btnTilbage.Size = new System.Drawing.Size(110, 23);
+			this.btnTilbage.TabIndex = 4;
+			this.btnTilbage.Text = "Tilbage";
+			this.btnTilbage.UseVisualStyleBackColor = true;
+			this.btnTilbage.Click += new System.EventHandler(this.btnTilbage_Click);
+			// 
 			// FrmAttributter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(528, 369);
+			this.Controls.Add(this.btnTilbage);
 			this.Controls.Add(this.btnSletAttribut);
 			this.Controls.Add(this.btnRetAttribut);
 			this.Controls.Add(this.btnTilføjAttribut);
@@ -123,5 +135,6 @@
 		private System.Windows.Forms.Button btnRetAttribut;
 		private System.Windows.Forms.Button btnSletAttribut;
 		private System.Windows.Forms.ColumnHeader Id;
+		private System.Windows.Forms.Button btnTilbage;
 	}
 }

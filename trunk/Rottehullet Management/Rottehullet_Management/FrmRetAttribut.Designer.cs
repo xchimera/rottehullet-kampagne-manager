@@ -40,6 +40,7 @@
 			this.txtNavn = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnRetValgmulighed = new System.Windows.Forms.Button();
+			this.btnAnnuller = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnSletValgmulighed
@@ -151,11 +152,22 @@
 			this.btnRetValgmulighed.UseVisualStyleBackColor = true;
 			this.btnRetValgmulighed.Click += new System.EventHandler(this.btnRetValgmulighed_Click);
 			// 
+			// btnAnnuller
+			// 
+			this.btnAnnuller.Location = new System.Drawing.Point(94, 260);
+			this.btnAnnuller.Name = "btnAnnuller";
+			this.btnAnnuller.Size = new System.Drawing.Size(75, 23);
+			this.btnAnnuller.TabIndex = 12;
+			this.btnAnnuller.Text = "Annuller";
+			this.btnAnnuller.UseVisualStyleBackColor = true;
+			this.btnAnnuller.Click += new System.EventHandler(this.btnAnnuller_Click);
+			// 
 			// FrmRetAttribut
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(353, 322);
+			this.Controls.Add(this.btnAnnuller);
 			this.Controls.Add(this.btnRetValgmulighed);
 			this.Controls.Add(this.btnSletValgmulighed);
 			this.Controls.Add(this.btnTilføjValgmulighed);
@@ -189,6 +201,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ColumnHeader Id;
 		private System.Windows.Forms.Button btnRetValgmulighed;
+		private System.Windows.Forms.Button btnAnnuller;
 
 	}
 }
