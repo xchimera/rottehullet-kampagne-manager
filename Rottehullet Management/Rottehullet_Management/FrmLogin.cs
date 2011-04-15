@@ -48,7 +48,7 @@ namespace Rottehullet_Management
 					}
 					else
 					{
-						MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
+						MessageBox.Show("Der skete en fejl ved indlæsningen af din kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 				}
 				else if (kampagner.Count > 1)
@@ -60,12 +60,12 @@ namespace Rottehullet_Management
 				}
 				else
 				{
-					MessageBox.Show("Denne bruger er ikke i en spilledelse");
+					MessageBox.Show("Denne bruger er ikke i en spilledelse", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				}
             }
             else
             {
-                MessageBox.Show("Brugernavn eller kodeord passer ikke");
+				MessageBox.Show("Brugernavn eller kodeord passer ikke", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
