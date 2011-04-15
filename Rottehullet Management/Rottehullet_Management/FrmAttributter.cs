@@ -75,5 +75,10 @@ namespace Rottehullet_Management
 			}
 			opdaterListe();
 		}
+
+		private void btnTilbage_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
