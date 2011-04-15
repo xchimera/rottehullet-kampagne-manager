@@ -322,20 +322,29 @@ namespace Controller
 		}
 		#endregion
 
-		public string KrypterKodeord(string kodeord)
+		public static string KrypterKodeord(string kodeord)
 		{
-			//Declarations
-			Byte[] originalBytes;
-			Byte[] encodedBytes;
-			MD5 md5;
-
-			//Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
-			md5 = new MD5CryptoServiceProvider();
-			originalBytes = ASCIIEncoding.Default.GetBytes(kodeord);
-			encodedBytes = md5.ComputeHash(originalBytes);
-
-			//Convert encoded bytes back to a 'readable' string
-			return BitConverter.ToString(encodedBytes);
+			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
+			try
+			{
+				System.Security.Cryptography.MD5CryptoServiceProvider kryptograf;
+				kryptograf = new System.Security.Cryptography.MD5CryptoServiceProvider();
+				byte[] hash = kryptograf.ComputeHash(tekstIBytes);
+				string ret = "";
+				foreach (byte a in hash)
+				{
+					if (a < 16)
+						ret += "0" + a.ToString("x");
+					else
+						ret += a.ToString("x");
+				}
+				return ret;
+			}
+			catch
+			{
+				
+				throw;
+			}
 		}
 
 		public long Login(string email, string kodeord)
