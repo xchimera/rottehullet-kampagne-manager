@@ -18,6 +18,7 @@ namespace Model
         private string andet;
         private bool vegetar;
         private bool veganer;
+        private List<Karakter> karakterer;
         
 
         // constructor en Bruger
@@ -33,7 +34,10 @@ namespace Model
             this.veganer = veganer;
             this.allergi = allergi;
             this.andet = andet;
+            karakterer = new List<Karakter>();
         }
+
+        public Karakter TilføjKarakter(
 
 
         // Properties
