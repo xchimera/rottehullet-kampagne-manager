@@ -94,6 +94,12 @@
     <Compile Include="FrmRetAttribut.Designer.cs">
       <DependentUpon>FrmRetAttribut.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRetScenarie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRetScenarie.Designer.cs">
+      <DependentUpon>FrmRetScenarie.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTilføjAttribut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRetAttribut.resx">
       <DependentUpon>FrmRetAttribut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRetScenarie.resx">
+      <DependentUpon>FrmRetScenarie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTilføjAttribut.resx">
       <DependentUpon>FrmTilføjAttribut.cs</DependentUpon>
