@@ -26,46 +26,89 @@ namespace Controller
 			nuværendeAttribut = null;
 		}
 
-		public void IndsætRettighed(string kampagneID, string navn, string type)
+		#region Bruger
+		public System.Collections.IEnumerator GetBrugerIterator()
 		{
-			string[] rettighed = new string[3] { kampagneID, navn, type };
-			kampagneliste.Add(rettighed);
+			return brugercollection.GetBrugerIterator();
 		}
 
-        public bool Opretbruger(long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
-        { //long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer
+		public bool Opretbruger(long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
+		{ //long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer
 			if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
 			{
-                if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
+				if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
 
-				brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
+					brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 				return true;
 			}
 			return false;
 		}
 
-        public void RetKampagneliste(long kampagneID, string navn)
-        {
-            foreach (string[] kampagne in kampagneliste)
-            {
-                if (kampagne[0] == kampagneID.ToString())
-                {
-                    kampagne[1] = navn;
-                }
-            }
-        }
-
-        public void TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
+		public void TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
+		#endregion
 
-		public long Login(string email, string kodeord)
+		#region KampagneListe
+		public System.Collections.IEnumerable GetBrugersKampagneIterator()
 		{
-			kodeord = KrypterKodeord(kodeord);
-			long brugerID = dbFacade.Login(email, kodeord);
+			return kampagneliste;
+		}
 
-			return brugerID;
+		public System.Collections.IEnumerator GetBrugerKampagne()
+		{
+			return kampagneliste.GetEnumerator();
+		}
+
+		public void IndsætRettighed(string kampagneID, string navn, string type)
+		{
+			string[] kampagnearr = new string[3] { kampagneID, navn, type };
+			kampagneliste.Add(kampagnearr);
+		}
+
+		public void RetKampagneliste(long kampagneID, string navn)
+		{
+			foreach (string[] kampagne in kampagneliste)
+			{
+				if (kampagne[0] == kampagneID.ToString())
+				{
+					kampagne[1] = navn;
+				}
+			}
+		}
+		#endregion
+
+		#region Kampagne
+		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID, KampagneStatus status)
+		{
+			Bruger bruger;
+			bruger = brugercollection.FindBruger(topbrugerID);
+			if (bruger != null)
+			{
+				kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
+				return true;
+			}
+			return false;
+		}
+
+		public int GetAntalKampagner()
+		{
+			return kampagneliste.Count();
+		}
+
+		public bool HentKampagneFraDatabase(long kamID)
+		{
+			if (!dbFacade.HentBrugereTilKampagne(kamID))
+			{
+				return false;
+			}
+
+			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID))
+			{
+				return true;
+			}
+			return false;
 		}
 
 		public bool OpretKampagne(string navn, long topbrugerID)
@@ -84,44 +127,41 @@ namespace Controller
 			return false;
 		}
 
-		public bool HentKampagneFraDatabase(long kamID)
+		public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
 		{
-			if (!dbFacade.HentBrugereTilKampagne(kamID))
+			if (dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID))
 			{
-				return false;
+				kampagne.Beskrivelse = beskrivelse;
+				return true;
 			}
-
-            if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID))
-            {
-                return true;
-            }
-            return false;
+			return false;
 		}
 
-        public bool HentAttributterFraDatabase(long kamID)
-        {
-
-            return false;
-        }
-
-        public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
-        {
-			return kampagne.GenopretAttribut(attributID, navn, type);
-        }
-
-        public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type,  int position)
-        {
-            return kampagne.GenopretMultiAttribut(attributID, navn, type);
-            //return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
-        }
-
-		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID, KampagneStatus status)
+		public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
 		{
-			Bruger bruger;
-			bruger = brugercollection.FindBruger(topbrugerID);
-			if (bruger != null)
+			if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
 			{
-				 kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
+				kampagne.Hjemmeside = hjemmeside;
+				return true;
+			}
+			return false;
+		}
+
+		public bool RetKampagneNavn(string navn, long kampagneID)
+		{
+			if (dbFacade.RetKampagneNavn(navn, kampagneID))
+			{
+				kampagne.Navn = navn;
+				return true;
+			}
+			return false;
+		}
+
+		public bool RetKampagneStatus(long kampagneID, KampagneStatus status)
+		{
+			if (dbFacade.RetKampagneStatus(kampagneID, status))
+			{
+				kampagne.Status = status;
 				return true;
 			}
 			return false;
@@ -136,78 +176,96 @@ namespace Controller
 			return false;
 		}
 
-		public bool RetKampagneNavn(string navn, long kampagneID)
+		public IKampagne Kampagne
 		{
-			if (dbFacade.RetKampagneNavn(navn, kampagneID))
-			{
-                kampagne.Navn = navn;
-				return true;
-			}
-			return false;
+			get { return kampagne; }
 		}
+		
+		#endregion
 
-		public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
-		{
-			if (dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID))
-			{
-                kampagne.Beskrivelse = beskrivelse;
-				return true;
-			}
-			return false;
-		}
-
-		public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
-		{
-			if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
-			{
-				kampagne.Hjemmeside = hjemmeside;
-                return true;
-			}
-			return false;
-		}
-
-        public bool RetKampagneStatus(long kampagneID, KampagneStatus status)
-        {
-            if (dbFacade.RetKampagneStatus(kampagneID, status))
-            {
-                kampagne.Status = status;
-                return true;
-            }
-            return false;
-        }
-
-		//public IKampagne FindKampagne(string navn)
-		//{
-		//    kampagne = kampagnecollection.FindKampagne(navn);
-		//    return nuværendeKampagne;
-		//}
-
+		#region Attributter
 		public IKampagneAttribut FindKampagneAttribut(long id)
 		{
 			nuværendeAttribut = kampagne.FindAttribut(id);
 			return nuværendeAttribut;
 		}
 
-		public bool TilføjSingleAttribut(string navn, KampagneAttributType type, int position)
+		public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
-			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, kampagne.KampagneID, position);
-			if (id != -1)
+			return kampagne.GenopretAttribut(attributID, navn, type);
+		}
+
+		public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
+		{
+			return kampagne.GenopretMultiAttribut(attributID, navn, type);
+			//return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
+		}
+
+		public IEnumerator HentAttributter()
+		{
+			return kampagne.HentAttributter();
+		}
+
+		public IEnumerator HentValgmuligheder()
+		{
+			if (nuværendeAttribut.Type == KampagneAttributType.Combo)
 			{
-				kampagne.TilføjSingleAttribut(navn, type, id, position);
+				KampagneMultiAttribut attribut = (KampagneMultiAttribut)nuværendeAttribut;
+				return attribut.Valgmuligheder.GetEnumerator();
+			}
+			return null;
+		}
+
+		public bool RetAttribut(string navn, KampagneAttributType type, int position)
+		{
+			if (dbFacade.RetAttribut(nuværendeAttribut.KampagneAttributID, navn, (int)type, kampagne.KampagneID, position))
+			{
+				nuværendeAttribut.Navn = navn;
+				nuværendeAttribut.Type = type;
+
 				return true;
 			}
 			return false;
 		}
 
-		public System.Collections.IEnumerator GetBrugerIterator()
+		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
 		{
-			return brugercollection.GetBrugerIterator();
+			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(id);
+			if (dbFacade.RetKampagneMultiAttributEntry(id, attributID, værdi))
+			{
+				for (int i = 0; i < attribut.Valgmuligheder.Count; i++)
+				{
+					if (long.Parse(attribut.Valgmuligheder[i][1]) == id)
+					{
+						attribut.Valgmuligheder[i][0] = værdi;
+						break;
+					}
+				}
+				return true;
+			}
+
+			return false;
 		}
 
-		//public System.Collections.IEnumerator GetKampagneIterator()
-		//{
-		//    return kampagnecollection.GetKampagneIterator();
-		//}
+		public bool SletAttribut(long attID)
+		{
+			if (dbFacade.SletAttribut(attID))
+			{
+				kampagne.SletAttribut(attID);
+				return true;
+			}
+			return false;
+		}
+
+		public bool SletMultiAttributValgmulighed(long entryID)
+		{
+			if (dbFacade.SletMultiAttributEntry(entryID))
+			{
+				((KampagneMultiAttribut)nuværendeAttribut).FjernValgmulighed(entryID);
+				return true;
+			}
+			return false;
+		}
 
 		public bool TilføjMultiAttribut(string navn, KampagneAttributType type, int position, List<string> valgmuligheder)
 		{
@@ -240,35 +298,29 @@ namespace Controller
 			return -1;
 		}
 
-		public System.Collections.IEnumerable GetBrugersKampagneIterator()
+		public bool TilføjSingleAttribut(string navn, KampagneAttributType type, int position)
 		{
-			return kampagneliste;
-		}
-
-        public System.Collections.IEnumerator GetBrugerKampagne()
-        {
-            return kampagneliste.GetEnumerator();
-        }
-
-		public IEnumerator HentAttributter()
-		{
-			return kampagne.HentAttributter();
-		}
-
-		public IEnumerator HentValgmuligheder()
-		{
-			if (nuværendeAttribut.Type == KampagneAttributType.Combo)
+			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, kampagne.KampagneID, position);
+			if (id != -1)
 			{
-				KampagneMultiAttribut attribut = (KampagneMultiAttribut)nuværendeAttribut;
-				return attribut.Valgmuligheder.GetEnumerator();
+				kampagne.TilføjSingleAttribut(navn, type, id, position);
+				return true;
 			}
-			return null;
+			return false;
 		}
 
-		public int GetAntalKampagner()
+		#endregion
+
+		#region Scenarie
+		public void TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
-			return kampagneliste.Count();
+			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, kampagne.KampagneID);
+			if (id != -1)
+			{
+				kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+			}
 		}
+		#endregion
 
 		public string KrypterKodeord(string kodeord)
 		{
@@ -286,71 +338,14 @@ namespace Controller
 			return BitConverter.ToString(encodedBytes);
 		}
 
-		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
+		public long Login(string email, string kodeord)
 		{
-			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(id);
-			if (dbFacade.RetKampagneMultiAttributEntry(id, attributID, værdi))
-			{
-				for (int i = 0; i < attribut.Valgmuligheder.Count; i++)
-				{
-					if (long.Parse(attribut.Valgmuligheder[i][1]) == id)
-					{
-						attribut.Valgmuligheder[i][0] = værdi;
-						break;
-					}
-				}
-				return true;
-			}
-			
-			return false;
+			kodeord = KrypterKodeord(kodeord);
+			long brugerID = dbFacade.Login(email, kodeord);
+
+			return brugerID;
 		}
 
-		public bool RetAttribut(string navn, KampagneAttributType type, int position)
-		{
-			if (dbFacade.RetAttribut(nuværendeAttribut.KampagneAttributID, navn, (int)type, kampagne.KampagneID, position))
-			{
-				nuværendeAttribut.Navn = navn;
-				nuværendeAttribut.Type = type;
-
-				return true;
-			}
-			return false;
-		}
-
-		public bool SletAttribut(long attID)
-		{
-			if (dbFacade.SletAttribut(attID))
-			{
-				kampagne.SletAttribut(attID);
-				return true;
-			}
-			return false;
-		}
-
-		public bool SletMultiAttributValgmulighed(long entryID)
-		{
-			if (dbFacade.SletMultiAttributEntry(entryID))
-			{
-				((KampagneMultiAttribut)nuværendeAttribut).FjernValgmulighed(entryID);
-				return true;
-			}
-			return false;
-		}
-
-		public void TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
-		{
-			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, kampagne.KampagneID);
-			if (id != -1)
-			{
-				kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
-			}
-		}
-
-		public IKampagne Kampagne
-		{
-			get { return kampagne; }
-			set { kampagne = (Kampagne)value; }
-		}
 		
 	}
 }
