@@ -77,7 +77,7 @@ namespace Rottehullet_Management
 
 		private void btnSletAttribut_Click(object sender, EventArgs e)
 		{
-			if (lstAttributter.SelectedIndices[0] != null)
+			if (lstAttributter.SelectedIndices.Count > 0)
 			{
 				if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
 				{
