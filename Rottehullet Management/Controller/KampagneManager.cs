@@ -325,7 +325,7 @@ namespace Controller
 
 		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
-			if (dbFacade.RetScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, nuværendeScenarie.Id)
+			if (dbFacade.RetScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, nuværendeScenarie.Id))
 			{
 				nuværendeScenarie.Titel = titel;
 				nuværendeScenarie.Beskrivelse = beskrivelse;

@@ -10,24 +10,19 @@ using Controller;
 
 namespace Rottehullet_Management
 {
-	public partial class FrmOpstartScenarie : Form
+	public partial class FrmRetScenarie : Form
 	{
 		KampagneManager kampagneManager;
 
-		public FrmOpstartScenarie(KampagneManager kampagneManager)
+		public FrmRetScenarie(KampagneManager kampagneManager)
 		{
+			this.kampagneManager = kampagneManager;
 			InitializeComponent();
 		}
 
-		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)
+		private void btnAnnuller_Click(object sender, EventArgs e)
 		{
-			chkOvernatningTvungen.Enabled = chkOvernatning.Checked;
-			txtAntalDage.Enabled = chkOvernatning.Checked;
-		}
-
-		private void chkSpisning_CheckedChanged(object sender, EventArgs e)
-		{
-			chkSpisningTvungen.Enabled = chkSpisning.Checked;
+			this.Close();
 		}
 
 		private void btnOpret_Click(object sender, EventArgs e)
@@ -53,24 +48,11 @@ namespace Rottehullet_Management
 			}
 
 			if (chkOvernatning.Checked)
-			{
-				if (int.TryParse(txtAntalDage.Text, out overnatning))
-				{
-					if (overnatning < 1)
-						MessageBox.Show("Der skal være mindst en overnatning, når overnatning er valgt", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				} 
-				else
-					MessageBox.Show("Der skal indstates en antal overnatninger i heltal, når overnatning er valgt");
-			}
+				overnatning = int.Parse(txtAntalDage.Text);
 			else
 				overnatning = 0;
 
 			kampagneManager.TilføjScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text);
-			this.Close();
-		}
-
-		private void btnAnnuller_Click(object sender, EventArgs e)
-		{
 			this.Close();
 		}
 	}
