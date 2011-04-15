@@ -62,18 +62,34 @@ namespace Rottehullet_Management
 
 		private void btnRetAttribut_Click(object sender, EventArgs e)
 		{
-			FrmRetAttribut form = new FrmRetAttribut(kampagneManager, long.Parse(lstAttributter.SelectedItems[0].Text), lstAttributter.SelectedIndices[0]);
-			form.ShowDialog();
-			opdaterListe();
+			if (lstAttributter.SelectedIndices[0]!=null)
+			{
+				FrmRetAttribut form = new FrmRetAttribut(kampagneManager, long.Parse(lstAttributter.SelectedItems[0].Text), lstAttributter.SelectedIndices[0]);
+				form.ShowDialog();
+				opdaterListe();
+			}
+			else
+			{
+				MessageBox.Show("Vælg en attribut", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 
 		private void btnSletAttribut_Click(object sender, EventArgs e)
 		{
-			if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
+			if (lstAttributter.SelectedIndices[0] != null)
 			{
-				MessageBox.Show("Der skete en fejl, da attributten skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
+				{
+					MessageBox.Show("Der skete en fejl, da attributten skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				opdaterListe();
 			}
-			opdaterListe();
+			else
+			{
+				MessageBox.Show("Vælg en attribut", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			
 		}
 
 		private void btnTilbage_Click(object sender, EventArgs e)
