@@ -65,7 +65,7 @@ namespace Rottehullet_Management
 
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
-			if (lstKampagner.SelectedIndices == null)
+			if (lstKampagner.SelectedIndices.Count > 0)
 			{
 				ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
 

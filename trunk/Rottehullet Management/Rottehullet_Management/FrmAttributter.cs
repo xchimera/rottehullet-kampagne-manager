@@ -62,7 +62,7 @@ namespace Rottehullet_Management
 
 		private void btnRetAttribut_Click(object sender, EventArgs e)
 		{
-			if (lstAttributter.SelectedIndices[0]!=null)
+			if (lstAttributter.SelectedIndices.Count > 0)
 			{
 				FrmRetAttribut form = new FrmRetAttribut(kampagneManager, long.Parse(lstAttributter.SelectedItems[0].Text), lstAttributter.SelectedIndices[0]);
 				form.ShowDialog();
