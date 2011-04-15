@@ -826,6 +826,10 @@ namespace Controller
             par.Value = id;
             cmd.Parameters.Add(par);
 
+            par = new SqlParameter("@status", SqlDbType.Int);
+            par.Value = status;
+            cmd.Parameters.Add(par);
+
             try
             {
                 conn.Open();
