@@ -128,9 +128,9 @@ namespace BK_Controller
 
                     if (status == KampagneStatus.Åben)
                     {
-
+                         
                         kamtype = (KampagneAttributType)reader["infotype"];
-                        attributnavn = (string)reader["attributnavn"];
+                        attributnavn = (string)reader["attnavn"];
                         attributID = Convert.ToInt64(reader["attID"]);
                         position = (int)reader["position"];
 
@@ -141,7 +141,7 @@ namespace BK_Controller
 
                         else if (kamtype == KampagneAttributType.Combo)
                         {
-                            if (tempID != attributID)
+                            if (tempID != attributID)   //tjek om det er en valgmulighed
                             {
                                 multiattribut = brugerklient.GenopretMultiAttribut(kampagneID, attributID, attributnavn, kamtype, position);
                             }
