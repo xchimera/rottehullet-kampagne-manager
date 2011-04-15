@@ -145,7 +145,7 @@
 			// 
 			// btnOpstartScenarie
 			// 
-			this.btnOpstartScenarie.Location = new System.Drawing.Point(245, 78);
+			this.btnOpstartScenarie.Location = new System.Drawing.Point(245, 221);
 			this.btnOpstartScenarie.Name = "btnOpstartScenarie";
 			this.btnOpstartScenarie.Size = new System.Drawing.Size(95, 23);
 			this.btnOpstartScenarie.TabIndex = 13;
@@ -155,7 +155,7 @@
 			// 
 			// btnÅbenKampagne
 			// 
-			this.btnÅbenKampagne.Location = new System.Drawing.Point(245, 114);
+			this.btnÅbenKampagne.Location = new System.Drawing.Point(245, 280);
 			this.btnÅbenKampagne.Name = "btnÅbenKampagne";
 			this.btnÅbenKampagne.Size = new System.Drawing.Size(95, 23);
 			this.btnÅbenKampagne.TabIndex = 14;
