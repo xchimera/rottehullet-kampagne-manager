@@ -94,6 +94,7 @@ namespace BK_Controller
             cmd.Parameters.Clear();
             SqlDataReader reader;
             long tempID = 0;
+            long tempkampagneID = 0;
             KampagneMultiAttribut multiattribut = null;
 
             long kampagneID;
@@ -123,8 +124,11 @@ namespace BK_Controller
                     hjemmeside = (string)reader["hjemmeside"];
                     topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
                     status = (KampagneStatus)reader["status"];
-					
-                    brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
+                    if (kampagneID != tempkampagneID)
+                    {
+                        brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
+                        tempkampagneID = kampagneID;
+                    }
 
                     if (status == KampagneStatus.Åben)
                     {
@@ -136,7 +140,7 @@ namespace BK_Controller
 
                         if (kamtype == KampagneAttributType.Singleline)
                         {
-                            brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
+                            brugerklient.GenopretAttribut(kampagneID, attributID, attributnavn, kamtype, position);
                         }
 
                         else if (kamtype == KampagneAttributType.Combo)
