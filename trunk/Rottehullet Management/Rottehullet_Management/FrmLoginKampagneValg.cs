@@ -43,9 +43,8 @@ namespace Rottehullet_Management
                 item.SubItems.Add(Convert.ToString(kampagne[1]));
 
                 lstKampagner.Items.Add(item);
-
             }
-
+			lstKampagner.Items[0].Selected = true;
         }
 
 
@@ -66,15 +65,27 @@ namespace Rottehullet_Management
 
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
-            ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
+			if (lstKampagner.SelectedIndices == null)
+			{
+				ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
 
-            if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
-            {
-                FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
-                this.Hide();
-                hovedside.ShowDialog();
-                this.Close();
-            }
+				if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
+				{
+					FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
+					this.Hide();
+					hovedside.ShowDialog();
+					this.Close();
+				}
+				else
+				{
+					MessageBox.Show("Der skete en fejl ved indlæsningen af denne kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Vælg en kampagne.");
+			}
+           
         }
 	}
 }
