@@ -26,5 +26,15 @@ namespace BK_GUI
             loginkampagnevalg.ShowDialog();
             this.Close();
         }
+
+        private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
+        {
+            FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding();
+            this.Hide();
+            scenarietilmelding.ShowDialog();
+            this.Show();
+        }
+
+
     }
 }
