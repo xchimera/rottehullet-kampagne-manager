@@ -50,6 +50,8 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.btnOpret = new System.Windows.Forms.Button();
 			this.btnAnnuller = new System.Windows.Forms.Button();
+			this.label11 = new System.Windows.Forms.Label();
+			this.txtAndetInfo = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -104,7 +106,7 @@
 			this.txtSted.MaxLength = 50;
 			this.txtSted.Name = "txtSted";
 			this.txtSted.Size = new System.Drawing.Size(78, 20);
-			this.txtSted.TabIndex = 5;
+			this.txtSted.TabIndex = 3;
 			// 
 			// label4
 			// 
@@ -121,7 +123,7 @@
 			this.txtPris.Mask = "00000.00";
 			this.txtPris.Name = "txtPris";
 			this.txtPris.Size = new System.Drawing.Size(83, 20);
-			this.txtPris.TabIndex = 7;
+			this.txtPris.TabIndex = 4;
 			this.txtPris.Text = "0000000";
 			this.txtPris.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -140,8 +142,9 @@
 			this.txtBeskrivelse.MaxLength = 4000;
 			this.txtBeskrivelse.Multiline = true;
 			this.txtBeskrivelse.Name = "txtBeskrivelse";
+			this.txtBeskrivelse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.txtBeskrivelse.Size = new System.Drawing.Size(274, 147);
-			this.txtBeskrivelse.TabIndex = 9;
+			this.txtBeskrivelse.TabIndex = 5;
 			// 
 			// label6
 			// 
@@ -158,7 +161,7 @@
 			this.chkOvernatning.Location = new System.Drawing.Point(99, 287);
 			this.chkOvernatning.Name = "chkOvernatning";
 			this.chkOvernatning.Size = new System.Drawing.Size(15, 14);
-			this.chkOvernatning.TabIndex = 11;
+			this.chkOvernatning.TabIndex = 6;
 			this.chkOvernatning.UseVisualStyleBackColor = true;
 			this.chkOvernatning.CheckedChanged += new System.EventHandler(this.chkOvernatning_CheckedChanged);
 			// 
@@ -169,7 +172,7 @@
 			this.chkOvernatningTvungen.Location = new System.Drawing.Point(173, 287);
 			this.chkOvernatningTvungen.Name = "chkOvernatningTvungen";
 			this.chkOvernatningTvungen.Size = new System.Drawing.Size(15, 14);
-			this.chkOvernatningTvungen.TabIndex = 12;
+			this.chkOvernatningTvungen.TabIndex = 7;
 			this.chkOvernatningTvungen.UseVisualStyleBackColor = true;
 			// 
 			// label7
@@ -206,7 +209,7 @@
 			this.txtAntalDage.Mask = "00";
 			this.txtAntalDage.Name = "txtAntalDage";
 			this.txtAntalDage.Size = new System.Drawing.Size(28, 20);
-			this.txtAntalDage.TabIndex = 16;
+			this.txtAntalDage.TabIndex = 8;
 			// 
 			// chkSpisningTvungen
 			// 
@@ -215,7 +218,7 @@
 			this.chkSpisningTvungen.Location = new System.Drawing.Point(173, 310);
 			this.chkSpisningTvungen.Name = "chkSpisningTvungen";
 			this.chkSpisningTvungen.Size = new System.Drawing.Size(15, 14);
-			this.chkSpisningTvungen.TabIndex = 19;
+			this.chkSpisningTvungen.TabIndex = 10;
 			this.chkSpisningTvungen.UseVisualStyleBackColor = true;
 			// 
 			// chkSpisning
@@ -224,7 +227,7 @@
 			this.chkSpisning.Location = new System.Drawing.Point(99, 310);
 			this.chkSpisning.Name = "chkSpisning";
 			this.chkSpisning.Size = new System.Drawing.Size(15, 14);
-			this.chkSpisning.TabIndex = 18;
+			this.chkSpisning.TabIndex = 9;
 			this.chkSpisning.UseVisualStyleBackColor = true;
 			this.chkSpisning.CheckedChanged += new System.EventHandler(this.chkSpisning_CheckedChanged);
 			// 
@@ -239,28 +242,50 @@
 			// 
 			// btnOpret
 			// 
-			this.btnOpret.Location = new System.Drawing.Point(12, 336);
+			this.btnOpret.Location = new System.Drawing.Point(12, 482);
 			this.btnOpret.Name = "btnOpret";
 			this.btnOpret.Size = new System.Drawing.Size(113, 23);
-			this.btnOpret.TabIndex = 20;
+			this.btnOpret.TabIndex = 12;
 			this.btnOpret.Text = "Opret";
 			this.btnOpret.UseVisualStyleBackColor = true;
 			this.btnOpret.Click += new System.EventHandler(this.btnOpret_Click);
 			// 
 			// btnAnnuller
 			// 
-			this.btnAnnuller.Location = new System.Drawing.Point(159, 336);
+			this.btnAnnuller.Location = new System.Drawing.Point(159, 482);
 			this.btnAnnuller.Name = "btnAnnuller";
 			this.btnAnnuller.Size = new System.Drawing.Size(127, 23);
-			this.btnAnnuller.TabIndex = 21;
+			this.btnAnnuller.TabIndex = 13;
 			this.btnAnnuller.Text = "Annuller";
 			this.btnAnnuller.UseVisualStyleBackColor = true;
+			this.btnAnnuller.Click += new System.EventHandler(this.btnAnnuller_Click);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(12, 331);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(58, 13);
+			this.label11.TabIndex = 22;
+			this.label11.Text = "Andet info:";
+			// 
+			// txtAndetInfo
+			// 
+			this.txtAndetInfo.Location = new System.Drawing.Point(15, 348);
+			this.txtAndetInfo.MaxLength = 4000;
+			this.txtAndetInfo.Multiline = true;
+			this.txtAndetInfo.Name = "txtAndetInfo";
+			this.txtAndetInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtAndetInfo.Size = new System.Drawing.Size(271, 128);
+			this.txtAndetInfo.TabIndex = 11;
 			// 
 			// FrmOpstartScenarie
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(298, 371);
+			this.ClientSize = new System.Drawing.Size(298, 515);
+			this.Controls.Add(this.txtAndetInfo);
+			this.Controls.Add(this.label11);
 			this.Controls.Add(this.btnAnnuller);
 			this.Controls.Add(this.btnOpret);
 			this.Controls.Add(this.chkSpisningTvungen);
@@ -283,6 +308,7 @@
 			this.Controls.Add(this.dtpTid);
 			this.Controls.Add(this.txtNavn);
 			this.Controls.Add(this.label1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "FrmOpstartScenarie";
 			this.Text = "Opstart scenarie";
 			this.ResumeLayout(false);
@@ -314,5 +340,7 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Button btnOpret;
 		private System.Windows.Forms.Button btnAnnuller;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox txtAndetInfo;
 	}
 }
