@@ -22,8 +22,19 @@ namespace Rottehullet_Management
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+			//Inputvalidering
+			if (txtBrugernavn.Text == "")
+			{
+				MessageBox.Show("Indtast venligst brugernavn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			else if (txtKodeord.Text == "")
+			{
+				MessageBox.Show("Indtast venligst adgangskode", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			//Checker databasen for brugerens brugerID
             long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text);
 			List<string[]> kampagner = new List<string[]>();
+			//Admin-brugeren har brugerID 1
 			if (brugerID == 1)
             {
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
@@ -33,10 +44,12 @@ namespace Rottehullet_Management
             }
             else if(brugerID > 0)
             {
+				//Følgende laver en liste over kampagner i hvilken brugeren er superbruger eller topbruger
 				foreach (string[] kampagne in kampagnemanager.GetBrugersKampagneIterator())
 				{
 					kampagner.Add(kampagne);
 				}
+				//Hvis brugeren er med i en enkel kampagne, så hopper vi direkte til den kampagnes side
 				if (kampagner.Count == 1)
 				{
 					if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(kampagner[0][0])))
@@ -51,6 +64,7 @@ namespace Rottehullet_Management
 						MessageBox.Show("Der skete en fejl ved indlæsningen af din kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 				}
+				//Hvis brugeren er i mere end en kampagne bliver han sent til KampagneValg siden, hvor han kan vælge en kampagne
 				else if (kampagner.Count > 1)
 				{
 					FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
