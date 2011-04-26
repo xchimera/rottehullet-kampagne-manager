@@ -58,7 +58,7 @@
             this.btnNyOpdaterDisabled.Name = "btnNyOpdaterDisabled";
             this.btnNyOpdaterDisabled.Size = new System.Drawing.Size(153, 23);
             this.btnNyOpdaterDisabled.TabIndex = 2;
-            this.btnNyOpdaterDisabled.Text = "Ny/Opdater/Disabled";
+            this.btnNyOpdaterDisabled.Text = "Ny/Opdater";
             this.btnNyOpdaterDisabled.UseVisualStyleBackColor = true;
             // 
             // btnTilmeldTilScenarie

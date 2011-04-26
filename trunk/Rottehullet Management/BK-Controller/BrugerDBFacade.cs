@@ -42,8 +42,15 @@ namespace BK_Controller
         {
             long brugerid = 0;
             string navn;
+            DateTime fødselsdag;
+            long tlf;
+            long nød_tlf; 
+            bool vegetar; 
+            bool veganer; 
+            string allergi;
+            string andet;
 
-            cmd.CommandText = "BrugerLogin";
+            cmd.CommandText = "KlientLogin";
             cmd.Parameters.Clear();
             SqlParameter par;
             SqlDataReader reader;
@@ -57,6 +64,8 @@ namespace BK_Controller
             cmd.Parameters.Add(par);
 
 
+
+
             try
             {
                 conn.Open();
@@ -66,6 +75,14 @@ namespace BK_Controller
                 {
                     brugerid = (long)reader["brugerID"];
                     navn = (string)reader["navn"];
+                    fødselsdag = (DateTime)reader["fødselsdag"];
+                    tlf = (long)reader["tlf"];
+                    nød_tlf = (long)reader["nød_tlf"];
+                    vegetar = (bool)reader["vegetar"];
+                    veganer = (bool)reader["veganer"];
+                    allergi = (string)reader["allergi"];
+                    andet = (string)reader["andet"];
+                    brugerklient.GenopretBruger(brugerid, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
                 }
                 conn.Close();
                 reader.Dispose();
@@ -73,6 +90,7 @@ namespace BK_Controller
                 if (brugerid > 0)
                 {
                     HentAlleKampagner();
+                    HentKarakterer(brugerid);
                     return brugerid;
                 }
                 return 0;
@@ -109,7 +127,6 @@ namespace BK_Controller
             KampagneAttributType kamtype;
             List<string[]> valgmuligheder = new List<string[]>();
             int position;
-            
 
             try
             {
@@ -149,8 +166,11 @@ namespace BK_Controller
                             {
                                 multiattribut = brugerklient.GenopretMultiAttribut(kampagneID, attributID, attributnavn, kamtype, position);
                             }
-                            string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
-                            multiattribut.TilføjValgmulighed(valg);
+                            if (reader["værdi"] != System.DBNull.Value && reader["entryID"] != System.DBNull.Value)
+                            {
+                                string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
+                                multiattribut.TilføjValgmulighed(valg);
+                            }
                         }
                         tempID = attributID;
                     }
@@ -167,10 +187,51 @@ namespace BK_Controller
                 }
                 return false;
             }
+        }
 
+        public bool HentKarakterer(long brugerID)
+        {
+            SqlDataReader reader;
+            SqlParameter par;
+            cmd.CommandText = "HentAlleBrugersKarakterer";
+            cmd.Parameters.Clear();
+            long kampagneID, karakterID, attributID, multiattributID, multiattributentryID;
+            string værdi;
 
+            par = new SqlParameter("brugerID", SqlDbType.BigInt);
+            par.Value = brugerID;
+            cmd.Parameters.Add(par);
 
-
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    kampagneID = (long)reader["kampagneID"];
+                    karakterID = (long)reader["karakterID"];
+                    attributID = (long)reader["attributID"];
+                    
+                    if(reader["multiattributID"] != System.DBNull.Value)
+                    {
+                        multiattributID = (long)reader["multiattributID"];
+                        multiattributentryID = (long)reader["multiAttributEntryID"];
+                    }
+                    værdi = (string)reader["værdi"];
+                   
+                }
+                conn.Close();
+                reader.Dispose();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
         }
 
 
