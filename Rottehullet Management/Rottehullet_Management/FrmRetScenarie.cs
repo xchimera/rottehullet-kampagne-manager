@@ -18,6 +18,7 @@ namespace Rottehullet_Management
 		{
 			this.kampagneManager = kampagneManager;
 			InitializeComponent();
+
 		}
 
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)

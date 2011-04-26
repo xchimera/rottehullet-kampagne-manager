@@ -126,5 +126,11 @@ namespace Rottehullet_Management
 				btnÅbenKampagne.Text = "Åben Kampagne";
 			}
         }
+
+		private void btnRetScenarie_Click(object sender, EventArgs e)
+		{
+			FrmRetScenarie form = new FrmRetScenarie(kampagnemanager);
+			form.ShowDialog();
+		}
     }
 }
