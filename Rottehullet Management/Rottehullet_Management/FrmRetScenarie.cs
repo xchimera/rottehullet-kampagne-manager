@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Controller;
+using Interfaces;
 
 namespace Rottehullet_Management
 {
@@ -14,11 +15,27 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 
-		public FrmRetScenarie(KampagneManager kampagneManager)
+		public FrmRetScenarie(KampagneManager kampagneManager, IScenarie scenarie)
 		{
 			this.kampagneManager = kampagneManager;
 			InitializeComponent();
-
+			txtNavn.Text = scenarie.Titel;
+			dtpTid.Value = scenarie.Tid;
+			txtSted.Text = scenarie.Sted;
+			txtPris.Text = scenarie.Pris.ToString();
+			txtBeskrivelse.Text = scenarie.Beskrivelse;
+			if (scenarie.Overnatning != 0)
+			{
+				chkOvernatning.Checked = true;
+				chkOvernatningTvungen.Checked = scenarie.OvernatningTvungen;
+				txtAntalDage.Text = scenarie.Overnatning.ToString();
+			}
+			if (scenarie.Spisning)
+			{
+				chkSpisning.Checked = true;
+				chkSpisningTvungen.Checked = scenarie.SpisningTvungen;
+			}
+			txtAndetInfo.Text = scenarie.AndetInfo;
 		}
 
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)
@@ -72,8 +89,10 @@ namespace Rottehullet_Management
 			else
 				overnatning = 0;
 
-			kampagneManager.RetScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text);
-			this.Close();
+			if (kampagneManager.RetScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text))
+				this.Close();
+			else
+				MessageBox.Show("Der skete en fejl, da databasen skulle behandle data", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
 }

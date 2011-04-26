@@ -983,7 +983,7 @@ namespace Controller
 			}
 		}
 
-		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo, long kampagneID)
+		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo, long kampagneID)
 		{
 			cmd.CommandText = "OpretScenarie";
 			cmd.Parameters.Clear();
@@ -1013,16 +1013,20 @@ namespace Controller
 			par.Value = overnatning;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@overnatningValgfri", SqlDbType.Bit);
-			par.Value = overnatningValgfri;
+			par = new SqlParameter("@overnatningTvungen", SqlDbType.Bit);
+			par.Value = overnatningTvungen;
 			cmd.Parameters.Add(par);
 
 			par = new SqlParameter("@spisning", SqlDbType.Bit);
 			par.Value = spisning;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@spisningValgfri", SqlDbType.Bit);
-			par.Value = spisningValgfri;
+			par = new SqlParameter("@spisningTvungen", SqlDbType.Bit);
+			par.Value = spisningTvungen;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@andetInfo", SqlDbType.NVarChar);
+			par.Value = andetInfo;
 			cmd.Parameters.Add(par);
 
 			par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
@@ -1050,7 +1054,7 @@ namespace Controller
 			}
 		}
 
-		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo, long scenarieID)
+		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo, long scenarieID)
 		{
 			cmd.CommandText = "RetScenarie";
 			cmd.Parameters.Clear();
@@ -1080,16 +1084,20 @@ namespace Controller
 			par.Value = overnatning;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@overnatningValgfri", SqlDbType.Bit);
-			par.Value = overnatningValgfri;
+			par = new SqlParameter("@overnatningTvungen", SqlDbType.Bit);
+			par.Value = overnatningTvungen;
 			cmd.Parameters.Add(par);
 
 			par = new SqlParameter("@spisning", SqlDbType.Bit);
 			par.Value = spisning;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@spisningValgfri", SqlDbType.Bit);
-			par.Value = spisningValgfri;
+			par = new SqlParameter("@spisningTvungen", SqlDbType.Bit);
+			par.Value = spisningTvungen;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@andetInfo", SqlDbType.NVarChar);
+			par.Value = andetInfo;
 			cmd.Parameters.Add(par);
 
 			par = new SqlParameter("@scenarieID", SqlDbType.BigInt);
@@ -1100,6 +1108,49 @@ namespace Controller
 			{
 				conn.Open();
 				cmd.ExecuteNonQuery();
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+
+		public bool HentScenarierTilKampagne(long kampagneID)
+		{
+			cmd.CommandText = "HentScenarierTilKampagne";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+			SqlDataReader reader;
+
+			par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+			par.Value = kampagneID;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					long id = (long)reader["scenarieID"];
+					string titel = (string)reader["titel"];
+					string beskrivelse = (string)reader["beskrivelse"];
+					string sted = (string)reader["sted"];
+					string andetInfo = (string)reader["andetInfo"];
+					double pris = (double)reader["pris"];
+					DateTime tid = (DateTime)reader["dato"];
+					int overnatning = (int)reader["overnatning"];
+					bool spisning = (bool)reader["spisning"];
+					bool spisningTvungen = (bool)reader["spisningTvungen"];
+					bool overnatningTvungen = (bool)reader["overnatningTvungen"];
+					kampagnemanager.GenopretScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+				}
 				conn.Close();
 				return true;
 			}
