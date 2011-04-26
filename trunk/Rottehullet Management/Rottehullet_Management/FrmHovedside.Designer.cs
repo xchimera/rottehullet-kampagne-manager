@@ -41,6 +41,7 @@
 			this.btnRetAttributter = new System.Windows.Forms.Button();
 			this.btnOpstartScenarie = new System.Windows.Forms.Button();
 			this.btnÅbenKampagne = new System.Windows.Forms.Button();
+			this.btnRetScenarie = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -145,7 +146,7 @@
 			// 
 			// btnOpstartScenarie
 			// 
-			this.btnOpstartScenarie.Location = new System.Drawing.Point(245, 221);
+			this.btnOpstartScenarie.Location = new System.Drawing.Point(245, 206);
 			this.btnOpstartScenarie.Name = "btnOpstartScenarie";
 			this.btnOpstartScenarie.Size = new System.Drawing.Size(95, 23);
 			this.btnOpstartScenarie.TabIndex = 6;
@@ -163,11 +164,22 @@
 			this.btnÅbenKampagne.UseVisualStyleBackColor = true;
 			this.btnÅbenKampagne.Click += new System.EventHandler(this.btnÅbenKampagne_Click);
 			// 
+			// btnRetScenarie
+			// 
+			this.btnRetScenarie.Location = new System.Drawing.Point(245, 235);
+			this.btnRetScenarie.Name = "btnRetScenarie";
+			this.btnRetScenarie.Size = new System.Drawing.Size(95, 23);
+			this.btnRetScenarie.TabIndex = 15;
+			this.btnRetScenarie.Text = "Rediger scenarie";
+			this.btnRetScenarie.UseVisualStyleBackColor = true;
+			this.btnRetScenarie.Click += new System.EventHandler(this.btnRetScenarie_Click);
+			// 
 			// FrmHovedside
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(352, 315);
+			this.ClientSize = new System.Drawing.Size(664, 315);
+			this.Controls.Add(this.btnRetScenarie);
 			this.Controls.Add(this.btnÅbenKampagne);
 			this.Controls.Add(this.btnOpstartScenarie);
 			this.Controls.Add(this.btnRetAttributter);
@@ -205,5 +217,6 @@
         private System.Windows.Forms.Button btnRetAttributter;
 		private System.Windows.Forms.Button btnOpstartScenarie;
 		private System.Windows.Forms.Button btnÅbenKampagne;
+		private System.Windows.Forms.Button btnRetScenarie;
     }
 }

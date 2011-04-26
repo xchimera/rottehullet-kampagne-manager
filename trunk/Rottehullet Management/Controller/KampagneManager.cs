@@ -24,6 +24,7 @@ namespace Controller
 			dbFacade = new DBFacade(this);
 			brugercollection = new BrugerCollection();
 			nuværendeAttribut = null;
+			nuværendeScenarie = null;
 		}
 
 		#region Bruger
