@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using Interfaces;
@@ -37,8 +38,43 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
-       // public Karakter TilføjKarakter(
+        public void TilføjKarakter(long karakterID, long kampagneID)
+        {
+            karakterer.Add(new Karakter(karakterID, kampagneID));
+        }
 
+        public void TilføjSingleAttribut(long karakterID, long attributID, string værdi)
+        {
+            Karakter karakter = FindKarakter(karakterID);
+            karakter.TilføjVærdi(attributID, værdi);
+        }
+
+        public void TilføjMultiAttribut(long karakterID, long attributID, string værdi)
+        {
+            
+        }
+
+        public Karakter FindKarakter(long karakterID)
+        {
+            foreach (Karakter karakter in karakterer)
+            {
+                if (karakter.KarakterID == karakterID)
+                {
+                    return karakter;
+                }
+            }
+            return null;
+        }
+
+        public IEnumerator GetVærdiIterator(long karakterID)
+        {
+            Karakter karakter = FindKarakter(karakterID);
+            if (karakter != null)
+            {
+                return karakter.GetVærdiIterator();
+            }
+            return null;
+        }
 
         // Properties
         public bool Veganer

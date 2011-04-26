@@ -59,7 +59,7 @@
             // 
             // btnVælgKampagne
             // 
-            this.btnVælgKampagne.Location = new System.Drawing.Point(99, 177);
+            this.btnVælgKampagne.Location = new System.Drawing.Point(93, 177);
             this.btnVælgKampagne.Name = "btnVælgKampagne";
             this.btnVælgKampagne.Size = new System.Drawing.Size(94, 23);
             this.btnVælgKampagne.TabIndex = 1;

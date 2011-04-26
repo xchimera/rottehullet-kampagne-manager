@@ -22,6 +22,7 @@ namespace BK_Controller
         BrugerDBFacade brugerdbfacade;
         BrugerCollection brugercollection;
         KampagneCollection kampagnecollection;
+        Bruger bruger;
 
         public BrugerKlient()
         {
@@ -42,6 +43,8 @@ namespace BK_Controller
             return false;
         }
 
+        
+
         public long Login(string email, string kodeord)
         {
             kodeord = KrypterKodeord(kodeord);
@@ -49,6 +52,18 @@ namespace BK_Controller
 
             return brugerID;
         }
+
+        public void GenopretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
+        {
+            bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
+        }
+
+        public void GenopretKarakter(long karakterID, long kampagneID)
+        {
+            bruger.TilføjKarakter(karakterID, kampagneID);
+        }
+
+
 
         public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
         {

@@ -13,10 +13,12 @@ namespace BK_GUI
     public partial class FrmHovedSide : Form
     {
         BrugerKlient brugerklient;
-        public FrmHovedSide(BrugerKlient brugerklient)
+        private long kampagneID;
+        public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
             this.brugerklient = brugerklient;
+            this.kampagneID = kampagneID;
         }
 
         private void btnSkiftKampagne_Click(object sender, EventArgs e)

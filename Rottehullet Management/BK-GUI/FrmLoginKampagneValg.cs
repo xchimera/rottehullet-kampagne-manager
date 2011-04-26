@@ -48,7 +48,10 @@ namespace BK_GUI
 
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
-            FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient);
+            ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]]; 
+                
+                
+            FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient, Convert.ToInt64(item.SubItems[0].Text));
             this.Hide();
             frmhovedside.ShowDialog();
             this.Close();
