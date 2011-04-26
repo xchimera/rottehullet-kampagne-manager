@@ -72,20 +72,20 @@
 			// 
 			// txtBeskrivelse
 			// 
-			this.txtBeskrivelse.Enabled = false;
 			this.txtBeskrivelse.Location = new System.Drawing.Point(16, 114);
 			this.txtBeskrivelse.Multiline = true;
 			this.txtBeskrivelse.Name = "txtBeskrivelse";
+			this.txtBeskrivelse.ReadOnly = true;
 			this.txtBeskrivelse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.txtBeskrivelse.Size = new System.Drawing.Size(175, 145);
-			this.txtBeskrivelse.TabIndex = 5;
+			this.txtBeskrivelse.TabIndex = 10;
 			// 
 			// btnRedigerNavn
 			// 
 			this.btnRedigerNavn.Location = new System.Drawing.Point(184, 15);
 			this.btnRedigerNavn.Name = "btnRedigerNavn";
 			this.btnRedigerNavn.Size = new System.Drawing.Size(21, 23);
-			this.btnRedigerNavn.TabIndex = 6;
+			this.btnRedigerNavn.TabIndex = 1;
 			this.btnRedigerNavn.UseVisualStyleBackColor = true;
 			this.btnRedigerNavn.Click += new System.EventHandler(this.btnRedigerNavn_Click);
 			// 
@@ -94,7 +94,7 @@
 			this.btnRedigerHjemmeside.Location = new System.Drawing.Point(184, 46);
 			this.btnRedigerHjemmeside.Name = "btnRedigerHjemmeside";
 			this.btnRedigerHjemmeside.Size = new System.Drawing.Size(21, 23);
-			this.btnRedigerHjemmeside.TabIndex = 7;
+			this.btnRedigerHjemmeside.TabIndex = 2;
 			this.btnRedigerHjemmeside.UseVisualStyleBackColor = true;
 			this.btnRedigerHjemmeside.Click += new System.EventHandler(this.btnRedigerHjemmeside_Click);
 			// 
@@ -103,32 +103,32 @@
 			this.btnRedigerBeskrivelse.Location = new System.Drawing.Point(79, 83);
 			this.btnRedigerBeskrivelse.Name = "btnRedigerBeskrivelse";
 			this.btnRedigerBeskrivelse.Size = new System.Drawing.Size(21, 23);
-			this.btnRedigerBeskrivelse.TabIndex = 8;
+			this.btnRedigerBeskrivelse.TabIndex = 3;
 			this.btnRedigerBeskrivelse.UseVisualStyleBackColor = true;
 			this.btnRedigerBeskrivelse.Click += new System.EventHandler(this.btnRedigerBeskrivelse_Click);
 			// 
 			// txtNavn
 			// 
-			this.txtNavn.Enabled = false;
 			this.txtNavn.Location = new System.Drawing.Point(79, 15);
 			this.txtNavn.Name = "txtNavn";
+			this.txtNavn.ReadOnly = true;
 			this.txtNavn.Size = new System.Drawing.Size(100, 20);
-			this.txtNavn.TabIndex = 9;
+			this.txtNavn.TabIndex = 8;
 			// 
 			// txtHjemmeside
 			// 
-			this.txtHjemmeside.Enabled = false;
 			this.txtHjemmeside.Location = new System.Drawing.Point(79, 49);
 			this.txtHjemmeside.Name = "txtHjemmeside";
+			this.txtHjemmeside.ReadOnly = true;
 			this.txtHjemmeside.Size = new System.Drawing.Size(100, 20);
-			this.txtHjemmeside.TabIndex = 10;
+			this.txtHjemmeside.TabIndex = 9;
 			// 
 			// btnSkiftKampagne
 			// 
 			this.btnSkiftKampagne.Location = new System.Drawing.Point(16, 280);
 			this.btnSkiftKampagne.Name = "btnSkiftKampagne";
 			this.btnSkiftKampagne.Size = new System.Drawing.Size(93, 23);
-			this.btnSkiftKampagne.TabIndex = 11;
+			this.btnSkiftKampagne.TabIndex = 4;
 			this.btnSkiftKampagne.Text = "Skift kampagne";
 			this.btnSkiftKampagne.UseVisualStyleBackColor = true;
 			this.btnSkiftKampagne.Click += new System.EventHandler(this.btnSkiftKampagne_Click);
@@ -138,7 +138,7 @@
 			this.btnRetAttributter.Location = new System.Drawing.Point(115, 280);
 			this.btnRetAttributter.Name = "btnRetAttributter";
 			this.btnRetAttributter.Size = new System.Drawing.Size(90, 23);
-			this.btnRetAttributter.TabIndex = 12;
+			this.btnRetAttributter.TabIndex = 5;
 			this.btnRetAttributter.Text = "Ret attributter";
 			this.btnRetAttributter.UseVisualStyleBackColor = true;
 			this.btnRetAttributter.Click += new System.EventHandler(this.btnRetAttributter_Click);
@@ -148,7 +148,7 @@
 			this.btnOpstartScenarie.Location = new System.Drawing.Point(245, 221);
 			this.btnOpstartScenarie.Name = "btnOpstartScenarie";
 			this.btnOpstartScenarie.Size = new System.Drawing.Size(95, 23);
-			this.btnOpstartScenarie.TabIndex = 13;
+			this.btnOpstartScenarie.TabIndex = 6;
 			this.btnOpstartScenarie.Text = "Opstart scenarie";
 			this.btnOpstartScenarie.UseVisualStyleBackColor = true;
 			this.btnOpstartScenarie.Click += new System.EventHandler(this.btnOpstartScenarie_Click);
@@ -158,7 +158,7 @@
 			this.btnÅbenKampagne.Location = new System.Drawing.Point(245, 280);
 			this.btnÅbenKampagne.Name = "btnÅbenKampagne";
 			this.btnÅbenKampagne.Size = new System.Drawing.Size(95, 23);
-			this.btnÅbenKampagne.TabIndex = 14;
+			this.btnÅbenKampagne.TabIndex = 7;
 			this.btnÅbenKampagne.Text = "Åben/Luk";
 			this.btnÅbenKampagne.UseVisualStyleBackColor = true;
 			this.btnÅbenKampagne.Click += new System.EventHandler(this.btnÅbenKampagne_Click);
