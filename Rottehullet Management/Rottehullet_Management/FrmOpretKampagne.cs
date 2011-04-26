@@ -79,28 +79,28 @@ namespace Rottehullet_Management
 
         private void btnOpretKampagne_Click(object sender, EventArgs e)
         {
-            int index = lstBrugere.SelectedIndices[0];
+			if (lstBrugere.SelectedIndices.Count == 0)
+			{
+				MessageBox.Show("Vælg venligst en bruger", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			else if (txtKampagneNavn.Text == "")
+			{
+				MessageBox.Show("Kampagnen skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			int index = lstBrugere.SelectedIndices[0];
             ListViewItem item = lstBrugere.Items[index];
 
-            try
+            if (kampagnemanager.OpretKampagne(txtKampagneNavn.Text, Convert.ToInt64(item.SubItems[0].Text)))
             {
-                if (txtKampagneNavn.Text != "")
-                {
-                    if (kampagnemanager.OpretKampagne(txtKampagneNavn.Text, Convert.ToInt64(item.SubItems[0].Text)))
-                    {
-                        MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " er oprettet");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i oprettelse af Kampagne", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                    }
-                }
+                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " er oprettet");
+                this.Close();
             }
-            catch (ArgumentOutOfRangeException)
+            else
             {
-                MessageBox.Show("Vælg venligst en bruger");
+                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i oprettelse af Kampagne", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
     }
