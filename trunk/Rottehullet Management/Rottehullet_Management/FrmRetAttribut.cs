@@ -65,6 +65,11 @@ namespace Rottehullet_Management
 
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)
 		{
+			if (txtValgmulighed.Text == "")
+			{
+				MessageBox.Show("Valgmuligheden skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			long entryID = kampagneManager.TilføjMultiAttributEntry(txtValgmulighed.Text);
 			if (entryID != -1)
 			{
@@ -81,12 +86,16 @@ namespace Rottehullet_Management
 
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
 		{
-			ListViewItem linje = lstValgmuligheder.Items[lstValgmuligheder.SelectedIndices[0]];
-			if (linje.Text != "")
+			if (lstValgmuligheder.SelectedIndices.Count > 0)
 			{
+				ListViewItem linje = lstValgmuligheder.Items[lstValgmuligheder.SelectedIndices[0]];
 				kampagneManager.SletMultiAttributValgmulighed(long.Parse(linje.Text));
+				lstValgmuligheder.Items.Remove(linje);
 			}
-			lstValgmuligheder.Items.Remove(linje);
+			else
+			{
+				MessageBox.Show("Vælg attributten som skal slettes", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 
 		private void btnRetValgmulighed_Click(object sender, EventArgs e)
@@ -109,10 +118,19 @@ namespace Rottehullet_Management
 					lstValgmuligheder.SelectedItems[0].Text = tekst;
 				}
 			}
+			else
+			{
+				MessageBox.Show("Vælg attributten som skal rettes", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 
 		private void btnRet_Click(object sender, EventArgs e)
 		{
+			if (txtNavn.Text == "")
+			{
+				MessageBox.Show("Attributten skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			kampagneManager.RetAttribut(txtNavn.Text, (KampagneAttributType)cboType.SelectedIndex, position);
 			this.Close();
 		}
