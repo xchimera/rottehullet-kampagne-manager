@@ -29,6 +29,7 @@ namespace Rottehullet_Management
 			txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
+			txtNavn.Select(0, 0);
 
 			if (Kampagne.Status != Enum.KampagneStatus.Åben)
 			{
@@ -51,8 +52,8 @@ namespace Rottehullet_Management
 
         private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
-            InputBoxSingleline singleline = new InputBoxSingleline();
-            singleline.ShowDialog();
+			InputBoxSingleline singleline = new InputBoxSingleline(Kampagne.Navn);
+			singleline.ShowDialog();
             if (singleline.Lastbutton == 1)
             {
                 if (singleline.Text != "")
