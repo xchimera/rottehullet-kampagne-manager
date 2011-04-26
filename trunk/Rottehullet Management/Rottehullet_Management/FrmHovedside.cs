@@ -67,7 +67,7 @@ namespace Rottehullet_Management
 
         private void btnRedigerHjemmeside_Click(object sender, EventArgs e)
         {
-            InputBoxSingleline singleline = new InputBoxSingleline();
+            InputBoxSingleline singleline = new InputBoxSingleline(Kampagne.Hjemmeside);
             singleline.ShowDialog();
             if (singleline.Lastbutton == 1)
             {
@@ -78,15 +78,12 @@ namespace Rottehullet_Management
 
         private void btnRedigerBeskrivelse_Click(object sender, EventArgs e)
         {
-            InputBoxMultiline multiline = new InputBoxMultiline();
+            InputBoxMultiline multiline = new InputBoxMultiline(Kampagne.Beskrivelse);
             multiline.ShowDialog();
             if (multiline.LastButton == 1)
             {
-                if (multiline.Text != "")
-                {
-                    txtBeskrivelse.Text = multiline.Text;
-                    kampagnemanager.RetKampagneBeskrivelse(txtBeskrivelse.Text, Kampagne.KampagneID);
-                }
+                txtBeskrivelse.Text = multiline.Text;
+                kampagnemanager.RetKampagneBeskrivelse(txtBeskrivelse.Text, Kampagne.KampagneID);
             }
         }
 
