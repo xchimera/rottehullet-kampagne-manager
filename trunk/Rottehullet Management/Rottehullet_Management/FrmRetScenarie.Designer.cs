@@ -31,7 +31,7 @@
 			this.txtAndetInfo = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.btnAnnuller = new System.Windows.Forms.Button();
-			this.btnOpret = new System.Windows.Forms.Button();
+			this.btnRet = new System.Windows.Forms.Button();
 			this.chkSpisningTvungen = new System.Windows.Forms.CheckBox();
 			this.chkSpisning = new System.Windows.Forms.CheckBox();
 			this.label10 = new System.Windows.Forms.Label();
@@ -83,15 +83,15 @@
 			this.btnAnnuller.UseVisualStyleBackColor = true;
 			this.btnAnnuller.Click += new System.EventHandler(this.btnAnnuller_Click);
 			// 
-			// btnOpret
+			// btnRet
 			// 
-			this.btnOpret.Location = new System.Drawing.Point(10, 481);
-			this.btnOpret.Name = "btnOpret";
-			this.btnOpret.Size = new System.Drawing.Size(113, 23);
-			this.btnOpret.TabIndex = 40;
-			this.btnOpret.Text = "Opret";
-			this.btnOpret.UseVisualStyleBackColor = true;
-			this.btnOpret.Click += new System.EventHandler(this.btnOpret_Click);
+			this.btnRet.Location = new System.Drawing.Point(10, 481);
+			this.btnRet.Name = "btnRet";
+			this.btnRet.Size = new System.Drawing.Size(113, 23);
+			this.btnRet.TabIndex = 40;
+			this.btnRet.Text = "Ret";
+			this.btnRet.UseVisualStyleBackColor = true;
+			this.btnRet.Click += new System.EventHandler(this.btnRet_Click);
 			// 
 			// chkSpisningTvungen
 			// 
@@ -111,6 +111,7 @@
 			this.chkSpisning.Size = new System.Drawing.Size(15, 14);
 			this.chkSpisning.TabIndex = 36;
 			this.chkSpisning.UseVisualStyleBackColor = true;
+			this.chkSpisning.CheckedChanged += new System.EventHandler(this.chkSpisning_CheckedChanged);
 			// 
 			// label10
 			// 
@@ -175,6 +176,7 @@
 			this.chkOvernatning.Size = new System.Drawing.Size(15, 14);
 			this.chkOvernatning.TabIndex = 31;
 			this.chkOvernatning.UseVisualStyleBackColor = true;
+			this.chkOvernatning.CheckedChanged += new System.EventHandler(this.chkOvernatning_CheckedChanged);
 			// 
 			// label6
 			// 
@@ -285,7 +287,7 @@
 			this.Controls.Add(this.txtAndetInfo);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.btnAnnuller);
-			this.Controls.Add(this.btnOpret);
+			this.Controls.Add(this.btnRet);
 			this.Controls.Add(this.chkSpisningTvungen);
 			this.Controls.Add(this.chkSpisning);
 			this.Controls.Add(this.label10);
@@ -318,7 +320,7 @@
 		private System.Windows.Forms.TextBox txtAndetInfo;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Button btnAnnuller;
-		private System.Windows.Forms.Button btnOpret;
+		private System.Windows.Forms.Button btnRet;
 		private System.Windows.Forms.CheckBox chkSpisningTvungen;
 		private System.Windows.Forms.CheckBox chkSpisning;
 		private System.Windows.Forms.Label label10;
