@@ -47,12 +47,6 @@ namespace Rottehullet_Management
 				return;
 			}
 
-			if (txtBeskrivelse.Text == "")
-			{
-				MessageBox.Show("Beskrivelsen skal være udfyldt", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
 			if (chkOvernatning.Checked)
 			{
 				if (int.TryParse(txtAntalDage.Text, out overnatning))
@@ -61,7 +55,7 @@ namespace Rottehullet_Management
 						MessageBox.Show("Der skal være mindst en overnatning, når overnatning er valgt", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				} 
 				else
-					MessageBox.Show("Der skal indstates en antal overnatninger i heltal, når overnatning er valgt");
+					MessageBox.Show("Der skal indtastes en antal overnatninger i heltal, når overnatning er valgt");
 			}
 			else
 				overnatning = 0;

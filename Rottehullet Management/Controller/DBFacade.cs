@@ -335,8 +335,11 @@ namespace Controller
 						{
 							attribut = kampagnemanager.GenopretMultiAttribut(kamID, attributID, navn, type, position);
 						}
-						string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
-						attribut.TilføjValgmulighed(valg);
+						if (reader["værdi"] != System.DBNull.Value)
+						{
+							string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
+							attribut.TilføjValgmulighed(valg);
+						}
 						
 					}
 					tempid = (int)attributID;

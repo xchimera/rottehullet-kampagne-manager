@@ -83,7 +83,7 @@ namespace Rottehullet_Management
 			}
 			else
 			{
-				MessageBox.Show("Vælg en kampagne.");
+				MessageBox.Show("Vælg en kampagne", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
            
         }
