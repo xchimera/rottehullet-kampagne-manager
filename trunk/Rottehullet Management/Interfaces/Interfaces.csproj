@@ -43,6 +43,7 @@
     <Compile Include="IBruger.cs" />
     <Compile Include="IKampagne.cs" />
     <Compile Include="IKampagneAttribut.cs" />
+    <Compile Include="IScenarie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

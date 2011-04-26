@@ -66,8 +66,10 @@ namespace Rottehullet_Management
 			else
 				overnatning = 0;
 
-			kampagneManager.TilføjScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text);
-			this.Close();
+			if (kampagneManager.TilføjScenarie(txtNavn.Text, txtBeskrivelse.Text, dtpTid.Value, txtSted.Text, double.Parse(txtPris.Text), overnatning, chkSpisning.Checked, chkSpisningTvungen.Checked, chkOvernatningTvungen.Checked, txtAndetInfo.Text))
+				this.Close();
+			else
+				MessageBox.Show("Der skete en fejl, da databasen skulle behandle data", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		private void btnAnnuller_Click(object sender, EventArgs e)

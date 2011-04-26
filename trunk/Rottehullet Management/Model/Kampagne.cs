@@ -38,7 +38,8 @@ namespace Model
             this.topbruger = null;
             this.kampagneID = kampagneID;
             this.status = status;
-            attributter = new List<KampagneAttribut>();
+			attributter = new List<KampagneAttribut>();
+			scenarier = new List<Scenarie>();
         }
 
 		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger, KampagneStatus status)
@@ -50,6 +51,7 @@ namespace Model
 			this.kampagneID = kampagneID;
             this.status = status;
 			attributter = new List<KampagneAttribut>();
+			scenarier = new List<Scenarie>();
 		}
 
 		/// <summary>
@@ -61,12 +63,13 @@ namespace Model
 		/// <param name="sted"></param>
 		/// <param name="overnatning"></param>
 		/// <param name="spisning"></param>
-		/// <param name="spisningValgfri"></param>
-		/// <param name="overnatningValgfri"></param>
-		public void TilføjScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		/// <param name="spisningTvungen"></param>
+		/// <param name="overnatningTvungen"></param>
+		public Scenarie TilføjScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
-			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 			scenarier.Add(scenarie);
+			return scenarie;
 		}
 
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)

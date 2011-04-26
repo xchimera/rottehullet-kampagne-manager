@@ -126,8 +126,14 @@ namespace Rottehullet_Management
 
 		private void btnRetScenarie_Click(object sender, EventArgs e)
 		{
-			FrmRetScenarie form = new FrmRetScenarie(kampagnemanager);
-			form.ShowDialog();
+			IScenarie scenarie = kampagnemanager.HentNuværendeScenarie();
+			if (scenarie != null)
+			{
+				FrmRetScenarie form = new FrmRetScenarie(kampagnemanager, scenarie);
+				form.ShowDialog();
+			}
+			else
+				MessageBox.Show("Der er i øjeblikket ingen scenarie på denne kampagne", "Intet scenarie");
 		}
     }
 }

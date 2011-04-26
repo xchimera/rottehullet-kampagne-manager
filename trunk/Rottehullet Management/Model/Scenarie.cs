@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
-	public class Scenarie
+	public class Scenarie : IScenarie
 	{
 		private long id;
 		private string titel, beskrivelse, sted, andetInfo;
 		private double pris;
 		private DateTime tid;
 		private int overnatning;
-		private bool spisning, spisningValgfri, overnatningValgfri;
+		private bool spisning, spisningTvungen, overnatningTvungen;
 		List<string> deltagere;
 
-		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			this.id = id;
 			this.titel = titel;
@@ -25,8 +26,8 @@ namespace Model
 			this.pris = pris;
 			this.overnatning = overnatning;
 			this.spisning = spisning;
-			this.spisningValgfri = spisningValgfri;
-			this.overnatningValgfri = overnatningValgfri;
+			this.spisningTvungen = spisningTvungen;
+			this.overnatningTvungen = overnatningTvungen;
 			this.andetInfo = andetInfo;
 			deltagere = new List<string>();
 		}
@@ -73,16 +74,16 @@ namespace Model
 			set { overnatning = value; }
 		}
 
-		public bool OvernatningValgfri
+		public bool OvernatningTvungen
 		{
-			get { return overnatningValgfri; }
-			set { overnatningValgfri = value; }
+			get { return overnatningTvungen; }
+			set { overnatningTvungen = value; }
 		}
 
-		public bool SpisningValgfri
+		public bool SpisningTvungen
 		{
-			get { return spisningValgfri; }
-			set { spisningValgfri = value; }
+			get { return spisningTvungen; }
+			set { spisningTvungen = value; }
 		}
 
 		public bool Spisning

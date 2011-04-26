@@ -88,6 +88,7 @@ namespace Controller
 			if (bruger != null)
 			{
 				kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
+				dbFacade.HentScenarierTilKampagne(kamID);
 				return true;
 			}
 			return false;
@@ -313,15 +314,20 @@ namespace Controller
 		#endregion
 
 		#region Scenarie
-		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
+		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
-			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, kampagne.KampagneID);
+			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo, kampagne.KampagneID);
 			if (id != -1)
 			{
-				kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo);
+				nuværendeScenarie = kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 				return true;
 			}
 			return false;
+		}
+
+		public void GenopretScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
+		{
+			nuværendeScenarie = kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 		}
 
 		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
@@ -335,12 +341,17 @@ namespace Controller
 				nuværendeScenarie.Pris = pris;
 				nuværendeScenarie.Overnatning = overnatning;
 				nuværendeScenarie.Spisning = spisning;
-				nuværendeScenarie.SpisningValgfri = spisningValgfri;
-				nuværendeScenarie.OvernatningValgfri = overnatningValgfri;
+				nuværendeScenarie.SpisningTvungen = spisningValgfri;
+				nuværendeScenarie.OvernatningTvungen = overnatningValgfri;
 				nuværendeScenarie.AndetInfo = andetInfo;
 				return true;
 			}
 			return false;
+		}
+
+		public IScenarie HentNuværendeScenarie()
+		{
+			return nuværendeScenarie;
 		}
 		#endregion
 
@@ -376,7 +387,5 @@ namespace Controller
 
 			return brugerID;
 		}
-
-		
 	}
 }
