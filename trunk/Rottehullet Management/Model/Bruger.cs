@@ -37,7 +37,7 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
-        public Karakter TilføjKarakter(
+       // public Karakter TilføjKarakter(
 
 
         // Properties
