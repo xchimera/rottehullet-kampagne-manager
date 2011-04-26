@@ -48,20 +48,20 @@ namespace Rottehullet_Management
         }
 
 
-        private void startKampagne(long kampagneID, string navn)
-		{
-			if (kampagnemanager.HentKampagneFraDatabase(kampagneID))
-			{
-				FrmHovedside hovedside = new FrmHovedside(navn, kampagnemanager);
-				this.Hide();
-				hovedside.ShowDialog();
-				this.Close();
-			}
-			else
-			{
-				MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
-			}
-		}
+		//private void startKampagne(long kampagneID, string navn)
+		//{
+		//    if (kampagnemanager.HentKampagneFraDatabase(kampagneID))
+		//    {
+		//        FrmHovedside hovedside = new FrmHovedside(navn, kampagnemanager);
+		//        this.Hide();
+		//        hovedside.ShowDialog();
+		//        this.Close();
+		//    }
+		//    else
+		//    {
+		//        MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
+		//    }
+		//}
 
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
