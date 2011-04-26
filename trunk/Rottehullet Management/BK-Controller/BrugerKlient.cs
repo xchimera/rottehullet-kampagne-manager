@@ -87,20 +87,29 @@ namespace BK_Controller
             return kampagnecollection.GetKampagneIterator();
         }
 
-		public string KrypterKodeord(string originalPassword)
+		public string KrypterKodeord(string kodeord)
 		{
-			//Declarations
-			Byte[] originalBytes;
-			Byte[] encodedBytes;
-			MD5 md5;
+            byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
+            try
+            {
+                System.Security.Cryptography.MD5CryptoServiceProvider kryptograf;
+                kryptograf = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] hash = kryptograf.ComputeHash(tekstIBytes);
+                string ret = "";
+                foreach (byte a in hash)
+                {
+                    if (a < 16)
+                        ret += "0" + a.ToString("x");
+                    else
+                        ret += a.ToString("x");
+                }
+                return ret;
+            }
+            catch
+            {
 
-			//Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
-			md5 = new MD5CryptoServiceProvider();
-			originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword);
-			encodedBytes = md5.ComputeHash(originalBytes);
-
-			//Convert encoded bytes back to a 'readable' string
-			return BitConverter.ToString(encodedBytes);
+                throw;
+            }
 		}
     }
 
