@@ -49,9 +49,10 @@ namespace Model
             karakter.TilføjVærdi(attributID, værdi);
         }
 
-        public void TilføjMultiAttribut(long karakterID, long attributID, string værdi)
+        public void TilføjMultiAttribut(long karakterID, long attributID, string værdi, long multiattributID, long multiattributentryID)
         {
-            
+            Karakter karakter = FindKarakter(karakterID);
+            karakter.TilføjVærdi(attributID, værdi);
         }
 
         public Karakter FindKarakter(long karakterID)
