@@ -8,6 +8,7 @@ namespace Interfaces
 {
     public interface IKarakter
     {
-        
+		long KarakterID { get; }
+		IEnumerator GetGetVærdiIterator();
     }
 }

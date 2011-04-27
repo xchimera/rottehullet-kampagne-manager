@@ -9,6 +9,7 @@ namespace Model
     public class Karakter
     {
         List<KampagneAttribut> attributter;
+		Dictionary<string, KarakterAttribut> værdier;
         Dictionary<long, string> singleværdier;
         Dictionary<long[], string> multiværdier;
         long karakterID;
@@ -20,6 +21,7 @@ namespace Model
             this.kampagneID = kampagneID;
             attributter = new List<KampagneAttribut>();
             singleværdier = new Dictionary<long, string>();
+			værdier = new Dictionary<string, KarakterAttribut>();
         }
 
         public void TilføjVærdi(long kampagneattributID, string værdi)
@@ -31,8 +33,6 @@ namespace Model
         {
             return værdier.GetEnumerator();
         }
-
-
 
         public long KarakterID
         {
