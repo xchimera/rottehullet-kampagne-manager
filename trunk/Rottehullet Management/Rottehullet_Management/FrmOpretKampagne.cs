@@ -99,7 +99,7 @@ namespace Rottehullet_Management
             }
             else
             {
-                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i oprettelse af Kampagne", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Kampagnen " + txtKampagneNavn.Text + " kunne ikke oprettes", "Fejl i System", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }

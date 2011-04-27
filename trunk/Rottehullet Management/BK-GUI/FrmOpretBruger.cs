@@ -45,13 +45,11 @@ namespace BK_GUI
 				kodeord = brugerklient.KrypterKodeord(kodeord);
 
                 brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
-                
-
             }
             catch (FormatException)
             {
 
-                MessageBox.Show("Indtast venligst korrekte værdier.", "Værdi Fejl", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Indtast venligst korrekte værdier.", "Bruger Fejl", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }

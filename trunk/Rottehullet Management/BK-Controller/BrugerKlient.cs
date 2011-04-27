@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text;
@@ -111,24 +112,24 @@ namespace BK_Controller
             return false;
         }
 
-        public System.Collections.IEnumerator GetKampagneIterator()
+        public IEnumerator GetKampagneIterator()
         {
             return kampagnecollection.GetKampagneIterator();
         }
 
-        public System.Collections.IEnumerator GetKarakterIterator()
+        public IEnumerator GetKarakterIterator()
         {
             return bruger.GetKarakterIterator();
         }
 
-        public System.Collections.IEnumerator GetVærdiIterator(long attributID)
+        public IEnumerator GetVærdiIterator(long attributID)
         {
             return bruger.GetVærdiIterator(attributID);
         }
 
-        public System.Collections.IEnumerator GetAttributIterator(long kampagneID)
+        public IEnumerator GetAttributIterator(long kampagneID)
         {
-            System.Collections.IEnumerator kampagne = kampagnecollection.GetKampagneIterator();
+            IEnumerator kampagne = kampagnecollection.GetKampagneIterator();
             while (kampagne.MoveNext())
             {
                 IKampagne ikampagne = (IKampagne)kampagne.Current;
