@@ -73,6 +73,30 @@ namespace Rottehullet_Management
 			return pris;
 		}
 
+		//Denne metode konverterer et heltal så det passer i en maske af længden "længde"
+		private string IntTilMask(int tal, int længde)
+		{
+			string streng = tal.ToString();
+			//Sæt mellemrum ind foran, så der er 5 symboler før kommaet
+			int i = tal;
+			if (i > 0)
+			{
+				while (i < (10^længde))
+				{
+					streng = "0" + streng;
+					i *= 10;
+				}
+			}
+			else
+			{
+				for (int j = 0; j < længde-1; j++)
+				{
+					streng = "0" + streng;
+				}
+			}
+			return streng;
+		}
+
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)
 		{
 			chkOvernatningTvungen.Enabled = chkOvernatning.Checked;
