@@ -21,11 +21,27 @@ namespace Model
 			værdier = new Dictionary<string, KarakterAttribut>();
         }
 
+		/// <summary>
+		/// Tilføjer en single attribut til karakteren.
+		/// </summary>
+		/// <param name="kampagneAttribut"></param>
+		/// <param name="værdi"></param>
         public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi)
         {
-			KarakterAttribut attribut = new KarakterAttribut(værdi, kampagneAttribut);
+			KarakterSingleAttribut attribut = new KarakterSingleAttribut(værdi, kampagneAttribut);
             værdier.Add(kampagneAttribut.Navn, attribut);
         }
+
+		/// <summary>
+		/// Tilføjer en multi attribut til karakteren.
+		/// </summary>
+		/// <param name="kampagneAttribut"></param>
+		/// <param name="valg"></param>
+		public void TilføjVærdi(KampagneAttribut kampagneAttribut, KampagneMultiAttributValgmulighed valg)
+		{
+			KarakterMultiAttribut attribut = new KarakterMultiAttribut(valg, kampagneAttribut);
+			værdier.Add(kampagneAttribut.Navn, attribut);
+		}
 
         public IEnumerator GetVærdiIterator()
         {
