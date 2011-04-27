@@ -222,6 +222,7 @@ namespace Controller
 
 					if (!kampagnemanager.Opretbruger(brugerID, email, "", navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet))
 					{
+						conn.Close();
 						return false;
 					}
 				}
@@ -273,6 +274,7 @@ namespace Controller
 
 					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
 					{
+						conn.Close();
 						return false;
 					}
 				}

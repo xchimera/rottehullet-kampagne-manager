@@ -79,11 +79,14 @@ namespace Rottehullet_Management
 		{
 			if (lstAttributter.SelectedIndices.Count > 0)
 			{
-				if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
+				if (MessageBox.Show("Vil du slette denne attribut?", "Sletning", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					MessageBox.Show("Der skete en fejl, da attributten skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					if (!kampagneManager.SletAttribut(long.Parse(lstAttributter.SelectedItems[0].Text)))
+					{
+						MessageBox.Show("Der skete en fejl, da attributten skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+					opdaterListe();
 				}
-				opdaterListe();
 			}
 			else
 			{
