@@ -168,7 +168,7 @@ namespace BK_Controller
                             }
                             if (reader["værdi"] != System.DBNull.Value && reader["entryID"] != System.DBNull.Value)
                             {
-                                string[] valg = new string[2] { (string)reader["værdi"], reader["entryID"].ToString() };
+								KampagneMultiAttributValgmulighed valg = new KampagneMultiAttributValgmulighed((long)reader["entryID"], (string)reader["værdi"]);
                                 multiattribut.TilføjValgmulighed(valg);
                             }
                         }

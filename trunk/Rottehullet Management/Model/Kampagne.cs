@@ -116,7 +116,7 @@ namespace Model
 			attributter.Insert(position, attribut);
 		}
 
-		public void TilføjMultiAttribut(string navn, KampagneAttributType type, List<string[]> valgmuligheder, long kampagneAttributID, int position)
+		public void TilføjMultiAttribut(string navn, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
 			attributter.Insert(position, attribut);
@@ -129,7 +129,7 @@ namespace Model
 			attribut.Type = type;
 		}
 
-		public void RetMultiAttribut(int id, KampagneAttributType type, List<string[]> valgmuligheder, int position)
+		public void RetMultiAttribut(int id, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, int position)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(id);
 			attribut.Navn = navn;

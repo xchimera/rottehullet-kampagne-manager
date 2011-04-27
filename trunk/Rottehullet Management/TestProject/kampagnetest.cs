@@ -93,10 +93,10 @@ namespace TestProject
 			//Oprettelse af multiattribut
 			string navn1 = "TestVariabel";
 			KampagneAttributType type = KampagneAttributType.Combo;
-			string[] entry1 = {"Entry1","0"};
-			string[] entry2 = {"Entry2","1"};
-			string[] entry3 = {"Entry3","2"};
-			List<string[]> valgmuligheder = new List<string[]>(new string[][] { entry1, entry2, entry3 });
+			KampagneMultiAttributValgmulighed entry1 = new KampagneMultiAttributValgmulighed(0, "Entry1");
+			KampagneMultiAttributValgmulighed entry2 = new KampagneMultiAttributValgmulighed(1, "Entry2");
+			KampagneMultiAttributValgmulighed entry3 = new KampagneMultiAttributValgmulighed(2, "Entry3");
+			List<KampagneMultiAttributValgmulighed> valgmuligheder = new List<KampagneMultiAttributValgmulighed> { entry1, entry2, entry3 };
 			long kampagneAttributID = 0;
 			int position = 0;
 			target.TilføjMultiAttribut(navn1, type, valgmuligheder, kampagneAttributID, position);
@@ -109,7 +109,7 @@ namespace TestProject
 			Assert.AreEqual(navn1, actualnavn);
 			KampagneAttributType actualtype = actualAttribut.Type;
 			Assert.AreEqual(type, actualtype);
-			string[] actualentry = actualAttribut.Valgmuligheder[0];
+			KampagneMultiAttributValgmulighed actualentry = actualAttribut.Valgmuligheder[0];
 			Assert.AreEqual(entry1, actualentry);
 			actualentry = actualAttribut.Valgmuligheder[1];
 			Assert.AreEqual(entry2, actualentry);
@@ -119,8 +119,8 @@ namespace TestProject
 			//Ændring af entry
 			id = 0;
 			type = KampagneAttributType.Combo;
-			entry2[0] = "ChangedEntry2";
-			valgmuligheder = new List<string[]>(new string[][] { entry1, entry2, entry3 });
+			entry2.Værdi = "ChangedEntry2";
+			valgmuligheder = new List<KampagneMultiAttributValgmulighed> { entry1, entry2, entry3 };
 			position = 0;
 			target.RetMultiAttribut(id, type, valgmuligheder, position);
 
