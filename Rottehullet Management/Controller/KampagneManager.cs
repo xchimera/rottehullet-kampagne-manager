@@ -202,9 +202,9 @@ namespace Controller
 			//return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
 		}
 
-		public IEnumerator HentAttributter()
+        public IEnumerator GetAttributIterator()
 		{
-			return kampagne.HentAttributter();
+            return kampagne.GetAttributIterator();
 		}
 
 		public IEnumerator HentValgmuligheder()

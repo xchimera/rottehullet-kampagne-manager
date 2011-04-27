@@ -42,6 +42,8 @@
             this.lstkaraktere.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.karakternavn});
+            this.lstkaraktere.FullRowSelect = true;
+            this.lstkaraktere.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstkaraktere.Location = new System.Drawing.Point(41, 27);
             this.lstkaraktere.Name = "lstkaraktere";
             this.lstkaraktere.Size = new System.Drawing.Size(192, 163);

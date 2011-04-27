@@ -121,6 +121,10 @@
       <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
       <Name>Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enum\Enum.csproj">
+      <Project>{54968761-EC9C-4C40-AFE2-FD10E03B25F8}</Project>
+      <Name>Enum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{954C3027-E37E-42B4-AC53-FCB94CA33C45}</Project>
       <Name>Interfaces</Name>

@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using BK_Controller;
 using Interfaces;
+using Enum;
 
 namespace BK_GUI
 {
@@ -54,7 +55,23 @@ namespace BK_GUI
 
         public void OpretAttributter()
         {
-            
+            IKampagneAttribut ikampagneattribut;
+            IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
+            int y = 27;
+            int x = lstkaraktere.Width + 10;
+            attributiterator.Reset();
+
+            while (attributiterator.MoveNext())
+            {
+                ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
+                if (ikampagneattribut.Type == Enum.KampagneAttributType.Singleline)
+                {
+                    TextBox textbox = new TextBox();
+                    textbox.Location = new Point(x, y);
+                    y += textbox.Height + 5;
+                }
+            }
+                    
 
 
         }
