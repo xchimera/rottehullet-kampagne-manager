@@ -8,7 +8,7 @@ namespace Model
 {
     class KarakterAttribut
     {
-        string værdi;
+		string værdi;
         KampagneAttribut kampagneattribut;
 
         public KarakterAttribut(string værdi, KampagneAttribut kampagneattribut)
@@ -17,7 +17,10 @@ namespace Model
             this.kampagneattribut = kampagneattribut;
         }
 
-
-       
+		public string Værdi
+		{
+			get { return værdi; }
+			set { værdi = value; }
+		}
     }
 }
