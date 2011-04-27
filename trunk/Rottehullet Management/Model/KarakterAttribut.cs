@@ -6,7 +6,7 @@ using Enum;
 
 namespace Model
 {
-    class KarakterAttribut
+    public class KarakterAttribut
     {
 		string værdi;
         KampagneAttribut kampagneattribut;
