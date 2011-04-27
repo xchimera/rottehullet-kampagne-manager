@@ -60,10 +60,11 @@ namespace BK_Controller
 
         public void GenopretKarakter(long karakterID, long kampagneID)
         {
-            bruger.TilføjKarakter(karakterID, kampagneID);
+			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
+            bruger.TilføjKarakter(karakterID, kampagne);
         }
 
-        public void GenopretAttributVærdi(long karakterID, long attributID, string værdi)
+        /*public void GenopretAttributVærdi(long karakterID, long attributID, string værdi)
         {
             bruger.TilføjSingleAttribut(karakterID, attributID, værdi);
         }
@@ -71,7 +72,7 @@ namespace BK_Controller
         public void GenopretMultiattributVærdi(long karakterID, long attributID, string værdi, long multiattributID, long multiattributentryID)
         {
             bruger.TilføjMultiAttribut(karakterID, attributID, værdi, multiattributentryID, multiattributentryID);
-        }
+        }*/
 
         public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
         {

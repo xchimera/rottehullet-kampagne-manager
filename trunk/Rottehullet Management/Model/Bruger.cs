@@ -38,12 +38,12 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
-        public void TilføjKarakter(long karakterID, long kampagneID)
+        public void TilføjKarakter(long karakterID, Kampagne kampagne)
         {
-            karakterer.Add(new Karakter(karakterID, kampagneID));
+            karakterer.Add(new Karakter(karakterID, kampagne));
         }
 
-        public void TilføjSingleAttribut(long karakterID, long attributID, string værdi)
+      /*  public void TilføjSingleAttribut(long karakterID, long attributID, string værdi)
         {
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attributID, værdi);
@@ -53,7 +53,7 @@ namespace Model
         {
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attributID, værdi);
-        }
+        }*/
 
         public Karakter FindKarakter(long karakterID)
         {

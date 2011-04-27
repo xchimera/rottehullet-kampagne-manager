@@ -10,5 +10,6 @@ namespace Interfaces
     {
 		long KarakterID { get; }
 		IEnumerator GetGetVærdiIterator();
+		IKampagne Kampagne { get; }
     }
 }
