@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BK_Controller;
+using Interfaces;
 
 namespace BK_GUI
 {
@@ -14,11 +16,47 @@ namespace BK_GUI
     {
         BrugerKlient brugerklient;
         private long kampagneID;
+        IKampagne ikampagne;
+
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
             this.brugerklient = brugerklient;
             this.kampagneID = kampagneID;
+            
+        }
+
+        public void OpdaterListView()
+        {
+            IKarakter ikarakter;
+            IKarakter iværdi;
+            IEnumerator karakteriterator = brugerklient.GetKarakterIterator();
+            
+            karakteriterator.Reset();
+            lstkaraktere.Items.Clear();
+            
+
+            while (karakteriterator.MoveNext())
+            {
+                ikarakter = (IKarakter)karakteriterator.Current;
+                iværdi = (IKarakter)ikarakter.GetVærdiIterator();
+                ListViewItem item = new ListViewItem();
+
+                if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
+                {
+                    item.Text = ikarakter.KarakterID.ToString();
+                    item.SubItems.Add(ikarakter["navn"]);
+                    lstkaraktere.Items.Add(item);
+                }
+
+            }
+        }
+
+        public void OpretAttributter()
+        {
+            
+
+
         }
 
         private void btnSkiftKampagne_Click(object sender, EventArgs e)
