@@ -235,11 +235,11 @@ namespace Controller
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(id);
 			if (dbFacade.RetKampagneMultiAttributEntry(id, attributID, værdi))
 			{
-				for (int i = 0; i < attribut.Valgmuligheder.Count; i++)
+				foreach (KampagneMultiAttributValgmulighed valgmulighed in attribut.Valgmuligheder)
 				{
-					if (long.Parse(attribut.Valgmuligheder[i][1]) == id)
+					if (valgmulighed.Id == id)
 					{
-						attribut.Valgmuligheder[i][0] = værdi;
+						valgmulighed.Værdi = værdi;
 						break;
 					}
 				}
@@ -269,16 +269,24 @@ namespace Controller
 			return false;
 		}
 
+		/* TODO:
+		 * lav en out string, der beskriver, hvad for en fejl, der sker
+		 */
 		public bool TilføjMultiAttribut(string navn, KampagneAttributType type, int position, List<string> valgmuligheder)
 		{
 			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, kampagne.KampagneID, position);
-			List<string[]> valgmulighedsListe = new List<string[]>();
-			string[] valgmulighed;
+			List<KampagneMultiAttributValgmulighed> valgmulighedsListe = new List<KampagneMultiAttributValgmulighed>();
+			KampagneMultiAttributValgmulighed valgmulighed;
 			foreach (string værdi in valgmuligheder)
 			{
 				long entryID = dbFacade.OpretKampagneMultiAttributEntry(id, værdi);
-				valgmulighed = new string[2] { værdi, entryID.ToString() };
-				valgmulighedsListe.Add(valgmulighed);
+				if (entryID != -1)
+				{
+					valgmulighed = new KampagneMultiAttributValgmulighed(entryID, værdi);
+					valgmulighedsListe.Add(valgmulighed);
+				}
+				else
+					return false;
 			}
 			if (id != -1)
 			{
@@ -293,7 +301,7 @@ namespace Controller
 			long entryID = dbFacade.OpretKampagneMultiAttributEntry(nuværendeAttribut.KampagneAttributID, værdi);
 			if (entryID != -1)
 			{
-				string[] valgmulighed = new string[2] { værdi, entryID.ToString() };
+				KampagneMultiAttributValgmulighed valgmulighed = new KampagneMultiAttributValgmulighed(entryID, værdi);
 				((KampagneMultiAttribut)nuværendeAttribut).TilføjValgmulighed(valgmulighed);
 				return entryID;
 			}

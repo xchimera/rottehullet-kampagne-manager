@@ -46,6 +46,7 @@
     <Compile Include="KampagneAttribut.cs" />
     <Compile Include="KampagneCollection.cs" />
     <Compile Include="KampagneMultiAttribut.cs" />
+    <Compile Include="KampagneMultiAttributValgmulighed.cs" />
     <Compile Include="Karakter.cs" />
     <Compile Include="KarakterAttribut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

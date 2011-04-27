@@ -8,9 +8,9 @@ namespace Model
 {
 	public class KampagneMultiAttribut : KampagneAttribut
 	{
-		private List<string[]> valgmuligheder;
+		private List<KampagneMultiAttributValgmulighed> valgmuligheder;
 
-		public KampagneMultiAttribut(string navn, KampagneAttributType type, List<string[]> valgmuligheder, long kampagneAttributID)
+		public KampagneMultiAttribut(string navn, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, long kampagneAttributID)
 			: base(navn, type, kampagneAttributID)
 		{
 			this.valgmuligheder = valgmuligheder;
@@ -19,27 +19,27 @@ namespace Model
         public KampagneMultiAttribut(string navn, KampagneAttributType type, long kampagneAttributID)
             : base(navn, type, kampagneAttributID)
         {
-            valgmuligheder = new List<string[]>();
+            valgmuligheder = new List<KampagneMultiAttributValgmulighed>();
         }
 
-		public void TilføjValgmulighed(string[] valgmulighed)
+		public void TilføjValgmulighed(KampagneMultiAttributValgmulighed valgmulighed)
 		{
 			valgmuligheder.Add(valgmulighed);
 		}
 
 		public void FjernValgmulighed(long entryID)
 		{
-			for (int i = 0; i < valgmuligheder.Count; i++)
+			foreach (KampagneMultiAttributValgmulighed valgmulighed in valgmuligheder)
 			{
-				if (long.Parse(valgmuligheder[i][1]) == entryID)
+				if (valgmulighed.Id == entryID)
 				{
-					valgmuligheder.RemoveAt(i);
+					valgmuligheder.Remove(valgmulighed);
 					break;
 				}
 			}
 		}
 
-		public List<string[]> Valgmuligheder
+		public List<KampagneMultiAttributValgmulighed> Valgmuligheder
 		{
 			get { return valgmuligheder; }
 			set { valgmuligheder = value; }
