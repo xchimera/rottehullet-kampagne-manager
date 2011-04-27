@@ -88,7 +88,7 @@ namespace BK_GUI
                     textbox.Show();
                     y += textbox.Height + 5;
                     Label label = new Label();
-                    
+                    //lav label med navnet på den
                     this.Controls.Add(textbox);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
