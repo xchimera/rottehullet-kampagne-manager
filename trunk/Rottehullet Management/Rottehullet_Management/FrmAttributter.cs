@@ -27,7 +27,7 @@ namespace Rottehullet_Management
 		private void opdaterListe()
 		{
 			lstAttributter.Items.Clear();
-			IEnumerator iterator = kampagneManager.HentAttributter();
+            IEnumerator iterator = kampagneManager.GetAttributIterator();
 			IKampagneAttribut iKampagneAttribut;
 			ListViewItem linje;
 			iterator.Reset();
