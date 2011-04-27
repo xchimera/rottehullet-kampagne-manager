@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace Model
 {
-    public class Karakter
+    public class Karakter : IKarakter
     {
         List<KampagneAttribut> attributter;
 		Dictionary<string, KarakterAttribut> værdier;
@@ -58,9 +58,20 @@ namespace Model
 			get { return kampagne; }
 		}
 
-		public KarakterAttribut this[string navn]
+		public string this[string navn]
 		{
-			get { return værdier[navn]; }
+			get {
+				KarakterAttribut værdi = værdier[navn];
+				if (værdi is KarakterMultiAttribut)
+				{
+					return ((KarakterMultiAttribut)værdi).Værdi;
+				}
+				else if (værdi is KarakterSingleAttribut)
+				{
+					return ((KarakterSingleAttribut)værdi).Værdi;
+				}
+				return null;
+			}
 		}
     }
 }
