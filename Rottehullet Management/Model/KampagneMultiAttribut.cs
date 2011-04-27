@@ -29,6 +29,18 @@ namespace Model
 			valgmuligheder.Add(valgmulighed);
 		}
 
+		public KampagneMultiAttributValgmulighed FindValgmulighed(long entryID)
+		{
+			foreach (KampagneMultiAttributValgmulighed valgmulighed in valgmuligheder)
+			{
+				if (valgmulighed.Id == entryID)
+				{
+					return valgmulighed;
+				}
+			}
+			return null;
+		}
+
 		public void FjernValgmulighed(long entryID)
 		{
 			foreach (KampagneMultiAttributValgmulighed valgmulighed in valgmuligheder)
@@ -36,7 +48,7 @@ namespace Model
 				if (valgmulighed.Id == entryID)
 				{
 					valgmuligheder.Remove(valgmulighed);
-					break;
+					return;
 				}
 			}
 		}
