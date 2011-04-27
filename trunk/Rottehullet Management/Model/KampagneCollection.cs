@@ -89,5 +89,11 @@ namespace Model
         {
             return kampagner.GetEnumerator();
         }
+
+        public IEnumerator GetValgmulighederIterator(long kampagneID, long attributID)
+        {
+            Kampagne kampagne = FindKampagne(kampagneID);
+            return kampagne.GetValgmulighederIterator(attributID);
+        }
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace Model
 			this.id = id;
 			this.værdi = værdi;
 		}
+
+
 
 		public long Id
 		{

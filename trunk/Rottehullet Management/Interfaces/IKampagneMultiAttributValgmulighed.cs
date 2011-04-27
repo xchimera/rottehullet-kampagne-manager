@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using System.Text;
 
 namespace Interfaces
 {
-    public interface IKampagneMultiAttribut
+    public interface IKampagneMultiAttributValgmulighed
     {
-        IEnumerator GetValgmulighederIterator();
+        long Id { get; }
+        string Værdi { get; }
+        
+
     }
 }
