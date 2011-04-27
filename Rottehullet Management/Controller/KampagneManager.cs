@@ -88,7 +88,6 @@ namespace Controller
 			if (bruger != null)
 			{
 				kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
-				//dbFacade.HentScenarierTilKampagne(kamID);
 				return true;
 			}
 			return false;
@@ -322,7 +321,7 @@ namespace Controller
 		#endregion
 
 		#region Scenarie
-		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
+		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, float pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo, kampagne.KampagneID);
 			if (id != -1)

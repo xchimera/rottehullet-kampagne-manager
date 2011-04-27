@@ -22,7 +22,7 @@ namespace Rottehullet_Management
 			txtNavn.Text = scenarie.Titel;
 			dtpTid.Value = scenarie.Tid;
 			txtSted.Text = scenarie.Sted;
-			txtPris.Text = scenarie.Pris.ToString();
+			txtPris.Text = PrisTilGUI(scenarie.Pris);
 			txtBeskrivelse.Text = scenarie.Beskrivelse;
 			if (scenarie.Overnatning != 0)
 			{
@@ -36,6 +36,41 @@ namespace Rottehullet_Management
 				chkSpisningTvungen.Checked = scenarie.SpisningTvungen;
 			}
 			txtAndetInfo.Text = scenarie.AndetInfo;
+		}
+
+		//Denne metode konverterer pris i form af et tal til en string som passer i
+		//masken på GUIen
+		private string PrisTilGUI(double prisfloat)
+		{
+			string pris = prisfloat.ToString();
+			//Sæt mellemrum ind foran, så der er 5 symboler før kommaet
+			double i = prisfloat;
+			if (i > 0)
+			{
+				while (i < 10000)
+				{
+					pris = "0" + pris;
+					i *= 10;
+				}
+			}
+			else
+			{
+				pris = "0000" + pris;
+			}
+			//Sæt talene efter kommaet ordentligt op
+			i = prisfloat % 1;
+			int j = 0;
+			while (j<2)
+			{
+				if (i == 0)
+				{
+					pris = pris + "0";
+				}
+				i = i*10%1;
+				j++;
+			}
+			
+			return pris;
 		}
 
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)

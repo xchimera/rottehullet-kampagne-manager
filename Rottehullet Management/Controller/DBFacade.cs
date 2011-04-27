@@ -281,6 +281,7 @@ namespace Controller
 
 				reader.Dispose();
 				conn.Close();
+				HentScenarierTilKampagne(kamID);
 			}
 			catch (SqlException)
 			{
@@ -1148,7 +1149,7 @@ namespace Controller
 					string beskrivelse = (string)reader["beskrivelse"];
 					string sted = (string)reader["sted"];
 					string andetInfo = (string)reader["andetInfo"];
-					double pris = (double)reader["pris"];
+					double pris = Convert.ToDouble(reader["pris"]);
 					DateTime tid = (DateTime)reader["dato"];
 					int overnatning = (int)reader["overnatning"];
 					bool spisning = (bool)reader["spisning"];
