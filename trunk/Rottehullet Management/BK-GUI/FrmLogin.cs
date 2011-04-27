@@ -29,6 +29,18 @@ namespace BK_GUI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+			//Inputvalidering
+			if (txtBrugernavn.Text == "")
+			{
+				MessageBox.Show("Indtast venligst brugernavn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			else if (txtKodeord.Text == "")
+			{
+				MessageBox.Show("Indtast venligst adgangskode", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			//Checker databasen for brugerens brugerID
             long brugerID = brugerklient.Login(txtBrugernavn.Text, txtKodeord.Text);
 
             if (brugerID > 0)    //login succesfuldt
@@ -40,7 +52,7 @@ namespace BK_GUI
             }
             else
             {
-                MessageBox.Show("Brugernavn og kodeord passer ikke sammen");
+				MessageBox.Show("Brugernavn og kodeord passer ikke sammen", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }

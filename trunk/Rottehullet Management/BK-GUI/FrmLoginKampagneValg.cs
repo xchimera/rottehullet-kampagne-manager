@@ -48,13 +48,25 @@ namespace BK_GUI
 
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
-            ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]]; 
+            if (lstKampagner.SelectedIndices.Count > 0)
+			{
+				ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]]; 
                 
-                
-            FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient, Convert.ToInt64(item.SubItems[0].Text));
-            this.Hide();
-            frmhovedside.ShowDialog();
-            this.Close();
-        }
+				FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient, Convert.ToInt64(item.SubItems[0].Text));
+				this.Hide();
+				frmhovedside.ShowDialog();
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Vælg en kampagne", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+		}
+
+
+		private void FrmLoginKampagneValg_Load(object sender, EventArgs e)
+		{
+
+		}
     }
 }
