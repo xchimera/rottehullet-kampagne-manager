@@ -88,7 +88,7 @@ namespace Controller
 			if (bruger != null)
 			{
 				kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
-				dbFacade.HentScenarierTilKampagne(kamID);
+				//dbFacade.HentScenarierTilKampagne(kamID);
 				return true;
 			}
 			return false;

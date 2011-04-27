@@ -86,11 +86,18 @@ namespace Rottehullet_Management
 
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
 		{
-			if (lstValgmuligheder.SelectedIndices.Count > 0)
+			if (lstValgmuligheder.SelectedIndices.Count == 1)
 			{
-				ListViewItem linje = lstValgmuligheder.Items[lstValgmuligheder.SelectedIndices[0]];
-				kampagneManager.SletMultiAttributValgmulighed(long.Parse(linje.Text));
-				lstValgmuligheder.Items.Remove(linje);
+				if (MessageBox.Show("Vil du slette dette element?", "Sletning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+					ListViewItem linje = lstValgmuligheder.Items[lstValgmuligheder.SelectedIndices[0]];
+					if (!kampagneManager.SletMultiAttributValgmulighed(long.Parse(linje.Text)))
+					{
+						MessageBox.Show("Der skete en fejl, da elementet skulle slettes i databasen.", "Database fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+					}
+					lstValgmuligheder.Items.Remove(linje);
+				}
 			}
 			else
 			{
