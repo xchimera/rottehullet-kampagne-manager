@@ -140,7 +140,7 @@ namespace BK_Controller
                 IKampagne ikampagne = (IKampagne)kampagne.Current;
                 if (kampagneID == ikampagne.KampagneID)
                 {
-                    return kampagne;
+                    return ikampagne.HentAttributter();
                 }
             }
             return null;

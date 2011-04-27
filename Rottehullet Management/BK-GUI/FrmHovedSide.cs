@@ -16,23 +16,38 @@ namespace BK_GUI
     public partial class FrmHovedSide : Form
     {
         BrugerKlient brugerklient;
-        private long kampagneID;
+        
         IKampagne ikampagne;
 
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
             this.brugerklient = brugerklient;
-            this.kampagneID = kampagneID;
+            FindKampagne(kampagneID);
             OpdaterListView();
             OpretAttributter();
             
         }
 
+
+        public void FindKampagne(long kampagneID)
+        {
+            IEnumerator kampagneiterator = brugerklient.GetKampagneIterator();
+            kampagneiterator.Reset();
+
+            while (kampagneiterator.MoveNext())
+            {
+                ikampagne = (IKampagne)kampagneiterator.Current;
+                if (kampagneID == ikampagne.KampagneID)
+                {
+                    return;
+                }
+            }
+        }
+
         public void OpdaterListView()
         {
             IKarakter ikarakter;
-            IKarakter iværdi;
             IEnumerator karakteriterator = brugerklient.GetKarakterIterator();
             
             karakteriterator.Reset();
@@ -42,7 +57,6 @@ namespace BK_GUI
             while (karakteriterator.MoveNext())
             {
                 ikarakter = (IKarakter)karakteriterator.Current;
-                iværdi = (IKarakter)ikarakter.GetVærdiIterator();
                 ListViewItem item = new ListViewItem();
 
                 if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
@@ -61,7 +75,7 @@ namespace BK_GUI
             IKampagneMultiAttributValgmulighed valgmulighed;
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             int y = 27;
-            int x = lstkaraktere.Width + 10;
+            int x = lstkaraktere.Width + 150;
             attributiterator.Reset();
 
             while (attributiterator.MoveNext())
@@ -71,7 +85,11 @@ namespace BK_GUI
                 {
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x , y);
+                    textbox.Show();
                     y += textbox.Height + 5;
+                    Label label = new Label();
+                    
+                    this.Controls.Add(textbox);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
                 {
@@ -79,6 +97,7 @@ namespace BK_GUI
                     textbox.Location = new Point(x, y);
                     textbox.Multiline = true;
                     y += textbox.Height + 5;
+                    this.Controls.Add(textbox);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
@@ -91,6 +110,7 @@ namespace BK_GUI
                         combobox.Items.Add(valgmulighed.Værdi);
                     }
                     y += combobox.Height + 5;
+                    this.Controls.Add(combobox);
                 }
             }
                     

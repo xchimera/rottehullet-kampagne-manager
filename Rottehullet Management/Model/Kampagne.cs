@@ -98,7 +98,7 @@ namespace Model
 			return null;
 		}
 
-		public IEnumerator GetAttributIterator()
+		public IEnumerator HentAttributter()
 		{
 			return attributter.GetEnumerator();
 		}
