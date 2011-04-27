@@ -6,21 +6,13 @@ using Enum;
 
 namespace Model
 {
-    public class KarakterAttribut
+    public abstract class KarakterAttribut
     {
-		string værdi;
         KampagneAttribut kampagneattribut;
 
-        public KarakterAttribut(string værdi, KampagneAttribut kampagneattribut)
+        public KarakterAttribut(KampagneAttribut kampagneattribut)
         {
-            this.værdi = værdi;
             this.kampagneattribut = kampagneattribut;
         }
-
-		public string Værdi
-		{
-			get { return værdi; }
-			set { værdi = value; }
-		}
     }
 }

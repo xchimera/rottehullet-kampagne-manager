@@ -43,17 +43,17 @@ namespace Model
             karakterer.Add(new Karakter(karakterID, kampagne));
         }
 
-      /*  public void TilføjSingleAttribut(long karakterID, long attributID, string værdi)
+		public void TilføjAttribut(long karakterID, KampagneAttribut attribut, string værdi)
         {
             Karakter karakter = FindKarakter(karakterID);
-            karakter.TilføjVærdi(attributID, værdi);
+            karakter.TilføjVærdi(attribut, værdi);
         }
 
-        public void TilføjMultiAttribut(long karakterID, long attributID, string værdi, long multiattributID, long multiattributentryID)
+        public void TilføjAttribut(long karakterID, KampagneAttribut attribut, KampagneMultiAttributValgmulighed valg)
         {
             Karakter karakter = FindKarakter(karakterID);
-            karakter.TilføjVærdi(attributID, værdi);
-        }*/
+            karakter.TilføjVærdi(attribut, valg);
+        }
 
         public Karakter FindKarakter(long karakterID)
         {
