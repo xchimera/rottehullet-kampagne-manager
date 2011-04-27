@@ -206,7 +206,7 @@ namespace BK_Controller
 			{
 				conn.Open();
 				reader = cmd.ExecuteReader();
-				long tmpKarakterID = null;
+				long tmpKarakterID = 0;
 				while (reader.Read())
 				{
 					kampagneID = (long)reader["kampagneID"];

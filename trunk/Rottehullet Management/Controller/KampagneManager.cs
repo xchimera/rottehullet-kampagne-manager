@@ -204,7 +204,7 @@ namespace Controller
 
         public IEnumerator GetAttributIterator()
 		{
-            return kampagne.GetAttributIterator();
+            return kampagne.HentAttributter();
 		}
 
 		public IEnumerator HentValgmuligheder()
