@@ -26,10 +26,12 @@ namespace Rottehullet_Management
 			if (txtBrugernavn.Text == "")
 			{
 				MessageBox.Show("Indtast venligst brugernavn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
 			}
 			else if (txtKodeord.Text == "")
 			{
 				MessageBox.Show("Indtast venligst adgangskode", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
 			}
 			//Checker databasen for brugerens brugerID
             long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text);

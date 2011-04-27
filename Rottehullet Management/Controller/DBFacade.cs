@@ -1082,7 +1082,7 @@ namespace Controller
 			par.Value = sted;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@pris", SqlDbType.Decimal);
+			par = new SqlParameter("@pris", SqlDbType.Float);
 			par.Value = pris;
 			cmd.Parameters.Add(par);
 
