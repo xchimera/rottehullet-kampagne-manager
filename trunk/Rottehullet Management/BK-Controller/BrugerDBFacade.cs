@@ -210,8 +210,10 @@ namespace BK_Controller
                 {
                     kampagneID = (long)reader["kampagneID"];
                     karakterID = (long)reader["karakterID"];
-                    attributID = (long)reader["attributID"];
-                    
+                    if (reader["attributID"] != System.DBNull.Value)
+                    {
+                        attributID = (long)reader["attributID"];
+                    }
                     if(reader["multiattributID"] != System.DBNull.Value)
                     {
                         multiattributID = (long)reader["multiattributID"];
