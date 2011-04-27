@@ -47,6 +47,11 @@ namespace Rottehullet_Management
 
 		private void btnTilføj_Click(object sender, EventArgs e)
 		{
+			if (txtNavn.Text == "")
+			{
+				MessageBox.Show("Attributten skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			KampagneAttributType type = (KampagneAttributType)cboType.SelectedIndex;
 			if (cboType.SelectedIndex != 2)
 			{
@@ -66,6 +71,11 @@ namespace Rottehullet_Management
 
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)
 		{
+			if (txtValgmulighed.Text == "")
+			{
+				MessageBox.Show("Elementet skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			ListViewItem item = new ListViewItem();
 			item.Text = txtValgmulighed.Text;
 			lstValgmuligheder.Items.Add(item);
@@ -75,7 +85,10 @@ namespace Rottehullet_Management
 		{
 			if (lstValgmuligheder.SelectedItems.Count == 1)
 			{
-				lstValgmuligheder.Items.RemoveAt(lstValgmuligheder.SelectedIndices[0]);
+				if (MessageBox.Show("Vil du slette dette element?", "Sletning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+					lstValgmuligheder.Items.RemoveAt(lstValgmuligheder.SelectedIndices[0]);
+				}
 			}
 		}
 
