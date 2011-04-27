@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
@@ -10,23 +11,20 @@ namespace Model
     {
         List<KampagneAttribut> attributter;
 		Dictionary<string, KarakterAttribut> værdier;
-        Dictionary<long, string> singleværdier;
-        Dictionary<long[], string> multiværdier;
         long karakterID;
-        long kampagneID;
+		Kampagne kampagne;
 
-        public Karakter(long karakterID, long kampagneID)
+        public Karakter(long karakterID, Kampagne kampagne)
         {
             this.karakterID = karakterID;
-            this.kampagneID = kampagneID;
-            attributter = new List<KampagneAttribut>();
-            singleværdier = new Dictionary<long, string>();
+            this.kampagne = kampagne;
 			værdier = new Dictionary<string, KarakterAttribut>();
         }
 
-        public void TilføjVærdi(long kampagneattributID, string værdi)
+        public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi)
         {
-            singleværdier.Add(kampagneattributID, værdi);
+			KarakterAttribut attribut = new KarakterAttribut(værdi, kampagneAttribut);
+            værdier.Add(kampagneAttribut.Navn, attribut);
         }
 
         public IEnumerator GetVærdiIterator()
@@ -38,5 +36,10 @@ namespace Model
         {
             get { return karakterID; }
         }
+
+		public IKampagne Kampagne
+		{
+			get { return kampagne; }
+		}
     }
 }
