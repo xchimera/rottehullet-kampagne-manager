@@ -64,16 +64,18 @@ namespace BK_Controller
             bruger.TilføjKarakter(karakterID, kampagne);
         }
 
-        public void GenopretAttributVærdi(long karakterID, long attributID, string værdi)
+        public void GenopretAttributVærdi(long karakterID, long kampagneID, long attributID, string værdi)
         {
-			KampagneAttribut attribut = null;
+			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
+			KampagneAttribut attribut = kampagne.FindAttribut(attributID);
             bruger.TilføjAttribut(karakterID, attribut, værdi);
         }
 
-		public void GenopretMultiattributVærdi(long karakterID, long attributID, long multientryID)
+		public void GenopretMultiattributVærdi(long karakterID, long kampagneID, long attributID, long multientryID)
 		{
-			KampagneAttribut attribut = null;
-			KampagneMultiAttributValgmulighed valg = null;
+			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
+			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(attributID);
+			KampagneMultiAttributValgmulighed valg = attribut.FindValgmulighed(multientryID);
             bruger.TilføjAttribut(karakterID, attribut, valg);
         }
 
