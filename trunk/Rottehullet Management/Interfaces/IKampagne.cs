@@ -15,7 +15,7 @@ namespace Interfaces
 		string Hjemmeside { get; }
 		//IBruger Topbruger { get; }
         KampagneStatus Status { get; }
-        IEnumerator GetAttributIterator();
+        IEnumerator HentAttributter();
 
 	}
 }
