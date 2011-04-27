@@ -8,7 +8,7 @@ using Interfaces;
 
 namespace Model
 {
-	public class KampagneMultiAttribut : KampagneAttribut 
+	public class KampagneMultiAttribut : KampagneAttribut , IKampagneMultiAttribut
 	{
 		private List<KampagneMultiAttributValgmulighed> valgmuligheder;
 

@@ -58,6 +58,7 @@ namespace BK_GUI
         public void OpretAttributter()
         {
             IKampagneAttribut ikampagneattribut;
+            IKampagneMultiAttributValgmulighed valgmulighed;
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             int y = 27;
             int x = lstkaraktere.Width + 10;
@@ -79,11 +80,18 @@ namespace BK_GUI
                     textbox.Multiline = true;
                     y += textbox.Height + 5;
                 }
-                if(ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
+                if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
+                    IEnumerator valgmulighediterator = brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID, ikampagne.KampagneID);
                     ComboBox combobox = new ComboBox();
-                    combobox.Location = new Point(x , y);
-                    combobox.Items.Add(ikampagneattribut
+                    combobox.Location = new Point(x, y);
+                    while (valgmulighediterator.MoveNext())
+                    {
+                        valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
+                        combobox.Items.Add(valgmulighed.Værdi);
+                    }
+                    y += combobox.Height + 5;
+                }
             }
                     
 

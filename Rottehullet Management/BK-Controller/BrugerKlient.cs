@@ -127,6 +127,11 @@ namespace BK_Controller
             return bruger.GetVærdiIterator(attributID);
         }
 
+        public System.Collections.IEnumerator GetValgmulighederIterator(long attributID, long kampagneID)
+        {
+            return kampagnecollection.GetValgmulighederIterator(kampagneID, attributID);
+        }
+
         public IEnumerator GetAttributIterator(long kampagneID)
         {
             IEnumerator kampagne = kampagnecollection.GetKampagneIterator();

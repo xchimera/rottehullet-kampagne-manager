@@ -103,6 +103,12 @@ namespace Model
 			return attributter.GetEnumerator();
 		}
 
+        public IEnumerator GetValgmulighederIterator(long attributID)
+        {
+            KampagneMultiAttribut kampagnemultiattribut = (KampagneMultiAttribut)FindAttribut(attributID);
+            return kampagnemultiattribut.GetValgmulighederIterator();
+        }
+
 		/// <summary>
 		/// Opretter en single attribut og tilføjer den til listen
 		/// </summary>
