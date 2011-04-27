@@ -41,5 +41,10 @@ namespace Model
 		{
 			get { return kampagne; }
 		}
+
+		public KarakterAttribut this[string navn]
+		{
+			get { return værdier[navn]; }
+		}
     }
 }
