@@ -9,7 +9,8 @@ namespace Model
     public class Karakter
     {
         List<KampagneAttribut> attributter;
-        Dictionary<long, string> værdier;
+        Dictionary<long, string> singleværdier;
+        Dictionary<long[], string> multiværdier;
         long karakterID;
         long kampagneID;
 
@@ -18,12 +19,12 @@ namespace Model
             this.karakterID = karakterID;
             this.kampagneID = kampagneID;
             attributter = new List<KampagneAttribut>();
-            værdier = new Dictionary<long, string>();
+            singleværdier = new Dictionary<long, string>();
         }
 
         public void TilføjVærdi(long kampagneattributID, string værdi)
         {
-            værdier.Add(kampagneattributID, værdi);
+            singleværdier.Add(kampagneattributID, værdi);
         }
 
         public IEnumerator GetVærdiIterator()
