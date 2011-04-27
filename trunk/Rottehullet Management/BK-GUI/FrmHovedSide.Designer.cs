@@ -33,15 +33,21 @@
             this.btnNyOpdaterDisabled = new System.Windows.Forms.Button();
             this.btnTilmeldTilScenarie = new System.Windows.Forms.Button();
             this.btnSkiftKampagne = new System.Windows.Forms.Button();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.karakternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstkaraktere
             // 
+            this.lstkaraktere.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.karakternavn});
             this.lstkaraktere.Location = new System.Drawing.Point(41, 27);
             this.lstkaraktere.Name = "lstkaraktere";
             this.lstkaraktere.Size = new System.Drawing.Size(192, 163);
             this.lstkaraktere.TabIndex = 0;
             this.lstkaraktere.UseCompatibleStateImageBehavior = false;
+            this.lstkaraktere.View = System.Windows.Forms.View.Details;
             // 
             // btnNyKarakter
             // 
@@ -81,6 +87,16 @@
             this.btnSkiftKampagne.UseVisualStyleBackColor = true;
             this.btnSkiftKampagne.Click += new System.EventHandler(this.btnSkiftKampagne_Click);
             // 
+            // ID
+            // 
+            this.ID.Text = "";
+            this.ID.Width = 0;
+            // 
+            // karakternavn
+            // 
+            this.karakternavn.Text = "Navn";
+            this.karakternavn.Width = 188;
+            // 
             // FrmHovedSide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,5 +120,7 @@
         private System.Windows.Forms.Button btnNyOpdaterDisabled;
         private System.Windows.Forms.Button btnTilmeldTilScenarie;
         private System.Windows.Forms.Button btnSkiftKampagne;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader karakternavn;
     }
 }

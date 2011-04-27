@@ -9,7 +9,6 @@ namespace Model
 {
     public class Karakter : IKarakter
     {
-        List<KampagneAttribut> attributter;
 		Dictionary<string, KarakterAttribut> værdier;
         long karakterID;
 		Kampagne kampagne;

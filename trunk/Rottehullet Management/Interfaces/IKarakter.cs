@@ -9,7 +9,7 @@ namespace Interfaces
     public interface IKarakter
     {
 		long KarakterID { get; }
-		IEnumerator GetGetVærdiIterator();
+		IEnumerator GetVærdiIterator();
 		IKampagne Kampagne { get; }
 		string this[string navn] { get; }
     }

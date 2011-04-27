@@ -114,6 +114,16 @@ namespace BK_Controller
             return kampagnecollection.GetKampagneIterator();
         }
 
+        public System.Collections.IEnumerator GetKarakterIterator()
+        {
+            return bruger.GetKarakterIterator();
+        }
+
+        public System.Collections.IEnumerator GetVærdiIterator(long attributID)
+        {
+            return bruger.GetVærdiIterator(attributID);
+        }
+
 		public string KrypterKodeord(string kodeord)
 		{
             byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);

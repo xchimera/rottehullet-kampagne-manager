@@ -77,6 +77,11 @@ namespace Model
             return null;
         }
 
+        public IEnumerator GetKarakterIterator()
+        {
+            return karakterer.GetEnumerator();
+        }
+
         // Properties
         public bool Veganer
         {
