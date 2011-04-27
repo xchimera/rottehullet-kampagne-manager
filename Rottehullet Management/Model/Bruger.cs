@@ -54,7 +54,7 @@ namespace Model
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attribut, valg);
         }
-
+		
         public Karakter FindKarakter(long karakterID)
         {
             foreach (Karakter karakter in karakterer)
