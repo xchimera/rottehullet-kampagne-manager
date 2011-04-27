@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using Enum;
+using Interfaces;
 
 namespace Model
 {
-	public class KampagneMultiAttribut : KampagneAttribut
+	public class KampagneMultiAttribut : KampagneAttribut 
 	{
 		private List<KampagneMultiAttributValgmulighed> valgmuligheder;
 
@@ -38,6 +40,11 @@ namespace Model
 				}
 			}
 		}
+
+        public IEnumerator GetValgmulighederIterator()
+        {
+            return valgmuligheder.GetEnumerator();
+        }
 
 		public List<KampagneMultiAttributValgmulighed> Valgmuligheder
 		{

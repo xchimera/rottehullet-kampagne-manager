@@ -24,6 +24,8 @@ namespace BK_GUI
             InitializeComponent();
             this.brugerklient = brugerklient;
             this.kampagneID = kampagneID;
+            OpdaterListView();
+            OpretAttributter();
             
         }
 
@@ -67,9 +69,21 @@ namespace BK_GUI
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Singleline)
                 {
                     TextBox textbox = new TextBox();
-                    textbox.Location = new Point(x, y);
+                    textbox.Location = new Point(x , y);
                     y += textbox.Height + 5;
                 }
+                if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
+                {
+                    TextBox textbox = new TextBox();
+                    textbox.Location = new Point(x, y);
+                    textbox.Multiline = true;
+                    y += textbox.Height + 5;
+                }
+                if(ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
+                {
+                    ComboBox combobox = new ComboBox();
+                    combobox.Location = new Point(x , y);
+                    combobox.Items.Add(ikampagneattribut
             }
                     
 
