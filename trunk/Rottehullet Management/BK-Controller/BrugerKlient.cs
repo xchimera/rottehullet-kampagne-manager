@@ -61,12 +61,12 @@ namespace BK_Controller
 			bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 		}
 
-		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID)
+		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID, bool spiser, bool overnatter)
 		{
 			if (true)
 			{
 				Scenarie scenarie = nuværendeKampagne.FindScenarie(scenarieID);
-				bruger.TilmeldKarakterTilScenarie(karakterID, scenarie);
+				bruger.TilmeldKarakterTilScenarie(karakterID, scenarie, spiser, overnatter);
 			}
 			return false;
 		}
