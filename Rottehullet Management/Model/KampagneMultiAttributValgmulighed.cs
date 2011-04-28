@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
-	public class KampagneMultiAttributValgmulighed
+	public class KampagneMultiAttributValgmulighed : IKampagneMultiAttributValgmulighed
 	{
 		long id;
 		string værdi;

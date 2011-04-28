@@ -16,34 +16,20 @@ namespace BK_GUI
     public partial class FrmHovedSide : Form
     {
         BrugerKlient brugerklient;
-        
         IKampagne ikampagne;
+        List<Control> kontroller;
 
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
             this.brugerklient = brugerklient;
-            FindKampagne(kampagneID);
+            kontroller = new List<Control>();
+            ikampagne = brugerklient.FindKampagne(kampagneID);
             OpdaterListView();
             OpretAttributter();
             
         }
 
-
-        public void FindKampagne(long kampagneID)
-        {
-            IEnumerator kampagneiterator = brugerklient.GetKampagneIterator();
-            kampagneiterator.Reset();
-
-            while (kampagneiterator.MoveNext())
-            {
-                ikampagne = (IKampagne)kampagneiterator.Current;
-                if (kampagneID == ikampagne.KampagneID)
-                {
-                    return;
-                }
-            }
-        }
 
         public void OpdaterListView()
         {
@@ -75,7 +61,7 @@ namespace BK_GUI
             IKampagneMultiAttributValgmulighed valgmulighed;
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             int y = 27;
-            int x = lstkaraktere.Width + 150;
+            int x = lstkaraktere.Width + 100;
             attributiterator.Reset();
 
             while (attributiterator.MoveNext())
@@ -86,18 +72,26 @@ namespace BK_GUI
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x , y);
                     textbox.Show();
-                    y += textbox.Height + 5;
                     Label label = new Label();
-                    //lav label med navnet på den
+                    label.Text = ikampagneattribut.Navn;
+                    label.Location = new Point(x - textbox.Width+50, y);
                     this.Controls.Add(textbox);
+                    this.Controls.Add(label);
+                    y += textbox.Height + 5;
+                    kontroller.Add(textbox);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
                 {
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x, y);
                     textbox.Multiline = true;
+                    Label label = new Label();
+                    label.Text = ikampagneattribut.Navn;
+                    label.Location = new Point(x - textbox.Width+50, y);
                     y += textbox.Height + 5;
                     this.Controls.Add(textbox);
+                    this.Controls.Add(label);
+                    kontroller.Add(textbox);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
@@ -109,8 +103,14 @@ namespace BK_GUI
                         valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
                     }
+                    Label label = new Label();
+                    label.Text = ikampagneattribut.Navn;
+                    label.Location = new Point(x - combobox.Width, y);
+                    label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
                     y += combobox.Height + 5;
                     this.Controls.Add(combobox);
+                    this.Controls.Add(label);
+                    kontroller.Add(combobox);
                 }
             }
                     
@@ -132,6 +132,17 @@ namespace BK_GUI
             this.Hide();
             scenarietilmelding.ShowDialog();
             this.Show();
+        }
+
+        private void btnNyKarakter_Click(object sender, EventArgs e)
+        {
+            btnNyOpdaterDisabled.Text = "Indsend karakter";
+            OpretAttributter();
+        }
+
+        private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            btnNyOpdaterDisabled.Text = "Opdater karakter"; 
         }
     }
 }
