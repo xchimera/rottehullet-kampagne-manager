@@ -42,6 +42,9 @@
 			this.btnOpstartScenarie = new System.Windows.Forms.Button();
 			this.btnÅbenKampagne = new System.Windows.Forms.Button();
 			this.btnRetScenarie = new System.Windows.Forms.Button();
+			this.lstKarakterer = new System.Windows.Forms.ListBox();
+			this.btnPrintKarakterer = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -174,11 +177,40 @@
 			this.btnRetScenarie.UseVisualStyleBackColor = true;
 			this.btnRetScenarie.Click += new System.EventHandler(this.btnRetScenarie_Click);
 			// 
+			// lstKarakterer
+			// 
+			this.lstKarakterer.FormattingEnabled = true;
+			this.lstKarakterer.Location = new System.Drawing.Point(532, 36);
+			this.lstKarakterer.Name = "lstKarakterer";
+			this.lstKarakterer.Size = new System.Drawing.Size(120, 238);
+			this.lstKarakterer.TabIndex = 16;
+			// 
+			// btnPrintKarakterer
+			// 
+			this.btnPrintKarakterer.Location = new System.Drawing.Point(532, 280);
+			this.btnPrintKarakterer.Name = "btnPrintKarakterer";
+			this.btnPrintKarakterer.Size = new System.Drawing.Size(120, 23);
+			this.btnPrintKarakterer.TabIndex = 17;
+			this.btnPrintKarakterer.Text = "Print";
+			this.btnPrintKarakterer.UseVisualStyleBackColor = true;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(532, 14);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(76, 13);
+			this.label4.TabIndex = 18;
+			this.label4.Text = "Alle Karakterer";
+			// 
 			// FrmHovedside
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(664, 315);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.btnPrintKarakterer);
+			this.Controls.Add(this.lstKarakterer);
 			this.Controls.Add(this.btnRetScenarie);
 			this.Controls.Add(this.btnÅbenKampagne);
 			this.Controls.Add(this.btnOpstartScenarie);
@@ -218,5 +250,8 @@
 		private System.Windows.Forms.Button btnOpstartScenarie;
 		private System.Windows.Forms.Button btnÅbenKampagne;
 		private System.Windows.Forms.Button btnRetScenarie;
+		private System.Windows.Forms.ListBox lstKarakterer;
+		private System.Windows.Forms.Button btnPrintKarakterer;
+		private System.Windows.Forms.Label label4;
     }
 }

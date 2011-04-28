@@ -51,6 +51,16 @@ namespace Controller
 		}
 		#endregion
 
+		#region Karakter
+		//public IKarakter[] FindKaraktererPåKampagne(long kamID)
+		//{
+		//    foreach (Bruger bruger in BrugerCollection)
+		//    {
+				
+		//    }
+		//}
+		#endregion
+
 		#region KampagneListe
 		public System.Collections.IEnumerable GetBrugersKampagneIterator()
 		{
@@ -273,7 +283,7 @@ namespace Controller
 		 */
 		public bool TilføjMultiAttribut(string navn, KampagneAttributType type, int position, List<string> valgmuligheder)
 		{
-			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, kampagne.KampagneID, position);
+			long id = dbFacade.OpretKampagneAttribut(navn, (int)type, kampagne.KampagneID, position);
 			List<KampagneMultiAttributValgmulighed> valgmulighedsListe = new List<KampagneMultiAttributValgmulighed>();
 			KampagneMultiAttributValgmulighed valgmulighed;
 			foreach (string værdi in valgmuligheder)
@@ -309,7 +319,7 @@ namespace Controller
 
 		public bool TilføjSingleAttribut(string navn, KampagneAttributType type, int position)
 		{
-			long id = dbFacade.OpretKampagneSingleAttribut(navn, (int)type, kampagne.KampagneID, position);
+			long id = dbFacade.OpretKampagneAttribut(navn, (int)type, kampagne.KampagneID, position);
 			if (id != -1)
 			{
 				kampagne.TilføjSingleAttribut(navn, type, id, position);

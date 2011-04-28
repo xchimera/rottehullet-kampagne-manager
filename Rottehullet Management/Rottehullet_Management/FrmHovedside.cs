@@ -50,6 +50,28 @@ namespace Rottehullet_Management
 			}
         }
 
+		//private void OpdaterLstKarakterer()
+		//{
+		//    string[] karakterer;
+		//    IEnumerator kampagneiterator = kampagnemanager.GetBrugerKampagne();
+		//    kampagneiterator.Reset();
+		//    lstKampagner.Items.Clear();
+
+
+		//    while (kampagneiterator.MoveNext())
+		//    {
+		//        kampagne = (string[])kampagneiterator.Current;
+		//        ListViewItem item = new ListViewItem();
+
+
+		//        item.Text = Convert.ToString(kampagne[0]);
+		//        item.SubItems.Add(Convert.ToString(kampagne[1]));
+
+		//        lstKampagner.Items.Add(item);
+		//    }
+		//    lstKampagner.Items[0].Selected = true;
+		//}
+
         private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
 			InputBoxSingleline singleline = new InputBoxSingleline(Kampagne.Navn);

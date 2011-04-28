@@ -15,7 +15,7 @@ namespace Model
             ListBrugere = new List<Bruger>();
         }
 
-        #region Tilføj
+        #region Metoder
 
 
         public void OpretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
