@@ -363,6 +363,7 @@ namespace BK_Controller
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 karakterID = (long)par.Value;
+                brugerklient.GenopretKarakter(karakterID, kampagneID);
 
                 værdiiterator.Reset();
 
@@ -380,11 +381,11 @@ namespace BK_Controller
                         cmd.Parameters.Add(par);
 
                         par = new SqlParameter("@attributID", SqlDbType.BigInt);
-                        par.Value = textbox.Name;
+                        par.Value = Convert.ToInt64(textbox.Name);
                         cmd.Parameters.Add(par);
 
                         par = new SqlParameter("@værdi", SqlDbType.NVarChar);
-                        par.Value = control.Text;
+                        par.Value = textbox.Text;
                         cmd.Parameters.Add(par);
 
                         par = new SqlParameter("@karakterAttributID", SqlDbType.BigInt);
@@ -393,6 +394,8 @@ namespace BK_Controller
 
                         cmd.ExecuteNonQuery();
                         karakterattributID = (long)par.Value;
+                        
+                        brugerklient.GenopretAttributVærdi(karakterID, kampagneID, Convert.ToInt64(textbox.Name), textbox.Text);
                     }
                     else if (control is ComboBox)
                     {
@@ -417,6 +420,8 @@ namespace BK_Controller
 
                         cmd.ExecuteNonQuery();
                         karakterattributID = (long)par.Value;
+
+                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, Convert.ToInt64(combobox.Name), (long)combobox.SelectedIndex);
                     }
                 }
                 conn.Close();
