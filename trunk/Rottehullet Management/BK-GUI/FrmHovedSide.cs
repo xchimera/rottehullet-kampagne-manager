@@ -26,8 +26,6 @@ namespace BK_GUI
             kontroller = new List<Control>();
             ikampagne = brugerklient.FindKampagne(kampagneID);
             OpdaterListView();
-            OpretAttributter();
-            
         }
 
 
@@ -71,7 +69,7 @@ namespace BK_GUI
                 {
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x , y);
-                    textbox.Show();
+                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x - textbox.Width+50, y);
@@ -85,6 +83,7 @@ namespace BK_GUI
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x, y);
                     textbox.Multiline = true;
+                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x - textbox.Width+50, y);
@@ -103,6 +102,7 @@ namespace BK_GUI
                         valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
                     }
+                    combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x - combobox.Width, y);
@@ -138,11 +138,33 @@ namespace BK_GUI
         {
             btnNyOpdaterDisabled.Text = "Indsend karakter";
             OpretAttributter();
+            btnNyKarakter.Enabled = false;
         }
 
         private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             btnNyOpdaterDisabled.Text = "Opdater karakter"; 
+        }
+
+        private void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
+        {
+            if (btnNyOpdaterDisabled.Text == "Indsend karakter")
+            {
+                if (brugerklient.NyKarakter(kontroller.GetEnumerator()))
+                {
+                    MessageBox.Show("Brugeren er oprettet");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Fejl under oprettelse af bruger", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (btnNyOpdaterDisabled.Text == "Opdater karakter")
+            {
+
+            }
+
         }
     }
 }
