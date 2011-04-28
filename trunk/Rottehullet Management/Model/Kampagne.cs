@@ -17,7 +17,7 @@ namespace Model
 		private string navn, hjemmeside, beskrivelse;
 		private Bruger topbruger;
         private KampagneStatus status;
-
+		private List<Karakter> karaktererPåKampagne;
 
 		#endregion
 
@@ -28,19 +28,20 @@ namespace Model
 			this.kampagneID = kampagneID;
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
+			karaktererPåKampagne = new List<Karakter>();
 		}
 
-        public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
-        {
-            this.navn = navn;
-            this.beskrivelse = beskrivelse;
-            this.hjemmeside = hjemmeside;
-            this.topbruger = null;
-            this.kampagneID = kampagneID;
-            this.status = status;
-			attributter = new List<KampagneAttribut>();
-			scenarier = new List<Scenarie>();
-        }
+		//public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
+		//{
+		//    this.navn = navn;
+		//    this.beskrivelse = beskrivelse;
+		//    this.hjemmeside = hjemmeside;
+		//    this.topbruger = null;
+		//    this.kampagneID = kampagneID;
+		//    this.status = status;
+		//    attributter = new List<KampagneAttribut>();
+		//    scenarier = new List<Scenarie>();
+		//}
 
 		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, Bruger topbruger, KampagneStatus status)
 		{
@@ -52,6 +53,7 @@ namespace Model
             this.status = status;
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
+			karaktererPåKampagne = new List<Karakter>();
 		}
 
 		/// <summary>
