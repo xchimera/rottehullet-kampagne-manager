@@ -158,6 +158,15 @@ namespace BK_Controller
 			return null;
 		}
 
+        public bool NyKarakter(IEnumerator værdi)
+        {
+            if (brugerdbfacade.NyKarakter(værdi, nuværendeKampagne.KampagneID, bruger.BrugerID))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public IKampagne FindKampagne(long kampagneID)
         {

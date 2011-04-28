@@ -80,6 +80,7 @@
             this.btnNyOpdaterDisabled.TabIndex = 2;
             this.btnNyOpdaterDisabled.Text = "Ny/Opdater";
             this.btnNyOpdaterDisabled.UseVisualStyleBackColor = true;
+            this.btnNyOpdaterDisabled.Click += new System.EventHandler(this.btnNyOpdaterDisabled_Click);
             // 
             // btnTilmeldTilScenarie
             // 
