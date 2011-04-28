@@ -74,6 +74,16 @@ namespace Model
 			return scenarie;
 		}
 
+		public Scenarie FindScenarie(long scenarieID)
+		{
+			foreach (Scenarie scenarie in scenarier)
+			{
+				if (scenarie.Id == scenarieID)
+					return scenarie;
+			}
+			return null;
+		}
+
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneAttribut singleattribut = new KampagneAttribut(navn, type, attributID);

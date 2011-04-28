@@ -63,6 +63,11 @@ namespace BK_Controller
 
 		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID)
 		{
+			if (true)
+			{
+				Scenarie scenarie = nuværendeKampagne.FindScenarie(scenarieID);
+				bruger.TilmeldKarakterTilScenarie(karakterID, scenarie);
+			}
 			return false;
 		}
 

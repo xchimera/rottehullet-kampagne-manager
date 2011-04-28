@@ -53,6 +53,7 @@
     <Compile Include="KarakterSingleAttribut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarie.cs" />
+    <Compile Include="Tilmelding.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enum\Enum.csproj">
