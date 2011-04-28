@@ -278,55 +278,55 @@ namespace Controller
 			}
 
 			//Opretning af brugere
-			string navn;
-			string beskrivelse = "";
-			string hjemmeside = "";
-			long topbrugerID;
-			KampagneStatus status;
+		//    string navn;
+		//    string beskrivelse = "";
+		//    string hjemmeside = "";
+		//    long topbrugerID;
+		//    KampagneStatus status;
 
-			cmd.CommandText = "HentKampagne";
-			cmd.Parameters.Clear();
-			SqlParameter par;
-			SqlDataReader reader;
+		//    cmd.CommandText = "HentKampagne";
+		//    cmd.Parameters.Clear();
+		//    SqlParameter par;
+		//    SqlDataReader reader;
 
-			par = new SqlParameter("@kamID", SqlDbType.BigInt);
-			par.Value = kamID;
-			cmd.Parameters.Add(par);
+		//    par = new SqlParameter("@kamID", SqlDbType.BigInt);
+		//    par.Value = kamID;
+		//    cmd.Parameters.Add(par);
 
-			try
-			{
-				conn.Open();
-				reader = cmd.ExecuteReader();
+		//    try
+		//    {
+		//        conn.Open();
+		//        reader = cmd.ExecuteReader();
 
-				while (reader.Read())
-				{
-					navn = (string)reader["navn"];
-					beskrivelse = (string)reader["beskrivelse"];
-					hjemmeside = (string)reader["hjemmeside"];
-					topbrugerID = (long)reader["topbrugerID"];
-					status = (KampagneStatus)reader["status"];
+		//        while (reader.Read())
+		//        {
+		//            navn = (string)reader["navn"];
+		//            beskrivelse = (string)reader["beskrivelse"];
+		//            hjemmeside = (string)reader["hjemmeside"];
+		//            topbrugerID = (long)reader["topbrugerID"];
+		//            status = (KampagneStatus)reader["status"];
 
-					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
-					{
-						conn.Close();
-						return false;
-					}
-				}
+		//            if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
+		//            {
+		//                conn.Close();
+		//                return false;
+		//            }
+		//        }
 
-				reader.Dispose();
-				conn.Close();
-				HentScenarierTilKampagne(kamID);
-			}
-			catch (SqlException)
-			{
-				if (conn.State == ConnectionState.Open)
-				{
-					conn.Close();
-				}
-				return false;
-			}
+		//        reader.Dispose();
+		//        conn.Close();
+		//        HentScenarierTilKampagne(kamID);
+		//    }
+		//    catch (SqlException)
+		//    {
+		//        if (conn.State == ConnectionState.Open)
+		//        {
+		//            conn.Close();
+		//        }
+		//        return false;
+		//    }
 
-			return true;
+		    return true;
 		}
 
 		/// <summary>
