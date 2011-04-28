@@ -12,14 +12,14 @@ namespace Model
 		Dictionary<string, KarakterAttribut> værdier;
         long karakterID;
 		Kampagne kampagne;
-		List<Scenarie> karakterScenarier;
+		List<Tilmelding> scenarieTilmeldinger;
 
         public Karakter(long karakterID, Kampagne kampagne)
         {
             this.karakterID = karakterID;
             this.kampagne = kampagne;
 			værdier = new Dictionary<string, KarakterAttribut>();
-			karakterScenarier = new List<Scenarie>();
+			scenarieTilmeldinger = new List<Tilmelding>();
         }
 		#region metoder
 		/// <summary>
@@ -44,9 +44,10 @@ namespace Model
 			værdier.Add(kampagneAttribut.Navn, attribut);
 		}
 
-		public void TilmedTilScenarie(Scenarie scenarie)
+		public void TilmedTilScenarie(Scenarie scenarie, bool spiser, bool overnatter)
 		{
-			karakterScenarier.Add(scenarie);
+			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, overnatter);
+			scenarieTilmeldinger.Add(tilmelding);
 		}
 		#endregion
 

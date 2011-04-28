@@ -55,10 +55,10 @@ namespace Model
             karakter.TilføjVærdi(attribut, valg);
         }
 
-		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie)
+		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie, bool spiser, bool overnatter)
 		{
 			Karakter karakter = FindKarakter(karakterID);
-			karakter.TilmedTilScenarie(scenarie);
+			karakter.TilmedTilScenarie(scenarie, spiser, overnatter);
 		}
 		
         public Karakter FindKarakter(long karakterID)
