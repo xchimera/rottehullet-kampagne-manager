@@ -153,6 +153,13 @@ namespace BK_Controller
 			return null;
 		}
 
+
+        public IKampagne FindKampagne(long kampagneID)
+        {
+            nuværendeKampagne = kampagnecollection.FindKampagne(kampagneID);
+            return nuværendeKampagne;
+        }
+
 		public string KrypterKodeord(string kodeord)
 		{
 			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);

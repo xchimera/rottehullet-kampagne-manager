@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.lstkaraktere = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.karakternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnNyKarakter = new System.Windows.Forms.Button();
             this.btnNyOpdaterDisabled = new System.Windows.Forms.Button();
             this.btnTilmeldTilScenarie = new System.Windows.Forms.Button();
             this.btnSkiftKampagne = new System.Windows.Forms.Button();
-            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.karakternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstkaraktere
@@ -50,6 +50,17 @@
             this.lstkaraktere.TabIndex = 0;
             this.lstkaraktere.UseCompatibleStateImageBehavior = false;
             this.lstkaraktere.View = System.Windows.Forms.View.Details;
+            this.lstkaraktere.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstkaraktere_MouseDoubleClick);
+            // 
+            // ID
+            // 
+            this.ID.Text = "";
+            this.ID.Width = 0;
+            // 
+            // karakternavn
+            // 
+            this.karakternavn.Text = "Navn";
+            this.karakternavn.Width = 188;
             // 
             // btnNyKarakter
             // 
@@ -59,6 +70,7 @@
             this.btnNyKarakter.TabIndex = 1;
             this.btnNyKarakter.Text = "Ny Karakter";
             this.btnNyKarakter.UseVisualStyleBackColor = true;
+            this.btnNyKarakter.Click += new System.EventHandler(this.btnNyKarakter_Click);
             // 
             // btnNyOpdaterDisabled
             // 
@@ -88,16 +100,6 @@
             this.btnSkiftKampagne.Text = "Skift Kampagne";
             this.btnSkiftKampagne.UseVisualStyleBackColor = true;
             this.btnSkiftKampagne.Click += new System.EventHandler(this.btnSkiftKampagne_Click);
-            // 
-            // ID
-            // 
-            this.ID.Text = "";
-            this.ID.Width = 0;
-            // 
-            // karakternavn
-            // 
-            this.karakternavn.Text = "Navn";
-            this.karakternavn.Width = 188;
             // 
             // FrmHovedSide
             // 
