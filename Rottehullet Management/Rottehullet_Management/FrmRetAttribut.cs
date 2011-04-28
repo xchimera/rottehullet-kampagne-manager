@@ -50,15 +50,15 @@ namespace Rottehullet_Management
 		private void opdaterListe()
 		{
 			IEnumerator iterator = kampagneManager.HentValgmuligheder();
-			string[] valgmulighed;
+			IKampagneMultiAttributValgmulighed valgmulighed;
 			ListViewItem linje;
 
 			while (iterator.MoveNext())
 			{
-				valgmulighed = (string[])iterator.Current;
+				valgmulighed = (IKampagneMultiAttributValgmulighed)iterator.Current;
 				linje = new ListViewItem();
-				linje.Text = valgmulighed[1];
-				linje.SubItems.Add(valgmulighed[0]);
+				linje.Text = valgmulighed.Id.ToString(); ;
+				linje.SubItems.Add(valgmulighed.Værdi);
 				lstValgmuligheder.Items.Add(linje);
 			}
 		}

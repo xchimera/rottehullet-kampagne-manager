@@ -78,7 +78,7 @@ namespace TestProject
 			double pris = 15.24;
 			int overnatning = 2;
 			bool spisning = true;
-			bool spisningTvungen = false;
+			bool spisningTvungen = true;
 			bool overnatningTvungen = true;
 			string andetInfo = "mere info";
 			Scenarie target = new Scenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
@@ -93,7 +93,35 @@ namespace TestProject
 			Assert.AreEqual(overnatningTvungen, target.OvernatningTvungen);
 			Assert.AreEqual(andetInfo, target.AndetInfo);
 
-			Assert.Inconclusive("TODO: Implement code to verify target");
+			titel = "ny titel";
+			beskrivelse = "ny beskrivelse";
+			tid = new DateTime(2011, 6, 5);
+			sted = "et nyt sted";
+			pris = 11.11;
+			overnatning = 1;
+			spisning = false;
+			spisningTvungen = false;
+			overnatningTvungen = false;
+			andetInfo = "alt info";
+			target.AndetInfo = andetInfo;
+			target.Beskrivelse = beskrivelse;
+			target.Overnatning = overnatning;
+			target.OvernatningTvungen = overnatningTvungen;
+			target.Pris = pris;
+			target.Spisning = spisning;
+			target.SpisningTvungen = spisningTvungen;
+			target.Sted = sted;
+			target.Tid = tid;
+			target.Titel = titel;
+			Assert.AreEqual(titel, target.Titel);
+			Assert.AreEqual(beskrivelse, target.Beskrivelse);
+			Assert.AreEqual(tid, target.Tid);
+			Assert.AreEqual(sted, target.Sted);
+			Assert.AreEqual(overnatning, target.Overnatning);
+			Assert.AreEqual(spisning, target.Spisning);
+			Assert.AreEqual(spisningTvungen, target.SpisningTvungen);
+			Assert.AreEqual(overnatningTvungen, target.OvernatningTvungen);
+			Assert.AreEqual(andetInfo, target.AndetInfo);
 		}
 	}
 }
