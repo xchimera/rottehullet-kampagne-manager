@@ -54,6 +54,12 @@ namespace Model
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attribut, valg);
         }
+
+		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie)
+		{
+			Karakter karakter = FindKarakter(karakterID);
+			karakter.TilmedTilScenarie(scenarie);
+		}
 		
         public Karakter FindKarakter(long karakterID)
         {
@@ -82,8 +88,8 @@ namespace Model
             return karakterer.GetEnumerator();
         }
 
-        // Properties
-        public bool Veganer
+		#region properties
+		public bool Veganer
         {
             get { return veganer; }
             set { veganer = value; }
@@ -140,6 +146,7 @@ namespace Model
         {
             get { return andet; }
             set { andet = value; }
-        }
+		}
+		#endregion
     }
 }

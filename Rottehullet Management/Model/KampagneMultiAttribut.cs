@@ -8,7 +8,7 @@ using Interfaces;
 
 namespace Model
 {
-	public class KampagneMultiAttribut : KampagneAttribut , IKampagneMultiAttribut
+	public class KampagneMultiAttribut : KampagneAttribut, IKampagneMultiAttribut
 	{
 		private List<KampagneMultiAttributValgmulighed> valgmuligheder;
 
@@ -18,11 +18,11 @@ namespace Model
 			this.valgmuligheder = valgmuligheder;
 		}
 
-        public KampagneMultiAttribut(string navn, KampagneAttributType type, long kampagneAttributID)
-            : base(navn, type, kampagneAttributID)
-        {
-            valgmuligheder = new List<KampagneMultiAttributValgmulighed>();
-        }
+		public KampagneMultiAttribut(string navn, KampagneAttributType type, long kampagneAttributID)
+			: base(navn, type, kampagneAttributID)
+		{
+			valgmuligheder = new List<KampagneMultiAttributValgmulighed>();
+		}
 
 		public void TilføjValgmulighed(KampagneMultiAttributValgmulighed valgmulighed)
 		{
@@ -53,10 +53,10 @@ namespace Model
 			}
 		}
 
-        public IEnumerator GetValgmulighederIterator()
-        {
-            return valgmuligheder.GetEnumerator();
-        }
+		public IEnumerator GetValgmulighederIterator()
+		{
+			return valgmuligheder.GetEnumerator();
+		}
 
 		public List<KampagneMultiAttributValgmulighed> Valgmuligheder
 		{

@@ -12,13 +12,14 @@ namespace Model
 		Dictionary<string, KarakterAttribut> værdier;
         long karakterID;
 		Kampagne kampagne;
-		List<Scenarie> tilmeld
+		List<Scenarie> karakterScenarier;
 
         public Karakter(long karakterID, Kampagne kampagne)
         {
             this.karakterID = karakterID;
             this.kampagne = kampagne;
 			værdier = new Dictionary<string, KarakterAttribut>();
+			karakterScenarier = new List<Scenarie>();
         }
 		#region metoder
 		/// <summary>
@@ -43,7 +44,10 @@ namespace Model
 			værdier.Add(kampagneAttribut.Navn, attribut);
 		}
 
-		public void TilmedTilScenarie()
+		public void TilmedTilScenarie(Scenarie scenarie)
+		{
+			karakterScenarier.Add(scenarie);
+		}
 		#endregion
 
 		#region Properties
