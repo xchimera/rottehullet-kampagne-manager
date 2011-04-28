@@ -12,6 +12,7 @@ namespace Model
 		Dictionary<string, KarakterAttribut> værdier;
         long karakterID;
 		Kampagne kampagne;
+		List<Scenarie> tilmeld
 
         public Karakter(long karakterID, Kampagne kampagne)
         {
@@ -19,7 +20,7 @@ namespace Model
             this.kampagne = kampagne;
 			værdier = new Dictionary<string, KarakterAttribut>();
         }
-
+		#region metoder
 		/// <summary>
 		/// Tilføjer en single attribut til karakteren.
 		/// </summary>
@@ -42,15 +43,19 @@ namespace Model
 			værdier.Add(kampagneAttribut.Navn, attribut);
 		}
 
-        public IEnumerator GetVærdiIterator()
-        {
-            return værdier.GetEnumerator();
-        }
+		public void TilmedTilScenarie()
+		#endregion
 
-        public long KarakterID
-        {
-            get { return karakterID; }
-        }
+		#region Properties
+		public IEnumerator GetVærdiIterator()
+		{
+			return værdier.GetEnumerator();
+		}
+
+		public long KarakterID
+		{
+			get { return karakterID; }
+		}
 
 		public IKampagne Kampagne
 		{
@@ -59,7 +64,8 @@ namespace Model
 
 		public string this[string navn]
 		{
-			get {
+			get
+			{
 				KarakterAttribut værdi = værdier[navn];
 				if (værdi is KarakterMultiAttribut)
 				{
@@ -72,5 +78,6 @@ namespace Model
 				return null;
 			}
 		}
+		#endregion
     }
 }

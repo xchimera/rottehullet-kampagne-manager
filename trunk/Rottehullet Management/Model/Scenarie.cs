@@ -14,7 +14,7 @@ namespace Model
 		private DateTime tid;
 		private int overnatning;
 		private bool spisning, spisningTvungen, overnatningTvungen;
-		List<string> deltagere;
+		List<Karakter> deltagere;
 
 		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
@@ -29,8 +29,15 @@ namespace Model
 			this.spisningTvungen = spisningTvungen;
 			this.overnatningTvungen = overnatningTvungen;
 			this.andetInfo = andetInfo;
-			deltagere = new List<string>();
+			deltagere = new List<Karakter>();
 		}
+
+		/*#region Metoder
+		public void TilmedKarakter(Karakter karakter)
+		{
+
+		}
+		#endregion*/
 
 		#region properties
 		public long Id
