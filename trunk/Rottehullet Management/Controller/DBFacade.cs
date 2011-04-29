@@ -159,7 +159,7 @@ namespace Controller
 					conn.Close();
 				}
 
-			return 0;
+			return -1;
 			}
 		}
 
@@ -277,55 +277,74 @@ namespace Controller
 				return false;
 			}
 
-			//Opretning af brugere
-		//    string navn;
-		//    string beskrivelse = "";
-		//    string hjemmeside = "";
-		//    long topbrugerID;
-		//    KampagneStatus status;
+			//Oprettelse af alle brugere og kampagnens karakterer
+			long brugerID;
+			string email; //navn allerede initieret ovenfor
+			DateTime fødselsdag;
+			long tlf, nød_tlf;
+			bool vegetar, veganer;
+			string allergi, andet;
+			int karstatus;
+			long karakterID, attributID, karakterAttributID, multiAttributEntryID;
+			string værdi;
 
-		//    cmd.CommandText = "HentKampagne";
-		//    cmd.Parameters.Clear();
-		//    SqlParameter par;
-		//    SqlDataReader reader;
+			cmd.CommandText = "HentBrugereOgKaraktererTilKampagne";
+			cmd.Parameters.Clear();
 
-		//    par = new SqlParameter("@kamID", SqlDbType.BigInt);
-		//    par.Value = kamID;
-		//    cmd.Parameters.Add(par);
+			par = new SqlParameter("@kamID", SqlDbType.BigInt);
+			par.Value = kamID;
+			cmd.Parameters.Add(par);
 
-		//    try
-		//    {
-		//        conn.Open();
-		//        reader = cmd.ExecuteReader();
+			try
+			{
+			    conn.Open();
+			    reader = cmd.ExecuteReader();
 
-		//        while (reader.Read())
-		//        {
-		//            navn = (string)reader["navn"];
-		//            beskrivelse = (string)reader["beskrivelse"];
-		//            hjemmeside = (string)reader["hjemmeside"];
-		//            topbrugerID = (long)reader["topbrugerID"];
-		//            status = (KampagneStatus)reader["status"];
+			    while (reader.Read())
+			    {
+			        brugerID = (long)reader["brugerID"];
+			        email = (string)reader["email"];
+			        navn = (string)reader["navn"];
+			        fødselsdag = (DateTime)reader["fødselsdag"];
+			        tlf = (long)reader["tlf"];
+			        nød_tlf = (long)reader["nød_tlf"];
+			        vegetar = (bool)reader["vegetar"];
+			        veganer = (bool)reader["veganer"];
+					allergi = (string)reader["allergi"];
+					andet = (string)reader["andet"];
+					if (reader["karakterID"] != System.DBNull.Value)
+					{
+						karakterID = (long)reader["karakterID"];
+						karstatus = (int)reader["karstatus"];
+						attributID = (long)reader["attributID"];
+						karakterAttributID = (long)reader["karakterattributID"];
+						multiAttributEntryID = (long)reader["multiAttributEntryID"];
+						værdi = (string)reader["værdi"];
+					}
 
-		//            if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
-		//            {
-		//                conn.Close();
-		//                return false;
-		//            }
-		//        }
+					if (kampagnemanager.FindBruger(brugerID) != null)
+					{
+						
+					}
+					//if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
+					//{
+					//    conn.Close();
+					//    return false;
+					//}
+			    }
 
-		//        reader.Dispose();
-		//        conn.Close();
-		//        HentScenarierTilKampagne(kamID);
-		//    }
-		//    catch (SqlException)
-		//    {
-		//        if (conn.State == ConnectionState.Open)
-		//        {
-		//            conn.Close();
-		//        }
-		//        return false;
-		//    }
-
+			    reader.Dispose();
+			    conn.Close();
+			    HentScenarierTilKampagne(kamID);
+			}
+			catch (SqlException)
+			{
+			    if (conn.State == ConnectionState.Open)
+			    {
+			        conn.Close();
+			    }
+			    return false;
+			}			
 		    return true;
 		}
 
