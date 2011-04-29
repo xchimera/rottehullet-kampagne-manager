@@ -28,7 +28,12 @@ namespace Controller
 		}
 
 		#region Bruger
-		public System.Collections.IEnumerator GetBrugerIterator()
+		public Bruger FindBruger(long brugerID)
+		{
+			return brugercollection.FindBruger(brugerID);
+		}
+		
+		public IEnumerator GetBrugerIterator()
 		{
 			return brugercollection.GetBrugerIterator();
 		}

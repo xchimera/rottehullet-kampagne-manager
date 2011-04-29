@@ -79,6 +79,10 @@ namespace Rottehullet_Management
 					MessageBox.Show("Denne bruger er ikke i en spilledelse", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				}
             }
+			else if (brugerID == -1) //brugerID sættes til -1 på DBfacaden hvis der sker en fejl der
+			{
+				MessageBox.Show("Der skete en fejl ved login", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
             else
             {
 				MessageBox.Show("Brugernavn eller kodeord passer ikke", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);

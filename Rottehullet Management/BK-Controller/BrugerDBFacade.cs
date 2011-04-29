@@ -104,7 +104,7 @@ namespace BK_Controller
                     conn.Close();
                 }
 
-                return 0;
+                return -1;
             }
         }
 

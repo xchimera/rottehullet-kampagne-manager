@@ -50,6 +50,10 @@ namespace BK_GUI
                 loginkampagnevalg.ShowDialog();
                 this.Close();
             }
+			else if (brugerID == -1) //brugerID sættes til -1 på DBfacaden hvis der sker en fejl der
+			{
+				MessageBox.Show("Der skete en fejl ved login", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
             else
             {
 				MessageBox.Show("Brugernavn og kodeord passer ikke sammen", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
