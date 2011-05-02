@@ -8,11 +8,11 @@ namespace Model
 {
     public class BrugerCollection
     {
-        private List<Bruger> ListBrugere;
+		private List<Bruger> listBrugere;
 
-        public BrugerCollection()
+		public BrugerCollection()
         {
-            ListBrugere = new List<Bruger>();
+            listBrugere = new List<Bruger>();
         }
 
         #region Metoder
@@ -20,13 +20,13 @@ namespace Model
 
         public Bruger OpretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
         {
-            ListBrugere.Add(new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi)); // smider den nye bruger i en liste (collection af brugere)
-			return ListBrugere[ListBrugere.Count() - 1];
+            listBrugere.Add(new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi)); // smider den nye bruger i en liste (collection af brugere)
+			return listBrugere[listBrugere.Count() - 1];
         }
 
         public Bruger FindBruger(long brugerID)
         {
-            foreach (Bruger bruger in ListBrugere)
+            foreach (Bruger bruger in listBrugere)
             {
                 if (brugerID == bruger.BrugerID)
                 {
@@ -38,7 +38,7 @@ namespace Model
 
         public IEnumerator GetBrugerIterator()
         {
-            return ListBrugere.GetEnumerator();
+            return listBrugere.GetEnumerator();
         }
 
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID, Kampagne kampagne)
@@ -47,5 +47,10 @@ namespace Model
 		}
 
         #endregion
+
+		public List<Bruger> ListBrugere
+		{
+			get { return listBrugere; }
+		}
     }
 }

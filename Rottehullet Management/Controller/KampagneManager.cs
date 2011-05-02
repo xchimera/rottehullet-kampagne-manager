@@ -57,6 +57,24 @@ namespace Controller
 		#endregion
 
 		#region Karakter
+		//
+		public IEnumerator AlleKaraktererEnumerator()
+		{
+			List<Karakter> karakterliste = new List<Karakter>();
+			IEnumerator karakteriterator;
+			
+			foreach (Bruger bruger in brugercollection.ListBrugere)
+			{
+				karakteriterator = bruger.GetKarakterIterator();
+				karakteriterator.Reset();
+				while (karakteriterator.MoveNext())
+				{
+					karakterliste.Add((Karakter)karakteriterator.Current);
+				}
+			}
+			return karakterliste.GetEnumerator();
+		}
+
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID)
 		{
 			return brugercollection.TilføjKarakter(bruger, karakterID, kampagne);
@@ -64,12 +82,12 @@ namespace Controller
 		#endregion
 
 		#region KampagneListe
-		public System.Collections.IEnumerable GetBrugersKampagneIterator()
+		public IEnumerable GetBrugersKampagneIterator()
 		{
 			return kampagneliste;
 		}
 
-		public System.Collections.IEnumerator GetBrugerKampagne()
+		public IEnumerator GetBrugerKampagne()
 		{
 			return kampagneliste.GetEnumerator();
 		}
