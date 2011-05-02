@@ -12,5 +12,6 @@ namespace Interfaces
 		IEnumerator GetVærdiIterator();
 		IKampagne Kampagne { get; }
 		string this[string navn] { get; }
+		string navn { get; }
     }
 }
