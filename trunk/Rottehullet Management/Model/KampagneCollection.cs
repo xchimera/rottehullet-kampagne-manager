@@ -15,26 +15,19 @@ namespace Model
 			kampagner = new List<Kampagne>();
 		}
 
-		public void OpretKampagne(string navn, Bruger topbruger, long kampagneID, KampagneStatus status)
+		public void OpretKampagne(string navn, long kampagneID, KampagneStatus status)
 		{
-
-			Kampagne kampagne = new Kampagne(navn, topbruger, kampagneID, KampagneStatus.Oprettet);
+			Kampagne kampagne = new Kampagne(navn, kampagneID, KampagneStatus.Oprettet);
 			kampagner.Add(kampagne);
 		}
 
-		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, Bruger bruger, KampagneStatus status)
+		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
-			Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
+			Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
 			kampagner.Add(kampagne);
             return kampagne;
 		}
 
-        public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
-        {
-            Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
-            kampagner.Add(kampagne);
-            return kampagne;
-        }
         /// <summary>
         /// genopret single attribut
         /// </summary>

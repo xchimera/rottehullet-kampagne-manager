@@ -113,16 +113,10 @@ namespace Controller
 		#endregion
 
 		#region Kampagne
-		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID, KampagneStatus status)
+		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
-			Bruger bruger;
-			bruger = brugercollection.FindBruger(topbrugerID);
-			if (bruger != null)
-			{
-				kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
-				return kampagne;
-			}
-			return null;
+			kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
+			return kampagne;
 		}
 
 		public int GetAntalKampagner()
@@ -132,11 +126,6 @@ namespace Controller
 
 		public bool HentKampagneFraDatabase(long kamID)
 		{
-			//if (!dbFacade.HentBrugereTilKampagne(kamID))
-			//{
-			//    return false;
-			//}
-
 			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne))
 			{
 				return true;
@@ -147,15 +136,10 @@ namespace Controller
 		public bool OpretKampagne(string navn, long topbrugerID)
 		{
 			long kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
-			Bruger topbruger;
 			if (kampagneID > 0)
 			{
-				topbruger = brugercollection.FindBruger(topbrugerID);
-				if (topbruger != null)
-				{
-					kampagne = new Kampagne(navn, topbruger, kampagneID, KampagneStatus.Oprettet);
-					return true;
-				}
+				kampagne = new Kampagne(navn, kampagneID, KampagneStatus.Oprettet);
+				return true;
 			}
 			return false;
 		}
