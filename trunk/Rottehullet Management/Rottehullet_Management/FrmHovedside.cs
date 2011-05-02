@@ -22,15 +22,16 @@ namespace Rottehullet_Management
         {
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
-
 			Kampagne = kampagnemanager.Kampagne;
-
-            this.kampagneID = Kampagne.KampagneID;            
-			txtNavn.Text = Kampagne.Navn;
+            this.kampagneID = Kampagne.KampagneID;
+            txtNavn.Text = Kampagne.Navn;
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
 			txtNavn.Select(0, 0);
-
+            if (kampagnemanager.NuværendebrugerId == Kampagne.Topbruger.BrugerID)
+            {
+                btnVælgSuperbruger.Visible = true;
+            }
 			if (Kampagne.Status != Enum.KampagneStatus.Åben)
 			{
 				btnÅbenKampagne.Text = "Åben Kampagne";
@@ -157,5 +158,12 @@ namespace Rottehullet_Management
 			else
 				MessageBox.Show("Der er i øjeblikket ingen scenarie på denne kampagne", "Intet scenarie");
 		}
+
+        private void btnVælgSuperbruger_Click(object sender, EventArgs e)
+        {
+            FrmVælgSuperbruger vælgsuperbruger = new FrmVælgSuperbruger(kampagnemanager, Kampagne);
+            this.Hide();
+            vælgsuperbruger.ShowDialog();
+        }
     }
 }

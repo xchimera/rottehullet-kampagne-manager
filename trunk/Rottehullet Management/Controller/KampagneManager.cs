@@ -18,7 +18,7 @@ namespace Controller
 		DBFacade dbFacade;
 		KampagneAttribut nuværendeAttribut;
 		Scenarie nuværendeScenarie;
-
+	    private long nuværendebrugerID;
 		public KampagneManager()
 		{
 			dbFacade = new DBFacade(this);
@@ -196,8 +196,13 @@ namespace Controller
 		{
 			get { return kampagne; }
 		}
-		
-		#endregion
+
+	    public long NuværendebrugerId
+	    {
+	        get { return nuværendebrugerID; }
+	    }
+
+	    #endregion
 
 		#region Attributter
 		public IKampagneAttribut FindKampagneAttribut(long id)
@@ -406,7 +411,7 @@ namespace Controller
 		{
 			kodeord = KrypterKodeord(kodeord);
 			long brugerID = dbFacade.Login(email, kodeord);
-
+		    nuværendebrugerID = brugerID;
 			return brugerID;
 		}
 	}
