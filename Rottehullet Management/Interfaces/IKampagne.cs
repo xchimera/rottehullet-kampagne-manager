@@ -13,7 +13,6 @@ namespace Interfaces
 		string Navn { get; set; }
 		string Beskrivelse { get; }
 		string Hjemmeside { get; }
-		IBruger Topbruger { get; }
         KampagneStatus Status { get; }
         IEnumerator HentAttributter();
 

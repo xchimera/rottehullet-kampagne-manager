@@ -81,7 +81,7 @@ namespace BK_Controller
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
 			KampagneAttribut attribut = kampagne.FindAttribut(attributID);
-			bruger.TilføjAttribut(karakterID, attribut, værdi);
+			//bruger.TilføjAttribut(karakterID, attribut, værdi);
 		}
 
 		public void GenopretMultiattributVærdi(long karakterID, long kampagneID, long attributID, long multientryID)
@@ -89,7 +89,7 @@ namespace BK_Controller
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(attributID);
 			KampagneMultiAttributValgmulighed valg = attribut.FindValgmulighed(multientryID);
-			bruger.TilføjAttribut(karakterID, attribut, valg);
+			//bruger.TilføjAttribut(karakterID, attribut, valg);
 		}
 
 		public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
@@ -109,7 +109,7 @@ namespace BK_Controller
 			bruger = brugercollection.FindBruger(topbrugerID);
 			if (bruger != null)
 			{
-				kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, bruger, status);
+				kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, status);
 				return true;
 			}
 			return false;

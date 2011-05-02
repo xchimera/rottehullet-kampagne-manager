@@ -202,7 +202,7 @@ namespace Controller
 					hjemmeside = (string)reader["hjemmeside"];
 					topbrugerID = (long)reader["topbrugerID"];
 					status = (KampagneStatus)reader["status"];
-					kampagne = kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status);
+					kampagne = kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, status);
 					if (kampagne == null)
 					{
 						conn.Close();

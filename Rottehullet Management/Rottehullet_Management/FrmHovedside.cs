@@ -29,10 +29,11 @@ namespace Rottehullet_Management
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
 			txtNavn.Select(0, 0);
-            if (kampagnemanager.  NuværendebrugerId == Kampagne.Topbruger.BrugerID)
+
+            /*if (kampagnemanager.  NuværendebrugerId == Kampagne.Topbruger.BrugerID)
             {
                 btnVælgSuperbruger.Visible = true;
-            }
+            }*/
 			kampagnemanager.SætNuværendeRettighed();
 			if (Kampagne.Status != Enum.KampagneStatus.Åben)
 			{
