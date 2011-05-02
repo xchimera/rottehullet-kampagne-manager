@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,27 +52,26 @@ namespace Rottehullet_Management
 			}
         }
 
-		//private void OpdaterLstKarakterer()
-		//{
-		//    string[] karakterer;
-		//    IEnumerator kampagneiterator = kampagnemanager.   GetBrugerKampagne();
-		//    kampagneiterator.Reset();
-		//    lstKarakterer.Items.Clear();
+		private void OpdaterLstKarakterer()
+		{
+			IKarakter karakter;
+			IEnumerator karakteriterator = kampagnemanager.AlleKaraktererEnumerator();
+			karakteriterator.Reset();
+			lstKarakterer.Items.Clear();
 
 
-		//    while (kampagneiterator.MoveNext())
-		//    {
-		//        kampagne = (string[])kampagneiterator.Current;
-		//        ListViewItem item = new ListViewItem();
+			while (karakteriterator.MoveNext())
+			{
+				karakter = (IKarakter)karakteriterator.Current;
+				ListViewItem item = new ListViewItem();
+				
+				item.Text = Convert.ToString(karakter.navn);
+				//item.SubItems.Add(Convert.ToString(kampagne[1]));
 
-
-		//        item.Text = Convert.ToString(kampagne[0]);
-		//        item.SubItems.Add(Convert.ToString(kampagne[1]));
-
-		//        lstKampagner.Items.Add(item);
-		//    }
-		//    lstKampagner.Items[0].Selected = true;
-		//}
+				lstKarakterer.Items.Add(item);
+			}
+			//lstKarakterer.Items[0].Selected = true;
+		}
 
         private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
