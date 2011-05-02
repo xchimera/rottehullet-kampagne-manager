@@ -18,9 +18,10 @@ namespace Model
         #region Metoder
 
 
-        public void OpretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
+        public Bruger OpretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
         {
             ListBrugere.Add(new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi)); // smider den nye bruger i en liste (collection af brugere)
+			return ListBrugere[ListBrugere.Count() - 1];
         }
 
         public Bruger FindBruger(long brugerID)
@@ -39,6 +40,11 @@ namespace Model
         {
             return ListBrugere.GetEnumerator();
         }
+
+		public Karakter TilføjKarakter(Bruger bruger, long karakterID, Kampagne kampagne)
+		{
+			return bruger.TilføjKarakter(karakterID, kampagne);
+		}
 
         #endregion
     }

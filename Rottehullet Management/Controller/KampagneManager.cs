@@ -39,7 +39,7 @@ namespace Controller
 		}
 
 		public bool Opretbruger(long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
-		{ //long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer
+		{
 			if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
 			{
 				if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
@@ -50,20 +50,17 @@ namespace Controller
 			return false;
 		}
 
-		public void TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
+		public Bruger  TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
-			brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
+			return brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
 		#endregion
 
 		#region Karakter
-		//public IKarakter[] FindKaraktererPåKampagne(long kamID)
-		//{
-		//    foreach (Bruger bruger in BrugerCollection)
-		//    {
-				
-		//    }
-		//}
+		public Karakter TilføjKarakter(Bruger bruger, long karakterID)
+		{
+			return brugercollection.TilføjKarakter(bruger, karakterID, kampagne);
+		}
 		#endregion
 
 		#region KampagneListe
@@ -115,12 +112,12 @@ namespace Controller
 
 		public bool HentKampagneFraDatabase(long kamID)
 		{
-			if (!dbFacade.HentBrugereTilKampagne(kamID))
-			{
-				return false;
-			}
+			//if (!dbFacade.HentBrugereTilKampagne(kamID))
+			//{
+			//    return false;
+			//}
 
-			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID))
+			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) &&dbFacade.HentBrugereOgKaraktererTilKampagne(kamID))
 			{
 				return true;
 			}

@@ -38,9 +38,10 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
-        public void TilføjKarakter(long karakterID, Kampagne kampagne)
+        public Karakter TilføjKarakter(long karakterID, Kampagne kampagne)
         {
             karakterer.Add(new Karakter(karakterID, kampagne));
+			return karakterer[karakterer.Count() - 1];
         }
 
 		public void TilføjAttribut(long karakterID, KampagneAttribut attribut, string værdi)
