@@ -157,7 +157,7 @@ namespace BK_Controller
                         attributID = Convert.ToInt64(reader["attID"]);
                         position = (int)reader["position"];
 
-                        if (kamtype == KampagneAttributType.Singleline)
+                        if (kamtype == KampagneAttributType.Singleline || kamtype == KampagneAttributType.Multiline)
                         {
                             brugerklient.GenopretAttribut(kampagneID, attributID, attributnavn, kamtype, position);
                         }

@@ -53,7 +53,7 @@
             this.txtKampagneNavn.Location = new System.Drawing.Point(83, 17);
             this.txtKampagneNavn.Name = "txtKampagneNavn";
             this.txtKampagneNavn.Size = new System.Drawing.Size(100, 20);
-            this.txtKampagneNavn.TabIndex = 3;
+            this.txtKampagneNavn.TabIndex = 1;
             // 
             // lstBrugere
             // 
@@ -64,7 +64,7 @@
             this.lstBrugere.Location = new System.Drawing.Point(16, 105);
             this.lstBrugere.Name = "lstBrugere";
             this.lstBrugere.Size = new System.Drawing.Size(168, 87);
-            this.lstBrugere.TabIndex = 6;
+            this.lstBrugere.TabIndex = 3;
             this.lstBrugere.UseCompatibleStateImageBehavior = false;
             this.lstBrugere.View = System.Windows.Forms.View.Details;
             // 
@@ -101,7 +101,7 @@
             this.txtSøgBruger.Location = new System.Drawing.Point(46, 79);
             this.txtSøgBruger.Name = "txtSøgBruger";
             this.txtSøgBruger.Size = new System.Drawing.Size(100, 20);
-            this.txtSøgBruger.TabIndex = 9;
+            this.txtSøgBruger.TabIndex = 2;
             this.txtSøgBruger.TextChanged += new System.EventHandler(this.txtSøgBruger_TextChanged);
             // 
             // btnOpretKampagne
@@ -109,7 +109,7 @@
             this.btnOpretKampagne.Location = new System.Drawing.Point(16, 226);
             this.btnOpretKampagne.Name = "btnOpretKampagne";
             this.btnOpretKampagne.Size = new System.Drawing.Size(94, 23);
-            this.btnOpretKampagne.TabIndex = 10;
+            this.btnOpretKampagne.TabIndex = 4;
             this.btnOpretKampagne.Text = "Opret kampagne";
             this.btnOpretKampagne.UseVisualStyleBackColor = true;
             this.btnOpretKampagne.Click += new System.EventHandler(this.btnOpretKampagne_Click);

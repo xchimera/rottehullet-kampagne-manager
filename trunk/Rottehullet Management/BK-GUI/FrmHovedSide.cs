@@ -84,6 +84,7 @@ namespace BK_GUI
                     textbox.Location = new Point(x, y);
                     textbox.Multiline = true;
                     textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
+                    textbox.Size = new System.Drawing.Size(150, 100);
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x - textbox.Width+50, y);
@@ -153,7 +154,6 @@ namespace BK_GUI
                 if (brugerklient.NyKarakter(kontroller.GetEnumerator()))
                 {
                     MessageBox.Show("Brugeren er oprettet");
-                    this.Close();
                 }
                 else
                 {
