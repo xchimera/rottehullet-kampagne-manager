@@ -209,10 +209,10 @@ namespace Model
 			set { navn = value; }
 		}
 
-		public Bruger Topbruger
+		public IBruger Topbruger
 		{
 			get { return topbruger; }
-			set { topbruger = value; }
+		
 		}
 
         public KampagneStatus Status

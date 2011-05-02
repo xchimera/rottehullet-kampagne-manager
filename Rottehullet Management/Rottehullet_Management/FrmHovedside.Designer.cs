@@ -28,24 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.txtBeskrivelse = new System.Windows.Forms.TextBox();
-			this.btnRedigerNavn = new System.Windows.Forms.Button();
-			this.btnRedigerHjemmeside = new System.Windows.Forms.Button();
-			this.btnRedigerBeskrivelse = new System.Windows.Forms.Button();
-			this.txtNavn = new System.Windows.Forms.TextBox();
-			this.txtHjemmeside = new System.Windows.Forms.TextBox();
-			this.btnSkiftKampagne = new System.Windows.Forms.Button();
-			this.btnRetAttributter = new System.Windows.Forms.Button();
-			this.btnOpstartScenarie = new System.Windows.Forms.Button();
-			this.btnÅbenKampagne = new System.Windows.Forms.Button();
-			this.btnRetScenarie = new System.Windows.Forms.Button();
-			this.lstKarakterer = new System.Windows.Forms.ListBox();
-			this.btnPrintKarakterer = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.SuspendLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(664, 315);
+            this.Controls.Add(this.btnVælgSuperbruger);
+            this.Controls.Add(this.btnRetScenarie);
+            this.Controls.Add(this.btnÅbenKampagne);
+            this.Controls.Add(this.btnOpstartScenarie);
+            this.Controls.Add(this.btnRetAttributter);
+            this.Controls.Add(this.btnSkiftKampagne);
+            this.Controls.Add(this.txtHjemmeside);
+            this.Controls.Add(this.txtNavn);
+            this.Controls.Add(this.btnRedigerBeskrivelse);
+            this.Controls.Add(this.btnRedigerHjemmeside);
+            this.Controls.Add(this.btnRedigerNavn);
+            this.Controls.Add(this.txtBeskrivelse);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "FrmHovedside";
+            this.Text = "Kampagne Manager";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBeskrivelse = new System.Windows.Forms.TextBox();
+            this.btnRedigerNavn = new System.Windows.Forms.Button();
+            this.btnRedigerHjemmeside = new System.Windows.Forms.Button();
+            this.btnRedigerBeskrivelse = new System.Windows.Forms.Button();
+            this.txtNavn = new System.Windows.Forms.TextBox();
+            this.txtHjemmeside = new System.Windows.Forms.TextBox();
+            this.btnSkiftKampagne = new System.Windows.Forms.Button();
+            this.btnRetAttributter = new System.Windows.Forms.Button();
+            this.btnOpstartScenarie = new System.Windows.Forms.Button();
+            this.btnÅbenKampagne = new System.Windows.Forms.Button();
+            this.btnRetScenarie = new System.Windows.Forms.Button();
+            this.lstKarakterer = new System.Windows.Forms.ListBox();
+            this.btnPrintKarakterer = new System.Windows.Forms.Button();
+            this.btnVælgSuperbruger = new System.Windows.Forms.Button();
+
+            this.label4 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
 			// 
 			// label1
 			// 
@@ -113,11 +140,11 @@
 			// 
 			// txtNavn
 			// 
-			this.txtNavn.Location = new System.Drawing.Point(79, 15);
-			this.txtNavn.Name = "txtNavn";
-			this.txtNavn.ReadOnly = true;
-			this.txtNavn.Size = new System.Drawing.Size(100, 20);
-			this.txtNavn.TabIndex = 8;
+            this.txtNavn.Location = new System.Drawing.Point(79, 15);
+            this.txtNavn.Name = "txtNavn";
+            this.txtNavn.ReadOnly = true;
+            this.txtNavn.Size = new System.Drawing.Size(100, 20);
+            this.txtNavn.TabIndex = 8;
 			// 
 			// txtHjemmeside
 			// 
@@ -250,8 +277,10 @@
 		private System.Windows.Forms.Button btnOpstartScenarie;
 		private System.Windows.Forms.Button btnÅbenKampagne;
 		private System.Windows.Forms.Button btnRetScenarie;
+        private System.Windows.Forms.Button btnVælgSuperbruger;
 		private System.Windows.Forms.ListBox lstKarakterer;
 		private System.Windows.Forms.Button btnPrintKarakterer;
 		private System.Windows.Forms.Label label4;
+
     }
 }

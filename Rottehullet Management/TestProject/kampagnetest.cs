@@ -85,7 +85,7 @@ namespace TestProject
 			//Test af opsætning af kampagne
 			string actualnavn = target.Navn;
 			Assert.AreEqual(navn, actualnavn);
-			Bruger actualBruger = target.Topbruger;
+			Bruger actualBruger = (Bruger)target.Topbruger;
 			Assert.AreEqual(topbruger, actualBruger);
 			long actualID = target.KampagneID;
 			Assert.AreEqual(kampagneID, actualID);
