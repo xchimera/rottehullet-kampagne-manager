@@ -195,9 +195,10 @@ namespace BK_Controller
         {
             SqlDataReader reader;
             SqlParameter par;
+			//Hent brugerens Karakterer og karakterernes attributter, men ikke multiattributter
             cmd.CommandText = "HentAlleBrugersKarakterer";
             cmd.Parameters.Clear();
-            long kampagneID, karakterID, attributID, multiattributID, multiattributentryID;
+            long kampagneID, karakterID, attributID;
             string værdi;
 
             par = new SqlParameter("brugerID", SqlDbType.BigInt);
@@ -209,45 +210,60 @@ namespace BK_Controller
                 conn.Open();
                 reader = cmd.ExecuteReader();
                 long tmpKarakterID = 0;
-                while (reader.Read())
-                {
-                    kampagneID = (long)reader["kampagneID"];
-                    karakterID = (long)reader["karakterID"];
+				while (reader.Read())
+				{
+					kampagneID = (long)reader["kampagneID"];
+					karakterID = (long)reader["karakterID"];
 
-                    if (tmpKarakterID != karakterID)
-                    {
-                        brugerklient.GenopretKarakter(karakterID, kampagneID);
-                    }
+					if (tmpKarakterID != karakterID)
+					{
+						brugerklient.GenopretKarakter(karakterID, kampagneID);
+						tmpKarakterID = karakterID;
+					}
 
-                    if (reader["attributID"] != System.DBNull.Value)
-                    {
-                        attributID = (long)reader["attributID"];
-                        værdi = (string)reader["værdi"];
-                        brugerklient.GenopretAttributVærdi(karakterID, kampagneID, attributID, værdi);
-                    }
+					if (reader["attributID"] != System.DBNull.Value)
+					{
+						attributID = (long)reader["attributID"];
+						værdi = (string)reader["værdi"];
+						brugerklient.GenopretAttributVærdi(karakterID, kampagneID, attributID, værdi);
+					}
+				}
+				//
+				//Henter multiattributterne for brugerne
+				//
+				cmd.CommandText = "HentAlleBrugersKaraktererMA";
+				cmd.Parameters.Clear();
+				long multiattributID, multiattributentryID;
 
-                    if (reader["multiattributID"] != System.DBNull.Value)
-                    {
-                        multiattributID = (long)reader["multiattributID"];
-                        multiattributentryID = (long)reader["multiAttributEntryID"];
-                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, multiattributID, multiattributentryID);
-                    }
+				par = new SqlParameter("brugerID", SqlDbType.BigInt);
+				par.Value = brugerID;
+				cmd.Parameters.Add(par);
 
-                    tmpKarakterID = karakterID;
-                }
-                conn.Close();
-                reader.Dispose();
-                return true;
-            }
-            catch (SqlException)
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
-                return false;
-            }
-        }
+				reader.Dispose();
+				reader = cmd.ExecuteReader();
+				tmpKarakterID = 0;
+				while (reader.Read())
+				{
+					karakterID = (long)reader["karakterID"];
+					kampagneID = (long)reader["kampagneID"];
+					multiattributID = (long)reader["multiattributID"];
+					multiattributentryID = (long)reader["multiAttributEntryID"];
+					brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, multiattributID, multiattributentryID);
+				}
+				conn.Close();
+				reader.Dispose();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+			
+		}
 
 
         /// <summary>
