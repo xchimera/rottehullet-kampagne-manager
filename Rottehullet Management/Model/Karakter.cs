@@ -67,6 +67,11 @@ namespace Model
 			get { return kampagne; }
 		}
 
+		public string navn
+		{
+			get { return navn; }
+		}
+
 		public string this[string navn]
 		{
 			get
