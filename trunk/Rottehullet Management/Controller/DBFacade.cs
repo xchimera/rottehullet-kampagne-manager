@@ -32,7 +32,7 @@ namespace Controller
 		#endregion
 
 
-	   
+
 		/// <summary>
 		/// bruges til at logge ind som admin, topbruger eller superbruger
 		/// </summary>
@@ -42,7 +42,7 @@ namespace Controller
 		/// 
 
 		#region Login/Logout
-		
+
 		/// <summary>
 		/// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
 		/// </summary>
@@ -129,14 +129,14 @@ namespace Controller
 			par = new SqlParameter("kodeord", SqlDbType.NVarChar);
 			par.Value = kodeord;
 			cmd.Parameters.Add(par);
-			
+
 
 			try
 			{
 				conn.Open();
 				reader = cmd.ExecuteReader();
 
-				while(reader.Read())
+				while (reader.Read())
 				{
 					brugerid = (long)reader["brugerID"];
 					navn = (string)reader["navn"];
@@ -151,14 +151,14 @@ namespace Controller
 				}
 				return 0;
 			}
-			catch(SqlException)
+			catch (SqlException)
 			{
-				if(conn.State == ConnectionState.Open)
+				if (conn.State == ConnectionState.Open)
 				{
 					conn.Close();
 				}
 
-			return -1;
+				return -1;
 			}
 		}
 
@@ -170,60 +170,6 @@ namespace Controller
 		#endregion
 
 		#region Kampagne
-		//public bool HentBrugereTilKampagne(long kamID)
-		//{
-		//    long brugerID, tlf, nød_tlf;
-		//    string email, navn, allergi, andet;
-		//    DateTime fødselsdag;
-		//    bool vegetar, veganer;
-
-		//    cmd.CommandText = "HentBrugereTilKampagne";
-		//    cmd.Parameters.Clear();
-		//    SqlParameter par;
-		//    SqlDataReader reader;
-
-		//    par = new SqlParameter("@kamID", SqlDbType.BigInt);
-		//    par.Value = kamID;
-		//    cmd.Parameters.Add(par);
-
-		//    try
-		//    {
-		//        conn.Open();
-		//        reader = cmd.ExecuteReader();
-
-		//        while (reader.Read())
-		//        {
-		//            brugerID = (long)reader["brugerID"];
-		//            email = (string)reader["email"];
-		//            navn = (string)reader["navn"];
-		//            fødselsdag = (DateTime)reader["fødselsdag"];
-		//            tlf = (long)reader["tlf"];
-		//            nød_tlf = (long)reader["nød_tlf"];
-		//            vegetar = (bool)reader["vegetar"];
-		//            veganer = (bool)reader["veganer"];
-		//            allergi = (string)reader["allergi"];
-		//            andet = (string) reader["andet"];
-
-		//            if (!kampagnemanager.Opretbruger(brugerID, email, "", navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet))
-		//            {
-		//                conn.Close();
-		//                return false;
-		//            }
-		//        }
-
-		//        reader.Dispose();
-		//        conn.Close();
-		//    }
-		//    catch (SqlException)
-		//    {
-		//        if (conn.State == ConnectionState.Open)
-		//        {
-		//            conn.Close();
-		//        }
-		//        return false;
-		//    }
-		//    return true;
-		//}
 
 		public bool HentKampagne(long kamID)
 		{
@@ -233,7 +179,8 @@ namespace Controller
 			string hjemmeside = "";
 			long topbrugerID;
 			KampagneStatus status;
-			
+			Kampagne kampagne = null;
+
 			cmd.CommandText = "HentKampagne";
 			cmd.Parameters.Clear();
 			SqlParameter par;
@@ -255,8 +202,8 @@ namespace Controller
 					hjemmeside = (string)reader["hjemmeside"];
 					topbrugerID = (long)reader["topbrugerID"];
 					status = (KampagneStatus)reader["status"];
-
-					if (!kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status))
+					kampagne = kampagnemanager.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, topbrugerID, status);
+					if (kampagne == null)
 					{
 						conn.Close();
 						return false;
@@ -275,122 +222,88 @@ namespace Controller
 				}
 				return false;
 			}
-		    return true;
+			return true;
 		}
 
-		public bool HentBrugereOgKaraktererTilKampagne(long kamID)
+		public bool HentBrugereOgKaraktererTilKampagne(Kampagne kampagne)
 		{
-			//Oprettelse af alle brugere og kampagnens karakterer
-			long brugerID;
-			string email, navn;
-			DateTime fødselsdag;
-			long tlf, nød_tlf;
-			bool vegetar, veganer;
-			string allergi, andet;
-			long karakterID = 0;
-			int karstatus = 0;
-			long attributID = 0;
-			long karakterAttributID = 0; 
-			string værdi = "";
-			long multiattributID = 0;
-			long karaktermultiattributID = 0;
-			long multiAttributEntryID = 0;
-
-			Bruger nuværendeBruger = null;
-			Karakter nuværendeKarakter = null;
-			bool nyKarakter = false;
-			bool nyAttribut = false;
-			bool nyMultiAttribut = false;
-
 			cmd.CommandText = "HentBrugereOgKaraktererTilKampagne";
 			cmd.Parameters.Clear();
 			SqlParameter par;
 			SqlDataReader reader;
 
 			par = new SqlParameter("@kamID", SqlDbType.BigInt);
-			par.Value = kamID;
+			par.Value = kampagne.KampagneID;
 			cmd.Parameters.Add(par);
+
+			long brugerID;
+			string email, navn;
+			DateTime fødselsdag;
+			long tlf, nød_tlf;
+			bool vegetar, veganer;
+			string allergi, andet;
+			KarakterStatus karstatus;
+			long karakterID, attributID, karakterAttributID;
+			string værdi;
+			long nuværendeBrugerID = 0;
+			long nuværendeKarakterID = 0;
+			Bruger nuværendeBruger = null;
+			Karakter nuværendeKarakter = null;
 
 			try
 			{
-			    conn.Open();
-			    reader = cmd.ExecuteReader();
+				conn.Open();
+				reader = cmd.ExecuteReader();
 
-			    while (reader.Read())
-			    {
-			        brugerID = (long)reader["brugerID"];
-			        email = (string)reader["email"];
-			        navn = (string)reader["navn"];
-			        fødselsdag = (DateTime)reader["fødselsdag"];
-			        tlf = (long)reader["tlf"];
-			        nød_tlf = (long)reader["nød_tlf"];
-			        vegetar = (bool)reader["vegetar"];
-			        veganer = (bool)reader["veganer"];
+				while (reader.Read())
+				{
+					brugerID = (long)reader["brugerID"];
+					email = (string)reader["email"];
+					navn = (string)reader["navn"];
+					fødselsdag = (DateTime)reader["fødselsdag"];
+					tlf = (long)reader["tlf"];
+					nød_tlf = (long)reader["nød_tlf"];
+					vegetar = (bool)reader["vegetar"];
+					veganer = (bool)reader["veganer"];
 					allergi = (string)reader["allergi"];
 					andet = (string)reader["andet"];
-					//Hvis der er en karakter på denne linje
-					if (reader["karakterID"] != System.DBNull.Value)
-					{
-						nyKarakter = true;
 
+					if (brugerID != nuværendeBrugerID)
+					{
+						nuværendeBruger = kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
+					}
+
+					if (reader["karakterID"] != DBNull.Value)
+					{
 						karakterID = (long)reader["karakterID"];
-						karstatus = (int)reader["karstatus"];
-					}
-					//Hvis der er en singleattribut på denne linje
-					if (reader["attributID"] != System.DBNull.Value)
-					{
-						nyAttribut = true;
+						karstatus = (KarakterStatus)reader["karstatus"];
+						if (nuværendeKarakterID != karakterID)
+						{
+							nuværendeKarakter = nuværendeBruger.GenopretKarakter(karakterID, kampagne);
+						}
 
-						attributID = (long)reader["attributID"];
-						karakterAttributID = (long)reader["karakterattributID"];
-						værdi = (string)reader["værdi"];
-					}
-					//Hvis der er en multiattribut på denne linje
-					if (reader["multiattributID"] != System.DBNull.Value)
-					{
-						nyMultiAttribut = true;
+						if (reader["attributID"] != DBNull.Value)
+						{
+							attributID = (long)reader["attributID"];
+							karakterAttributID = (long)reader["karakterattributID"];
+							værdi = (string)reader["værdi"];
 
-						multiattributID = (long)reader["multiattributID"];
-						karaktermultiattributID = (long)reader["multikarakterattributID"];
-						multiAttributEntryID = (long)reader["multiAttributEntryID"];
-					}
-					//Hvis der er en ny karakter på denne linje
-					if (nuværendeBruger == null || nuværendeBruger.BrugerID != brugerID)
-					{
-						nuværendeBruger = kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
-					}
-					if (nuværendeKarakter == null || nyKarakter && nuværendeKarakter.KarakterID != karakterID)
-					{
-						nuværendeKarakter = kampagnemanager.TilføjKarakter(nuværendeBruger, karakterID);
-						nyKarakter = false;
-					}
-					if (nyAttribut)
-					{
-						KampagneAttribut KA = (KampagneAttribut)kampagnemanager.FindKampagneAttribut(attributID);
-						nuværendeKarakter.TilføjVærdi(KA,værdi);
-						nyAttribut = false;
-					}
-					if (nyMultiAttribut)
-					{
-						KampagneMultiAttribut KMA = (KampagneMultiAttribut)kampagnemanager.FindKampagneAttribut(multiattributID);
-						KampagneMultiAttributValgmulighed KMAV = KMA.FindValgmulighed(multiAttributEntryID);
-						nuværendeKarakter.TilføjVærdi(KMA, KMAV);
-						nyMultiAttribut = false;
-					}
-			    }
+							KampagneAttribut attribut = kampagne.FindAttribut(attributID);
 
-			    reader.Dispose();
-			    conn.Close();
+							nuværendeKarakter.TilføjVærdi(attribut, værdi, karakterAttributID);
+						}
+					}
+				}
 			}
 			catch (SqlException)
 			{
-			    if (conn.State == ConnectionState.Open)
-			    {
-			        conn.Close();
-			    }
-			    return false;
-			}			
-		    return true;
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+			return true;
 		}
 
 		/// <summary>
@@ -423,10 +336,6 @@ namespace Controller
 			par = new SqlParameter("@id", SqlDbType.BigInt);
 			par.Direction = ParameterDirection.Output;
 			cmd.Parameters.Add(par);
-
-
-
-
 
 			try
 			{

@@ -9,8 +9,8 @@ namespace Model
 	{
 		KampagneMultiAttributValgmulighed valg;
 
-		public KarakterMultiAttribut(KampagneMultiAttributValgmulighed valg, KampagneAttribut attribut)
-			: base(attribut)
+		public KarakterMultiAttribut(KampagneMultiAttributValgmulighed valg, KampagneAttribut attribut, long id)
+			: base(attribut, id)
 		{
 			this.valg = valg;
 		}

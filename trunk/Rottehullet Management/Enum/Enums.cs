@@ -7,4 +7,5 @@ namespace Enum
 {
 	public enum KampagneAttributType { Singleline, Multiline, Combo }
     public enum KampagneStatus { Lukket, Åben, Oprettet }
+	public enum KarakterStatus { Nyoprettet, Godkendt, Afslået }
 }

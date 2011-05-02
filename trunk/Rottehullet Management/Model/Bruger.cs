@@ -44,16 +44,23 @@ namespace Model
 			return karakterer[karakterer.Count() - 1];
         }
 
-		public void TilføjAttribut(long karakterID, KampagneAttribut attribut, string værdi)
+		public Karakter GenopretKarakter(long karakterID, Kampagne kampagne)
+		{
+			Karakter karakter = new Karakter(karakterID, kampagne);
+			karakterer.Add(karakter);
+			return karakter;
+		}
+
+		public void TilføjAttribut(long karakterID, KampagneAttribut attribut, string værdi, long id)
         {
             Karakter karakter = FindKarakter(karakterID);
-            karakter.TilføjVærdi(attribut, værdi);
+            karakter.TilføjVærdi(attribut, værdi, id);
         }
 
-        public void TilføjAttribut(long karakterID, KampagneAttribut attribut, KampagneMultiAttributValgmulighed valg)
+        public void TilføjAttribut(long karakterID, KampagneAttribut attribut, KampagneMultiAttributValgmulighed valg, long id)
         {
             Karakter karakter = FindKarakter(karakterID);
-            karakter.TilføjVærdi(attribut, valg);
+            karakter.TilføjVærdi(attribut, valg, id);
         }
 
 		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie, bool spiser, bool overnatter)
