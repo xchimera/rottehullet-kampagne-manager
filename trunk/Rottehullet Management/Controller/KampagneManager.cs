@@ -12,13 +12,15 @@ namespace Controller
 {
 	public class KampagneManager
 	{
-		List<string[]> kampagneliste = new List<string[]>();
+		List<string[]> nuværendeBrugersRettigheder = new List<string[]>();
 		BrugerCollection brugercollection;
 		Kampagne kampagne;
 		DBFacade dbFacade;
 		KampagneAttribut nuværendeAttribut;
 		Scenarie nuværendeScenarie;
 	    private long nuværendebrugerID;
+		BrugerRettighed nuværendeRettighed;
+
 		public KampagneManager()
 		{
 			dbFacade = new DBFacade(this);
@@ -84,23 +86,23 @@ namespace Controller
 		#region KampagneListe
 		public IEnumerable GetBrugersKampagneIterator()
 		{
-			return kampagneliste;
+			return nuværendeBrugersRettigheder;
 		}
 
 		public IEnumerator GetBrugerKampagne()
 		{
-			return kampagneliste.GetEnumerator();
+			return nuværendeBrugersRettigheder.GetEnumerator();
 		}
 
 		public void IndsætRettighed(string kampagneID, string navn, string type)
 		{
 			string[] kampagnearr = new string[3] { kampagneID, navn, type };
-			kampagneliste.Add(kampagnearr);
+			nuværendeBrugersRettigheder.Add(kampagnearr);
 		}
 
 		public void RetKampagneliste(long kampagneID, string navn)
 		{
-			foreach (string[] kampagne in kampagneliste)
+			foreach (string[] kampagne in nuværendeBrugersRettigheder)
 			{
 				if (kampagne[0] == kampagneID.ToString())
 				{
@@ -125,7 +127,7 @@ namespace Controller
 
 		public int GetAntalKampagner()
 		{
-			return kampagneliste.Count();
+			return nuværendeBrugersRettigheder.Count();
 		}
 
 		public bool HentKampagneFraDatabase(long kamID)
@@ -428,6 +430,24 @@ namespace Controller
 			long brugerID = dbFacade.Login(email, kodeord);
 		    nuværendebrugerID = brugerID;
 			return brugerID;
+		}
+
+		public void SætNuværendeRettighed()
+		{
+			foreach (string[] item in nuværendeBrugersRettigheder)
+			{
+				if (Kampagne.KampagneID == Convert.ToInt64(item[0]))
+				{
+					if (item[2] == "0")
+					{
+						nuværendeRettighed = BrugerRettighed.Topbruger;
+					}
+					else
+					{
+						nuværendeRettighed = BrugerRettighed.Superbruger;
+					}
+				}
+			}
 		}
 	}
 }
