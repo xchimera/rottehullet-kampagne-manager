@@ -54,9 +54,9 @@ namespace Rottehullet_Management
 		//private void OpdaterLstKarakterer()
 		//{
 		//    string[] karakterer;
-		//    IEnumerator kampagneiterator = kampagnemanager.GetBrugerKampagne();
+		//    IEnumerator kampagneiterator = kampagnemanager.   GetBrugerKampagne();
 		//    kampagneiterator.Reset();
-		//    lstKampagner.Items.Clear();
+		//    lstKarakterer.Items.Clear();
 
 
 		//    while (kampagneiterator.MoveNext())

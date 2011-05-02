@@ -144,7 +144,6 @@ namespace Controller
 				conn.Close();
 				reader.Dispose();
 
-				HentAlleBrugere();
 				CheckRettighed(brugerid);
 				if (brugerid > 0)
 				{
@@ -824,50 +823,6 @@ namespace Controller
 		#endregion
 
 		#region Brugere
-		public void HentAlleBrugere()
-		{
-			string email, navn, allergi, andet;
-			DateTime fødselsdag;
-			long tlf, nød_tlf, brugerID;
-			bool vegetar, veganer;
-
-			cmd.CommandText = "HentAlleBrugere";
-			cmd.Parameters.Clear();
-			SqlDataReader reader;
-
-			try
-			{
-				conn.Open();
-				reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					navn = (string)reader["navn"];
-					email = (string)reader["email"];
-					fødselsdag = (DateTime)reader["fødselsdag"];
-					tlf = (long)reader["tlf"];
-					nød_tlf = (long)reader["nød_tlf"];
-					brugerID = (long)reader["brugerID"];
-					allergi = (string)reader["allergi"];
-					vegetar = (bool)reader["vegetar"];
-					veganer = (bool)reader["veganer"];
-					andet = (string)reader["andet"];
-
-					kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
-				}
-
-				reader.Dispose();
-				conn.Close();
-			}
-			catch (SqlException)
-			{
-				if (conn.State == ConnectionState.Open)
-				{
-					conn.Close();
-				}
-			}
-		}
-
 		/// <summary>
 		/// tilføj en bruger til databasen, lavet af Denny og Søren
 		/// </summary>

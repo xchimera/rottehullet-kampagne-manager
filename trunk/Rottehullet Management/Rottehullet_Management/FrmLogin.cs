@@ -34,7 +34,7 @@ namespace Rottehullet_Management
 				return;
 			}
 			//Checker databasen for brugerens brugerID
-            long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text);
+            long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text); //Sender brugerID tilbage og 
 			List<string[]> kampagner = new List<string[]>();
 			//Admin-brugeren har brugerID 1
 			if (brugerID == 1)
