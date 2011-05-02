@@ -433,5 +433,10 @@ namespace Controller
 				}
 			}
 		}
+
+		public BrugerRettighed NuværendeRettighed
+		{
+			get { return nuværendeRettighed; }
+		}
 	}
 }
