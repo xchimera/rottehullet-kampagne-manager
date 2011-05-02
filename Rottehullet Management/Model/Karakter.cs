@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using Interfaces;
+using Enum;
 
 namespace Model
 {
@@ -13,6 +14,7 @@ namespace Model
         long karakterID;
 		Kampagne kampagne;
 		List<Tilmelding> scenarieTilmeldinger;
+		KarakterStatus status;
 
         public Karakter(long karakterID, Kampagne kampagne)
         {
@@ -27,9 +29,9 @@ namespace Model
 		/// </summary>
 		/// <param name="kampagneAttribut"></param>
 		/// <param name="værdi"></param>
-        public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi)
+        public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi, long id)
         {
-			KarakterSingleAttribut attribut = new KarakterSingleAttribut(værdi, kampagneAttribut);
+			KarakterSingleAttribut attribut = new KarakterSingleAttribut(værdi, kampagneAttribut, id);
             værdier.Add(kampagneAttribut.Navn, attribut);
         }
 
@@ -38,9 +40,9 @@ namespace Model
 		/// </summary>
 		/// <param name="kampagneAttribut"></param>
 		/// <param name="valg"></param>
-		public void TilføjVærdi(KampagneAttribut kampagneAttribut, KampagneMultiAttributValgmulighed valg)
+		public void TilføjVærdi(KampagneAttribut kampagneAttribut, KampagneMultiAttributValgmulighed valg, long id)
 		{
-			KarakterMultiAttribut attribut = new KarakterMultiAttribut(valg, kampagneAttribut);
+			KarakterMultiAttribut attribut = new KarakterMultiAttribut(valg, kampagneAttribut, id);
 			værdier.Add(kampagneAttribut.Navn, attribut);
 		}
 

@@ -9,8 +9,8 @@ namespace Model
 	{
 		string værdi;
 
-		public KarakterSingleAttribut(string værdi, KampagneAttribut attribut)
-			: base(attribut)
+		public KarakterSingleAttribut(string værdi, KampagneAttribut attribut, long id)
+			: base(attribut, id)
 		{
 			this.værdi = værdi;
 		}
