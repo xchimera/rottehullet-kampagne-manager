@@ -182,7 +182,7 @@ namespace BK_GUI
                 }
                 else
                 {
-                    MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Fejl under oprettelse af bruger", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (btnNyOpdaterDisabled.Text == "Opdater karakter")
