@@ -71,8 +71,8 @@ namespace Rottehullet_Management
 				karakter = (IKarakter)karakteriterator.Current;
 				ListViewItem item = new ListViewItem();
 
-				item.Text = (string)karakter["Navn"];
-				//item.SubItems.Add();
+				item.Text = Convert.ToString(karakter.KarakterID);
+				item.SubItems.Add(karakter["Navn"]);
 
 				lstKarakterer.Items.Add(item);
 			}
