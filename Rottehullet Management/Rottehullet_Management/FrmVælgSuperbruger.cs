@@ -60,8 +60,10 @@ namespace Rottehullet_Management
             {
                 MessageBox.Show("Der opstod en fejl under tilknytning af superbruger", "Systemfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            MessageBox.Show("Brugeren er tilknyttet til kampagnen", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            else
+            {
+                MessageBox.Show("Brugeren er tilknyttet til kampagnen", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
  
 

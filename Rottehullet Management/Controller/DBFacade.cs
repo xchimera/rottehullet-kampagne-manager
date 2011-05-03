@@ -166,7 +166,7 @@ namespace Controller
         {
             SqlDataReader reader;
             cmd.Parameters.Clear();
-            cmd.CommandText = "HentAlleBruger";
+            cmd.CommandText = "HentAlleBrugere";
 
             long brugerID;
             string navn;
