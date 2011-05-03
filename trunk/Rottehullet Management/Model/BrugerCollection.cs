@@ -41,6 +41,23 @@ namespace Model
             return listBrugere.GetEnumerator();
         }
 
+		public List<Karakter> HentAlleKarakterer()
+		{
+			List<Karakter> karakterliste = new List<Karakter>();
+			IEnumerator karakteriterator;
+
+			foreach (Bruger bruger in ListBrugere)
+			{
+				karakteriterator = bruger.GetKarakterIterator();
+				karakteriterator.Reset();
+				while (karakteriterator.MoveNext())
+				{
+					karakterliste.Add((Karakter)karakteriterator.Current);
+				}
+			}
+			return karakterliste;
+		}
+
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID, Kampagne kampagne)
 		{
 			return bruger.TilføjKarakter(karakterID, kampagne);
