@@ -29,11 +29,14 @@ namespace Rottehullet_Management
 			txtHjemmeside.Text = Kampagne.Hjemmeside;
 			txtBeskrivelse.Text = Kampagne.Beskrivelse;
 			txtNavn.Select(0, 0);
-            if (kampagnemanager.NuværendeRettighed == Enum.BrugerRettighed.Topbruger)
+			//Sætter brugerens rettighedsniveau på Kampagnemanager, og viser knapper som kun er relevante for Superbrugeren
+            kampagnemanager.SætNuværendeRettighed();
+			if (kampagnemanager.NuværendeRettighed == Enum.BrugerRettighed.Topbruger)
             {
                 btnVælgSuperbruger.Visible = true;
             }
-			kampagnemanager.SætNuværendeRettighed();
+			//Hvis Kampagnen er Nyoprettet eller Lukket så skal knappen for Åben Kampagne være der.
+			//Hvis kampagnen er Åben skal knappen give mulighed for at lukke kampagnen
 			if (Kampagne.Status != Enum.KampagneStatus.Åben)
 			{
 				btnÅbenKampagne.Text = "Åben Kampagne";
@@ -42,6 +45,7 @@ namespace Rottehullet_Management
 			{
 				btnÅbenKampagne.Text = "Luk Kampagne";
 			}
+			//Hvis brugeren har mere end 1 kampagne skal Skift Kampagne knappen vises
 			if (kampagnemanager.GetAntalKampagner() > 1)
 			{
 				btnSkiftKampagne.Enabled = true;
@@ -51,6 +55,7 @@ namespace Rottehullet_Management
 				btnSkiftKampagne.Enabled = false;
 				btnSkiftKampagne.Visible = false;
 			}
+			OpdaterLstKarakterer();
         }
 
 		private void OpdaterLstKarakterer()
@@ -66,7 +71,7 @@ namespace Rottehullet_Management
 				karakter = (IKarakter)karakteriterator.Current;
 				ListViewItem item = new ListViewItem();
 				
-				//item.Text = Convert.ToString(karakter.navn);
+				item.Text = (string)karakter["Navn"];
 				//item.SubItems.Add(Convert.ToString(kampagne[1]));
 
 				lstKarakterer.Items.Add(item);
