@@ -66,7 +66,7 @@ namespace Rottehullet_Management
 				karakter = (IKarakter)karakteriterator.Current;
 				ListViewItem item = new ListViewItem();
 				
-				item.Text = Convert.ToString(karakter.navn);
+				//item.Text = Convert.ToString(karakter.navn);
 				//item.SubItems.Add(Convert.ToString(kampagne[1]));
 
 				lstKarakterer.Items.Add(item);

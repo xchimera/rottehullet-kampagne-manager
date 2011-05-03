@@ -69,16 +69,11 @@ namespace Model
 			get { return kampagne; }
 		}
 
-		public string navn
-		{
-			get { return navn; }
-		}
-
-		public string this[string navn]
+		public string this[string attributNavn]
 		{
 			get
 			{
-				KarakterAttribut værdi = værdier[navn];
+				KarakterAttribut værdi = værdier[attributNavn];
 				if (værdi is KarakterMultiAttribut)
 				{
 					return ((KarakterMultiAttribut)værdi).Værdi;

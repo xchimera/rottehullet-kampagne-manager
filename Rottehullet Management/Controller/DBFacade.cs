@@ -292,7 +292,9 @@ namespace Controller
 
 							nuværendeKarakter.TilføjVærdi(attribut, værdi, karakterAttributID);
 						}
+						nuværendeKarakterID = karakterID;
 					}
+					nuværendeBrugerID = brugerID;
 				}
 			}
 			catch (SqlException)
