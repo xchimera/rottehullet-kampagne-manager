@@ -41,6 +41,9 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -50,11 +53,20 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmHovedSideTest.cs" />
     <Compile Include="KampagneTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarieTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BK-Controller\BK-Controller.csproj">
+      <Project>{06FB3FBE-26A1-490B-858F-6E7FEBC8A09C}</Project>
+      <Name>BK-Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BK-GUI\BK-GUI.csproj">
+      <Project>{5D382AB5-9227-4884-9726-E66EC16AA40A}</Project>
+      <Name>BK-GUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{F125B6F4-2532-4BED-A967-68D5C8281458}</Project>
       <Name>Controller</Name>
@@ -71,6 +83,9 @@
       <Project>{BEEDEA9B-5316-430E-8356-E5FAA143F068}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\BK-GUI.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
