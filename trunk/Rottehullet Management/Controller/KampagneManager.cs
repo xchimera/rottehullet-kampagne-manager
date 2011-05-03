@@ -114,7 +114,7 @@ namespace Controller
 
 		public bool HentKampagneFraDatabase(long kamID)
 		{
-			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne))
+			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne) && dbFacade.HentMultiAttributterTilKarakterer(brugercollection.HentAlleKarakterer(), kampagne))
 			{
 				return true;
 			}

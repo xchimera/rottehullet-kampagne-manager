@@ -296,6 +296,7 @@ namespace Controller
 					}
 					nuværendeBrugerID = brugerID;
 				}
+				conn.Close();
 			}
 			catch (SqlException)
 			{
@@ -305,6 +306,58 @@ namespace Controller
 				}
 				return false;
 			}
+			return true;
+		}
+
+		public bool HentMultiAttributterTilKarakterer(List<Karakter> karakterer, Kampagne kampagne)
+		{
+			cmd.CommandText = "HentAlleKampagnensKarakteresMultiAttributter";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+			SqlDataReader reader;
+			Karakter nuværendeKarakter = null;
+			long nuværendeKarakterID = 0;
+			long karakterID = 0;
+
+			par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+			par.Value = kampagne.KampagneID;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					karakterID = (long)reader["karakterID"];
+					if (karakterID != nuværendeKarakterID)
+					{
+						foreach (Karakter karakter in karakterer)
+						{
+							if (karakter.KarakterID == karakterID)
+							{
+								nuværendeKarakter = karakter;
+								nuværendeKarakterID = karakterID;
+							}
+						}
+					}
+
+					KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut((long)reader["attributID"]);
+					nuværendeKarakter.TilføjVærdi(attribut, attribut.FindValgmulighed((long)reader["multiAttributEntryID"]), (long)reader["karakterAttributID"]);
+				}
+
+				conn.Close();
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+
 			return true;
 		}
 
@@ -321,7 +374,6 @@ namespace Controller
 			SqlParameter par;
 
 			long kampagneid = 0;
-			string tempid;
 
 			par = new SqlParameter("@navn", SqlDbType.NVarChar);
 			par.Value = navn;
@@ -341,23 +393,10 @@ namespace Controller
 
 			try
 			{
-
 				conn.Open();
 				cmd.ExecuteNonQuery();
 				conn.Close();
 				return (long)par.Value;
-
-
-				//conn.Open();
-				//reader = cmd.ExecuteReader();
-
-				//while (reader.Read())
-				//{
-				//    kampagneid = (int)reader["id"];
-				//}
-				//reader.Dispose();
-				//conn.Close();
-				return kampagneid;
 			}
 			catch (SqlException)
 			{

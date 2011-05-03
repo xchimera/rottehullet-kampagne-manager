@@ -75,7 +75,6 @@ namespace TestProject
 		{
 			//Oprettelse af kampagne
 			string navn = "TestKampagne";
-			Bruger topbruger = null;
 			long kampagneID = 0;
 
 			KampagneStatus status = KampagneStatus.Åben;
