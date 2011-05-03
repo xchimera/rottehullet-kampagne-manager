@@ -198,7 +198,7 @@ namespace BK_Controller
 			//Hent brugerens Karakterer og karakterernes attributter, men ikke multiattributter
             cmd.CommandText = "HentAlleBrugersKarakterer";
             cmd.Parameters.Clear();
-            long kampagneID, karakterID, attributID;
+            long kampagneID, karakterID, attributID, karakterattributID;
             string værdi;
 
             par = new SqlParameter("brugerID", SqlDbType.BigInt);
@@ -224,8 +224,9 @@ namespace BK_Controller
 					if (reader["attributID"] != System.DBNull.Value)
 					{
 						attributID = (long)reader["attributID"];
+                        karakterattributID = (long)reader["karakterAttributID"];
 						værdi = (string)reader["værdi"];
-						brugerklient.GenopretAttributVærdi(karakterID, kampagneID, attributID, værdi);
+						brugerklient.GenopretAttributVærdi(karakterID, kampagneID, attributID, værdi, karakterattributID);
 					}
 				}
 				//
@@ -248,7 +249,8 @@ namespace BK_Controller
 					kampagneID = (long)reader["kampagneID"];
 					multiattributID = (long)reader["multiattributID"];
 					multiattributentryID = (long)reader["multiAttributEntryID"];
-					brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, multiattributID, multiattributentryID);
+                    karakterattributID = (long)reader["karakterAttributID"];
+					brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, multiattributID, multiattributentryID, karakterattributID);
 				}
 				conn.Close();
 				reader.Dispose();
@@ -411,7 +413,7 @@ namespace BK_Controller
                         cmd.ExecuteNonQuery();
                         karakterattributID = (long)par.Value;
                         
-                        brugerklient.GenopretAttributVærdi(karakterID, kampagneID, Convert.ToInt64(textbox.Name), textbox.Text);
+                        brugerklient.GenopretAttributVærdi(karakterID, kampagneID, Convert.ToInt64(textbox.Name), textbox.Text, karakterattributID);
                     }
                     else if (control is ComboBox)
                     {
@@ -437,7 +439,7 @@ namespace BK_Controller
                         cmd.ExecuteNonQuery();
                         karakterattributID = (long)par.Value;
 
-                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, Convert.ToInt64(combobox.Name), (long)combobox.SelectedIndex);
+                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, Convert.ToInt64(combobox.Name), (long)combobox.SelectedIndex, karakterattributID);
                     }
                 }
                 conn.Close();

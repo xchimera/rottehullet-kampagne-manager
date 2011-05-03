@@ -114,10 +114,10 @@ namespace BK_GUI
                     kontroller.Add(combobox);
                 }
             }
-                    
-
-
         }
+
+
+        
 
         private void btnSkiftKampagne_Click(object sender, EventArgs e)
         {
