@@ -46,7 +46,7 @@ namespace BK_GUI
                 if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
                 {
                     item.Text = ikarakter.KarakterID.ToString();
-                    item.SubItems.Add(ikarakter["navn"]);
+                    item.SubItems.Add(ikarakter["Navn"]);
                     lstkaraktere.Items.Add(item);
                 }
 
