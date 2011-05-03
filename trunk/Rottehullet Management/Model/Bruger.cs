@@ -96,6 +96,12 @@ namespace Model
             return karakterer.GetEnumerator();
         }
 
+        public IKarakter GetKarakter(long karakterID)
+        {
+            IKarakter karakter = (IKarakter)FindKarakter(karakterID);
+            return karakter;
+        }
+
 		#region properties
 		public bool Veganer
         {

@@ -160,35 +160,43 @@ namespace BK_GUI
         //todo: og her
         private void SetAttributter()
         {
-            IKarakter ikarakter;
-            IEnumerator karakterIterator = brugerklient.GetKarakterIterator();
+            
+            ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
+            IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
             
             int y = 27;
             int x = lstkaraktere.Width + 100;
-            karakterIterator.Reset();
-            while (karakterIterator.MoveNext())
+
+            IEnumerator karakterattribut = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
+            IEnumerator værdi = ikarakter.HentVærdier();
+            værdi.Reset();
+            karakterattribut.Reset();
+            while (karakterattribut.MoveNext()&&værdi.MoveNext())
             {
-                ikarakter = (IKarakter)karakterIterator.Current;
-                IEnumerator værdi = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
-                værdi.Reset();
-                while (værdi.MoveNext())
+                IKarakterAttribut ikarakterattribut = (IKarakterAttribut)karakterattribut.Current;
+                if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Singleline || ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
                 {
-                    IKarakterAttribut ikarakterattribut = (IKarakterAttribut)værdi.Current;
                     // -- textbox --
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x, y);
-                    textbox.Name = værdi.Current.ToString();
-                    textbox.Text = ikarakterattribut; //todo: HER!
-
-                    this.Controls.Add(textbox);
+                    textbox.Name = karakterattribut.Current.ToString();
+                    textbox.Text = værdi.Current.ToString();
                     // -- label --
                     Label label = new Label();
                     label.Location = new Point(x - textbox.Width + 50, y);
                     label.Text = ikarakterattribut.Kampagneattribut.Navn;
+                    this.Controls.Add(textbox);
                     this.Controls.Add(label);
+                    y += textbox.Height + 5;
                 }
-
+                else
+                {
+                    ComboBox combobox = new ComboBox();
+                    combobox.Location = new Point(x, y);
+                }
             }
+
+            
         }
             void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
         {

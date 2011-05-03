@@ -10,7 +10,7 @@ namespace Model
 {
     public class Karakter : IKarakter
     {
-		Dictionary<string, KarakterAttribut> værdier;
+        Dictionary<string, KarakterAttribut> værdier;   //string er karakterattributID
         long karakterID;
 		Kampagne kampagne;
 		List<Tilmelding> scenarieTilmeldinger;
@@ -51,6 +51,26 @@ namespace Model
 			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, overnatter);
 			scenarieTilmeldinger.Add(tilmelding);
 		}
+
+        public IEnumerator HentVærdier()
+        {
+            List<string> returliste = new List<string>();
+            foreach (KarakterAttribut karakterAttribut in værdier.Values)
+            {
+                if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Singleline || karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
+                {
+                    KarakterSingleAttribut singleattribut = (KarakterSingleAttribut)karakterAttribut;
+                    returliste.Add(singleattribut.Værdi);
+                }
+                else
+                {
+                    KarakterMultiAttribut multiattribut = (KarakterMultiAttribut)karakterAttribut;
+                    returliste.Add(multiattribut.Valg.Værdi);
+                }
+            }
+            return returliste.GetEnumerator();
+        }
+
 		#endregion
 
 		#region Properties
