@@ -135,6 +135,11 @@ namespace BK_Controller
 			return bruger.GetKarakterIterator();
 		}
 
+        public IKarakter GetKarakter(long karakterID)
+        {
+            return bruger.GetKarakter(karakterID);
+        }
+
 		public IEnumerator GetVærdiIterator(long karakterID)
 		{
 			return bruger.GetVærdiIterator(karakterID);

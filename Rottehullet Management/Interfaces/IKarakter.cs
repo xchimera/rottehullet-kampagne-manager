@@ -11,6 +11,7 @@ namespace Interfaces
 		long KarakterID { get; }
 		IEnumerator GetVærdiIterator();
 		IKampagne Kampagne { get; }
+        IEnumerator HentVærdier();
 		string this[string attributNavn] { get; }
     }
 }
