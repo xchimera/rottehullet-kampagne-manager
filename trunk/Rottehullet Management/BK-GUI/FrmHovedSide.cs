@@ -19,6 +19,7 @@ namespace BK_GUI
         IKampagne ikampagne;
         List<Control> kontroller;
 
+
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
@@ -27,8 +28,6 @@ namespace BK_GUI
             ikampagne = brugerklient.FindKampagne(kampagneID);
             OpdaterListView();
         }
-
-
         public void OpdaterListView()
         {
             IKarakter ikarakter;
@@ -52,7 +51,6 @@ namespace BK_GUI
 
             }
         }
-
         public void OpretAttributter()
         {
             IKampagneAttribut ikampagneattribut;
@@ -61,18 +59,18 @@ namespace BK_GUI
             int y = 27;
             int x = lstkaraktere.Width + 100;
             attributiterator.Reset();
-
+            //todo: HER
             while (attributiterator.MoveNext())
             {
-                ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
+                ikampagneattribut = (IKampagneAttribut) attributiterator.Current;
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Singleline)
                 {
                     TextBox textbox = new TextBox();
-                    textbox.Location = new Point(x , y);
+                    textbox.Location = new Point(x, y);
                     textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
-                    label.Location = new Point(x - textbox.Width+50, y);
+                    label.Location = new Point(x - textbox.Width + 50, y);
                     this.Controls.Add(textbox);
                     this.Controls.Add(label);
                     y += textbox.Height + 5;
@@ -87,7 +85,7 @@ namespace BK_GUI
                     textbox.Size = new System.Drawing.Size(150, 100);
                     Label label = new Label();
                     label.Text = ikampagneattribut.Navn;
-                    label.Location = new Point(x - textbox.Width+50, y);
+                    label.Location = new Point(x - textbox.Width + 50, y);
                     y += textbox.Height + 5;
                     this.Controls.Add(textbox);
                     this.Controls.Add(label);
@@ -95,12 +93,14 @@ namespace BK_GUI
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
-                    IEnumerator valgmulighediterator = brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID, ikampagne.KampagneID);
+                    IEnumerator valgmulighediterator =
+                        brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID,
+                                                               ikampagne.KampagneID);
                     ComboBox combobox = new ComboBox();
                     combobox.Location = new Point(x, y);
                     while (valgmulighediterator.MoveNext())
                     {
-                        valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
+                        valgmulighed = (IKampagneMultiAttributValgmulighed) valgmulighediterator.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
                     }
                     combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
@@ -117,8 +117,6 @@ namespace BK_GUI
         }
 
 
-        
-
         private void btnSkiftKampagne_Click(object sender, EventArgs e)
         {
             FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
@@ -126,7 +124,6 @@ namespace BK_GUI
             loginkampagnevalg.ShowDialog();
             this.Close();
         }
-
         private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
         {
             FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding();
@@ -134,20 +131,48 @@ namespace BK_GUI
             scenarietilmelding.ShowDialog();
             this.Show();
         }
-
         private void btnNyKarakter_Click(object sender, EventArgs e)
         {
             btnNyOpdaterDisabled.Text = "Indsend karakter";
             OpretAttributter();
             btnNyKarakter.Enabled = false;
         }
-
         private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            SetAttributter();
             btnNyOpdaterDisabled.Text = "Opdater karakter"; 
         }
+        //todo: og her
+        private void SetAttributter()
+        {
+            IKarakter ikarakter;
+            IEnumerator karakterIterator = brugerklient.GetKarakterIterator();
+            
+            int y = 27;
+            int x = lstkaraktere.Width + 100;
+            karakterIterator.Reset();
+            while (karakterIterator.MoveNext())
+            {
+                ikarakter = (IKarakter)karakterIterator.Current;
+                IEnumerator værdi = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
+                værdi.Reset();
+                værdi.MoveNext();
+                // -- textbox --
+                TextBox textbox = new TextBox();
+                textbox.Location = new Point(x, y);
+                textbox.Name = ikarakter.KarakterID.ToString();
+                textbox.Text = ikarakter.KarakterID.ToString();
+                this.Controls.Add(textbox);
+                // -- label --
+                Label label = new Label();
+                label.Location = new Point(x - textbox.Width + 50, y);
+                label.Text = "ATTENTION!!"; //TODO: <----- Attention!
+                this.Controls.Add(label);
 
-        private void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
+
+            }
+        }
+            void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
         {
             if (btnNyOpdaterDisabled.Text == "Indsend karakter")
             {

@@ -81,6 +81,7 @@ namespace BK_Controller
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
 			KampagneAttribut attribut = kampagne.FindAttribut(attributID);
+
             bruger.TilføjAttribut(karakterID, attribut, værdi, karakterattributID);
 		}
 
@@ -134,9 +135,9 @@ namespace BK_Controller
 			return bruger.GetKarakterIterator();
 		}
 
-		public IEnumerator GetVærdiIterator(long attributID)
+		public IEnumerator GetVærdiIterator(long karakterID)
 		{
-			return bruger.GetVærdiIterator(attributID);
+			return bruger.GetVærdiIterator(karakterID);
 		}
 
 		public System.Collections.IEnumerator GetValgmulighederIterator(long attributID, long kampagneID)
