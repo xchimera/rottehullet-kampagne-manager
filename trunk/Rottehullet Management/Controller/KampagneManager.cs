@@ -52,10 +52,20 @@ namespace Controller
 			return false;
 		}
 
+        public void OpretBruger(long brugerID, string navn)
+        {
+            brugercollection.OpretBruger(brugerID, navn);
+        }
+
 		public Bruger TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			return brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
+
+        public bool HentBrugereTilAdmin()
+        {
+            return dbFacade.HentBrugereTilAdmin();
+        }
 		#endregion
 
 		#region Karakter

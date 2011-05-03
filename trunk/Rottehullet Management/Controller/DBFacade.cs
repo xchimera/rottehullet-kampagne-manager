@@ -162,11 +162,42 @@ namespace Controller
 			}
 		}
 
-		public bool Logud(string brugernavn)
-		{
-			//TODO: lav logud
-			return false;
-		}
+        public bool HentBrugereTilAdmin()
+        {
+            SqlDataReader reader;
+            cmd.Parameters.Clear();
+            cmd.CommandText = "HentAlleBruger";
+
+            long brugerID;
+            string navn;
+
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    brugerID = (long)reader["brugerID"];
+                    navn = (string)reader["navn"];
+                    kampagnemanager.OpretBruger(brugerID, navn);
+                }
+                conn.Close();
+                reader.Dispose();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
+
+
+
 		#endregion
 
 		#region Kampagne

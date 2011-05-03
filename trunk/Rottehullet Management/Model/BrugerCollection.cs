@@ -24,6 +24,12 @@ namespace Model
 			return listBrugere[listBrugere.Count() - 1];
         }
 
+        //til brug af admin da der kun skal bruges brugerID og navn
+        public void OpretBruger(long brugerID, string navn)
+        {
+            listBrugere.Add(new Bruger(brugerID, "", navn, DateTime.Now, 0, 0, false, false, "", ""));
+        }
+
         public Bruger FindBruger(long brugerID)
         {
             foreach (Bruger bruger in listBrugere)

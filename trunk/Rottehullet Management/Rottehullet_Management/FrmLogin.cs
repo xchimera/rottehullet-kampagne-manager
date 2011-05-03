@@ -39,6 +39,7 @@ namespace Rottehullet_Management
 			//Admin-brugeren har brugerID 1
 			if (brugerID == 1)
             {
+                kampagnemanager.HentBrugereTilAdmin();
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
                 this.Hide();
                 adminsektion.ShowDialog();
