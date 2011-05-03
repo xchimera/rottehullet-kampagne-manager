@@ -64,7 +64,9 @@
     <Compile Include="FrmLoginKampagneValg.Designer.cs">
       <DependentUpon>FrmLoginKampagneValg.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHovedside.cs" />
+    <Compile Include="FrmHovedside.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmHovedside.Designer.cs">
       <DependentUpon>FrmHovedside.cs</DependentUpon>
     </Compile>
