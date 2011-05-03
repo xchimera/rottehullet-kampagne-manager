@@ -51,6 +51,21 @@ namespace BK_GUI
 
             }
         }
+
+		private void lstKarakter_DoubleClick(object sender, EventArgs e)
+		{
+
+			// user clicked an item of listview control
+
+			if (lstkaraktere.SelectedItems.Count == 1)
+			{//display the text of selected item
+
+				MessageBox.Show(lstkaraktere.SelectedItems[0].Text);
+
+			}
+
+		}
+
         public void OpretAttributter()
         {
             IKampagneAttribut ikampagneattribut;
