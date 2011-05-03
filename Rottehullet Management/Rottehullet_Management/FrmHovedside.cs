@@ -70,9 +70,9 @@ namespace Rottehullet_Management
 			{
 				karakter = (IKarakter)karakteriterator.Current;
 				ListViewItem item = new ListViewItem();
-				
+
 				item.Text = (string)karakter["Navn"];
-				//item.SubItems.Add(Convert.ToString(kampagne[1]));
+				//item.SubItems.Add();
 
 				lstKarakterer.Items.Add(item);
 			}
