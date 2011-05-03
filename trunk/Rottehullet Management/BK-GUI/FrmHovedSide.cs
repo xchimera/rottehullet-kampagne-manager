@@ -156,19 +156,22 @@ namespace BK_GUI
                 ikarakter = (IKarakter)karakterIterator.Current;
                 IEnumerator værdi = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
                 værdi.Reset();
-                værdi.MoveNext();
-                // -- textbox --
-                TextBox textbox = new TextBox();
-                textbox.Location = new Point(x, y);
-                textbox.Name = ikarakter.KarakterID.ToString();
-                textbox.Text = ikarakter.KarakterID.ToString();
-                this.Controls.Add(textbox);
-                // -- label --
-                Label label = new Label();
-                label.Location = new Point(x - textbox.Width + 50, y);
-                label.Text = "ATTENTION!!"; //TODO: <----- Attention!
-                this.Controls.Add(label);
+                while (værdi.MoveNext())
+                {
+                    IKarakterAttribut ikarakterattribut = (IKarakterAttribut)værdi.Current;
+                    // -- textbox --
+                    TextBox textbox = new TextBox();
+                    textbox.Location = new Point(x, y);
+                    textbox.Name = værdi.Current.ToString();
+                    textbox.Text = ikarakterattribut; //todo: HER!
 
+                    this.Controls.Add(textbox);
+                    // -- label --
+                    Label label = new Label();
+                    label.Location = new Point(x - textbox.Width + 50, y);
+                    label.Text = ikarakterattribut.Kampagneattribut.Navn;
+                    this.Controls.Add(label);
+                }
 
             }
         }

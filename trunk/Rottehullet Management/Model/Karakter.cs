@@ -56,7 +56,12 @@ namespace Model
 		#region Properties
 		public IEnumerator GetVærdiIterator()
 		{
-			return værdier.GetEnumerator();
+            List<KarakterAttribut> karakterAttributter = new List<KarakterAttribut>();
+            foreach (KarakterAttribut karakterAttribut in værdier.Values)
+            {
+                karakterAttributter.Add(karakterAttribut);
+            }
+		    return karakterAttributter.GetEnumerator();
 		}
 
 		public long KarakterID
