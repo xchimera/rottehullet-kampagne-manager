@@ -38,7 +38,6 @@ namespace Rottehullet_Management
 		{
 			IKampagneAttribut ikampagneattribut;
 			string attributværdi;
-            IKampagneMultiAttributValgmulighed valgmulighed;
             IEnumerator attributiterator = kampagnemanager.GetAttributIterator();
             int y = 200;
             int x = 25;
