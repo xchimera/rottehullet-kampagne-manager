@@ -92,6 +92,7 @@ namespace BK_GUI
                     this.Controls.Add(label);
                     y += textbox.Height + 5;
                     kontroller.Add(textbox);
+                    kontroller.Add(label);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
                 {
@@ -107,6 +108,7 @@ namespace BK_GUI
                     this.Controls.Add(textbox);
                     this.Controls.Add(label);
                     kontroller.Add(textbox);
+                    kontroller.Add(label);
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
@@ -131,6 +133,7 @@ namespace BK_GUI
                     this.Controls.Add(combobox);
                     this.Controls.Add(label);
                     kontroller.Add(combobox);
+                    kontroller.Add(label);
                     listvalgID.Add(valgIDer);
                     
                 }
@@ -210,6 +213,14 @@ namespace BK_GUI
                 if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator()))
                 {
                     MessageBox.Show("Brugeren er oprettet");
+                    OpdaterListView();
+                    foreach(Control control in kontroller)
+                    {
+                        this.Controls.Remove(control);
+                    }
+                    this.Update();
+                    btnNyOpdaterDisabled.Enabled = false;
+                    btnNyKarakter.Enabled = true;
                 }
                 else
                 {
