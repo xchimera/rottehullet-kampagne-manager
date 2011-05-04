@@ -590,14 +590,14 @@ namespace Controller
 		public bool TilknytSuperbruger(long brugerID, long kampagneID)
 		{
 			cmd.Parameters.Clear();
-			cmd.CommandText = "TilknytSuperbruger";
+			cmd.CommandText = "OpretSuperbruger";
 			SqlParameter par;
 
 			par = new SqlParameter("@brugerID", SqlDbType.BigInt);
 			par.Value = brugerID;
 			cmd.Parameters.Add(par);
 
-			par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+			par = new SqlParameter("@kamID", SqlDbType.BigInt);
 			par.Value = kampagneID;
 			cmd.Parameters.Add(par);
 
