@@ -137,22 +137,23 @@ namespace BK_Controller
 
                 while (reader.Read())
                 {
-                    kampagneID = Convert.ToInt64(reader["kamID"]);
-                    navn = (string)reader["navn"];
-                    beskrivelse = (string)reader["beskrivelse"];
-                    hjemmeside = (string)reader["hjemmeside"];
-                    topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
-                    status = (KampagneStatus)reader["status"];
-                    if (kampagneID != tempkampagneID)
-                    {
-                        brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
-                        tempkampagneID = kampagneID;
-                    }
+					status = (KampagneStatus)reader["status"];
+					if (status == KampagneStatus.Åben)
+					{
+						//Hent Kampagnen
+						kampagneID = Convert.ToInt64(reader["kamID"]);
+						navn = (string)reader["navn"];
+						beskrivelse = (string)reader["beskrivelse"];
+						hjemmeside = (string)reader["hjemmeside"];
+						topbrugerID = Convert.ToInt64(reader["topbrugerID"]);
+						if (kampagneID != tempkampagneID)
+						{
+							brugerklient.GenopretKampagne(kampagneID, navn, beskrivelse, hjemmeside, status);
+							tempkampagneID = kampagneID;
+						}
 
-                    if (status == KampagneStatus.Åben)
-                    {
-
-                        kamtype = (KampagneAttributType)reader["infotype"];
+						//Hent KampagneAttributterne
+						kamtype = (KampagneAttributType)reader["infotype"];
                         attributnavn = (string)reader["attnavn"];
                         attributID = Convert.ToInt64(reader["attID"]);
                         position = (int)reader["position"];
