@@ -164,9 +164,9 @@ namespace BK_Controller
 			return null;
 		}
 
-        public bool NyKarakter(IEnumerator værdi)
+        public bool NyKarakter(IEnumerator værdi, IEnumerator valgID)
         {
-            if (brugerdbfacade.NyKarakter(værdi, nuværendeKampagne.KampagneID, bruger.BrugerID))
+            if (brugerdbfacade.NyKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID))
             {
                 return true;
             }

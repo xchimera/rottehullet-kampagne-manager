@@ -18,6 +18,7 @@ namespace BK_GUI
         BrugerKlient brugerklient;
         IKampagne ikampagne;
         List<Control> kontroller;
+        List<List<long>> listvalgID;
 
 
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
@@ -25,6 +26,7 @@ namespace BK_GUI
             InitializeComponent();
             this.brugerklient = brugerklient;
             kontroller = new List<Control>();
+            listvalgID = new List<List<long>>();
             ikampagne = brugerklient.FindKampagne(kampagneID);
             OpdaterListView();
         }
@@ -108,6 +110,7 @@ namespace BK_GUI
                 }
                 if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
+                    List<long> valgIDer = new List<long>();
                     IEnumerator valgmulighediterator =
                         brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID,
                                                                ikampagne.KampagneID);
@@ -117,6 +120,7 @@ namespace BK_GUI
                     {
                         valgmulighed = (IKampagneMultiAttributValgmulighed) valgmulighediterator.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
+                        valgIDer.Add(valgmulighed.Id);
                     }
                     combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     Label label = new Label();
@@ -127,6 +131,8 @@ namespace BK_GUI
                     this.Controls.Add(combobox);
                     this.Controls.Add(label);
                     kontroller.Add(combobox);
+                    listvalgID.Add(valgIDer);
+                    
                 }
             }
         }
@@ -201,7 +207,7 @@ namespace BK_GUI
             {
             if (btnNyOpdaterDisabled.Text == "Indsend karakter")
             {
-                if (brugerklient.NyKarakter(kontroller.GetEnumerator()))
+                if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator()))
                 {
                     MessageBox.Show("Brugeren er oprettet");
                 }

@@ -355,7 +355,7 @@ namespace BK_Controller
         }
 
 
-        public bool NyKarakter(IEnumerator værdiiterator, long kampagneID, long brugerID)
+        public bool NyKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID)
         {
             cmd.Parameters.Clear();
             SqlParameter par;
@@ -384,7 +384,7 @@ namespace BK_Controller
                 brugerklient.GenopretKarakter(karakterID, kampagneID);
 
                 værdiiterator.Reset();
-
+                valgID.Reset();
                 while (værdiiterator.MoveNext())
                 {
                     Control control = (Control)værdiiterator.Current;
@@ -417,6 +417,8 @@ namespace BK_Controller
                     }
                     else if (control is ComboBox)
                     {
+                        valgID.MoveNext();
+                        List<long> valgIDer = (List<long>)valgID.Current;
                         ComboBox combobox = (ComboBox)control;
                         cmd.CommandText = "OpretKarakterMultiAttribut";
 
@@ -429,7 +431,7 @@ namespace BK_Controller
                         cmd.Parameters.Add(par);
 
                         par = new SqlParameter("@multiAttributEntryID", SqlDbType.BigInt);
-                        par.Value = (long)combobox.SelectedIndex;
+                        par.Value = (long)valgIDer[(int)combobox.SelectedIndex];
                         cmd.Parameters.Add(par);
 
                         par = new SqlParameter("@karakterAttributID", SqlDbType.BigInt);
