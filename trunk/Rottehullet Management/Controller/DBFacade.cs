@@ -94,7 +94,7 @@ namespace Controller
 
 				while (reader.Read())
 				{
-					kampagneid = (string)reader["KamID"];
+					kampagneid = Convert.ToString(reader["KamID"]);
 					kampagnenavn = (string)reader["navn"];
 					brugertype = "1"; //senere lav en enum?
 
