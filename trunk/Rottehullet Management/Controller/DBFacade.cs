@@ -289,18 +289,18 @@ namespace Controller
 				while (reader.Read())
 				{
 					brugerID = (long)reader["brugerID"];
-					email = (string)reader["email"];
-					navn = (string)reader["navn"];
-					fødselsdag = (DateTime)reader["fødselsdag"];
-					tlf = (long)reader["tlf"];
-					nød_tlf = (long)reader["nød_tlf"];
-					vegetar = (bool)reader["vegetar"];
-					veganer = (bool)reader["veganer"];
-					allergi = (string)reader["allergi"];
-					andet = (string)reader["andet"];
-
 					if (brugerID != nuværendeBrugerID)
 					{
+						email = (string)reader["email"];
+						navn = (string)reader["navn"];
+						fødselsdag = (DateTime)reader["fødselsdag"];
+						tlf = (long)reader["tlf"];
+						nød_tlf = (long)reader["nød_tlf"];
+						vegetar = (bool)reader["vegetar"];
+						veganer = (bool)reader["veganer"];
+						allergi = (string)reader["allergi"];
+						andet = (string)reader["andet"];
+
 						nuværendeBruger = kampagnemanager.TilføjBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 					}
 
@@ -935,7 +935,7 @@ namespace Controller
 
 
 
-					if (type == KampagneAttributType.Singleline)
+					if (type == KampagneAttributType.Singleline || type == KampagneAttributType.Multiline)
 					{
 						kampagnemanager.GenopretAttribut(kamID, attributID, navn, type, position);
 					}
