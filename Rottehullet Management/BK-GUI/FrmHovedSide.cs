@@ -195,11 +195,10 @@ namespace BK_GUI
                     combobox.Location = new Point(x, y);
                 }
             }
-
-            
         }
+
             void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
-        {
+            {
             if (btnNyOpdaterDisabled.Text == "Indsend karakter")
             {
                 if (brugerklient.NyKarakter(kontroller.GetEnumerator()))
