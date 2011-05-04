@@ -16,47 +16,78 @@ namespace Rottehullet_Management
     public partial class FrmHovedside : Form
     {
         KampagneManager kampagnemanager;
-		IKampagne Kampagne;
+		IKampagne kampagne;
         long kampagneID;
         
         public FrmHovedside(string navn, KampagneManager kampagnemanager)
         {
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
-			Kampagne = kampagnemanager.Kampagne;
-            this.kampagneID = Kampagne.KampagneID;
-            txtNavn.Text = Kampagne.Navn;
-			txtHjemmeside.Text = Kampagne.Hjemmeside;
-			txtBeskrivelse.Text = Kampagne.Beskrivelse;
+			kampagne = kampagnemanager.Kampagne;
+            this.kampagneID = kampagne.KampagneID;
+            txtNavn.Text = kampagne.Navn;
+			txtHjemmeside.Text = kampagne.Hjemmeside;
+			txtBeskrivelse.Text = kampagne.Beskrivelse;
 			txtNavn.Select(0, 0);
 			//Sætter brugerens rettighedsniveau på Kampagnemanager, og viser knapper som kun er relevante for Superbrugeren
-            kampagnemanager.SætNuværendeRettighed();
-			if (kampagnemanager.NuværendeRettighed == Enum.BrugerRettighed.Topbruger)
-            {
-                btnVælgSuperbruger.Visible = true;
-            }
-			//Hvis Kampagnen er Nyoprettet eller Lukket så skal knappen for Åben Kampagne være der.
-			//Hvis kampagnen er Åben skal knappen give mulighed for at lukke kampagnen
-			if (Kampagne.Status != Enum.KampagneStatus.Åben)
+			if (kampagnemanager.SætNuværendeRettighed() == Enum.BrugerRettighed.Topbruger)
 			{
-				btnÅbenKampagne.Text = "Åben Kampagne";
+				Tilstand_Topbruger();
 			}
-			else
-			{
-				btnÅbenKampagne.Text = "Luk Kampagne";
-			}
-			//Hvis brugeren har mere end 1 kampagne skal Skift Kampagne knappen vises
-			if (kampagnemanager.GetAntalKampagner() > 1)
-			{
-				btnSkiftKampagne.Enabled = true;
-			}
-			else
+			//Dette sætter tilstande afhængig om kampagnen er nyoprettet, åben eller lukket
+			SætKampagneTilstand();
+			//Hvis brugeren kun har 1 kampagne skal Skift Kampagne knappen ikke vises
+			if (kampagnemanager.GetAntalKampagner() == 1)
 			{
 				btnSkiftKampagne.Enabled = false;
 				btnSkiftKampagne.Visible = false;
 			}
 			OpdaterLstKarakterer();
         }
+
+		#region Tilstandsstyring
+		private void Tilstand_Topbruger()
+		{
+			btnVælgSuperbruger.Visible = true;
+		}
+		
+		private void SætKampagneTilstand()
+		{
+			if (kampagne.Status == Enum.KampagneStatus.Oprettet)
+			{
+				Tilstand_Nyoprettet();
+			}
+			else if (kampagne.Status == Enum.KampagneStatus.Åben)
+			{
+				Tilstand_Åben();
+			}
+			else //Status = Lukket
+			{
+				Tilstand_Lukket();
+			}
+		}
+
+		private void Tilstand_Nyoprettet()
+		{
+			btnÅbenKampagne.Text = "Åben Kampagne";
+			btnRetAttributter.Enabled = true;
+			btnRetAttributter.Visible = true;
+		}
+
+		private void Tilstand_Åben()
+		{
+			btnÅbenKampagne.Text = "Luk Kampagne";
+			btnRetAttributter.Enabled = false;
+			btnRetAttributter.Visible = false;
+		}
+
+		private void Tilstand_Lukket()
+		{
+			btnÅbenKampagne.Text = "Åben Kampagne";
+			btnRetAttributter.Enabled = false;
+			btnRetAttributter.Visible = false;
+		}
+		#endregion
 
 		private void OpdaterLstKarakterer()
 		{
@@ -81,7 +112,7 @@ namespace Rottehullet_Management
 
         private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
-			InputBoxSingleline singleline = new InputBoxSingleline(Kampagne.Navn);
+			InputBoxSingleline singleline = new InputBoxSingleline(kampagne.Navn);
 			singleline.ShowDialog();
             if (singleline.Lastbutton == 1)
             {
@@ -96,30 +127,31 @@ namespace Rottehullet_Management
 
         private void btnRedigerHjemmeside_Click(object sender, EventArgs e)
         {
-            InputBoxSingleline singleline = new InputBoxSingleline(Kampagne.Hjemmeside);
+            InputBoxSingleline singleline = new InputBoxSingleline(kampagne.Hjemmeside);
             singleline.ShowDialog();
             if (singleline.Lastbutton == 1)
             {
                 txtHjemmeside.Text = singleline.Text;
-                kampagnemanager.RetKampagneHjemmeside(txtHjemmeside.Text, Kampagne.KampagneID);
+                kampagnemanager.RetKampagneHjemmeside(txtHjemmeside.Text, kampagne.KampagneID);
             }
         }
 
         private void btnRedigerBeskrivelse_Click(object sender, EventArgs e)
         {
-            InputBoxMultiline multiline = new InputBoxMultiline(Kampagne.Beskrivelse);
+            InputBoxMultiline multiline = new InputBoxMultiline(kampagne.Beskrivelse);
             multiline.ShowDialog();
             if (multiline.LastButton == 1)
             {
                 txtBeskrivelse.Text = multiline.Text;
-                kampagnemanager.RetKampagneBeskrivelse(txtBeskrivelse.Text, Kampagne.KampagneID);
+                kampagnemanager.RetKampagneBeskrivelse(txtBeskrivelse.Text, kampagne.KampagneID);
             }
         }
 
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
 		{
 			FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
-			this.Hide();
+			this.Hide(); 
+			kampagnemanager.TømKarakterer();
 			loginKampagneValg.ShowDialog();
 			this.Close();
 		}
@@ -139,18 +171,18 @@ namespace Rottehullet_Management
 
         private void btnÅbenKampagne_Click(object sender, EventArgs e)
         {
-			if (Kampagne.Status != Enum.KampagneStatus.Åben)
+			if (kampagne.Status != Enum.KampagneStatus.Åben)
 			{
-				//Denne del køres når knappen hedder Åben Kampagne (når KampagneStatus er "Lukket" eller "Oprette)
-				kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Åben);
-				btnÅbenKampagne.Text = "Luk Kampagne";
+				//Denne del køres når KampagneStatus er "Lukket" eller "Oprettet", og retter status
+				//til "Åben"
+				kampagnemanager.RetKampagneStatus(kampagne.KampagneID, Enum.KampagneStatus.Åben);
 			}
 			else
 			{
-				//Denne del køres når knappen hedder Luk Kampagne
-				kampagnemanager.RetKampagneStatus(Kampagne.KampagneID, Enum.KampagneStatus.Lukket);
-				btnÅbenKampagne.Text = "Åben Kampagne";
+				//Denne del køres når KampagneStatus er "Åben", og retter status til "Lukket"
+				kampagnemanager.RetKampagneStatus(kampagne.KampagneID, Enum.KampagneStatus.Lukket);
 			}
+			SætKampagneTilstand();
         }
 
 		private void btnRetScenarie_Click(object sender, EventArgs e)
@@ -167,9 +199,19 @@ namespace Rottehullet_Management
 
         private void btnVælgSuperbruger_Click(object sender, EventArgs e)
         {
-            FrmVælgSuperbruger vælgsuperbruger = new FrmVælgSuperbruger(kampagnemanager, Kampagne);
+            FrmVælgSuperbruger vælgsuperbruger = new FrmVælgSuperbruger(kampagnemanager, kampagne);
             this.Hide();
             vælgsuperbruger.ShowDialog();
         }
+
+		private void lstKarakterer_DoubleClick(object sender, EventArgs e)
+		{
+			ListViewItem valgteitem = lstKarakterer.Items[lstKarakterer.SelectedIndices[0]];
+			long karakterID = Convert.ToInt64(valgteitem.SubItems[0].Text);
+			IKarakter ikarakter = kampagnemanager.FindKarakter(karakterID);
+			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
+			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager,ibruger,ikarakter);
+			karaktervindue.ShowDialog();
+			}
     }
 }

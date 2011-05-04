@@ -58,6 +58,12 @@
     <Compile Include="FrmAttributter.Designer.cs">
       <DependentUpon>FrmAttributter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmKarakter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKarakter.Designer.cs">
+      <DependentUpon>FrmKarakter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLoginKampagneValg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmHovedside.resx">
       <DependentUpon>FrmHovedside.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmKarakter.resx">
+      <DependentUpon>FrmKarakter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

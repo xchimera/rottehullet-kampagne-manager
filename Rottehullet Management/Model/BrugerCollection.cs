@@ -42,7 +42,37 @@ namespace Model
             return null;
         }
 
-        public IEnumerator GetBrugerIterator()
+		public Karakter FindKarakter(long karakterID)
+		{
+			Karakter karakter;
+			
+			foreach (Bruger bruger in ListBrugere)
+			{
+				karakter = bruger.FindKarakter(karakterID);
+				if (karakter != null)
+				{
+					return karakter;
+				}
+			}
+			return null;
+		}
+
+		public Bruger FindKaraktersBruger(long karakterID)
+		{
+			Karakter karakter;
+
+			foreach (Bruger bruger in ListBrugere)
+			{
+				karakter = bruger.FindKarakter(karakterID);
+				if (karakter != null)
+				{
+					return bruger;
+				}
+			}
+			return null;
+		}
+
+		public IEnumerator GetBrugerIterator()
         {
             return listBrugere.GetEnumerator();
         }
@@ -64,11 +94,35 @@ namespace Model
 			return karakterliste;
 		}
 
+		public List<Karakter> HentAlleKaraktererPåKampagne(long kampagneID)
+		{
+			List<Karakter> karakterliste = new List<Karakter>();
+			IEnumerator karakteriterator;
+
+			foreach (Bruger bruger in ListBrugere)
+			{
+				karakteriterator = bruger.GetKampagnesKarakterIterator(kampagneID);
+				karakteriterator.Reset();
+				while (karakteriterator.MoveNext())
+				{
+					karakterliste.Add((Karakter)karakteriterator.Current);
+				}
+			}
+			return karakterliste;
+		}
+
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID, Kampagne kampagne)
 		{
 			return bruger.TilføjKarakter(karakterID, kampagne);
 		}
 
+		public void TømKarakterer()
+		{
+			foreach (Bruger bruger in listBrugere)
+			{
+				bruger.TømKarakterer();
+			}
+		}
         #endregion
 
 		public List<Bruger> ListBrugere
