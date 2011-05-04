@@ -34,7 +34,12 @@ namespace Controller
 		{
 			return brugercollection.FindBruger(brugerID);
 		}
-		
+
+		public IBruger FindKaraktersBruger(long karakterID)
+		{
+			return (IBruger)brugercollection.FindKaraktersBruger(karakterID);
+		}
+
 		public IEnumerator GetBrugerIterator()
 		{
 			return brugercollection.GetBrugerIterator();
@@ -75,13 +80,23 @@ namespace Controller
 			return brugercollection.HentAlleKarakterer().GetEnumerator();
 		}
 
+		public IEnumerator AlleKaraktererPåKampagneEnumerator(long kampagneID)
+		{
+			return brugercollection.HentAlleKaraktererPåKampagne(kampagneID).GetEnumerator();
+		}
+
+		public IKarakter FindKarakter(long karakterID)
+		{
+			return (IKarakter)brugercollection.FindKarakter(karakterID);
+		}
+
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID)
 		{
 			return brugercollection.TilføjKarakter(bruger, karakterID, kampagne);
 		}
 		#endregion
 
-		#region KampagneListe
+		#region Login/Logout
 		public IEnumerable GetBrugersKampagneIterator()
 		{
 			return nuværendeBrugersRettigheder;
@@ -107,6 +122,13 @@ namespace Controller
 					kampagne[1] = navn;
 				}
 			}
+		}
+
+		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
+		//når den nye kampagne bliver åbnet
+		public void TømKarakterer()
+		{
+			brugercollection.TømKarakterer();
 		}
 		#endregion
 
@@ -414,7 +436,7 @@ namespace Controller
 			return brugerID;
 		}
 
-		public void SætNuværendeRettighed()
+		public BrugerRettighed SætNuværendeRettighed()
 		{
 			foreach (string[] item in nuværendeBrugersRettigheder)
 			{
@@ -430,6 +452,7 @@ namespace Controller
 					}
 				}
 			}
+			return nuværendeRettighed;
 		}
 
 		public BrugerRettighed NuværendeRettighed

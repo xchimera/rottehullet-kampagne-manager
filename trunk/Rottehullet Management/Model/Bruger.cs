@@ -81,7 +81,20 @@ namespace Model
             return null;
         }
 
-        public IEnumerator GetVærdiIterator(long karakterID)
+		public IEnumerator GetKampagnesKarakterIterator(long kampagneID)
+		{
+			List<Karakter> kampagneskarakterer = new List<Karakter>();
+			foreach (Karakter karakter in karakterer)
+			{
+				if (karakter.Kampagne.KampagneID == kampagneID)
+				{
+					kampagneskarakterer.Add(karakter);
+				}
+			}
+			return kampagneskarakterer.GetEnumerator();
+		}
+
+		public IEnumerator GetVærdiIterator(long karakterID)
         {
             Karakter karakter = FindKarakter(karakterID);
             if (karakter != null)
@@ -101,6 +114,11 @@ namespace Model
             IKarakter karakter = (IKarakter)FindKarakter(karakterID);
             return karakter;
         }
+
+		public void TømKarakterer()
+		{
+			karakterer = new List<Karakter>();
+		}
 
 		#region properties
 		public bool Veganer
