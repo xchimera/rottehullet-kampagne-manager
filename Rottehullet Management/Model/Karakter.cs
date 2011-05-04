@@ -10,7 +10,7 @@ namespace Model
 {
     public class Karakter : IKarakter
     {
-        Dictionary<string, KarakterAttribut> værdier;   //string er karakterattributID
+        Dictionary<string, KarakterAttribut> attributter;   //string er karakterattributID
         long karakterID;
 		Kampagne kampagne;
 		List<Tilmelding> scenarieTilmeldinger;
@@ -20,7 +20,7 @@ namespace Model
         {
             this.karakterID = karakterID;
             this.kampagne = kampagne;
-			værdier = new Dictionary<string, KarakterAttribut>();
+			attributter = new Dictionary<string, KarakterAttribut>();
 			scenarieTilmeldinger = new List<Tilmelding>();
         }
 		#region metoder
@@ -32,7 +32,7 @@ namespace Model
         public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi, long id)
         {
 			KarakterSingleAttribut attribut = new KarakterSingleAttribut(værdi, kampagneAttribut, id);
-            værdier.Add(kampagneAttribut.Navn, attribut);
+            attributter.Add(kampagneAttribut.Navn, attribut);
         }
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace Model
 		public void TilføjVærdi(KampagneAttribut kampagneAttribut, KampagneMultiAttributValgmulighed valg, long id)
 		{
 			KarakterMultiAttribut attribut = new KarakterMultiAttribut(valg, kampagneAttribut, id);
-			værdier.Add(kampagneAttribut.Navn, attribut);
+			attributter.Add(kampagneAttribut.Navn, attribut);
 		}
 
 		public void TilmedTilScenarie(Scenarie scenarie, bool spiser, bool overnatter)
@@ -52,10 +52,31 @@ namespace Model
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 
+		public string FindAttributVærdi(long kampagneattributID)
+		{
+			foreach (KarakterAttribut attribut in attributter.Values)
+			{
+				if(attribut.Kampagneattribut.KampagneAttributID == kampagneattributID)
+				{
+					if (attribut.Kampagneattribut.Type == KampagneAttributType.Singleline || attribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
+					{
+						KarakterSingleAttribut singleattribut = (KarakterSingleAttribut)attribut;
+						return singleattribut.Værdi;
+					}
+					else
+					{
+						KarakterMultiAttribut multiattribut = (KarakterMultiAttribut)attribut;
+						return multiattribut.Valg.Værdi;
+					}
+				}
+			}
+			return null;
+		}
+
         public IEnumerator HentVærdier()
         {
             List<string> returliste = new List<string>();
-            foreach (KarakterAttribut karakterAttribut in værdier.Values)
+            foreach (KarakterAttribut karakterAttribut in attributter.Values)
             {
                 if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Singleline || karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
                 {
@@ -77,7 +98,7 @@ namespace Model
 		public IEnumerator GetVærdiIterator()
 		{
             List<KarakterAttribut> karakterAttributter = new List<KarakterAttribut>();
-            foreach (KarakterAttribut karakterAttribut in værdier.Values)
+            foreach (KarakterAttribut karakterAttribut in attributter.Values)
             {
                 karakterAttributter.Add(karakterAttribut);
             }
@@ -98,7 +119,7 @@ namespace Model
 		{
 			get
 			{
-				KarakterAttribut værdi = værdier[attributNavn];
+				KarakterAttribut værdi = attributter[attributNavn];
 				if (værdi is KarakterMultiAttribut)
 				{
 					return ((KarakterMultiAttribut)værdi).Værdi;
