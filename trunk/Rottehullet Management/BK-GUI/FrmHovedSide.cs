@@ -94,7 +94,7 @@ namespace BK_GUI
                     kontroller.Add(textbox);
                     kontroller.Add(label);
                 }
-                if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
+                else if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
                 {
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x, y);
@@ -110,7 +110,7 @@ namespace BK_GUI
                     kontroller.Add(textbox);
                     kontroller.Add(label);
                 }
-                if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
+                else if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
                     List<long> valgIDer = new List<long>();
                     IEnumerator valgmulighediterator =

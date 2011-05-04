@@ -13,5 +13,6 @@ namespace Interfaces
 		IKampagne Kampagne { get; }
         IEnumerator HentVærdier();
 		string this[string attributNavn] { get; }
+		string FindAttributVærdi(long kampagneattributID);
     }
 }
