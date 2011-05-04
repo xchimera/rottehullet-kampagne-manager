@@ -80,6 +80,7 @@
             this.btnTilmeld.TabIndex = 4;
             this.btnTilmeld.Text = "Tilmeld";
             this.btnTilmeld.UseVisualStyleBackColor = true;
+            this.btnTilmeld.Click += new System.EventHandler(this.btnTilmeld_Click);
             // 
             // btnAnnuller
             // 
@@ -103,7 +104,7 @@
             this.Controls.Add(this.txtOvernatning);
             this.Controls.Add(this.chkSpisning);
             this.Name = "FrmScenarieTilmelding";
-            this.Text = "FrmScenarieTilmelding";
+            this.Text = "Scenarie Tilmelding";
             this.ResumeLayout(false);
             this.PerformLayout();
 
