@@ -16,10 +16,15 @@ namespace BK_GUI
         {
             InitializeComponent();
         }
-
+        //TODO:
         private void btnAnnuller_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnTilmeld_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
