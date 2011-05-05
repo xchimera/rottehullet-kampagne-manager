@@ -114,7 +114,8 @@ namespace Rottehullet_Management
 		{
 			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Godkendt))
 			{
-				MessageBox.Show("Karakteren er blevet godkendt", "Godkendt", MessageBoxButtons.OK, MessageBoxIcon.None);
+				string test = karakter.Status.ToString();
+				MessageBox.Show(test, "Godkendt", MessageBoxButtons.OK, MessageBoxIcon.None);
 				btnGodkendKarakter.Enabled = false;
 				btnGodkendKarakter.Visible = false;
 				btnAfslåKarakter.Enabled = false;

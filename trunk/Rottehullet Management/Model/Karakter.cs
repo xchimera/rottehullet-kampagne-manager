@@ -16,10 +16,11 @@ namespace Model
 		List<Tilmelding> scenarieTilmeldinger;
 		KarakterStatus status;
 
-		public Karakter(long karakterID, Kampagne kampagne)
+		public Karakter(long karakterID, Kampagne kampagne, KarakterStatus status)
         {
             this.karakterID = karakterID;
             this.kampagne = kampagne;
+			this.status = status;
 			attributter = new Dictionary<string, KarakterAttribut>();
 			scenarieTilmeldinger = new List<Tilmelding>();
         }

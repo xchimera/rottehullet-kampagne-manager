@@ -104,6 +104,14 @@ namespace Rottehullet_Management
 
 				item.Text = Convert.ToString(karakter.KarakterID);
 				item.SubItems.Add(karakter["Navn"]);
+				if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+				{
+					item.BackColor = Color.Red;
+				}
+				else if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+				{
+					item.BackColor = Color.OrangeRed;
+				}
 
 				lstKarakterer.Items.Add(item);
 			}

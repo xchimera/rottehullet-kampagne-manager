@@ -310,7 +310,7 @@ namespace Controller
 						karstatus = (KarakterStatus)reader["karstatus"];
 						if (nuværendeKarakterID != karakterID)
 						{
-							nuværendeKarakter = nuværendeBruger.GenopretKarakter(karakterID, kampagne);
+							nuværendeKarakter = nuværendeBruger.GenopretKarakter(karakterID, kampagne, karstatus);
 						}
 
 						if (reader["attributID"] != DBNull.Value)
