@@ -106,16 +106,11 @@ namespace Rottehullet_Management
 				item.SubItems.Add(karakter["Navn"]);
 				if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
 				{
-					item.BackColor = Color.Red;
-				}
-				else if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
-				{
 					item.BackColor = Color.OrangeRed;
 				}
 
 				lstKarakterer.Items.Add(item);
 			}
-			//lstKarakterer.Items[0].Selected = true;
 		}
 
         private void btnRedigerNavn_Click(object sender, EventArgs e)

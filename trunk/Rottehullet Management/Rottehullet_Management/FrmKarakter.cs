@@ -32,6 +32,7 @@ namespace Rottehullet_Management
 			this.Text = karakter["Navn"];
 
 			SætAttributter();
+			OpdaterListview();
 
 			if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
 			{
@@ -108,6 +109,25 @@ namespace Rottehullet_Management
                     
 				//}
             }
+		}
+
+		private void OpdaterListview()
+		{
+			IEnumerator karakteriterator = bruger.FindGamleKarakterer(karakter);
+			karakteriterator.Reset();
+			lstGamleKarakterer.Items.Clear();
+
+
+			while (karakteriterator.MoveNext())
+			{
+				karakter = (IKarakter)karakteriterator.Current;
+				ListViewItem item = new ListViewItem();
+
+				item.Text = Convert.ToString(karakter.KarakterID);
+				item.SubItems.Add(karakter["Navn"]);
+				
+				lstGamleKarakterer.Items.Add(item);
+			}
 		}
 
 		private void btnGodkendKarakter_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Interfaces
         long Tlf {get; set;}
         long NødTlf {get; set;}
         bool Vegetar {get; set;}
-        bool Veganer {get; set;}
+		bool Veganer { get; set; }
+		IEnumerator FindGamleKarakterer(IKarakter karakterInd);
     }
 }
