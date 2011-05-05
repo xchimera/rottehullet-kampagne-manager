@@ -67,5 +67,18 @@ namespace BK_GUI
 		{
 
 		}
+
+        private void lstKampagner_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstKampagner.SelectedIndices.Count > 0)
+            {
+                ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
+
+                FrmHovedSide frmhovedside = new FrmHovedSide(brugerklient, Convert.ToInt64(item.SubItems[0].Text));
+                this.Hide();
+                frmhovedside.ShowDialog();
+                this.Close();
+            }
+        }
     }
 }

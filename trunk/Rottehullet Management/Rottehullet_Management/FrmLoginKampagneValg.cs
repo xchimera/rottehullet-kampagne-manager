@@ -87,5 +87,29 @@ namespace Rottehullet_Management
 			}
            
         }
+
+        private void lstKampagner_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstKampagner.SelectedIndices.Count > 0)
+            {
+                ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
+
+                if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
+                {
+                    FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
+                    this.Hide();
+                    hovedside.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Der skete en fejl ved indlæsningen af denne kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vælg en kampagne", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 	}
 }

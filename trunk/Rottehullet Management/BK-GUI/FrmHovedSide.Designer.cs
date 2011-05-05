@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 438);
+            this.ClientSize = new System.Drawing.Size(519, 438);
             this.Controls.Add(this.btnSkiftKampagne);
             this.Controls.Add(this.btnTilmeldTilScenarie);
             this.Controls.Add(this.btnNyOpdaterDisabled);

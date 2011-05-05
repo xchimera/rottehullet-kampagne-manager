@@ -46,6 +46,7 @@
             this.lstKampagner.TabIndex = 0;
             this.lstKampagner.UseCompatibleStateImageBehavior = false;
             this.lstKampagner.View = System.Windows.Forms.View.Details;
+            this.lstKampagner.DoubleClick += new System.EventHandler(this.lstKampagner_DoubleClick);
             // 
             // KampagneID
             // 
