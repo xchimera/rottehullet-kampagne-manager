@@ -212,6 +212,7 @@ namespace BK_GUI
             FjernKontroler();
             SetAttributter();
             btnNyOpdaterDisabled.Text = "Opdater karakter";
+            btnNyOpdaterDisabled.Enabled = true;
         }
         //todo: og her
         private void SetAttributter()
@@ -355,11 +356,11 @@ namespace BK_GUI
 
         public void FjernKontroler()
         {
- 
             foreach (Control control in kontroller)
             {
                 this.Controls.Remove(control);
             }
+            kontroller.Clear();
             listvalgID.Clear();
             this.Update();
             btnNyOpdaterDisabled.Enabled = false;
