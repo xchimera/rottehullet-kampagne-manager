@@ -267,7 +267,7 @@ namespace BK_GUI
                     {
                         valgmulighed = (IKampagneMultiAttributValgmulighed)valgmuligheder.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
-   //                     combobox.SelectedItem(værdi.Current)
+                        combobox.SelectedItem = værdi.Current;
                         //valgIDer.Add(valgmulighed.Id);
                     }
                     // -- kontroladd --
