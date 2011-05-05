@@ -500,7 +500,41 @@ namespace BK_Controller
 
 		public long TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{
-			return -1;
+			cmd.CommandText = "TilmeldKarakterTilScenarie";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+
+			par = new SqlParameter("@karakterID", SqlDbType.BigInt);
+			par.Value = karakterID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@scenarieID", SqlDbType.BigInt);
+			par.Value = scenarieID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@antalOvernatninger", SqlDbType.Int);
+			par.Value = antalOvernatninger;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@spiser", SqlDbType.Bit);
+			par.Value = spiser;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				return 1;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return -1;
+			}
 		}
 		public bool HentAlleScenarier()
 		{

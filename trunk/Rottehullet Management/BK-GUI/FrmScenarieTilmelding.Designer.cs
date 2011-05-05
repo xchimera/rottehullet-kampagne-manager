@@ -110,6 +110,7 @@
 			this.txtInfo.Location = new System.Drawing.Point(7, 20);
 			this.txtInfo.Multiline = true;
 			this.txtInfo.Name = "txtInfo";
+			this.txtInfo.ReadOnly = true;
 			this.txtInfo.Size = new System.Drawing.Size(252, 147);
 			this.txtInfo.TabIndex = 0;
 			// 

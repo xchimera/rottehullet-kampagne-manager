@@ -27,8 +27,8 @@ namespace BK_GUI
 			txtInfo.Text = "Titel: " + scenarie.Titel + Environment.NewLine + Environment.NewLine;
 			txtInfo.Text += "Beskrivelse: " + scenarie.Beskrivelse + Environment.NewLine + Environment.NewLine;
 			txtInfo.Text += "Sted: " + scenarie.Sted + Environment.NewLine + Environment.NewLine;
-			txtInfo.Text += "Pris: " + scenarie.Pris + Environment.NewLine + Environment.NewLine;
-			txtInfo.Text += "Tidspunkt: " + scenarie.Tid;
+			txtInfo.Text += "Pris: " + scenarie.Pris + " kr" + Environment.NewLine + Environment.NewLine;
+			txtInfo.Text += "Tidspunkt: kl." + scenarie.Tid.Hour + ":" + scenarie.Tid.Minute + " " + scenarie.Tid.Day + "/" + scenarie.Tid.Month + "-" + scenarie.Tid.Year;
 
 
 			if (scenarie.OvernatningTvungen == true)
@@ -57,7 +57,14 @@ namespace BK_GUI
 				return;
 			}
 
-			//brugerKlient.TilmeldKarakterTilScenarie(karakterID, scenarie.Id
+			if (brugerKlient.TilmeldKarakterTilScenarie(karakterID, scenarie.Id, overnatninger, chkSpisning.Checked))
+			{
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Der skete en fejl under oprettelsen af karakteren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 	}
 }
