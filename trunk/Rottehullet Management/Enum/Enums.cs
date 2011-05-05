@@ -9,4 +9,5 @@ namespace Enum
     public enum KampagneStatus { Lukket, Åben, Oprettet }
 	public enum KarakterStatus { Nyoprettet, Godkendt, Afslået, Gammel, Opdateret }
 	public enum BrugerRettighed { Topbruger, Superbruger }
+	public enum TilstandBruger { IngenLoadedKarakter, LavNyKarakter, NyesteKarakter }
 }
