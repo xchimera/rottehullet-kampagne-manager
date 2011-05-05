@@ -40,13 +40,13 @@ namespace Model
 
         public Karakter TilføjKarakter(long karakterID, Kampagne kampagne)
         {
-            karakterer.Add(new Karakter(karakterID, kampagne));
+            karakterer.Add(new Karakter(karakterID, kampagne, Enum.KarakterStatus.Nyoprettet));
 			return karakterer[karakterer.Count() - 1];
         }
 
-		public Karakter GenopretKarakter(long karakterID, Kampagne kampagne)
+		public Karakter GenopretKarakter(long karakterID, Kampagne kampagne, Enum.KarakterStatus status)
 		{
-			Karakter karakter = new Karakter(karakterID, kampagne);
+			Karakter karakter = new Karakter(karakterID, kampagne, status);
 			karakterer.Add(karakter);
 			return karakter;
 		}
