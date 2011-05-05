@@ -28,9 +28,41 @@ namespace BK_GUI
             kontroller = new List<Control>();
             listvalgID = new List<List<long>>();
             ikampagne = brugerklient.FindKampagne(kampagneID);
-            OpdaterListView();
+			//Loaded Karakter
+			IngenLoadedKarakter();            
         }
-        public void OpdaterListView()
+
+		#region TilstandsStyring
+		private void IngenLoadedKarakter()
+		{
+			btnNyOpdaterDisabled.Text = "Ny Karakter";
+			btnNyOpdaterDisabled.Enabled = true;
+			btnTilmeldTilScenarie.Enabled = false;
+
+			OpdaterListView();
+		}
+
+		private void LavNyKarakter()
+		{
+			btnNyOpdaterDisabled.Text = "Indsend Karakter";
+			btnNyOpdaterDisabled.Enabled = true;
+			btnTilmeldTilScenarie.Enabled = false;
+
+			OpdaterListView();
+		}
+
+		private void NyesteKarakter()
+		{
+			btnNyOpdaterDisabled.Text = "Opdater Karakter";
+			btnNyOpdaterDisabled.Enabled = true;
+			btnTilmeldTilScenarie.Enabled = true;
+
+			OpdaterListView();
+		}
+
+		#endregion
+
+		public void OpdaterListView()
         {
             IKarakter ikarakter;
             IEnumerator karakteriterator = brugerklient.GetKarakterIterator();
@@ -42,30 +74,18 @@ namespace BK_GUI
             while (karakteriterator.MoveNext())
             {
                 ikarakter = (IKarakter)karakteriterator.Current;
-                ListViewItem item = new ListViewItem();
+				if(ikarakter.Status != KarakterStatus.Gammel)
+				{
+					ListViewItem item = new ListViewItem();
 
-                if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
-                {
-                    item.Text = ikarakter.KarakterID.ToString();
-                    item.SubItems.Add(ikarakter["Navn"]);
-                    lstkaraktere.Items.Add(item);
-                }
-
+					if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
+					{
+						item.Text = ikarakter.KarakterID.ToString();
+						item.SubItems.Add(ikarakter["Navn"]);
+						lstkaraktere.Items.Add(item);
+					}
+				}
             }
-        }
-
-        private void lstKarakter_DoubleClick(object sender, EventArgs e)
-        {
-
-            // user clicked an item of listview control
-
-            if (lstkaraktere.SelectedItems.Count == 1)
-            {//display the text of selected item
-
-                MessageBox.Show(lstkaraktere.SelectedItems[0].Text);
-
-            }
-
         }
 
         public void OpretAttributter()
@@ -201,12 +221,14 @@ namespace BK_GUI
 				MessageBox.Show("Du skal vælge en karakter, før du trykker på denne knap", "Ingen karakter valgt");
 			}
         }
+
         private void btnNyKarakter_Click(object sender, EventArgs e)
         {
             btnNyOpdaterDisabled.Text = "Indsend karakter";
             OpretAttributter();
             btnNyKarakter.Enabled = false;
         }
+
         private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             FjernKontroler();
@@ -214,6 +236,7 @@ namespace BK_GUI
             btnNyOpdaterDisabled.Text = "Opdater karakter";
             btnNyOpdaterDisabled.Enabled = true;
         }
+
         //todo: og her
         private void SetAttributter()
         {

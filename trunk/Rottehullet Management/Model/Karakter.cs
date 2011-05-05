@@ -84,11 +84,11 @@ namespace Model
                     KarakterSingleAttribut singleattribut = (KarakterSingleAttribut)karakterAttribut;
                     returliste.Add(singleattribut.Værdi);
                 }
-                else
-                {
-                    KarakterMultiAttribut multiattribut = (KarakterMultiAttribut)karakterAttribut;
-                    returliste.Add(multiattribut.Valg.Værdi);
-                }
+				else if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Combo)
+				{
+					KarakterMultiAttribut multiattribut = (KarakterMultiAttribut)karakterAttribut;
+					returliste.Add(multiattribut.Valg.Værdi);
+				}
             }
             return returliste.GetEnumerator();
         }
