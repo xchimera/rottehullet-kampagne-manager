@@ -21,5 +21,17 @@ namespace Model
 			this.spiser = spiser;
 			this.overnatter = overnatter;
 		}
+
+		public bool Overnatter
+		{
+			get { return overnatter; }
+			set { overnatter = value; }
+		}
+
+		public bool Spiser
+		{
+			get { return spiser; }
+			set { spiser = value; }
+		}
 	}
 }
