@@ -40,6 +40,8 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.btnGodkendKarakter = new System.Windows.Forms.Button();
+			this.btnAfslåKarakter = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -142,7 +144,7 @@
 			this.groupBox1.Controls.Add(this.txtEmail);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(377, 158);
+			this.groupBox1.Size = new System.Drawing.Size(328, 158);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Spiller";
@@ -150,17 +152,43 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 177);
+			this.label6.Location = new System.Drawing.Point(12, 181);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(47, 13);
 			this.label6.TabIndex = 11;
 			this.label6.Text = "Karakter";
 			// 
+			// btnGodkendKarakter
+			// 
+			this.btnGodkendKarakter.Enabled = false;
+			this.btnGodkendKarakter.Location = new System.Drawing.Point(126, 176);
+			this.btnGodkendKarakter.Name = "btnGodkendKarakter";
+			this.btnGodkendKarakter.Size = new System.Drawing.Size(104, 23);
+			this.btnGodkendKarakter.TabIndex = 12;
+			this.btnGodkendKarakter.Text = "Godkend Karakter";
+			this.btnGodkendKarakter.UseVisualStyleBackColor = true;
+			this.btnGodkendKarakter.Visible = false;
+			this.btnGodkendKarakter.Click += new System.EventHandler(this.btnGodkendKarakter_Click);
+			// 
+			// btnAfslåKarakter
+			// 
+			this.btnAfslåKarakter.Enabled = false;
+			this.btnAfslåKarakter.Location = new System.Drawing.Point(236, 176);
+			this.btnAfslåKarakter.Name = "btnAfslåKarakter";
+			this.btnAfslåKarakter.Size = new System.Drawing.Size(104, 23);
+			this.btnAfslåKarakter.TabIndex = 13;
+			this.btnAfslåKarakter.Text = "Afslå Karakter";
+			this.btnAfslåKarakter.UseVisualStyleBackColor = true;
+			this.btnAfslåKarakter.Visible = false;
+			this.btnAfslåKarakter.Click += new System.EventHandler(this.btnAfslåKarakter_Click);
+			// 
 			// FrmKarakter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(417, 505);
+			this.ClientSize = new System.Drawing.Size(347, 505);
+			this.Controls.Add(this.btnAfslåKarakter);
+			this.Controls.Add(this.btnGodkendKarakter);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "FrmKarakter";
@@ -186,5 +214,7 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button btnGodkendKarakter;
+		private System.Windows.Forms.Button btnAfslåKarakter;
 	}
 }

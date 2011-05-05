@@ -32,6 +32,14 @@ namespace Rottehullet_Management
 			this.Text = karakter["Navn"];
 
 			SætAttributter();
+
+			if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+			{
+				btnGodkendKarakter.Enabled = true;
+				btnGodkendKarakter.Visible = true;
+				btnAfslåKarakter.Enabled = true;
+				btnAfslåKarakter.Visible = true;
+			}
 		}
 
 		public void SætAttributter()
@@ -39,7 +47,7 @@ namespace Rottehullet_Management
 			IKampagneAttribut ikampagneattribut;
 			string attributværdi;
             IEnumerator attributiterator = kampagnemanager.GetAttributIterator();
-            int y = 200;
+            int y = 205;
             int x = 25;
             attributiterator.Reset();
             while (attributiterator.MoveNext())
@@ -100,6 +108,38 @@ namespace Rottehullet_Management
                     
 				//}
             }
+		}
+
+		private void btnGodkendKarakter_Click(object sender, EventArgs e)
+		{
+			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Godkendt))
+			{
+				MessageBox.Show("Karakteren er blevet godkendt", "Godkendt", MessageBoxButtons.OK, MessageBoxIcon.None);
+				btnGodkendKarakter.Enabled = false;
+				btnGodkendKarakter.Visible = false;
+				btnAfslåKarakter.Enabled = false;
+				btnAfslåKarakter.Visible = false;
+			}
+			else
+			{
+				MessageBox.Show("Der skete en fejl og karakteren er ikke blevet godkendt", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void btnAfslåKarakter_Click(object sender, EventArgs e)
+		{
+			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Afslået))
+			{
+				MessageBox.Show("Karakteren er blevet afslået", "Afslået", MessageBoxButtons.OK, MessageBoxIcon.None);
+				btnGodkendKarakter.Enabled = false;
+				btnGodkendKarakter.Visible = false;
+				btnAfslåKarakter.Enabled = false;
+				btnAfslåKarakter.Visible = false;
+			}
+			else
+			{
+				MessageBox.Show("Der skete en fejl og karakteren er ikke blevet afslået", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 	}
 }
