@@ -182,6 +182,7 @@ namespace BK_GUI
         }
         private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            FjernKontroler();
             SetAttributter();
             btnNyOpdaterDisabled.Text = "Opdater karakter";
         }
@@ -249,7 +250,7 @@ namespace BK_GUI
                 }
                 if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Combo)
                 {
-
+                    List<long> valgIDer = new List<long>();
                     // -- label --
                     Label label = new Label();
                     label.Text = værdi.Current.ToString();
@@ -268,15 +269,17 @@ namespace BK_GUI
                         valgmulighed = (IKampagneMultiAttributValgmulighed)valgmuligheder.Current;
                         combobox.Items.Add(valgmulighed.Værdi);
                         combobox.SelectedItem = værdi.Current;
-                        //valgIDer.Add(valgmulighed.Id);
+                        valgIDer.Add(valgmulighed.Id);
                     }
+
                     // -- kontroladd --
                     y += combobox.Height + 5;
                     this.Controls.Add(combobox);
                     this.Controls.Add(label);
                     kontroller.Add(combobox);
                     kontroller.Add(label);
-                    //listvalgID.Add(valgIDer);
+                    listvalgID.Add(valgIDer);
+                    
                 }
             }
         }
@@ -288,7 +291,7 @@ namespace BK_GUI
                 if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator()))
                 {
                     MessageBox.Show("Brugeren er oprettet");
-                    fjernkontrole();
+                    FjernKontroler();
                 }
                 else
                 {
@@ -297,21 +300,37 @@ namespace BK_GUI
             }
             else if (btnNyOpdaterDisabled.Text == "Opdater karakter")
             {
-
+                ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
+                if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), Convert.ToInt64(item.SubItems[0].Text)))
+                {
+                    MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Der skete en fejl under opdateringen af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
-        void fjernkontrole()
+
+        public void FjernKontroler()
         {
             OpdaterListView();
             foreach (Control control in kontroller)
             {
                 this.Controls.Remove(control);
             }
+
+            foreach (List<long> værdi in listvalgID)
+            {
+                listvalgID.Remove(værdi);
+            }
             this.Update();
             btnNyOpdaterDisabled.Enabled = false;
             btnNyKarakter.Enabled = true;
         }
+
+       
 
     }
 }

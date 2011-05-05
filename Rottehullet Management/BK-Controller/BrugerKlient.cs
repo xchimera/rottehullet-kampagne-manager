@@ -173,6 +173,15 @@ namespace BK_Controller
             return false;
         }
 
+        public bool OpdaterKarakter(IEnumerator værdi, IEnumerator valgID, long gammelkarakterID)
+        {
+            if (brugerdbfacade.OpdaterKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, gammelkarakterID))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public IKampagne FindKampagne(long kampagneID)
         {
