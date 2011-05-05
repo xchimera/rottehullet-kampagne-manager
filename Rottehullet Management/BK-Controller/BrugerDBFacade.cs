@@ -422,7 +422,7 @@ namespace BK_Controller
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 karakterID = (long)par.Value;
-                brugerklient.GenopretKarakter(karakterID, kampagneID);
+                brugerklient.GenopretKarakter(karakterID, kampagneID, status);
                 //husk at labelsne også ligger i værdiiterator listen
                 værdiiterator.Reset();
                 valgID.Reset();
