@@ -292,6 +292,7 @@ namespace BK_GUI
                 {
                     MessageBox.Show("Brugeren er oprettet");
                     FjernKontroler();
+                    OpdaterListView();
                 }
                 else
                 {
@@ -304,6 +305,7 @@ namespace BK_GUI
                 if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), Convert.ToInt64(item.SubItems[0].Text)))
                 {
                     MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FjernKontroler();
                 }
                 else
                 {
@@ -315,7 +317,7 @@ namespace BK_GUI
 
         public void FjernKontroler()
         {
-            OpdaterListView();
+ 
             foreach (Control control in kontroller)
             {
                 this.Controls.Remove(control);
