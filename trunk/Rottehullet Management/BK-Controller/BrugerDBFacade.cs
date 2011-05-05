@@ -355,6 +355,41 @@ namespace BK_Controller
             }
         }
 
+        public bool OpdaterKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, long gammelkarakterID)
+        {
+            if (NyKarakter(værdiiterator, valgID, kampagneID, brugerID))
+            {
+                cmd.CommandText = "OpdaterKarakterStatus";
+                cmd.Parameters.Clear();
+                SqlParameter par;
+
+                par = new SqlParameter("@karakterID", SqlDbType.BigInt);
+                par.Value = gammelkarakterID;
+                cmd.Parameters.Add(par);
+
+                par = new SqlParameter("@status", SqlDbType.Int);
+                par.Value = KarakterStatus.Gammel;
+                cmd.Parameters.Add(par);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+
 
         public bool NyKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID)
         {
