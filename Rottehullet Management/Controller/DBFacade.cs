@@ -901,6 +901,40 @@ namespace Controller
 
 		#endregion
 
+		#region Karakter
+		public bool RetKarakterStatus(long id, KarakterStatus status)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "RetKarakterStatus";
+			SqlParameter par;
+
+			par = new SqlParameter("@karakterID", SqlDbType.BigInt);
+			par.Value = id;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@status", SqlDbType.Int);
+			par.Value = status;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+
+		#endregion
+
 		#region Attributter
 		public bool HentAttributter(long kamID)
 		{

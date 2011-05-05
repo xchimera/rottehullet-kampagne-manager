@@ -16,7 +16,7 @@ namespace Model
 		List<Tilmelding> scenarieTilmeldinger;
 		KarakterStatus status;
 
-        public Karakter(long karakterID, Kampagne kampagne)
+		public Karakter(long karakterID, Kampagne kampagne)
         {
             this.karakterID = karakterID;
             this.kampagne = kampagne;
@@ -108,6 +108,12 @@ namespace Model
 		public long KarakterID
 		{
 			get { return karakterID; }
+		}
+
+		public KarakterStatus Status
+		{
+			get { return status; }
+			set { status = value; }
 		}
 
 		public IKampagne Kampagne

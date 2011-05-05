@@ -90,6 +90,17 @@ namespace Controller
 			return (IKarakter)brugercollection.FindKarakter(karakterID);
 		}
 
+		public bool SætKarakterStatus(IKarakter kar, KarakterStatus status)
+		{
+			Karakter karakter = (Karakter)kar;
+			if (dbFacade.RetKarakterStatus(karakter.KarakterID,status))
+			{
+				karakter.Status = status;
+				return true;
+			}
+			return false;
+		}
+
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID)
 		{
 			return brugercollection.TilføjKarakter(bruger, karakterID, kampagne);
