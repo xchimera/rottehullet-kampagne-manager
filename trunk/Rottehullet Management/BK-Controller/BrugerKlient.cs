@@ -89,6 +89,12 @@ namespace BK_Controller
 			bruger.TilføjKarakter(karakterID, kampagne);
 		}
 
+        public void GenopretKarakter(long karakterID, long kampagneID, KarakterStatus status)
+        {
+            Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
+            bruger.GenopretKarakter(karakterID, kampagne, status);
+        }
+
 		public void GenopretAttributVærdi(long karakterID, long kampagneID, long attributID, string værdi, long karakterattributID)
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
