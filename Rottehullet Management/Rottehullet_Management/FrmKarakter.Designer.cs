@@ -42,6 +42,9 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.btnGodkendKarakter = new System.Windows.Forms.Button();
 			this.btnAfslåKarakter = new System.Windows.Forms.Button();
+			this.lstGamleKarakterer = new System.Windows.Forms.ListView();
+			this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colKarakterNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -182,11 +185,34 @@
 			this.btnAfslåKarakter.Visible = false;
 			this.btnAfslåKarakter.Click += new System.EventHandler(this.btnAfslåKarakter_Click);
 			// 
+			// lstGamleKarakterer
+			// 
+			this.lstGamleKarakterer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colID,
+            this.colKarakterNavn});
+			this.lstGamleKarakterer.Location = new System.Drawing.Point(12, 396);
+			this.lstGamleKarakterer.Name = "lstGamleKarakterer";
+			this.lstGamleKarakterer.Size = new System.Drawing.Size(323, 97);
+			this.lstGamleKarakterer.TabIndex = 14;
+			this.lstGamleKarakterer.UseCompatibleStateImageBehavior = false;
+			this.lstGamleKarakterer.View = System.Windows.Forms.View.Details;
+			// 
+			// colID
+			// 
+			this.colID.Text = "";
+			this.colID.Width = 0;
+			// 
+			// colKarakterNavn
+			// 
+			this.colKarakterNavn.Text = "Gamle Versioner";
+			this.colKarakterNavn.Width = 319;
+			// 
 			// FrmKarakter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(347, 505);
+			this.Controls.Add(this.lstGamleKarakterer);
 			this.Controls.Add(this.btnAfslåKarakter);
 			this.Controls.Add(this.btnGodkendKarakter);
 			this.Controls.Add(this.label6);
@@ -216,5 +242,8 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button btnGodkendKarakter;
 		private System.Windows.Forms.Button btnAfslåKarakter;
+		private System.Windows.Forms.ListView lstGamleKarakterer;
+		private System.Windows.Forms.ColumnHeader colID;
+		private System.Windows.Forms.ColumnHeader colKarakterNavn;
 	}
 }

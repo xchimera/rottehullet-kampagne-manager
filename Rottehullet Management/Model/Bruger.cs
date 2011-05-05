@@ -81,6 +81,20 @@ namespace Model
             return null;
         }
 
+		public IEnumerator FindGamleKarakterer(IKarakter karakterInd)
+		{
+			List<IKarakter> gamleKarakterer = new List<IKarakter>();
+			foreach (Karakter karakter in karakterer)
+			{
+				//Hvis karakteren er fra samme kampagne og har samme navn, men ikke er den samme karakter (karakterID)
+				if (karakter.Kampagne.KampagneID == karakterInd.Kampagne.KampagneID && karakter["Navn"] == karakterInd["Navn"] && karakter.KarakterID != karakterInd.KarakterID)
+				{
+					gamleKarakterer.Add((IKarakter)karakter);
+				}
+			}
+			return gamleKarakterer.GetEnumerator();
+		}
+
 		public IEnumerator GetKampagnesKarakterIterator(long kampagneID)
 		{
 			List<Karakter> kampagneskarakterer = new List<Karakter>();
