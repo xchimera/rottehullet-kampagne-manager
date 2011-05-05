@@ -322,11 +322,7 @@ namespace BK_GUI
             {
                 this.Controls.Remove(control);
             }
-
-            foreach (List<long> værdi in listvalgID)
-            {
-                listvalgID.Remove(værdi);
-            }
+            listvalgID.Clear();
             this.Update();
             btnNyOpdaterDisabled.Enabled = false;
             btnNyKarakter.Enabled = true;
