@@ -315,7 +315,7 @@ namespace BK_GUI
         {
             if (btnNyOpdaterDisabled.Text == "Indsend karakter")
             {
-                if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator()))
+                if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), KarakterStatus.Nyoprettet))
                 {
                     MessageBox.Show("Brugeren er oprettet");
                     FjernKontroler();
@@ -329,7 +329,7 @@ namespace BK_GUI
             else if (btnNyOpdaterDisabled.Text == "Opdater karakter")
             {
                 ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
-                if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), Convert.ToInt64(item.SubItems[0].Text)))
+                if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), Convert.ToInt64(item.SubItems[0].Text), KarakterStatus.Opdateret))
                 {
                     MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FjernKontroler();

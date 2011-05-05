@@ -164,18 +164,18 @@ namespace BK_Controller
 			return null;
 		}
 
-        public bool NyKarakter(IEnumerator værdi, IEnumerator valgID)
+        public bool NyKarakter(IEnumerator værdi, IEnumerator valgID, KarakterStatus status)
         {
-            if (brugerdbfacade.NyKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID))
+            if (brugerdbfacade.NyKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, status))
             {
                 return true;
             }
             return false;
         }
 
-        public bool OpdaterKarakter(IEnumerator værdi, IEnumerator valgID, long gammelkarakterID)
+        public bool OpdaterKarakter(IEnumerator værdi, IEnumerator valgID, long gammelkarakterID, KarakterStatus status)
         {
-            if (brugerdbfacade.OpdaterKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, gammelkarakterID))
+            if (brugerdbfacade.OpdaterKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, gammelkarakterID, status))
             {
                 return true;
             }

@@ -355,9 +355,9 @@ namespace BK_Controller
             }
         }
 
-        public bool OpdaterKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, long gammelkarakterID)
+        public bool OpdaterKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, long gammelkarakterID, KarakterStatus status)
         {
-            if (NyKarakter(værdiiterator, valgID, kampagneID, brugerID))
+            if (NyKarakter(værdiiterator, valgID, kampagneID, brugerID, status))
             {
                 cmd.CommandText = "OpdaterKarakterStatus";
                 cmd.Parameters.Clear();
@@ -391,7 +391,7 @@ namespace BK_Controller
         }
 
 
-        public bool NyKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID)
+        public bool NyKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, KarakterStatus status)
         {
             cmd.Parameters.Clear();
             SqlParameter par;
@@ -405,6 +405,10 @@ namespace BK_Controller
 
             par = new SqlParameter("@brugerID", SqlDbType.BigInt);
             par.Value = brugerID;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@karstatus", SqlDbType.Int);
+            par.Value = status;
             cmd.Parameters.Add(par);
 
             par = new SqlParameter("@karakterID", SqlDbType.BigInt);
