@@ -217,14 +217,17 @@ namespace BK_GUI
         //todo: og her
         private void SetAttributter()
         {
+            IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
             IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
+            IKampagneAttribut ikampagneattribut ;
+            IKampagneMultiAttributValgmulighed valgmulighed;
+
 
             int y = 5;
             int x = 5;
             IEnumerator karakterattribut = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
             IEnumerator værdi = ikarakter.HentVærdier();
-            IKampagneMultiAttributValgmulighed valgmulighed;
             Panel setattributpanel = new Panel();
             setattributpanel.AutoScroll = true;
             setattributpanel.Size = new Size(290, 400);
@@ -235,8 +238,10 @@ namespace BK_GUI
 
             værdi.Reset();
             karakterattribut.Reset();
-            while (karakterattribut.MoveNext() && værdi.MoveNext())
+            attributiterator.Reset();
+            while (karakterattribut.MoveNext() && værdi.MoveNext() && attributiterator.MoveNext())
             {
+                ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
                 IKarakterAttribut ikarakterattribut = (IKarakterAttribut)karakterattribut.Current;
                 if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Singleline)
                 {
@@ -250,8 +255,9 @@ namespace BK_GUI
                     TextBox textbox = new TextBox();
                     textbox.Location = new Point(x + label.Width + 10, y);
                     textbox.Text = værdi.Current.ToString();
+                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
 
-                    // -- controladd --
+                    // -- controladd --))
                     this.Controls.Add(textbox);
                     this.Controls.Add(label);
                     y += textbox.Height + 5;
@@ -273,6 +279,7 @@ namespace BK_GUI
                     TextBox textbox = new TextBox();
                     textbox.Multiline = true;
                     textbox.Location = new Point(x + label.Width + 10, y);
+                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     textbox.Text = værdi.Current.ToString();
                     textbox.Size = new System.Drawing.Size(150, 100);
 
@@ -301,7 +308,7 @@ namespace BK_GUI
                                                                ikampagne.KampagneID);
                     ComboBox combobox = new ComboBox();
                     combobox.Location = new Point(x + label.Width + 10, y);
-
+                    combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
                     while (valgmuligheder.MoveNext())
                     {
                         valgmulighed = (IKampagneMultiAttributValgmulighed)valgmuligheder.Current;
