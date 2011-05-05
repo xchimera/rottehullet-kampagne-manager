@@ -196,6 +196,7 @@
 			this.lstGamleKarakterer.TabIndex = 14;
 			this.lstGamleKarakterer.UseCompatibleStateImageBehavior = false;
 			this.lstGamleKarakterer.View = System.Windows.Forms.View.Details;
+			this.lstGamleKarakterer.DoubleClick += new System.EventHandler(this.lstGamleKarakterer_DoubleClick);
 			// 
 			// colID
 			// 

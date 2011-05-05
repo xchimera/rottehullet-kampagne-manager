@@ -162,5 +162,16 @@ namespace Rottehullet_Management
 				MessageBox.Show("Der skete en fejl og karakteren er ikke blevet afslået", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+
+		private void lstGamleKarakterer_DoubleClick(object sender, EventArgs e)
+		{
+
+			ListViewItem valgteitem = lstGamleKarakterer.Items[lstGamleKarakterer.SelectedIndices[0]];
+			long karakterID = Convert.ToInt64(valgteitem.SubItems[0].Text);
+			IKarakter ikarakter = kampagnemanager.FindKarakter(karakterID);
+			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
+			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager, ibruger, ikarakter);
+			karaktervindue.ShowDialog();
+		}
 	}
 }
