@@ -73,10 +73,16 @@ namespace BK_GUI
             IKampagneAttribut ikampagneattribut;
             IKampagneMultiAttributValgmulighed valgmulighed;
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
-            int y = 27;
-            int x = lstkaraktere.Width + lstkaraktere.Location.X + 10;
+            int y = 5;
+            int x = 5;
+            Panel opretattributpanel = new Panel();
+            opretattributpanel.AutoScroll = true;
+            opretattributpanel.Size = new Size(290, 400);
+            opretattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+            opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
+            this.Controls.Add(opretattributpanel);
+
             attributiterator.Reset();
-            //todo: HER
             while (attributiterator.MoveNext())
             {
                 ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
@@ -101,6 +107,9 @@ namespace BK_GUI
                     y += textbox.Height + 5;
                     kontroller.Add(textbox);
                     kontroller.Add(label);
+                    opretattributpanel.Controls.Add(textbox);
+                    opretattributpanel.Controls.Add(label);
+
                 }
                 else if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
                 {
@@ -122,7 +131,10 @@ namespace BK_GUI
                     this.Controls.Add(textbox);
                     this.Controls.Add(label);
                     kontroller.Add(textbox);
-                    kontroller.Add(label);
+                    kontroller.Add(label); 
+                    opretattributpanel.Controls.Add(textbox);
+                    opretattributpanel.Controls.Add(label);
+
                 }
                 else if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
                 {
@@ -154,6 +166,8 @@ namespace BK_GUI
                     kontroller.Add(combobox);
                     kontroller.Add(label);
                     listvalgID.Add(valgIDer);
+                    opretattributpanel.Controls.Add(combobox);
+                    opretattributpanel.Controls.Add(label);
 
                 }
             }
@@ -192,11 +206,17 @@ namespace BK_GUI
             ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
             IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
 
-            int y = 27;
-            int x = lstkaraktere.Width + lstkaraktere.Location.X + 10;
+            int y = 5;
+            int x = 5;
             IEnumerator karakterattribut = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
             IEnumerator værdi = ikarakter.HentVærdier();
             IKampagneMultiAttributValgmulighed valgmulighed;
+            Panel setattributpanel = new Panel();
+            setattributpanel.AutoScroll = true;
+            setattributpanel.Size = new Size(290, 400);
+            setattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+            setattributpanel.BorderStyle = BorderStyle.Fixed3D;
+            this.Controls.Add(setattributpanel);
 
             værdi.Reset();
             karakterattribut.Reset();
@@ -222,6 +242,9 @@ namespace BK_GUI
                     y += textbox.Height + 5;
                     kontroller.Add(textbox);
                     kontroller.Add(label);
+                    setattributpanel.Controls.Add(textbox);
+                    setattributpanel.Controls.Add(label);
+
                 }
                 if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
                 {
@@ -247,6 +270,9 @@ namespace BK_GUI
                     y += textbox.Height + 5;
                     kontroller.Add(textbox);
                     kontroller.Add(label);
+                    setattributpanel.Controls.Add(textbox);
+                    setattributpanel.Controls.Add(label);
+
                 }
                 if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Combo)
                 {
@@ -279,7 +305,8 @@ namespace BK_GUI
                     kontroller.Add(combobox);
                     kontroller.Add(label);
                     listvalgID.Add(valgIDer);
-                    
+                    setattributpanel.Controls.Add(combobox);
+                    setattributpanel.Controls.Add(label);
                 }
             }
         }
