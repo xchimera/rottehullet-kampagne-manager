@@ -202,6 +202,7 @@ namespace BK_Controller
             cmd.Parameters.Clear();
             long kampagneID, karakterID, attributID, karakterattributID;
             string værdi;
+			KarakterStatus status;
 
             par = new SqlParameter("brugerID", SqlDbType.BigInt);
             par.Value = brugerID;
@@ -216,10 +217,11 @@ namespace BK_Controller
 				{
 					kampagneID = (long)reader["kampagneID"];
 					karakterID = (long)reader["karakterID"];
+					status = (KarakterStatus)reader["karstatus"];
 
 					if (tmpKarakterID != karakterID)
 					{
-						brugerklient.GenopretKarakter(karakterID, kampagneID);
+						brugerklient.GenopretKarakter(karakterID, kampagneID,status);
 						tmpKarakterID = karakterID;
 					}
 
