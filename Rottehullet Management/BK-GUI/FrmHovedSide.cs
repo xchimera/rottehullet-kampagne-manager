@@ -81,6 +81,7 @@ namespace BK_GUI
             opretattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
             opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
             this.Controls.Add(opretattributpanel);
+            kontroller.Add(opretattributpanel);
 
             attributiterator.Reset();
             while (attributiterator.MoveNext())
@@ -168,12 +169,9 @@ namespace BK_GUI
                     listvalgID.Add(valgIDer);
                     opretattributpanel.Controls.Add(combobox);
                     opretattributpanel.Controls.Add(label);
-
                 }
             }
         }
-
-
         private void btnSkiftKampagne_Click(object sender, EventArgs e)
         {
             FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
@@ -232,6 +230,7 @@ namespace BK_GUI
             setattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
             setattributpanel.BorderStyle = BorderStyle.Fixed3D;
             this.Controls.Add(setattributpanel);
+            kontroller.Add(setattributpanel);
 
             værdi.Reset();
             karakterattribut.Reset();
@@ -269,15 +268,12 @@ namespace BK_GUI
                     label.Text = ikarakterattribut.Kampagneattribut.Navn;
                     label.Location = new Point(x, y);
 
-
-
                     // -- textbox --
                     TextBox textbox = new TextBox();
                     textbox.Multiline = true;
                     textbox.Location = new Point(x + label.Width + 10, y);
                     textbox.Text = værdi.Current.ToString();
                     textbox.Size = new System.Drawing.Size(150, 100);
-
 
                     // -- controladd --
                     this.Controls.Add(textbox);
