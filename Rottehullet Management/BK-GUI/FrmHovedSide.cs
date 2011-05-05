@@ -19,6 +19,8 @@ namespace BK_GUI
         IKampagne ikampagne;
         List<Control> kontroller;
         List<List<long>> listvalgID;
+		TilstandBruger tilstand;
+		long nuværendeKarakterID;
 
 
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
@@ -29,21 +31,24 @@ namespace BK_GUI
             listvalgID = new List<List<long>>();
             ikampagne = brugerklient.FindKampagne(kampagneID);
 			//Loaded Karakter
-			IngenLoadedKarakter();            
+			TilstandIngenLoadedKarakter();            
         }
 
 		#region TilstandsStyring
-		private void IngenLoadedKarakter()
+		private void TilstandIngenLoadedKarakter()
 		{
+			tilstand = TilstandBruger.IngenLoadedKarakter;
 			btnNyOpdaterDisabled.Text = "Ny Karakter";
 			btnNyOpdaterDisabled.Enabled = true;
 			btnTilmeldTilScenarie.Enabled = false;
 
+			FjernKontroler();
 			OpdaterListView();
 		}
 
-		private void LavNyKarakter()
+		private void TilstandLavNyKarakter()
 		{
+			tilstand = TilstandBruger.LavNyKarakter;
 			btnNyOpdaterDisabled.Text = "Indsend Karakter";
 			btnNyOpdaterDisabled.Enabled = true;
 			btnTilmeldTilScenarie.Enabled = false;
@@ -51,8 +56,9 @@ namespace BK_GUI
 			OpdaterListView();
 		}
 
-		private void NyesteKarakter()
+		private void TilstandNyesteKarakter()
 		{
+			tilstand = TilstandBruger.NyesteKarakter;
 			btnNyOpdaterDisabled.Text = "Opdater Karakter";
 			btnNyOpdaterDisabled.Enabled = true;
 			btnTilmeldTilScenarie.Enabled = true;
@@ -62,143 +68,51 @@ namespace BK_GUI
 
 		#endregion
 
-		public void OpdaterListView()
-        {
-            IKarakter ikarakter;
-            IEnumerator karakteriterator = brugerklient.GetKarakterIterator();
 
-            karakteriterator.Reset();
-            lstkaraktere.Items.Clear();
-
-
-            while (karakteriterator.MoveNext())
-            {
-                ikarakter = (IKarakter)karakteriterator.Current;
-				if(ikarakter.Status != KarakterStatus.Gammel)
+		void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
+		{
+			//Lav ny karakter
+			if (tilstand == TilstandBruger.IngenLoadedKarakter)
+			{
+				OpretAttributter();
+				TilstandLavNyKarakter();
+			}
+			//Indsend Karakter
+			else if (tilstand == TilstandBruger.LavNyKarakter)
+			{
+				if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), KarakterStatus.Nyoprettet))
 				{
-					ListViewItem item = new ListViewItem();
-
-					if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
-					{
-						item.Text = ikarakter.KarakterID.ToString();
-						item.SubItems.Add(ikarakter["Navn"]);
-						lstkaraktere.Items.Add(item);
-					}
+					MessageBox.Show("Brugeren er oprettet");
+					TilstandIngenLoadedKarakter();
 				}
-            }
-        }
+				else
+				{
+					MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			//Opdater Karakter
+			else if (tilstand == TilstandBruger.NyesteKarakter)
+			{
+				if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), nuværendeKarakterID, KarakterStatus.Opdateret))
+				{
+					MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					TilstandIngenLoadedKarakter();
+				}
+				else
+				{
+					MessageBox.Show("Der skete en fejl under opdateringen af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
 
-        public void OpretAttributter()
-        {
-            IKampagneAttribut ikampagneattribut;
-            IKampagneMultiAttributValgmulighed valgmulighed;
-            IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
-            int y = 5;
-            int x = 5;
-            Panel opretattributpanel = new Panel();
-            opretattributpanel.AutoScroll = true;
-            opretattributpanel.Size = new Size(290, 400);
-            opretattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
-            opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
-            this.Controls.Add(opretattributpanel);
-            kontroller.Add(opretattributpanel);
-
-            attributiterator.Reset();
-            while (attributiterator.MoveNext())
-            {
-                ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
-                if (ikampagneattribut.Type == Enum.KampagneAttributType.Singleline)
-                {
-                    // -- label --
-                    Label label = new Label();
-                    label.Text = ikampagneattribut.Navn;
-                    label.RightToLeft = RightToLeft.No;
-                    label.Location = new Point(x, y);
-
-                    // -- textbox --
-                    TextBox textbox = new TextBox();
-                    textbox.RightToLeft = RightToLeft.No;
-                    textbox.Location = new Point(x + label.Width + 10, y);
-                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
-
-
-                    // -- controladd --
-                    this.Controls.Add(textbox);
-                    this.Controls.Add(label);
-                    y += textbox.Height + 5;
-                    kontroller.Add(textbox);
-                    kontroller.Add(label);
-                    opretattributpanel.Controls.Add(textbox);
-                    opretattributpanel.Controls.Add(label);
-
-                }
-                else if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
-                {
-                    // -- label --
-                    Label label = new Label();
-                    label.Text = ikampagneattribut.Navn;
-                    label.RightToLeft = RightToLeft.No;
-                    label.Location = new Point(x, y);
-
-                    // -- textbox --
-                    TextBox textbox = new TextBox();
-                    textbox.Location = new Point(x + label.Width + 10, y);
-                    textbox.Multiline = true;
-                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
-                    textbox.Size = new System.Drawing.Size(150, 100);
-
-                    //                
-                    y += textbox.Height + 5;
-                    this.Controls.Add(textbox);
-                    this.Controls.Add(label);
-                    kontroller.Add(textbox);
-                    kontroller.Add(label); 
-                    opretattributpanel.Controls.Add(textbox);
-                    opretattributpanel.Controls.Add(label);
-
-                }
-                else if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
-                {
-                    List<long> valgIDer = new List<long>();
-                    IEnumerator valgmulighediterator =
-                        brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID,
-                                                               ikampagne.KampagneID);
-                    // -- label --
-                    Label label = new Label();
-                    label.Text = ikampagneattribut.Navn;
-                    label.Location = new Point(x, y);
-                    label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-
-                    // -- ComboBox --
-                    ComboBox combobox = new ComboBox();
-                    combobox.Location = new Point(x + label.Width +10, y);
-                    while (valgmulighediterator.MoveNext())
-                    {
-                        valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
-                        combobox.Items.Add(valgmulighed.Værdi);
-                        valgIDer.Add(valgmulighed.Id);
-                    }
-                    combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
-
-                    // -- kontroladd --
-                    y += combobox.Height + 5;
-                    this.Controls.Add(combobox);
-                    this.Controls.Add(label);
-                    kontroller.Add(combobox);
-                    kontroller.Add(label);
-                    listvalgID.Add(valgIDer);
-                    opretattributpanel.Controls.Add(combobox);
-                    opretattributpanel.Controls.Add(label);
-                }
-            }
-        }
-        private void btnSkiftKampagne_Click(object sender, EventArgs e)
+		private void btnSkiftKampagne_Click(object sender, EventArgs e)
         {
             FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
             this.Hide();
             loginkampagnevalg.ShowDialog();
             this.Close();
         }
+
         private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
         {
 			if (lstkaraktere.SelectedIndices.Count == 1)
@@ -211,7 +125,7 @@ namespace BK_GUI
 					return;
 				}
 
-				FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding(brugerklient, int.Parse(lstkaraktere.SelectedItems[0].Text), scenarie);
+				FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding(brugerklient, nuværendeKarakterID, scenarie);
 				this.Hide();
 				scenarietilmelding.ShowDialog();
 				this.Show();
@@ -222,23 +136,159 @@ namespace BK_GUI
 			}
         }
 
-        private void btnNyKarakter_Click(object sender, EventArgs e)
-        {
-            btnNyOpdaterDisabled.Text = "Indsend karakter";
-            OpretAttributter();
-            btnNyKarakter.Enabled = false;
-        }
+		private void lstkaraktere_MouseClick(object sender, MouseEventArgs e)
+		{
+			ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
+			nuværendeKarakterID = Convert.ToInt64(item.SubItems[0].Text);
 
-        private void lstkaraktere_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            FjernKontroler();
-            SetAttributter();
-            btnNyOpdaterDisabled.Text = "Opdater karakter";
-            btnNyOpdaterDisabled.Enabled = true;
-        }
+			SetAttributter();
+			TilstandNyesteKarakter();
+		}
 
-        //todo: og her
-        private void SetAttributter()
+		public void FjernKontroler()
+		{
+			foreach (Control control in kontroller)
+			{
+				this.Controls.Remove(control);
+			}
+			kontroller.Clear();
+			listvalgID.Clear();
+			this.Update();
+		}
+
+		#region ListeMetoder
+		public void OpdaterListView()
+		{
+			IKarakter ikarakter;
+			IEnumerator karakteriterator = brugerklient.GetKarakterIterator();
+
+			karakteriterator.Reset();
+			lstkaraktere.Items.Clear();
+
+
+			while (karakteriterator.MoveNext())
+			{
+				ikarakter = (IKarakter)karakteriterator.Current;
+				if (ikarakter.Status != KarakterStatus.Gammel)
+				{
+					ListViewItem item = new ListViewItem();
+
+					if (ikarakter.Kampagne.KampagneID == ikampagne.KampagneID)
+					{
+						item.Text = ikarakter.KarakterID.ToString();
+						item.SubItems.Add(ikarakter["Navn"]);
+						lstkaraktere.Items.Add(item);
+					}
+				}
+			}
+		}
+
+		public void OpretAttributter()
+		{
+			IKampagneAttribut ikampagneattribut;
+			IKampagneMultiAttributValgmulighed valgmulighed;
+			IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
+			int y = 5;
+			int x = 5;
+			Panel opretattributpanel = new Panel();
+			opretattributpanel.AutoScroll = true;
+			opretattributpanel.Size = new Size(290, 400);
+			opretattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+			opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
+			this.Controls.Add(opretattributpanel);
+			kontroller.Add(opretattributpanel);
+
+			attributiterator.Reset();
+			while (attributiterator.MoveNext())
+			{
+				ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
+				if (ikampagneattribut.Type == Enum.KampagneAttributType.Singleline)
+				{
+					// -- label --
+					Label label = new Label();
+					label.Text = ikampagneattribut.Navn;
+					label.RightToLeft = RightToLeft.No;
+					label.Location = new Point(x, y);
+
+					// -- textbox --
+					TextBox textbox = new TextBox();
+					textbox.RightToLeft = RightToLeft.No;
+					textbox.Location = new Point(x + label.Width + 10, y);
+					textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
+
+
+					// -- controladd --
+					this.Controls.Add(textbox);
+					this.Controls.Add(label);
+					y += textbox.Height + 5;
+					kontroller.Add(textbox);
+					kontroller.Add(label);
+					opretattributpanel.Controls.Add(textbox);
+					opretattributpanel.Controls.Add(label);
+
+				}
+				else if (ikampagneattribut.Type == Enum.KampagneAttributType.Multiline)
+				{
+					// -- label --
+					Label label = new Label();
+					label.Text = ikampagneattribut.Navn;
+					label.RightToLeft = RightToLeft.No;
+					label.Location = new Point(x, y);
+
+					// -- textbox --
+					TextBox textbox = new TextBox();
+					textbox.Location = new Point(x + label.Width + 10, y);
+					textbox.Multiline = true;
+					textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
+					textbox.Size = new System.Drawing.Size(150, 100);
+
+					//                
+					y += textbox.Height + 5;
+					this.Controls.Add(textbox);
+					this.Controls.Add(label);
+					kontroller.Add(textbox);
+					kontroller.Add(label);
+					opretattributpanel.Controls.Add(textbox);
+					opretattributpanel.Controls.Add(label);
+
+				}
+				else if (ikampagneattribut.Type == Enum.KampagneAttributType.Combo)
+				{
+					List<long> valgIDer = new List<long>();
+					IEnumerator valgmulighediterator =
+						brugerklient.GetValgmulighederIterator(ikampagneattribut.KampagneAttributID,
+															   ikampagne.KampagneID);
+					// -- label --
+					Label label = new Label();
+					label.Text = ikampagneattribut.Navn;
+					label.Location = new Point(x, y);
+					label.RightToLeft = System.Windows.Forms.RightToLeft.No;
+
+					// -- ComboBox --
+					ComboBox combobox = new ComboBox();
+					combobox.Location = new Point(x + label.Width + 10, y);
+					while (valgmulighediterator.MoveNext())
+					{
+						valgmulighed = (IKampagneMultiAttributValgmulighed)valgmulighediterator.Current;
+						combobox.Items.Add(valgmulighed.Værdi);
+						valgIDer.Add(valgmulighed.Id);
+					}
+					combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
+
+					// -- kontroladd --
+					y += combobox.Height + 5;
+					this.Controls.Add(combobox);
+					this.Controls.Add(label);
+					kontroller.Add(combobox);
+					kontroller.Add(label);
+					listvalgID.Add(valgIDer);
+					opretattributpanel.Controls.Add(combobox);
+					opretattributpanel.Controls.Add(label);
+				}
+			}
+		}
+
+	    private void SetAttributter()
         {
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
@@ -353,51 +403,8 @@ namespace BK_GUI
             }
         }
 
-        void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
-        {
-            if (btnNyOpdaterDisabled.Text == "Indsend karakter")
-            {
-                if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), KarakterStatus.Nyoprettet))
-                {
-                    MessageBox.Show("Brugeren er oprettet");
-                    FjernKontroler();
-                    OpdaterListView();
-                }
-                else
-                {
-                    MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (btnNyOpdaterDisabled.Text == "Opdater karakter")
-            {
-                ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
-                if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), Convert.ToInt64(item.SubItems[0].Text), KarakterStatus.Opdateret))
-                {
-                    MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FjernKontroler();
-                }
-                else
-                {
-                    MessageBox.Show("Der skete en fejl under opdateringen af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+		#endregion
 
-        }
-
-        public void FjernKontroler()
-        {
-            foreach (Control control in kontroller)
-            {
-                this.Controls.Remove(control);
-            }
-            kontroller.Clear();
-            listvalgID.Clear();
-            this.Update();
-            btnNyOpdaterDisabled.Enabled = false;
-            btnNyKarakter.Enabled = true;
-        }
-
-       
-
+		
     }
 }
