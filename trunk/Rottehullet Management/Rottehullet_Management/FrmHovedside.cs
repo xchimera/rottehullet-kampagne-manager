@@ -100,16 +100,23 @@ namespace Rottehullet_Management
 			while (karakteriterator.MoveNext())
 			{
 				karakter = (IKarakter)karakteriterator.Current;
-				ListViewItem item = new ListViewItem();
-
-				item.Text = Convert.ToString(karakter.KarakterID);
-				item.SubItems.Add(karakter["Navn"]);
-				if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+				if (karakter.Status != Enum.KarakterStatus.Gammel && karakter.Status != Enum.KarakterStatus.Afslået)
 				{
-					item.BackColor = Color.OrangeRed;
-				}
+					ListViewItem item = new ListViewItem();
 
-				lstKarakterer.Items.Add(item);
+					item.Text = Convert.ToString(karakter.KarakterID);
+					item.SubItems.Add(karakter["Navn"]);
+					if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+					{
+						item.BackColor = Color.OrangeRed;
+					}
+					else if (karakter.Status == Enum.KarakterStatus.Opdateret)
+					{
+						item.BackColor = Color.Blue;
+					}
+
+					lstKarakterer.Items.Add(item);
+				}
 			}
 		}
 
@@ -215,6 +222,6 @@ namespace Rottehullet_Management
 			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
 			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager,ibruger,ikarakter);
 			karaktervindue.ShowDialog();
-			}
+		}
     }
 }
