@@ -47,9 +47,9 @@ namespace Model
 			attributter.Add(kampagneAttribut.Navn, attribut);
 		}
 
-		public void TilmedTilScenarie(Scenarie scenarie, bool spiser, bool overnatter)
+		public void TilmeldTilScenarie(Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
-			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, overnatter);
+			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, antalOvernatninger);
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 

@@ -11,21 +11,21 @@ namespace Model
 		Karakter karakter;
 		Scenarie scenarie;
 		bool spiser;
-		bool overnatter;
+		int antalOvernatninger;
 		#endregion
 
-		public Tilmelding(Karakter karakter, Scenarie scenarie, bool spiser, bool overnatter)
+		public Tilmelding(Karakter karakter, Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			this.karakter = karakter;
 			this.scenarie = scenarie;
 			this.spiser = spiser;
-			this.overnatter = overnatter;
+			this.antalOvernatninger = antalOvernatninger;
 		}
 
-		public bool Overnatter
+		public int AntalOvernatninger
 		{
-			get { return overnatter; }
-			set { overnatter = value; }
+			get { return antalOvernatninger; }
+			set { antalOvernatninger = value; }
 		}
 
 		public bool Spiser

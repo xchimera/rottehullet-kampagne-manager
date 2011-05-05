@@ -92,6 +92,7 @@ namespace BK_Controller
                 if (brugerid > 0)
                 {
                     HentAlleKampagner();
+					HentAlleScenarier();
                     HentKarakterer(brugerid);
                     return brugerid;
                 }
@@ -496,5 +497,69 @@ namespace BK_Controller
                 return false;
             }
         }
+
+		public long TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
+		{
+			return -1;
+		}
+		public bool HentAlleScenarier()
+		{
+			cmd.CommandText = "HentAlleScenarier";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+			SqlDataReader reader;
+			Kampagne kampagne = null;
+			long kampagneID;
+			long nuværendeKampagneID = 0;
+			long id;
+			string titel;
+			string beskrivelse;
+			string sted;
+			string andetInfo;
+			double pris;
+			DateTime tid;
+			int overnatning;
+			bool spisning;
+			bool spisningTvungen;
+			bool overnatningTvungen;
+
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					kampagneID = (long)reader["kampagneID"];
+					if (kampagneID != nuværendeKampagneID)
+					{
+						kampagne = brugerklient.HentKampagne(kampagneID);
+						nuværendeKampagneID = kampagneID;
+					}
+					id = (long)reader["scenarieID"];
+					titel = (string)reader["titel"];
+					beskrivelse = (string)reader["beskrivelse"];
+					sted = (string)reader["sted"];
+					andetInfo = (string)reader["andetInfo"];
+					pris = Convert.ToDouble(reader["pris"]);
+					tid = (DateTime)reader["dato"];
+					overnatning = (int)reader["overnatning"];
+					spisning = (bool)reader["spisning"];
+					spisningTvungen = (bool)reader["spisningTvungen"];
+					overnatningTvungen = (bool)reader["overnatningTvungen"];
+					kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+				}
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
     }
 }

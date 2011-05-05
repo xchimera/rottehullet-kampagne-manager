@@ -63,10 +63,10 @@ namespace Model
             karakter.TilføjVærdi(attribut, valg, id);
         }
 
-		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie, bool spiser, bool overnatter)
+		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			Karakter karakter = FindKarakter(karakterID);
-			karakter.TilmedTilScenarie(scenarie, spiser, overnatter);
+			karakter.TilmeldTilScenarie(scenarie, spiser, antalOvernatninger);
 		}
 		
         public Karakter FindKarakter(long karakterID)

@@ -25,6 +25,7 @@ namespace BK_Controller
 		KampagneCollection kampagnecollection;
 		Bruger bruger;
 		Kampagne nuværendeKampagne;
+		Scenarie nuværendeScenarie;
 
 		public BrugerKlient()
 		{
@@ -32,6 +33,7 @@ namespace BK_Controller
 			brugercollection = new BrugerCollection();
 			kampagnecollection = new KampagneCollection();
 			nuværendeKampagne = null;
+			nuværendeScenarie = null;
 		}
 
 		public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
@@ -46,8 +48,6 @@ namespace BK_Controller
 			return false;
 		}
 
-
-
 		public long Login(string email, string kodeord)
 		{
 			kodeord = KrypterKodeord(kodeord);
@@ -61,14 +61,26 @@ namespace BK_Controller
 			bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 		}
 
-		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID, bool spiser, bool overnatter)
+		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{
-			if (true)
+			long id = brugerdbfacade.TilmeldKarakterTilScenarie(karakterID, scenarieID, antalOvernatninger, spiser);
+			if (id != -1)
 			{
 				Scenarie scenarie = nuværendeKampagne.FindScenarie(scenarieID);
-				bruger.TilmeldKarakterTilScenarie(karakterID, scenarie, spiser, overnatter);
+				bruger.TilmeldKarakterTilScenarie(karakterID, scenarie, spiser, antalOvernatninger);
+				return true;
 			}
 			return false;
+		}
+
+		public void GenopretScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
+		{
+			nuværendeScenarie = nuværendeKampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+		}
+
+		public IScenarie HentNuværendeScenarie()
+		{
+			return nuværendeScenarie;
 		}
 
 		public void GenopretKarakter(long karakterID, long kampagneID)
@@ -182,10 +194,20 @@ namespace BK_Controller
             return false;
         }
 
+		/// <summary>
+		/// Henter en kampagne og returnere den. (Bruges kun i DBFacaden)
+		/// </summary>
+		/// <param name="kampagneID"></param>
+		/// <returns></returns>
+		internal Kampagne HentKampagne(long kampagneID)
+		{
+			return kampagnecollection.FindKampagne(kampagneID);
+		}
 
         public IKampagne FindKampagne(long kampagneID)
         {
             nuværendeKampagne = kampagnecollection.FindKampagne(kampagneID);
+			nuværendeScenarie = nuværendeKampagne.HentNuværendeScenarie();
             return nuværendeKampagne;
         }
 

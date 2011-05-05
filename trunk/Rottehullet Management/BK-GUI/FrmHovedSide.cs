@@ -183,10 +183,25 @@ namespace BK_GUI
         }
         private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
         {
-            FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding();
-            this.Hide();
-            scenarietilmelding.ShowDialog();
-            this.Show();
+			if (lstkaraktere.SelectedIndices.Count == 1)
+			{
+				IScenarie scenarie = brugerklient.HentNuværendeScenarie();
+
+				if (scenarie == null)
+				{
+					MessageBox.Show("Der findes endnu ikke et scenarie på denne kampagne", "Der findes ikke et scenarie");
+					return;
+				}
+
+				FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding(brugerklient, int.Parse(lstkaraktere.SelectedItems[0].Text), scenarie);
+				this.Hide();
+				scenarietilmelding.ShowDialog();
+				this.Show();
+			}
+			else
+			{
+				MessageBox.Show("Du skal vælge en karakter, før du trykker på denne knap", "Ingen karakter valgt");
+			}
         }
         private void btnNyKarakter_Click(object sender, EventArgs e)
         {
