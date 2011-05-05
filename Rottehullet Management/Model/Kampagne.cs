@@ -68,6 +68,18 @@ namespace Model
 			return null;
 		}
 
+		public Scenarie HentNuværendeScenarie()
+		{
+			if (scenarier.Count > 0)
+			{
+				return scenarier[scenarier.Count - 1];
+			}
+			else
+			{
+				return null;
+			}
+		}
+
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneAttribut singleattribut = new KampagneAttribut(navn, type, attributID);
