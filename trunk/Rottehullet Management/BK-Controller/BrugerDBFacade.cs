@@ -482,7 +482,7 @@ namespace BK_Controller
                         cmd.ExecuteNonQuery();
                         karakterattributID = (long)par.Value;
 
-                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, Convert.ToInt64(combobox.Name), (long)combobox.SelectedIndex, karakterattributID);
+                        brugerklient.GenopretMultiattributVærdi(karakterID, kampagneID, Convert.ToInt64(combobox.Name), (long)valgIDer[(int)combobox.SelectedIndex], karakterattributID);
                     }
                 }
                 conn.Close();
