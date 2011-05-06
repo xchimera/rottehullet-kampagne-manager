@@ -34,7 +34,7 @@ namespace Rottehullet_Management
 			SætAttributter();
 			OpdaterListview();
 
-			if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+			if (karakter.Status == Enum.KarakterStatus.Nyoprettet || karakter.Status == Enum.KarakterStatus.Opdateret)
 			{
 				btnGodkendKarakter.Enabled = true;
 				btnGodkendKarakter.Visible = true;

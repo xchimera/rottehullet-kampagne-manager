@@ -69,6 +69,7 @@ namespace BK_GUI
 		#endregion
 
 
+		//Denne knap bruges både til at lave nye karakterer, indsende dem og opdatere dem
 		void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
 		{
 			//Lav ny karakter
@@ -82,12 +83,12 @@ namespace BK_GUI
 			{
 				if (brugerklient.NyKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), KarakterStatus.Nyoprettet))
 				{
-					MessageBox.Show("Brugeren er oprettet");
+					MessageBox.Show("Karakteren er blevet indsendt");
 					TilstandIngenLoadedKarakter();
 				}
 				else
 				{
-					MessageBox.Show("Der skete en fejl under oprettelse af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Der skete en fejl under indsendelsen af karakteren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 			//Opdater Karakter
@@ -95,12 +96,12 @@ namespace BK_GUI
 			{
 				if (brugerklient.OpdaterKarakter(kontroller.GetEnumerator(), listvalgID.GetEnumerator(), nuværendeKarakterID, KarakterStatus.Opdateret))
 				{
-					MessageBox.Show("Brugeren er opdateret", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("Den opdaterede karakter er blevet indsendt");
 					TilstandIngenLoadedKarakter();
 				}
 				else
 				{
-					MessageBox.Show("Der skete en fejl under opdateringen af brugeren", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Der skete en fejl under indsendelsen af den opdaterede karakter", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
