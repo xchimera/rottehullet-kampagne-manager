@@ -152,6 +152,7 @@ namespace BK_GUI
 			kontroller.Clear();
 			listvalgID.Clear();
 			this.Update();
+		    this.Width = 287;
 		}
 
 		#region ListeMetoder
@@ -183,6 +184,7 @@ namespace BK_GUI
 
 		public void OpretAttributter()
 		{
+		    this.Width = 560;
 			IKampagneAttribut ikampagneattribut;
 			IKampagneMultiAttributValgmulighed valgmulighed;
 			IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
@@ -287,7 +289,8 @@ namespace BK_GUI
 		}
 
 	    private void SetAttributter()
-        {
+	    {
+	        this.Width = 560;
             IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
             ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
             IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
