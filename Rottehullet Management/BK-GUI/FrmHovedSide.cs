@@ -52,8 +52,6 @@ namespace BK_GUI
 			btnNyOpdaterDisabled.Text = "Indsend Karakter";
 			btnNyOpdaterDisabled.Enabled = true;
 			btnTilmeldTilScenarie.Enabled = false;
-
-			OpdaterListView();
 		}
 
 		private void TilstandNyesteKarakter()
@@ -62,8 +60,6 @@ namespace BK_GUI
 			btnNyOpdaterDisabled.Text = "Opdater Karakter";
 			btnNyOpdaterDisabled.Enabled = true;
 			btnTilmeldTilScenarie.Enabled = true;
-
-			OpdaterListView();
 		}
 
 		#endregion
@@ -141,9 +137,10 @@ namespace BK_GUI
 		{
 			ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
 			nuværendeKarakterID = Convert.ToInt64(item.SubItems[0].Text);
-
-			SetAttributter();
 			TilstandNyesteKarakter();
+			FjernKontroler();
+			SetAttributter();
+			
 		}
 
 		public void FjernKontroler()
@@ -310,7 +307,15 @@ namespace BK_GUI
             this.Controls.Add(setattributpanel);
             kontroller.Add(setattributpanel);
 
-            værdi.Reset();
+			Label lblkarakterstatus = new Label();
+			lblkarakterstatus.RightToLeft = RightToLeft.No;
+			lblkarakterstatus.Location = new Point(x, y);
+			lblkarakterstatus.Text = "Status: " + ikarakter.Status.ToString();
+			this.Controls.Add(lblkarakterstatus);
+			setattributpanel.Controls.Add(lblkarakterstatus);
+			y += lblkarakterstatus.Height + 5;
+                           
+			værdi.Reset();
             karakterattribut.Reset();
             attributiterator.Reset();
             while (karakterattribut.MoveNext() && værdi.MoveNext() && attributiterator.MoveNext())

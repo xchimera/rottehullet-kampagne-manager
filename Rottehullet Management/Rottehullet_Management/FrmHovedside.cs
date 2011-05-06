@@ -108,11 +108,11 @@ namespace Rottehullet_Management
 					item.SubItems.Add(karakter["Navn"]);
 					if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
 					{
-						item.BackColor = Color.OrangeRed;
+						item.BackColor = Color.LightSalmon;
 					}
 					else if (karakter.Status == Enum.KarakterStatus.Opdateret)
 					{
-						item.BackColor = Color.Blue;
+						item.BackColor = Color.LightBlue;
 					}
 
 					lstKarakterer.Items.Add(item);
@@ -220,7 +220,7 @@ namespace Rottehullet_Management
 			long karakterID = Convert.ToInt64(valgteitem.SubItems[0].Text);
 			IKarakter ikarakter = kampagnemanager.FindKarakter(karakterID);
 			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
-			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager,ibruger,ikarakter);
+			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager,ibruger,ikarakter,this);
 			karaktervindue.ShowDialog();
 		}
     }
