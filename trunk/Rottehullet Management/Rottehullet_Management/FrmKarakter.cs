@@ -144,7 +144,7 @@ namespace Rottehullet_Management
 			IKarakter ikarakter = kampagnemanager.FindKarakter(karakterID);
 			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
 			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager, ibruger, ikarakter, hvdside);
-			karaktervindue.ShowDialog();
+			karaktervindue.Show();
 		}
 	}
 }
