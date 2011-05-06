@@ -86,8 +86,10 @@
             this.Controls.Add(this.btnAnnuller);
             this.Controls.Add(this.btnVælgSuperbruger);
             this.Controls.Add(this.lstBrugere);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmVælgSuperbruger";
-            this.Text = "FrmVælgSuperbruger";
+            this.Text = "Vælg superbruger";
             this.ResumeLayout(false);
 
 		}

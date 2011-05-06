@@ -246,6 +246,8 @@
             this.Controls.Add(this.txtNavn);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.btnTilføjBruger);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmOpretBruger";
             this.Text = "Opret Bruger";
             this.Load += new System.EventHandler(this.Form1_Load);
