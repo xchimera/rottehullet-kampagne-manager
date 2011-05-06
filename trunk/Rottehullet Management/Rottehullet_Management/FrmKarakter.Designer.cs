@@ -45,6 +45,8 @@
 			this.lstGamleKarakterer = new System.Windows.Forms.ListView();
 			this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colKarakterNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.setattributpanel = new System.Windows.Forms.Panel();
+			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -164,7 +166,7 @@
 			// btnGodkendKarakter
 			// 
 			this.btnGodkendKarakter.Enabled = false;
-			this.btnGodkendKarakter.Location = new System.Drawing.Point(126, 176);
+			this.btnGodkendKarakter.Location = new System.Drawing.Point(113, 176);
 			this.btnGodkendKarakter.Name = "btnGodkendKarakter";
 			this.btnGodkendKarakter.Size = new System.Drawing.Size(104, 23);
 			this.btnGodkendKarakter.TabIndex = 12;
@@ -189,14 +191,16 @@
 			// 
 			this.lstGamleKarakterer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colID,
-            this.colKarakterNavn});
+            this.colKarakterNavn,
+            this.colVersion});
+			this.lstGamleKarakterer.FullRowSelect = true;
 			this.lstGamleKarakterer.Location = new System.Drawing.Point(12, 396);
 			this.lstGamleKarakterer.Name = "lstGamleKarakterer";
-			this.lstGamleKarakterer.Size = new System.Drawing.Size(323, 97);
+			this.lstGamleKarakterer.Size = new System.Drawing.Size(328, 97);
 			this.lstGamleKarakterer.TabIndex = 14;
 			this.lstGamleKarakterer.UseCompatibleStateImageBehavior = false;
 			this.lstGamleKarakterer.View = System.Windows.Forms.View.Details;
-			this.lstGamleKarakterer.DoubleClick += new System.EventHandler(this.lstGamleKarakterer_DoubleClick);
+			this.lstGamleKarakterer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstGamleKarakterer_MouseDoubleClick);
 			// 
 			// colID
 			// 
@@ -206,13 +210,26 @@
 			// colKarakterNavn
 			// 
 			this.colKarakterNavn.Text = "Gamle Versioner";
-			this.colKarakterNavn.Width = 319;
+			this.colKarakterNavn.Width = 264;
+			// 
+			// setattributpanel
+			// 
+			this.setattributpanel.AutoScroll = true;
+			this.setattributpanel.Location = new System.Drawing.Point(12, 205);
+			this.setattributpanel.Name = "setattributpanel";
+			this.setattributpanel.Size = new System.Drawing.Size(328, 176);
+			this.setattributpanel.TabIndex = 15;
+			// 
+			// colVersion
+			// 
+			this.colVersion.Text = "Version";
 			// 
 			// FrmKarakter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(347, 505);
+			this.Controls.Add(this.setattributpanel);
 			this.Controls.Add(this.lstGamleKarakterer);
 			this.Controls.Add(this.btnAfslåKarakter);
 			this.Controls.Add(this.btnGodkendKarakter);
@@ -246,5 +263,7 @@
 		private System.Windows.Forms.ListView lstGamleKarakterer;
 		private System.Windows.Forms.ColumnHeader colID;
 		private System.Windows.Forms.ColumnHeader colKarakterNavn;
+		private System.Windows.Forms.Panel setattributpanel;
+		private System.Windows.Forms.ColumnHeader colVersion;
 	}
 }
