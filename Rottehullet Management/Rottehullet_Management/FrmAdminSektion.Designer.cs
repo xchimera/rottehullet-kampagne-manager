@@ -58,6 +58,8 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmAdminSektion";
             this.Text = "Administration";
             this.ResumeLayout(false);

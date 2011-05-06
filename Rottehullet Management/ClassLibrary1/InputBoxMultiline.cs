@@ -25,6 +25,7 @@ namespace InputBox
             InitializeComponent();
             this.text = text;
             txtText.Text = text;
+            
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace InputBox
         public int LastButton
         {
             get { return lastButton; }
+        }
+
+        private void InputBoxMultiline_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
