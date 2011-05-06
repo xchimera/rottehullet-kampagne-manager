@@ -328,7 +328,7 @@ namespace BK_GUI
                     Label label = new Label();
                     label.RightToLeft = RightToLeft.No;
                     label.Location = new Point(x, y);
-                    label.Text = ikarakterattribut.Kampagneattribut.Navn;
+                    label.Text = ikampagneattribut.Navn;
 
                     // -- textbox --
                     TextBox textbox = new TextBox();
@@ -351,7 +351,7 @@ namespace BK_GUI
                     // -- label --
                     Label label = new Label();
                     label.RightToLeft = RightToLeft.No;
-                    label.Text = ikarakterattribut.Kampagneattribut.Navn;
+                    label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x, y);
 
                     // -- textbox --
@@ -377,7 +377,7 @@ namespace BK_GUI
                     List<long> valgIDer = new List<long>();
                     // -- label --
                     Label label = new Label();
-                    label.Text = værdi.Current.ToString();
+                    label.Text = ikampagneattribut.Navn;
                     label.Location = new Point(x, y);
                     label.RightToLeft = System.Windows.Forms.RightToLeft.No;
 
