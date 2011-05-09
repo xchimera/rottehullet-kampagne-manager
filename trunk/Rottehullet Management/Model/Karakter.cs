@@ -53,6 +53,18 @@ namespace Model
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 
+		public bool ErTilmeldtTilScenarie(Scenarie scenarie)
+		{
+			foreach (Tilmelding tilmelding in scenarieTilmeldinger)
+			{
+				if (tilmelding.Scenarie == scenarie)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
 		public string FindAttributVærdi(long kampagneattributID)
 		{
 			foreach (KarakterAttribut attribut in attributter.Values)

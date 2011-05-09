@@ -68,6 +68,18 @@ namespace Model
 			Karakter karakter = FindKarakter(karakterID);
 			karakter.TilmeldTilScenarie(scenarie, spiser, antalOvernatninger);
 		}
+
+		public bool TjekOmTilmeldtTilScenarie(Scenarie scenarie)
+		{
+			foreach (Karakter karakter in karakterer)
+			{
+				if (karakter.ErTilmeldtTilScenarie(scenarie))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 		
         public Karakter FindKarakter(long karakterID)
         {

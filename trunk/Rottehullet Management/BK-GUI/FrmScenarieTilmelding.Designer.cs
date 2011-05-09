@@ -31,7 +31,7 @@
 			this.chkSpisning = new System.Windows.Forms.CheckBox();
 			this.txtOvernatning = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.lblUdAf = new System.Windows.Forms.Label();
+			this.lblTotaleOvernatninger = new System.Windows.Forms.Label();
 			this.btnTilmeld = new System.Windows.Forms.Button();
 			this.btnAnnuller = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -66,14 +66,14 @@
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Antal Overnatninger";
 			// 
-			// lblUdAf
+			// lblTotaleOvernatninger
 			// 
-			this.lblUdAf.AutoSize = true;
-			this.lblUdAf.Location = new System.Drawing.Point(45, 35);
-			this.lblUdAf.Name = "lblUdAf";
-			this.lblUdAf.Size = new System.Drawing.Size(83, 13);
-			this.lblUdAf.TabIndex = 3;
-			this.lblUdAf.Text = "<mangler kode>";
+			this.lblTotaleOvernatninger.AutoSize = true;
+			this.lblTotaleOvernatninger.Location = new System.Drawing.Point(45, 35);
+			this.lblTotaleOvernatninger.Name = "lblTotaleOvernatninger";
+			this.lblTotaleOvernatninger.Size = new System.Drawing.Size(83, 13);
+			this.lblTotaleOvernatninger.TabIndex = 3;
+			this.lblTotaleOvernatninger.Text = "<mangler kode>";
 			// 
 			// btnTilmeld
 			// 
@@ -122,7 +122,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnAnnuller);
 			this.Controls.Add(this.btnTilmeld);
-			this.Controls.Add(this.lblUdAf);
+			this.Controls.Add(this.lblTotaleOvernatninger);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtOvernatning);
 			this.Controls.Add(this.chkSpisning);
@@ -140,7 +140,7 @@
         private System.Windows.Forms.CheckBox chkSpisning;
         private System.Windows.Forms.TextBox txtOvernatning;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblUdAf;
+        private System.Windows.Forms.Label lblTotaleOvernatninger;
         private System.Windows.Forms.Button btnTilmeld;
         private System.Windows.Forms.Button btnAnnuller;
 		private System.Windows.Forms.GroupBox groupBox1;

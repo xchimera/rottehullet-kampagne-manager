@@ -30,6 +30,7 @@ namespace BK_GUI
 			txtInfo.Text += "Pris: " + scenarie.Pris + " kr" + Environment.NewLine + Environment.NewLine;
 			txtInfo.Text += "Tidspunkt: kl." + scenarie.Tid.Hour + ":" + scenarie.Tid.Minute + " " + scenarie.Tid.Day + "/" + scenarie.Tid.Month + "-" + scenarie.Tid.Year;
 
+			lblTotaleOvernatninger.Text = "(Ud af " + scenarie.Overnatning +  ")";
 
 			if (scenarie.OvernatningTvungen == true)
 			{
