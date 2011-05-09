@@ -8,33 +8,34 @@ using Enum;
 
 namespace Model
 {
-    public class Karakter : IKarakter
-    {
-        Dictionary<string, KarakterAttribut> attributter;   //string er karakterattributID
-        long karakterID;
+	public class Karakter : IKarakter
+	{
+		Dictionary<string, KarakterAttribut> attributter;   //string er karakterattributID
+		long karakterID;
 		Kampagne kampagne;
 		List<Tilmelding> scenarieTilmeldinger;
 		KarakterStatus status;
 
 		public Karakter(long karakterID, Kampagne kampagne, KarakterStatus status)
-        {
-            this.karakterID = karakterID;
-            this.kampagne = kampagne;
+		{
+			this.karakterID = karakterID;
+			this.kampagne = kampagne;
 			this.status = status;
 			attributter = new Dictionary<string, KarakterAttribut>();
 			scenarieTilmeldinger = new List<Tilmelding>();
-        }
+		}
+
 		#region metoder
 		/// <summary>
 		/// Tilføjer en single attribut til karakteren.
 		/// </summary>
 		/// <param name="kampagneAttribut"></param>
 		/// <param name="værdi"></param>
-        public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi, long id)
-        {
+		public void TilføjVærdi(KampagneAttribut kampagneAttribut, string værdi, long id)
+		{
 			KarakterSingleAttribut attribut = new KarakterSingleAttribut(værdi, kampagneAttribut, id);
-            attributter.Add(kampagneAttribut.Navn, attribut);
-        }
+			attributter.Add(kampagneAttribut.Navn, attribut);
+		}
 
 		/// <summary>
 		/// Tilføjer en multi attribut til karakteren.
@@ -50,6 +51,7 @@ namespace Model
 		public void TilmeldTilScenarie(Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, antalOvernatninger);
+			scenarie.TilmedKarakter(this);
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 
@@ -69,7 +71,7 @@ namespace Model
 		{
 			foreach (KarakterAttribut attribut in attributter.Values)
 			{
-				if(attribut.Kampagneattribut.KampagneAttributID == kampagneattributID)
+				if (attribut.Kampagneattribut.KampagneAttributID == kampagneattributID)
 				{
 					if (attribut.Kampagneattribut.Type == KampagneAttributType.Singleline || attribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
 					{
@@ -86,36 +88,36 @@ namespace Model
 			return null;
 		}
 
-        public IEnumerator HentVærdier()
-        {
-            List<string> returliste = new List<string>();
-            foreach (KarakterAttribut karakterAttribut in attributter.Values)
-            {
-                if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Singleline || karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
-                {
-                    KarakterSingleAttribut singleattribut = (KarakterSingleAttribut)karakterAttribut;
-                    returliste.Add(singleattribut.Værdi);
-                }
+		public IEnumerator HentVærdier()
+		{
+			List<string> returliste = new List<string>();
+			foreach (KarakterAttribut karakterAttribut in attributter.Values)
+			{
+				if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Singleline || karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
+				{
+					KarakterSingleAttribut singleattribut = (KarakterSingleAttribut)karakterAttribut;
+					returliste.Add(singleattribut.Værdi);
+				}
 				else if (karakterAttribut.Kampagneattribut.Type == KampagneAttributType.Combo)
 				{
 					KarakterMultiAttribut multiattribut = (KarakterMultiAttribut)karakterAttribut;
 					returliste.Add(multiattribut.Valg.Værdi);
 				}
-            }
-            return returliste.GetEnumerator();
-        }
+			}
+			return returliste.GetEnumerator();
+		}
 
 		#endregion
 
 		#region Properties
 		public IEnumerator GetVærdiIterator()
 		{
-            List<KarakterAttribut> karakterAttributter = new List<KarakterAttribut>();
-            foreach (KarakterAttribut karakterAttribut in attributter.Values)
-            {
-                karakterAttributter.Add(karakterAttribut);
-            }
-		    return karakterAttributter.GetEnumerator();
+			List<KarakterAttribut> karakterAttributter = new List<KarakterAttribut>();
+			foreach (KarakterAttribut karakterAttribut in attributter.Values)
+			{
+				karakterAttributter.Add(karakterAttribut);
+			}
+			return karakterAttributter.GetEnumerator();
 		}
 
 		public long KarakterID
@@ -151,5 +153,5 @@ namespace Model
 			}
 		}
 		#endregion
-    }
+	}
 }

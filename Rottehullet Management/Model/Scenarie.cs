@@ -38,12 +38,12 @@ namespace Model
 			return deltagere;
 		}
 
-		/*#region Metoder
-		public void TilmedKarakter(Karakter karakter)
+		#region Metoder
+		internal void TilmedKarakter(Karakter karakter)
 		{
-
+			deltagere.Add(karakter);
 		}
-		#endregion*/
+		#endregion
 
 		#region properties
 		public long Id
