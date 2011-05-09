@@ -47,6 +47,10 @@
 			this.lstKarakterer = new System.Windows.Forms.ListView();
 			this.KarakterID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.KarakterNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.lstTilmeldte = new System.Windows.Forms.ListView();
+			this.btnPrintTilmeldte = new System.Windows.Forms.Button();
+			this.colKarakterID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colTilmeldte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// label1
@@ -220,13 +224,46 @@
 			// KarakterNavn
 			// 
 			this.KarakterNavn.Text = "Alle Karakter";
-			this.KarakterNavn.Width = 115;
+			this.KarakterNavn.Width = 116;
+			// 
+			// lstTilmeldte
+			// 
+			this.lstTilmeldte.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colKarakterID,
+            this.colTilmeldte});
+			this.lstTilmeldte.Location = new System.Drawing.Point(393, 15);
+			this.lstTilmeldte.Name = "lstTilmeldte";
+			this.lstTilmeldte.Size = new System.Drawing.Size(121, 259);
+			this.lstTilmeldte.TabIndex = 20;
+			this.lstTilmeldte.UseCompatibleStateImageBehavior = false;
+			this.lstTilmeldte.View = System.Windows.Forms.View.Details;
+			// 
+			// btnPrintTilmeldte
+			// 
+			this.btnPrintTilmeldte.Location = new System.Drawing.Point(393, 280);
+			this.btnPrintTilmeldte.Name = "btnPrintTilmeldte";
+			this.btnPrintTilmeldte.Size = new System.Drawing.Size(120, 23);
+			this.btnPrintTilmeldte.TabIndex = 21;
+			this.btnPrintTilmeldte.Text = "Print";
+			this.btnPrintTilmeldte.UseVisualStyleBackColor = true;
+			// 
+			// colKarakterID
+			// 
+			this.colKarakterID.Text = "";
+			this.colKarakterID.Width = 0;
+			// 
+			// colTilmeldte
+			// 
+			this.colTilmeldte.Text = "Tilmeldte Karakterer";
+			this.colTilmeldte.Width = 117;
 			// 
 			// FrmHovedside
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(664, 315);
+			this.Controls.Add(this.btnPrintTilmeldte);
+			this.Controls.Add(this.lstTilmeldte);
 			this.Controls.Add(this.lstKarakterer);
 			this.Controls.Add(this.btnVælgSuperbruger);
 			this.Controls.Add(this.btnPrintKarakterer);
@@ -274,6 +311,10 @@
 		private System.Windows.Forms.ListView lstKarakterer;
 		private System.Windows.Forms.ColumnHeader KarakterID;
 		private System.Windows.Forms.ColumnHeader KarakterNavn;
+		private System.Windows.Forms.ListView lstTilmeldte;
+		private System.Windows.Forms.ColumnHeader colKarakterID;
+		private System.Windows.Forms.ColumnHeader colTilmeldte;
+		private System.Windows.Forms.Button btnPrintTilmeldte;
 
     }
 }

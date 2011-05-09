@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,11 @@ namespace Model
 			this.overnatningTvungen = overnatningTvungen;
 			this.andetInfo = andetInfo;
 			deltagere = new List<Karakter>();
+		}
+
+		public List<Karakter> HentDeltagere()
+		{
+			return deltagere;
 		}
 
 		/*#region Metoder
