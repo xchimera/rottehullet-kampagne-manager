@@ -55,6 +55,7 @@ namespace Rottehullet_Management
 				btnGodkendKarakter.Visible = false;
 				btnAfslåKarakter.Enabled = false;
 				btnAfslåKarakter.Visible = false;
+				hvdside.OpdaterLstKarakterer();
 			}
 			else
 			{

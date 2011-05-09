@@ -170,7 +170,10 @@ namespace Controller
 			if (kampagneID > 0)
 			{
 				kampagne = new Kampagne(navn, kampagneID, KampagneStatus.Oprettet);
-				return true;
+				if (TilføjSingleAttribut("Navn",KampagneAttributType.Singleline,0))
+				{
+					return true;
+				}
 			}
 			return false;
 		}
