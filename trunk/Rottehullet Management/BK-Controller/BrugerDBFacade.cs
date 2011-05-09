@@ -627,7 +627,7 @@ namespace BK_Controller
 
 					if (karakterID != nuværendeKarakterID)
 					{
-						bruger.FindKarakter(karakterID);
+						nuværendeKarakter = bruger.FindKarakter(karakterID);
 						nuværendeKarakterID = karakterID;
 					}
 
