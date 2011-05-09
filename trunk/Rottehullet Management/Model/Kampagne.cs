@@ -106,6 +106,18 @@ namespace Model
 			return null;
 		}
 
+		public KampagneAttribut FindAttribut(string navn)
+		{
+			foreach (KampagneAttribut attribut in attributter)
+			{
+				if (attribut.Navn == navn)
+				{
+					return attribut;
+				}
+			}
+			return null;
+		}
+
 		public IEnumerator HentAttributter()
 		{
 			return attributter.GetEnumerator();

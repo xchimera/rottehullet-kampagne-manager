@@ -138,6 +138,11 @@ namespace Rottehullet_Management
 				MessageBox.Show("Attributten skal have et navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
+			else if (kampagneManager.FindKampagneAttribut(txtNavn.Text) != null)
+			{
+				MessageBox.Show("Der er allerede en attribut af dette navn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			kampagneManager.RetAttribut(txtNavn.Text, (KampagneAttributType)cboType.SelectedIndex, position);
 			this.Close();
 		}

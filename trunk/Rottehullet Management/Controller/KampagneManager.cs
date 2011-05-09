@@ -246,6 +246,11 @@ namespace Controller
 			return nuværendeAttribut;
 		}
 
+		public IKampagneAttribut FindKampagneAttribut(string navn)
+		{
+			return kampagne.FindAttribut(navn);
+		}
+
 		public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
 			return kampagne.GenopretAttribut(attributID, navn, type);
