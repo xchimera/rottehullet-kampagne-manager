@@ -33,7 +33,6 @@ namespace Model
 			get { return spiser; }
 			set { spiser = value; }
 		}
-
 		public Scenarie Scenarie
 		{
 			get { return scenarie; }

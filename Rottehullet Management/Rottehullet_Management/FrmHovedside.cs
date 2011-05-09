@@ -120,7 +120,38 @@ namespace Rottehullet_Management
 			}
 		}
 
-        private void btnRedigerNavn_Click(object sender, EventArgs e)
+		public void OpdaterLstTilmeldte()
+		{
+			IKarakter karakter;
+			IEnumerator deltageriterator = kampagnemanager.HentDeltagere();
+			deltageriterator.Reset();
+			lstKarakterer.Items.Clear();
+
+
+			while (deltageriterator.MoveNext())
+			{
+				karakter = (IKarakter)deltageriterator.Current;
+				if (karakter.Status != Enum.KarakterStatus.Gammel && karakter.Status != Enum.KarakterStatus.Afslået)
+				{
+					ListViewItem item = new ListViewItem();
+
+					item.Text = Convert.ToString(karakter.KarakterID);
+					item.SubItems.Add(karakter["Navn"]);
+					if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
+					{
+						item.BackColor = Color.LightSalmon;
+					}
+					else if (karakter.Status == Enum.KarakterStatus.Opdateret)
+					{
+						item.BackColor = Color.LightBlue;
+					}
+
+					lstKarakterer.Items.Add(item);
+				}
+			}
+		}
+
+		private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
 			InputBoxSingleline singleline = new InputBoxSingleline(kampagne.Navn);
 			singleline.ShowDialog();
