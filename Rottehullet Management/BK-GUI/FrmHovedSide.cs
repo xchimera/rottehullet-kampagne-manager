@@ -112,25 +112,24 @@ namespace BK_GUI
 
         private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
         {
-			if (lstkaraktere.SelectedIndices.Count == 1)
-			{
-				IScenarie scenarie = brugerklient.HentNuværendeScenarie();
+			IScenarie scenarie = brugerklient.HentNuværendeScenarie();
 
-				if (scenarie == null)
-				{
-					MessageBox.Show("Der findes endnu ikke et scenarie på denne kampagne", "Der findes ikke et scenarie");
-					return;
-				}
-
-				FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding(brugerklient, nuværendeKarakterID, scenarie);
-				this.Hide();
-				scenarietilmelding.ShowDialog();
-				this.Show();
-			}
-			else
+			if (scenarie == null)
 			{
-				MessageBox.Show("Du skal vælge en karakter, før du trykker på denne knap", "Ingen karakter valgt");
+				MessageBox.Show("Der findes endnu ikke et scenarie på denne kampagne", "Der findes ikke et scenarie");
+				return;
 			}
+
+			if (brugerklient.TjekOmBrugerErTilmeldtNuværendeScenarie())
+			{
+				MessageBox.Show("Du er allerede tilmeldt det nuværende scenarie", "Allerede tilmeldt", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			FrmScenarieTilmelding scenarietilmelding = new FrmScenarieTilmelding(brugerklient, nuværendeKarakterID, scenarie);
+			this.Hide();
+			scenarietilmelding.ShowDialog();
+			this.Show();
         }
 
 		private void lstkaraktere_MouseClick(object sender, MouseEventArgs e)

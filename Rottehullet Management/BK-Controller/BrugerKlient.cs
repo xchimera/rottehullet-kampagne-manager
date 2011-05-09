@@ -52,7 +52,7 @@ namespace BK_Controller
 		{
 			kodeord = KrypterKodeord(kodeord);
 			long brugerID = brugerdbfacade.Login(email, kodeord);
-
+			brugerdbfacade.HentTilmeldingerTilBruger(bruger);
 			return brugerID;
 		}
 
@@ -81,6 +81,11 @@ namespace BK_Controller
 		public IScenarie HentNuværendeScenarie()
 		{
 			return nuværendeScenarie;
+		}
+
+		internal Scenarie FindScenarie(long scenarieID)
+		{
+			return kampagnecollection.FindScenarie(scenarieID);
 		}
 
 		public void GenopretKarakter(long karakterID, long kampagneID)
@@ -240,6 +245,13 @@ namespace BK_Controller
 
 				throw;
 			}
+		}
+
+		public bool TjekOmBrugerErTilmeldtNuværendeScenarie()
+		{
+			if (bruger.TjekOmTilmeldtTilScenarie(nuværendeScenarie))
+				return true;
+			return false;
 		}
 	}
 }

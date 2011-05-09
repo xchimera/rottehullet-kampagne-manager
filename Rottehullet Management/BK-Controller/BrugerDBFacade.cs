@@ -542,7 +542,6 @@ namespace BK_Controller
 		{
 			cmd.CommandText = "HentAlleScenarier";
 			cmd.Parameters.Clear();
-			SqlParameter par;
 			SqlDataReader reader;
 			Kampagne kampagne = null;
 			long kampagneID;
@@ -584,6 +583,57 @@ namespace BK_Controller
 					spisningTvungen = (bool)reader["spisningTvungen"];
 					overnatningTvungen = (bool)reader["overnatningTvungen"];
 					kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+				}
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+
+		public bool HentTilmeldingerTilBruger(Bruger bruger)
+		{
+			cmd.CommandText = "HentTilmeldingerTilBruger";
+			cmd.Parameters.Clear();
+			SqlParameter par;
+			SqlDataReader reader;
+			long karakterID;
+			long nuværendeKarakterID = 0;
+			Karakter nuværendeKarakter = null;
+			long scenarieID;
+			int overnatninger;
+			bool spiser;
+
+			par = new SqlParameter("@brugerID", SqlDbType.BigInt);
+			par.Value = bruger.BrugerID;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					karakterID = (long)reader["karakterID"];
+					scenarieID = (long)reader["scenarieID"];
+					overnatninger = (int)reader["overnatninger"];
+					spiser = (bool)reader["spiser"];
+
+					if (karakterID != nuværendeKarakterID)
+					{
+						bruger.FindKarakter(karakterID);
+						nuværendeKarakterID = karakterID;
+					}
+
+					Scenarie scenarie = brugerklient.FindScenarie(scenarieID);
+
+					nuværendeKarakter.TilmeldTilScenarie(scenarie, spiser, overnatninger);
 				}
 				conn.Close();
 				return true;

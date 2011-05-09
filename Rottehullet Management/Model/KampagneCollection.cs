@@ -78,6 +78,19 @@ namespace Model
 			return null;
 		}
 
+		public Scenarie FindScenarie(long scenarieID)
+		{
+			foreach (Kampagne kampagne in kampagner)
+			{
+				Scenarie scenarie = kampagne.FindScenarie(scenarieID);
+				if (scenarie != null)
+				{
+					return scenarie;
+				}
+			}
+			return null;
+		}
+
         public IEnumerator GetKampagneIterator()
         {
             return kampagner.GetEnumerator();
