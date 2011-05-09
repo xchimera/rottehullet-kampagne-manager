@@ -89,7 +89,7 @@ namespace Rottehullet_Management
 		}
 		#endregion
 
-		private void OpdaterLstKarakterer()
+		public void OpdaterLstKarakterer()
 		{
 			IKarakter karakter;
 			IEnumerator karakteriterator = kampagnemanager.AlleKaraktererEnumerator();
