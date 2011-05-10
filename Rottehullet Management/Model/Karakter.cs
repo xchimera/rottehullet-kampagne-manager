@@ -53,7 +53,6 @@ namespace Model
 		public void TilmeldTilScenarie(Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, antalOvernatninger);
-			scenarie.TilmedKarakter(this);
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 

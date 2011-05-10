@@ -466,6 +466,11 @@ namespace Controller
 			}
 			return false;
 		}
+
+		/*public IEnumerator<ITilmelding> HentScenarieTilmeldinger()
+		{
+			nuværendeScenarie.
+		}*/
 		#endregion
 
 		public BrugerRettighed SætNuværendeRettighed()
