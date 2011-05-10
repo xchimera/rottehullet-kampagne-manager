@@ -45,8 +45,8 @@
 			this.lstGamleKarakterer = new System.Windows.Forms.ListView();
 			this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colKarakterNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.setattributpanel = new System.Windows.Forms.Panel();
 			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.setattributpanel = new System.Windows.Forms.Panel();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -166,11 +166,11 @@
 			// btnGodkendKarakter
 			// 
 			this.btnGodkendKarakter.Enabled = false;
-			this.btnGodkendKarakter.Location = new System.Drawing.Point(113, 176);
+			this.btnGodkendKarakter.Location = new System.Drawing.Point(95, 176);
 			this.btnGodkendKarakter.Name = "btnGodkendKarakter";
-			this.btnGodkendKarakter.Size = new System.Drawing.Size(104, 23);
+			this.btnGodkendKarakter.Size = new System.Drawing.Size(122, 23);
 			this.btnGodkendKarakter.TabIndex = 12;
-			this.btnGodkendKarakter.Text = "Godkend Karakter";
+			this.btnGodkendKarakter.Text = "Godkend Opgradering";
 			this.btnGodkendKarakter.UseVisualStyleBackColor = true;
 			this.btnGodkendKarakter.Visible = false;
 			this.btnGodkendKarakter.Click += new System.EventHandler(this.btnGodkendKarakter_Click);
@@ -178,9 +178,9 @@
 			// btnAfslåKarakter
 			// 
 			this.btnAfslåKarakter.Enabled = false;
-			this.btnAfslåKarakter.Location = new System.Drawing.Point(236, 176);
+			this.btnAfslåKarakter.Location = new System.Drawing.Point(223, 176);
 			this.btnAfslåKarakter.Name = "btnAfslåKarakter";
-			this.btnAfslåKarakter.Size = new System.Drawing.Size(104, 23);
+			this.btnAfslåKarakter.Size = new System.Drawing.Size(117, 23);
 			this.btnAfslåKarakter.TabIndex = 13;
 			this.btnAfslåKarakter.Text = "Afslå Karakter";
 			this.btnAfslåKarakter.UseVisualStyleBackColor = true;
@@ -212,6 +212,10 @@
 			this.colKarakterNavn.Text = "Gamle Versioner";
 			this.colKarakterNavn.Width = 264;
 			// 
+			// colVersion
+			// 
+			this.colVersion.Text = "Version";
+			// 
 			// setattributpanel
 			// 
 			this.setattributpanel.AutoScroll = true;
@@ -219,10 +223,6 @@
 			this.setattributpanel.Name = "setattributpanel";
 			this.setattributpanel.Size = new System.Drawing.Size(328, 176);
 			this.setattributpanel.TabIndex = 15;
-			// 
-			// colVersion
-			// 
-			this.colVersion.Text = "Version";
 			// 
 			// FrmKarakter
 			// 

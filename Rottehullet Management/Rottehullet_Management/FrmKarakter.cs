@@ -36,12 +36,21 @@ namespace Rottehullet_Management
 			SætAttributter();
 			OpdaterListview();
 
-			if (karakter.Status == Enum.KarakterStatus.Nyoprettet || karakter.Status == Enum.KarakterStatus.Opdateret)
+			if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
 			{
 				btnGodkendKarakter.Enabled = true;
 				btnGodkendKarakter.Visible = true;
 				btnAfslåKarakter.Enabled = true;
 				btnAfslåKarakter.Visible = true;
+			}
+			else if (karakter.Status == Enum.KarakterStatus.Opdateret)
+			{
+				btnGodkendKarakter.Enabled = true;
+				btnGodkendKarakter.Visible = true;
+				btnGodkendKarakter.Text = "Godkend Opgradering";
+				btnAfslåKarakter.Enabled = true;
+				btnAfslåKarakter.Visible = true;
+				btnAfslåKarakter.Text = "Afslå Opgradering";
 			}
 		}
 
@@ -49,13 +58,13 @@ namespace Rottehullet_Management
 		{
 			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Godkendt))
 			{
-				string test = karakter.Status.ToString();
-				MessageBox.Show(test, "Godkendt", MessageBoxButtons.OK, MessageBoxIcon.None);
 				btnGodkendKarakter.Enabled = false;
 				btnGodkendKarakter.Visible = false;
 				btnAfslåKarakter.Enabled = false;
 				btnAfslåKarakter.Visible = false;
 				hvdside.OpdaterLstKarakterer();
+				hvdside.OpdaterLstTilmeldte();
+				MessageBox.Show("Karakteren er blevet godkendt", "Godkendt", MessageBoxButtons.OK, MessageBoxIcon.None);
 			}
 			else
 			{
@@ -65,13 +74,16 @@ namespace Rottehullet_Management
 
 		private void btnAfslåKarakter_Click(object sender, EventArgs e)
 		{
-			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Afslået))
+			IKarakter forrigekarakter = kampagnemanager.FindKarakter(Convert.ToInt64(lstGamleKarakterer.Items[lstGamleKarakterer.Items.Count-1].Text));
+			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Afslået) && kampagnemanager.SætKarakterStatus(forrigekarakter, Enum.KarakterStatus.Opdateret))
 			{
-				MessageBox.Show("Karakteren er blevet afslået", "Afslået", MessageBoxButtons.OK, MessageBoxIcon.None);
 				btnGodkendKarakter.Enabled = false;
 				btnGodkendKarakter.Visible = false;
 				btnAfslåKarakter.Enabled = false;
 				btnAfslåKarakter.Visible = false;
+				hvdside.OpdaterLstKarakterer();
+				hvdside.OpdaterLstTilmeldte();
+				MessageBox.Show("Karakteren er blevet afslået", "Afslået", MessageBoxButtons.OK, MessageBoxIcon.None);
 			}
 			else
 			{
@@ -118,22 +130,27 @@ namespace Rottehullet_Management
 
 		private void OpdaterListview()
 		{
+			///Hvis I ændrer i rækkefølgen her, så husk også at ændre i btnAfslåKarakter_Click metoden
 			IEnumerator karakteriterator = bruger.FindGamleKarakterer(karakter);
+			IKarakter gammelkarakter;
 			karakteriterator.Reset();
 			lstGamleKarakterer.Items.Clear();
 			int version = 1;
 
 			while (karakteriterator.MoveNext())
 			{
-				karakter = (IKarakter)karakteriterator.Current;
-				ListViewItem item = new ListViewItem();
+				gammelkarakter = (IKarakter)karakteriterator.Current;
+				if (gammelkarakter.Status != Enum.KarakterStatus.Afslået)
+				{
+					ListViewItem item = new ListViewItem();
 
-				item.Text = Convert.ToString(karakter.KarakterID);
-				item.SubItems.Add(karakter["Navn"]);
-				item.SubItems.Add(version.ToString());
+					item.Text = Convert.ToString(gammelkarakter.KarakterID);
+					item.SubItems.Add(gammelkarakter["Navn"]);
+					item.SubItems.Add(version.ToString());
 
-				lstGamleKarakterer.Items.Add(item);
-				version++;
+					lstGamleKarakterer.Items.Add(item);
+					version++;
+				}
 			}
 			lstGamleKarakterer.Sort();
 		}
