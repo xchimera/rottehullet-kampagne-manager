@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Model
 {
-	class Tilmelding
+	class Tilmelding : ITilmelding
 	{
 		#region attributter
 		Karakter karakter;
@@ -36,6 +37,11 @@ namespace Model
 		public Scenarie Scenarie
 		{
 			get { return scenarie; }
+		}
+
+		public Karakter Karakter
+		{
+			get { return karakter; }
 		}
 	}
 }
