@@ -43,6 +43,7 @@ namespace Rottehullet_Management
 				btnSkiftKampagne.Visible = false;
 			}
 			OpdaterLstKarakterer();
+			OpdaterLstTilmeldte();
         }
 
 		#region Tilstandsstyring
@@ -125,29 +126,26 @@ namespace Rottehullet_Management
 			IKarakter karakter;
 			IEnumerator deltageriterator = kampagnemanager.HentDeltagere();
 			deltageriterator.Reset();
-			lstKarakterer.Items.Clear();
+			lstTilmeldte.Items.Clear();
 
 
 			while (deltageriterator.MoveNext())
 			{
 				karakter = (IKarakter)deltageriterator.Current;
-				if (karakter.Status != Enum.KarakterStatus.Gammel && karakter.Status != Enum.KarakterStatus.Afslået)
+				ListViewItem item = new ListViewItem();
+
+				item.Text = Convert.ToString(karakter.KarakterID);
+				item.SubItems.Add(karakter["Navn"]);
+				if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
 				{
-					ListViewItem item = new ListViewItem();
-
-					item.Text = Convert.ToString(karakter.KarakterID);
-					item.SubItems.Add(karakter["Navn"]);
-					if (karakter.Status == Enum.KarakterStatus.Nyoprettet)
-					{
-						item.BackColor = Color.LightSalmon;
-					}
-					else if (karakter.Status == Enum.KarakterStatus.Opdateret)
-					{
-						item.BackColor = Color.LightBlue;
-					}
-
-					lstKarakterer.Items.Add(item);
+					item.BackColor = Color.LightSalmon;
 				}
+				else if (karakter.Status == Enum.KarakterStatus.Opdateret)
+				{
+					item.BackColor = Color.LightBlue;
+				}
+
+				lstTilmeldte.Items.Add(item);
 			}
 		}
 
@@ -161,7 +159,7 @@ namespace Rottehullet_Management
                 {
                     txtNavn.Text = singleline.Text;
                     kampagnemanager.RetKampagneNavn(txtNavn.Text, kampagneID);
-                    kampagnemanager.RetKampagneliste(kampagneID, txtNavn.Text);
+                    kampagnemanager.RetBrugerRettigheder(kampagneID, txtNavn.Text);
                 }
             }
         }

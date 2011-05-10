@@ -113,9 +113,42 @@ namespace Controller
 			return nuværendeBrugersRettigheder;
 		}
 
-		public IEnumerator GetBrugerKampagne()
+		public IEnumerator GetBrugersRettighder()
 		{
 			return nuværendeBrugersRettigheder.GetEnumerator();
+		}
+
+		public static string KrypterKodeord(string kodeord)
+		{
+			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
+			try
+			{
+				System.Security.Cryptography.MD5CryptoServiceProvider kryptograf;
+				kryptograf = new System.Security.Cryptography.MD5CryptoServiceProvider();
+				byte[] hash = kryptograf.ComputeHash(tekstIBytes);
+				string ret = "";
+				foreach (byte a in hash)
+				{
+					if (a < 16)
+						ret += "0" + a.ToString("x");
+					else
+						ret += a.ToString("x");
+				}
+				return ret;
+			}
+			catch
+			{
+
+				throw;
+			}
+		}
+
+		public long Login(string email, string kodeord)
+		{
+			kodeord = KrypterKodeord(kodeord);
+			long brugerID = dbFacade.Login(email, kodeord);
+			nuværendebrugerID = brugerID;
+			return brugerID;
 		}
 
 		public void IndsætRettighed(string kampagneID, string navn, string type)
@@ -124,7 +157,7 @@ namespace Controller
 			nuværendeBrugersRettigheder.Add(kampagnearr);
 		}
 
-		public void RetKampagneliste(long kampagneID, string navn)
+		public void RetBrugerRettigheder(long kampagneID, string navn)
 		{
 			foreach (string[] kampagne in nuværendeBrugersRettigheder)
 			{
@@ -157,7 +190,10 @@ namespace Controller
 
 		public bool HentKampagneFraDatabase(long kamID)
 		{
-			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne) && dbFacade.HentMultiAttributterTilKarakterer(brugercollection.HentAlleKarakterer(), kampagne))
+			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && 
+				dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne) && 
+				dbFacade.HentMultiAttributterTilKarakterer(brugercollection.HentAlleKarakterer(), kampagne) &&
+				dbFacade.GenOpretAlleTilmeldinger())
 			{
 				return true;
 			}
@@ -382,6 +418,11 @@ namespace Controller
 
 		#region Scenarie
 
+		public Scenarie FindScenarie(long scenarieID)
+		{
+			return kampagne.FindScenarie(scenarieID);
+		}
+
 		public void GenopretScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			nuværendeScenarie = kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
@@ -426,39 +467,6 @@ namespace Controller
 			return false;
 		}
 		#endregion
-
-		public static string KrypterKodeord(string kodeord)
-		{
-			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
-			try
-			{
-				System.Security.Cryptography.MD5CryptoServiceProvider kryptograf;
-				kryptograf = new System.Security.Cryptography.MD5CryptoServiceProvider();
-				byte[] hash = kryptograf.ComputeHash(tekstIBytes);
-				string ret = "";
-				foreach (byte a in hash)
-				{
-					if (a < 16)
-						ret += "0" + a.ToString("x");
-					else
-						ret += a.ToString("x");
-				}
-				return ret;
-			}
-			catch
-			{
-				
-				throw;
-			}
-		}
-
-		public long Login(string email, string kodeord)
-		{
-			kodeord = KrypterKodeord(kodeord);
-			long brugerID = dbFacade.Login(email, kodeord);
-		    nuværendebrugerID = brugerID;
-			return brugerID;
-		}
 
 		public BrugerRettighed SætNuværendeRettighed()
 		{
