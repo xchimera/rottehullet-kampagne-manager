@@ -252,5 +252,15 @@ namespace Rottehullet_Management
 			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager,ibruger,ikarakter,this);
 			karaktervindue.ShowDialog();
 		}
+
+		private void lstTilmeldte_DoubleClick(object sender, EventArgs e)
+		{
+			ListViewItem valgteitem = lstTilmeldte.Items[lstTilmeldte.SelectedIndices[0]];
+			long karakterID = Convert.ToInt64(valgteitem.SubItems[0].Text);
+			IKarakter ikarakter = kampagnemanager.FindKarakter(karakterID);
+			IBruger ibruger = kampagnemanager.FindKaraktersBruger(karakterID);
+			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager, ibruger, ikarakter, this);
+			karaktervindue.ShowDialog();
+		}
     }
 }
