@@ -9,5 +9,6 @@ namespace Interfaces
 	{
 		int AntalOvernatninger { get; }
 		bool Spiser { get; }
+		IKarakter Karakter { get; }
 	}
 }

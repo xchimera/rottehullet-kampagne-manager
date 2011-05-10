@@ -21,6 +21,7 @@ namespace Model
 			this.scenarie = scenarie;
 			this.spiser = spiser;
 			this.antalOvernatninger = antalOvernatninger;
+			scenarie.TilføjTilmelding(this);
 		}
 
 		public int AntalOvernatninger
@@ -34,12 +35,13 @@ namespace Model
 			get { return spiser; }
 			set { spiser = value; }
 		}
+
 		public Scenarie Scenarie
 		{
 			get { return scenarie; }
 		}
 
-		public Karakter Karakter
+		public IKarakter Karakter
 		{
 			get { return karakter; }
 		}

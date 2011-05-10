@@ -15,7 +15,7 @@ namespace Model
 		private DateTime tid;
 		private int overnatning;
 		private bool spisning, spisningTvungen, overnatningTvungen;
-		List<Karakter> deltagere;
+		List<Tilmelding> tilmeldinger;
 
 		public Scenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
@@ -30,18 +30,25 @@ namespace Model
 			this.spisningTvungen = spisningTvungen;
 			this.overnatningTvungen = overnatningTvungen;
 			this.andetInfo = andetInfo;
-			deltagere = new List<Karakter>();
+			tilmeldinger = new List<Tilmelding>();
 		}
 
-		public List<Karakter> HentDeltagere()
+		public List<IKarakter> HentDeltagere()
 		{
-			return deltagere;
+			List<IKarakter> karakterer = new List<IKarakter>();
+
+			foreach (Tilmelding tilmelding in tilmeldinger)
+			{
+				karakterer.Add(tilmelding.Karakter);
+			}
+
+			return karakterer;
 		}
 
 		#region Metoder
-		internal void TilmedKarakter(Karakter karakter)
+		internal void TilføjTilmelding(Tilmelding tilmelding)
 		{
-			deltagere.Add(karakter);
+			tilmeldinger.Add(tilmelding);
 		}
 		#endregion
 
