@@ -15,12 +15,14 @@ namespace Model
 		Kampagne kampagne;
 		List<Tilmelding> scenarieTilmeldinger;
 		KarakterStatus status;
+		Bruger bruger;
 
-		public Karakter(long karakterID, Kampagne kampagne, KarakterStatus status)
+		public Karakter(long karakterID, Kampagne kampagne, KarakterStatus status, Bruger bruger)
 		{
 			this.karakterID = karakterID;
 			this.kampagne = kampagne;
 			this.status = status;
+			this.bruger = bruger;
 			attributter = new Dictionary<string, KarakterAttribut>();
 			scenarieTilmeldinger = new List<Tilmelding>();
 		}
@@ -134,6 +136,11 @@ namespace Model
 		public IKampagne Kampagne
 		{
 			get { return kampagne; }
+		}
+
+		public IBruger Bruger
+		{
+			get { return bruger; }
 		}
 
 		public string this[string attributNavn]
