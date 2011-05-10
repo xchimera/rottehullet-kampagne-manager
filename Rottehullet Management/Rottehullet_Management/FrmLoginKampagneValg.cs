@@ -28,7 +28,7 @@ namespace Rottehullet_Management
         private void OpdaterListView()
         {
             string[] kampagne;
-            IEnumerator kampagneiterator = kampagnemanager.GetBrugerKampagne();
+            IEnumerator kampagneiterator = kampagnemanager.GetBrugersRettighder();
             kampagneiterator.Reset();
             lstKampagner.Items.Clear();
             

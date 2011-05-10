@@ -935,6 +935,55 @@ namespace Controller
 
 		#endregion
 
+		#region Tilmeldinger
+		public bool GenOpretAlleTilmeldinger()
+		{
+			cmd.CommandText = "HentAlleTilmeldinger";
+			cmd.Parameters.Clear();
+			SqlDataReader reader;
+			long karakterID;
+			long nuværendeKarakterID = 0;
+			Karakter nuværendeKarakter = null;
+			long scenarieID;
+			int overnatninger;
+			bool spiser;
+
+			try
+			{
+				conn.Open();
+				reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					karakterID = (long)reader["karakterID"];
+					scenarieID = (long)reader["scenarieID"];
+					overnatninger = (int)reader["overnatninger"];
+					spiser = (bool)reader["spiser"];
+
+					if (karakterID != nuværendeKarakterID)
+					{
+						nuværendeKarakter = (Karakter)kampagnemanager.FindKarakter(karakterID);
+						nuværendeKarakterID = karakterID;
+					}
+					if (nuværendeKarakter!=null)
+					{
+					Scenarie scenarie = (Scenarie)kampagnemanager.FindScenarie(scenarieID);
+					nuværendeKarakter.TilmeldTilScenarie(scenarie, spiser, overnatninger);
+					}
+				}
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+		#endregion
+
 		#region Attributter
 		public bool HentAttributter(long kamID)
 		{
