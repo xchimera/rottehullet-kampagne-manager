@@ -253,6 +253,12 @@ namespace Rottehullet_Management
 			karaktervindue.ShowDialog();
 		}
 
+		private void btnPrintTilmeldte_Click(object sender, EventArgs e)
+		{
+			FrmScenarieOverblik form = new FrmScenarieOverblik(kampagnemanager);
+			form.Show();
+		}
+
 		private void lstTilmeldte_DoubleClick(object sender, EventArgs e)
 		{
 			ListViewItem valgteitem = lstTilmeldte.Items[lstTilmeldte.SelectedIndices[0]];

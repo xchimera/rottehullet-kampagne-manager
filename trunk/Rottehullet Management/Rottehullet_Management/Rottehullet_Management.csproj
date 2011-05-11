@@ -34,8 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -106,6 +109,12 @@
     <Compile Include="FrmRetScenarie.Designer.cs">
       <DependentUpon>FrmRetScenarie.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmScenarieOverblik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmScenarieOverblik.Designer.cs">
+      <DependentUpon>FrmScenarieOverblik.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTilføjAttribut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +159,9 @@
     <EmbeddedResource Include="FrmRetScenarie.resx">
       <DependentUpon>FrmRetScenarie.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmScenarieOverblik.resx">
+      <DependentUpon>FrmScenarieOverblik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTilføjAttribut.resx">
       <DependentUpon>FrmTilføjAttribut.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +178,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RapScenarie.rdlc" />
+    <None Include="Properties\DataSources\Interfaces.IScenarie.datasource" />
+    <None Include="Properties\DataSources\Interfaces.ITilmelding.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -18,5 +18,8 @@ namespace Interfaces
 		bool SpisningTvungen { get; }
 		bool Spisning { get; }
 		string AndetInfo { get; }
+		int AntalDeltagere { get; }
+		int AntalVegetarer { get; }
+		int AntalVeganere { get; }
 	}
 }

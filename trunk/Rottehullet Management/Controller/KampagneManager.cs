@@ -475,10 +475,17 @@ namespace Controller
 			return false;
 		}
 
-		/*public IEnumerator<ITilmelding> HentScenarieTilmeldinger()
+		public List<ITilmelding> HentScenarieTilmeldinger()
 		{
-			nuværendeScenarie.
-		}*/
+			List<ITilmelding> tilmeldinger = new List<ITilmelding>();
+
+			foreach (Tilmelding tilmelding in nuværendeScenarie.HentTilmeldinger())
+			{
+				tilmeldinger.Add((ITilmelding)tilmelding);
+			}
+
+			return tilmeldinger;
+		}
 		#endregion
 
 		public BrugerRettighed SætNuværendeRettighed()

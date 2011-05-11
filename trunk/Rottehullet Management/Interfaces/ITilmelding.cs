@@ -10,5 +10,9 @@ namespace Interfaces
 		int AntalOvernatninger { get; }
 		bool Spiser { get; }
 		IKarakter Karakter { get; }
+		string KarakterNavn { get; }
+		string BrugerNavn { get; }
+		long BrugerTlf { get; }
+		long BrugerNødTlf { get; }
 	}
 }
