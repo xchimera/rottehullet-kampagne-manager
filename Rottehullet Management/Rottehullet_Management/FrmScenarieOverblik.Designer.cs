@@ -42,7 +42,6 @@
 			// 
 			// reportViewer1
 			// 
-			this.reportViewer1.AutoSize = true;
 			reportDataSource1.Name = "DataSet1";
 			reportDataSource1.Value = this.ITilmeldingBindingSource;
 			reportDataSource2.Name = "DataSet2";
@@ -52,7 +51,7 @@
 			this.reportViewer1.LocalReport.ReportEmbeddedResource = "Rottehullet_Management.RapScenarie.rdlc";
 			this.reportViewer1.Location = new System.Drawing.Point(0, 0);
 			this.reportViewer1.Name = "reportViewer1";
-			this.reportViewer1.Size = new System.Drawing.Size(836, 400);
+			this.reportViewer1.Size = new System.Drawing.Size(836, 671);
 			this.reportViewer1.TabIndex = 0;
 			// 
 			// ITilmeldingBindingSource
@@ -71,16 +70,17 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(836, 399);
+			this.ClientSize = new System.Drawing.Size(836, 668);
 			this.Controls.Add(this.reportViewer1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
 			this.Name = "FrmScenarieOverblik";
-			this.Text = "FrmScenarieOverblik";
+			this.Text = "Deltagerliste";
 			this.Load += new System.EventHandler(this.FrmScenarieOverblik_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ITilmeldingBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.IScenarieBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.kampagneManagerBindingSource)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
