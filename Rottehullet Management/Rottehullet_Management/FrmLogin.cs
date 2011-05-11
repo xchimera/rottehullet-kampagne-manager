@@ -26,11 +26,13 @@ namespace Rottehullet_Management
 			if (txtBrugernavn.Text == "")
 			{
 				MessageBox.Show("Indtast venligst brugernavn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
 				return;
 			}
 			else if (txtKodeord.Text == "")
 			{
 				MessageBox.Show("Indtast venligst adgangskode", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
 				return;
 			}
 			//Checker databasen for brugerens brugerID
@@ -83,10 +85,12 @@ namespace Rottehullet_Management
 			else if (brugerID == -1) //brugerID sættes til -1 på DBfacaden hvis der sker en fejl der
 			{
 				MessageBox.Show("Der skete en fejl ved login", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtKodeord.Text = "";
 			}
             else
             {
 				MessageBox.Show("Brugernavn eller kodeord passer ikke", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
             }
         }
     }
