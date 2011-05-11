@@ -241,6 +241,7 @@ namespace Rottehullet_Management
             FrmVælgSuperbruger vælgsuperbruger = new FrmVælgSuperbruger(kampagnemanager, kampagne);
             this.Hide();
             vælgsuperbruger.ShowDialog();
+            this.Show();
         }
 
 		private void lstKarakterer_DoubleClick(object sender, EventArgs e)

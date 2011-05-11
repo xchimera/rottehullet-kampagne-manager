@@ -33,11 +33,13 @@ namespace BK_GUI
 			if (txtBrugernavn.Text == "")
 			{
 				MessageBox.Show("Indtast venligst brugernavn", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
 				return;
 			}
 			else if (txtKodeord.Text == "")
 			{
 				MessageBox.Show("Indtast venligst adgangskode", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
 				return;
 			}
 			//Checker databasen for brugerens brugerID
@@ -53,10 +55,12 @@ namespace BK_GUI
 			else if (brugerID == -1) //brugerID sættes til -1 på DBfacaden hvis der sker en fejl der
 			{
 				MessageBox.Show("Der skete en fejl ved login", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtKodeord.Text = "";
 			}
             else
             {
 				MessageBox.Show("Brugernavn og kodeord passer ikke sammen", "Brugerfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKodeord.Text = "";
             }
 
         }

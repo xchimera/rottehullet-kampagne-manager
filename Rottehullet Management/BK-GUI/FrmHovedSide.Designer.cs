@@ -100,6 +100,8 @@
             this.Controls.Add(this.btnTilmeldTilScenarie);
             this.Controls.Add(this.btnNyOpdaterDisabled);
             this.Controls.Add(this.lstkaraktere);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmHovedSide";
             this.Text = "HovedSide";
             this.ResumeLayout(false);
