@@ -189,8 +189,8 @@ namespace Rottehullet_Management
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
 		{
 			FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
-			this.Hide(); 
-			kampagnemanager.TømKarakterer();
+			this.Hide();
+			kampagnemanager.ResetKampagne();
 			loginKampagneValg.ShowDialog();
 			this.Close();
 		}
