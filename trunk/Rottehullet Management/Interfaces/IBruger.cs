@@ -8,14 +8,16 @@ namespace Interfaces
 {
     public interface IBruger
     {
-        long BrugerID {get;}
-        string Email {get; set;}
-        string Navn {get;}
-        DateTime Fødselsdag {get;}
-        long Tlf {get; set;}
-        long NødTlf {get; set;}
-        bool Vegetar {get; set;}
-		bool Veganer { get; set; }
+		long BrugerID { get; }
+		string Email { get; }
+		string Navn { get; }
+		DateTime Fødselsdag { get; }
+		long Tlf { get; }
+		long NødTlf { get; }
+		bool Vegetar { get; }
+		bool Veganer { get; }
+		string Andet { get; }
+		string Allergi { get; }
 		IEnumerator FindGamleKarakterer(IKarakter karakterInd);
     }
 }

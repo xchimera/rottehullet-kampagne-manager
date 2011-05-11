@@ -14,5 +14,7 @@ namespace Interfaces
 		string BrugerNavn { get; }
 		long BrugerTlf { get; }
 		long BrugerNødTlf { get; }
+		string BrugerInfo { get; }
+		string BrugerAllergi { get; }
 	}
 }
