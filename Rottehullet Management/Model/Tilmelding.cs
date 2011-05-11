@@ -6,7 +6,7 @@ using Interfaces;
 
 namespace Model
 {
-	class Tilmelding : ITilmelding
+	public class Tilmelding : ITilmelding
 	{
 		#region attributter
 		Karakter karakter;
@@ -44,6 +44,26 @@ namespace Model
 		public IKarakter Karakter
 		{
 			get { return karakter; }
+		}
+
+		public string KarakterNavn
+		{
+			get { return karakter["Navn"]; }
+		}
+
+		public string BrugerNavn
+		{
+			get { return karakter.Bruger.Navn; }
+		}
+
+		public long BrugerTlf
+		{
+			get { return karakter.Bruger.Tlf; }
+		}
+
+		public long BrugerNødTlf
+		{
+			get { return karakter.Bruger.NødTlf; }
 		}
 	}
 }

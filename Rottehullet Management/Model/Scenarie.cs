@@ -33,6 +33,7 @@ namespace Model
 			tilmeldinger = new List<Tilmelding>();
 		}
 
+		#region Metoder
 		public List<IKarakter> HentDeltagere()
 		{
 			List<IKarakter> karakterer = new List<IKarakter>();
@@ -45,7 +46,11 @@ namespace Model
 			return karakterer;
 		}
 
-		#region Metoder
+		public List<Tilmelding> HentTilmeldinger()
+		{
+			return tilmeldinger;
+		}
+
 		internal void TilføjTilmelding(Tilmelding tilmelding)
 		{
 			tilmeldinger.Add(tilmelding);
@@ -116,6 +121,47 @@ namespace Model
 		{
 			get { return andetInfo; }
 			set { andetInfo = value; }
+		}
+
+		public int AntalDeltagere
+		{
+			get { return tilmeldinger.Count; }
+		}
+
+		public int AntalVegetarer
+		{
+			get
+			{
+				int antal = 0;
+
+				foreach (Tilmelding tilmelding in tilmeldinger)
+				{
+					if (tilmelding.Karakter.Bruger.Vegetar == true)
+					{
+						antal++;
+					}
+				}
+
+				return antal;
+			}
+		}
+
+		public int AntalVeganere
+		{
+			get
+			{
+				int antal = 0;
+
+				foreach (Tilmelding tilmelding in tilmeldinger)
+				{
+					if (tilmelding.Karakter.Bruger.Veganer == true)
+					{
+						antal++;
+					}
+				}
+
+				return antal;
+			}
 		}
 		#endregion
 	}

@@ -258,6 +258,7 @@
 			this.btnPrintTilmeldte.TabIndex = 21;
 			this.btnPrintTilmeldte.Text = "Print";
 			this.btnPrintTilmeldte.UseVisualStyleBackColor = true;
+			this.btnPrintTilmeldte.Click += new System.EventHandler(this.btnPrintTilmeldte_Click);
 			// 
 			// FrmHovedside
 			// 
