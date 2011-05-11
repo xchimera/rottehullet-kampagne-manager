@@ -170,9 +170,10 @@ namespace Controller
 
 		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
 		//når den nye kampagne bliver åbnet
-		public void TømKarakterer()
+		public void ResetKampagne()
 		{
 			brugercollection.TømKarakterer();
+			nuværendeScenarie = null;
 		}
 		#endregion
 
@@ -430,7 +431,14 @@ namespace Controller
 
 		public IEnumerator HentDeltagere()
 		{
-			return nuværendeScenarie.HentDeltagere().GetEnumerator();
+			if (nuværendeScenarie != null)
+			{
+				return nuværendeScenarie.HentDeltagere().GetEnumerator();
+			}
+			else
+			{
+				return new List<Karakter>().GetEnumerator();
+			}
 		}
 
 		public IScenarie HentNuværendeScenarie()
