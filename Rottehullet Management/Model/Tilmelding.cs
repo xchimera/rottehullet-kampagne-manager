@@ -65,5 +65,15 @@ namespace Model
 		{
 			get { return karakter.Bruger.NødTlf; }
 		}
+
+		public string BrugerInfo
+		{
+			get { return karakter.Bruger.Andet; }
+		}
+
+		public string BrugerAllergi
+		{
+			get { return karakter.Bruger.Allergi; }
+		}
 	}
 }

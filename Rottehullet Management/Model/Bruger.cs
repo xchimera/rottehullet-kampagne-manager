@@ -147,6 +147,12 @@ namespace Model
 		}
 
 		#region properties
+		public string Andet
+		{
+			get { return andet; }
+			set { andet = value; }
+		}
+
 		public bool Veganer
         {
             get { return veganer; }
@@ -199,12 +205,6 @@ namespace Model
             get { return allergi; }
             set { allergi = value; }
         }
-
-        public string Andet
-        {
-            get { return andet; }
-            set { andet = value; }
-		}
 		#endregion
     }
 }

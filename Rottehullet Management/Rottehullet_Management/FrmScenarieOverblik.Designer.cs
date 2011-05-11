@@ -31,21 +31,18 @@
 			this.components = new System.ComponentModel.Container();
 			Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
 			Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-			this.ITilmeldingBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-			this.kampagneManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.ITilmeldingBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.IScenarieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.kampagneManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.ITilmeldingBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.kampagneManagerBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.IScenarieBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.kampagneManagerBindingSource)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// ITilmeldingBindingSource
-			// 
-			this.ITilmeldingBindingSource.DataSource = typeof(Interfaces.ITilmelding);
 			// 
 			// reportViewer1
 			// 
+			this.reportViewer1.AutoSize = true;
 			reportDataSource1.Name = "DataSet1";
 			reportDataSource1.Value = this.ITilmeldingBindingSource;
 			reportDataSource2.Name = "DataSet2";
@@ -55,30 +52,35 @@
 			this.reportViewer1.LocalReport.ReportEmbeddedResource = "Rottehullet_Management.RapScenarie.rdlc";
 			this.reportViewer1.Location = new System.Drawing.Point(0, 0);
 			this.reportViewer1.Name = "reportViewer1";
-			this.reportViewer1.Size = new System.Drawing.Size(770, 400);
+			this.reportViewer1.Size = new System.Drawing.Size(836, 400);
 			this.reportViewer1.TabIndex = 0;
 			// 
-			// kampagneManagerBindingSource
+			// ITilmeldingBindingSource
 			// 
-			this.kampagneManagerBindingSource.DataSource = typeof(Controller.KampagneManager);
+			this.ITilmeldingBindingSource.DataSource = typeof(Interfaces.ITilmelding);
 			// 
 			// IScenarieBindingSource
 			// 
 			this.IScenarieBindingSource.DataSource = typeof(Interfaces.IScenarie);
 			// 
+			// kampagneManagerBindingSource
+			// 
+			this.kampagneManagerBindingSource.DataSource = typeof(Controller.KampagneManager);
+			// 
 			// FrmScenarieOverblik
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(769, 399);
+			this.ClientSize = new System.Drawing.Size(836, 399);
 			this.Controls.Add(this.reportViewer1);
 			this.Name = "FrmScenarieOverblik";
 			this.Text = "FrmScenarieOverblik";
 			this.Load += new System.EventHandler(this.FrmScenarieOverblik_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ITilmeldingBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.kampagneManagerBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.IScenarieBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.kampagneManagerBindingSource)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
