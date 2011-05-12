@@ -15,6 +15,7 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 
+		//Lavet af René
 		public FrmRetScenarie(KampagneManager kampagneManager, IScenarie scenarie)
 		{
 			this.kampagneManager = kampagneManager;
@@ -40,6 +41,7 @@ namespace Rottehullet_Management
 
 		//Denne metode konverterer pris i form af et tal til en string som passer i
 		//masken på GUIen
+		//Lavet af Thorbjørn
 		private string PrisTilGUI(double prisfloat)
 		{
 			string pris = prisfloat.ToString();
@@ -74,6 +76,7 @@ namespace Rottehullet_Management
 		}
 
 		//Denne metode konverterer et heltal så det passer i en maske af længden "længde"
+		//Lavet af Thorbjørn
 		private string IntTilMask(int tal, int længde)
 		{
 			string streng = tal.ToString();
@@ -97,12 +100,14 @@ namespace Rottehullet_Management
 			return streng;
 		}
 
+		//Lavet af René
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)
 		{
 			chkOvernatningTvungen.Enabled = chkOvernatning.Checked;
 			txtAntalDage.Enabled = chkOvernatning.Checked;
 		}
 
+		//Lavet af René
 		private void chkSpisning_CheckedChanged(object sender, EventArgs e)
 		{
 			chkSpisningTvungen.Enabled = chkSpisning.Checked;
@@ -113,6 +118,7 @@ namespace Rottehullet_Management
 			this.Close();
 		}
 
+		//Lavet af René
 		private void btnRet_Click(object sender, EventArgs e)
 		{
 			int overnatning;

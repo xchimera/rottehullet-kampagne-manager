@@ -21,6 +21,8 @@ namespace Rottehullet_Management
             this.kampagnemanager = kampagnemanager;
         }
 
+
+		//Lavet af Søren
         private void OpdaterListView()
         {
             IBruger ibruger;
@@ -45,6 +47,7 @@ namespace Rottehullet_Management
             OpdaterListView();
         }
 
+		//Lavet af Søren
         private void txtSøgBruger_TextChanged(object sender, EventArgs e)
         {
             IBruger ibruger;
@@ -77,6 +80,8 @@ namespace Rottehullet_Management
             }
         }
 
+		//Lavet af Søren
+		//Inputvalidering af Thorbjørn
         private void btnOpretKampagne_Click(object sender, EventArgs e)
         {
 			if (lstBrugere.SelectedIndices.Count == 0)

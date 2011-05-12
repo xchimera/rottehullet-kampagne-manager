@@ -14,10 +14,7 @@ namespace BK_GUI
             brugerklient = new BrugerKlient();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
-
+		//Lavet af Denny
         private void btnTilføjBruger_Click(object sender, EventArgs e)
         {
             try
@@ -44,7 +41,15 @@ namespace BK_GUI
 
 				kodeord = brugerklient.KrypterKodeord(kodeord);
 
-                brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
+				if (brugerklient.Opretbruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet))
+				{
+					MessageBox.Show("Brugeren er blevet oprettet", "Bruger Oprettet");
+					this.Close();
+				}
+				else
+				{
+					MessageBox.Show("Brugeren er ikke blevet oprettet", "Database Fejl", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
             }
             catch (FormatException)
             {
@@ -54,6 +59,7 @@ namespace BK_GUI
 
         }
 
+		//Lavet af Denny
         private void btnAnnuller_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -20,17 +20,21 @@ namespace Rottehullet_Management
 			this.kampagneManager = kampagneManager;
 		}
 
+		//Lavet af René
 		private void chkOvernatning_CheckedChanged(object sender, EventArgs e)
 		{
 			chkOvernatningTvungen.Enabled = chkOvernatning.Checked;
 			txtAntalDage.Enabled = chkOvernatning.Checked;
 		}
 
+		//Lavet af René
 		private void chkSpisning_CheckedChanged(object sender, EventArgs e)
 		{
 			chkSpisningTvungen.Enabled = chkSpisning.Checked;
 		}
 
+		//Lavet af René
+		//Inputvalidering lavet af René og Thorbjørn
 		private void btnOpret_Click(object sender, EventArgs e)
 		{
 			int overnatning;

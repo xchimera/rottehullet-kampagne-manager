@@ -30,6 +30,7 @@ namespace Model
 		#region metoder
 		/// <summary>
 		/// Tilføjer en single attribut til karakteren.
+		/// Lavet af René
 		/// </summary>
 		/// <param name="kampagneAttribut"></param>
 		/// <param name="værdi"></param>
@@ -41,6 +42,7 @@ namespace Model
 
 		/// <summary>
 		/// Tilføjer en multi attribut til karakteren.
+		/// Lavet af René
 		/// </summary>
 		/// <param name="kampagneAttribut"></param>
 		/// <param name="valg"></param>
@@ -50,12 +52,14 @@ namespace Model
 			attributter.Add(kampagneAttribut.Navn, attribut);
 		}
 
+		//Lavet af René
 		public void TilmeldTilScenarie(Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			Tilmelding tilmelding = new Tilmelding(this, scenarie, spiser, antalOvernatninger);
 			scenarieTilmeldinger.Add(tilmelding);
 		}
 
+		//Lavet af René
 		public bool ErTilmeldtTilScenarie(Scenarie scenarie)
 		{
 			foreach (Tilmelding tilmelding in scenarieTilmeldinger)
@@ -68,6 +72,7 @@ namespace Model
 			return false;
 		}
 
+		//Lavet af Thorbjørn
 		public string FindAttributVærdi(long kampagneattributID)
 		{
 			foreach (KarakterAttribut attribut in attributter.Values)
@@ -89,6 +94,7 @@ namespace Model
 			return null;
 		}
 
+		//Lavet af Søren
 		public IEnumerator HentVærdier()
 		{
 			List<string> returliste = new List<string>();

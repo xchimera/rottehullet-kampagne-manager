@@ -19,6 +19,7 @@ namespace Rottehullet_Management
 		IKarakter karakter;
 		FrmHovedside hvdside;
 		
+		//Lavet af Thorbjørn
 		public FrmKarakter(KampagneManager kampagnemanager, IBruger bruger, IKarakter karakter, FrmHovedside hovedside)
 		{
 			InitializeComponent();
@@ -40,8 +41,10 @@ namespace Rottehullet_Management
 			{
 				btnGodkendKarakter.Enabled = true;
 				btnGodkendKarakter.Visible = true;
+				btnGodkendKarakter.Text = "Godkend Karakter";
 				btnAfslåKarakter.Enabled = true;
 				btnAfslåKarakter.Visible = true;
+				btnAfslåKarakter.Text = "Afslå Karakter";
 			}
 			else if (karakter.Status == Enum.KarakterStatus.Opdateret)
 			{
@@ -54,6 +57,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		private void btnGodkendKarakter_Click(object sender, EventArgs e)
 		{
 			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Godkendt))
@@ -72,6 +76,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		private void btnAfslåKarakter_Click(object sender, EventArgs e)
 		{
 			IKarakter forrigekarakter = kampagnemanager.FindKarakter(Convert.ToInt64(lstGamleKarakterer.Items[lstGamleKarakterer.Items.Count-1].Text));
@@ -91,6 +96,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		public void SætAttributter()
 		{
 			IEnumerator attributiterator = kampagnemanager.GetAttributIterator();
@@ -128,6 +134,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		private void OpdaterListview()
 		{
 			///Hvis I ændrer i rækkefølgen her, så husk også at ændre i btnAfslåKarakter_Click metoden
@@ -155,6 +162,7 @@ namespace Rottehullet_Management
 			lstGamleKarakterer.Sort();
 		}
 
+		//Lavet af Thorbjørn
 		private void lstGamleKarakterer_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			ListViewItem valgteitem = lstGamleKarakterer.Items[lstGamleKarakterer.SelectedIndices[0]];

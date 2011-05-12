@@ -20,17 +20,12 @@ namespace Rottehullet_Management
             this.kampagnemanager = kampagnemanager;
         }
 
+		//Lavet af Søren
         private void button1_Click(object sender, EventArgs e)
         {
             FrmOpretKampagne frmopretkampagne = new FrmOpretKampagne(kampagnemanager);
             frmopretkampagne.ShowDialog();
 
-        }
-
-        private void btnAttributter_Click(object sender, EventArgs e)
-        {
-            FrmAttributter attribut = new FrmAttributter(kampagnemanager);
-            attribut.ShowDialog();
         }
     }
 }

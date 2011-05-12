@@ -19,6 +19,7 @@ namespace Rottehullet_Management
 		IKampagne kampagne;
         long kampagneID;
         
+		//Lavet af Thorbjørn
         public FrmHovedside(string navn, KampagneManager kampagnemanager)
         {
             InitializeComponent();
@@ -47,11 +48,13 @@ namespace Rottehullet_Management
         }
 
 		#region Tilstandsstyring
+		//Lavet af Thorbjørn
 		private void Tilstand_Topbruger()
 		{
 			btnVælgSuperbruger.Visible = true;
 		}
-		
+
+		//Lavet af Thorbjørn
 		private void SætKampagneTilstand()
 		{
 			if (kampagne.Status == Enum.KampagneStatus.Oprettet)
@@ -68,6 +71,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		private void Tilstand_Nyoprettet()
 		{
 			btnÅbenKampagne.Text = "Åben Kampagne";
@@ -75,6 +79,7 @@ namespace Rottehullet_Management
 			btnRetAttributter.Visible = true;
 		}
 
+		//Lavet af Thorbjørn
 		private void Tilstand_Åben()
 		{
 			btnÅbenKampagne.Text = "Luk Kampagne";
@@ -82,6 +87,7 @@ namespace Rottehullet_Management
 			btnRetAttributter.Visible = false;
 		}
 
+		//Lavet af Thorbjørn
 		private void Tilstand_Lukket()
 		{
 			btnÅbenKampagne.Text = "Åben Kampagne";
@@ -90,6 +96,7 @@ namespace Rottehullet_Management
 		}
 		#endregion
 
+		//Lavet af Thorbjørn
 		public void OpdaterLstKarakterer()
 		{
 			IKarakter karakter;
@@ -121,6 +128,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Thorbjørn
 		public void OpdaterLstTilmeldte()
 		{
 			IKarakter karakter;
@@ -149,6 +157,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af Søren
 		private void btnRedigerNavn_Click(object sender, EventArgs e)
         {
 			InputBoxSingleline singleline = new InputBoxSingleline(kampagne.Navn);
@@ -164,6 +173,7 @@ namespace Rottehullet_Management
             }
         }
 
+		//Lavet af Søren
         private void btnRedigerHjemmeside_Click(object sender, EventArgs e)
         {
             InputBoxSingleline singleline = new InputBoxSingleline(kampagne.Hjemmeside);
@@ -175,6 +185,7 @@ namespace Rottehullet_Management
             }
         }
 
+		//Lavet af Søren
         private void btnRedigerBeskrivelse_Click(object sender, EventArgs e)
         {
             InputBoxMultiline multiline = new InputBoxMultiline(kampagne.Beskrivelse);
@@ -186,6 +197,7 @@ namespace Rottehullet_Management
             }
         }
 
+		//Lavet af Thorbjørn
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
 		{
 			FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
@@ -195,6 +207,7 @@ namespace Rottehullet_Management
 			this.Close();
 		}
 
+		//Lavet af René
         private void btnRetAttributter_Click(object sender, EventArgs e)
         {
             FrmAttributter attributter = new FrmAttributter(kampagnemanager);
@@ -202,12 +215,14 @@ namespace Rottehullet_Management
             
         }
 
+		//Lavet af René
 		private void btnOpstartScenarie_Click(object sender, EventArgs e)
 		{
 			FrmOpstartScenarie form = new FrmOpstartScenarie(kampagnemanager);
 			form.ShowDialog();
 		}
 
+		//Lavet af Thorbjørn
         private void btnÅbenKampagne_Click(object sender, EventArgs e)
         {
 			if (kampagne.Status != Enum.KampagneStatus.Åben)
@@ -224,6 +239,7 @@ namespace Rottehullet_Management
 			SætKampagneTilstand();
         }
 
+		//Lavet af René
 		private void btnRetScenarie_Click(object sender, EventArgs e)
 		{
 			IScenarie scenarie = kampagnemanager.HentNuværendeScenarie();
@@ -233,9 +249,10 @@ namespace Rottehullet_Management
 				form.ShowDialog();
 			}
 			else
-				MessageBox.Show("Der er i øjeblikket ingen scenarie på denne kampagne", "Intet scenarie");
+				MessageBox.Show("Der er i øjeblikket ingen scenarie på denne kampagne", "Systemfejl");
 		}
 
+		//Lavet af Denny
         private void btnVælgSuperbruger_Click(object sender, EventArgs e)
         {
             FrmVælgSuperbruger vælgsuperbruger = new FrmVælgSuperbruger(kampagnemanager, kampagne);
@@ -244,6 +261,7 @@ namespace Rottehullet_Management
             this.Show();
         }
 
+		//Lavet af Thorbjørn
 		private void lstKarakterer_DoubleClick(object sender, EventArgs e)
 		{
 			ListViewItem valgteitem = lstKarakterer.Items[lstKarakterer.SelectedIndices[0]];
@@ -254,12 +272,14 @@ namespace Rottehullet_Management
 			karaktervindue.ShowDialog();
 		}
 
+		//Lavet af René
 		private void btnPrintTilmeldte_Click(object sender, EventArgs e)
 		{
 			FrmScenarieOverblik form = new FrmScenarieOverblik(kampagnemanager);
 			form.Show();
 		}
 
+		//Lavet af Thorbjørn
 		private void lstTilmeldte_DoubleClick(object sender, EventArgs e)
 		{
 			ListViewItem valgteitem = lstTilmeldte.Items[lstTilmeldte.SelectedIndices[0]];

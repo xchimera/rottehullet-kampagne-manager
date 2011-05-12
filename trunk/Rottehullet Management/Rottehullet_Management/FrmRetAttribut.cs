@@ -16,6 +16,7 @@ namespace Rottehullet_Management
 {
 	public partial class FrmRetAttribut : Form
 	{
+		//Lavet af René
 		KampagneManager kampagneManager;
 		long attributId;
 		int position;
@@ -47,6 +48,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void opdaterListe()
 		{
 			IEnumerator iterator = kampagneManager.HentValgmuligheder();
@@ -63,6 +65,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)
 		{
 			if (txtValgmulighed.Text == "")
@@ -84,6 +87,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
 		{
 			if (lstValgmuligheder.SelectedIndices.Count == 1)
@@ -105,6 +109,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnRetValgmulighed_Click(object sender, EventArgs e)
 		{
 			if (lstValgmuligheder.SelectedIndices.Count == 1)
@@ -131,6 +136,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnRet_Click(object sender, EventArgs e)
 		{
 			if (txtNavn.Text == "")

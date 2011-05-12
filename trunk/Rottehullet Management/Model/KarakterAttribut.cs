@@ -9,6 +9,7 @@ namespace Model
 {
     public abstract class KarakterAttribut : IKarakterAttribut
     {
+		//Klasse lavet af René
         private KampagneAttribut kampagneattribut;
 		long id;
 

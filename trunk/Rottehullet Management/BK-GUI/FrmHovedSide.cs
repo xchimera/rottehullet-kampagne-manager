@@ -22,7 +22,7 @@ namespace BK_GUI
 		TilstandBruger tilstand;
 		long nuværendeKarakterID;
 
-
+		//Lavet af Thorbjørn
         public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace BK_GUI
         }
 
 		#region TilstandsStyring
+		//Lavet af Thorbjørn
 		private void TilstandIngenLoadedKarakter()
 		{
 			tilstand = TilstandBruger.IngenLoadedKarakter;
@@ -46,6 +47,7 @@ namespace BK_GUI
 			OpdaterListView();
 		}
 
+		//Lavet af Thorbjørn
 		private void TilstandLavNyKarakter()
 		{
 			tilstand = TilstandBruger.LavNyKarakter;
@@ -54,6 +56,7 @@ namespace BK_GUI
 			btnTilmeldTilScenarie.Enabled = false;
 		}
 
+		//Lavet af Thorbjørn
 		private void TilstandNyesteKarakter()
 		{
 			tilstand = TilstandBruger.NyesteKarakter;
@@ -66,6 +69,7 @@ namespace BK_GUI
 
 
 		//Denne knap bruges både til at lave nye karakterer, indsende dem og opdatere dem
+		//Lavet af Thorbjørn
 		void btnNyOpdaterDisabled_Click(object sender, EventArgs e)
 		{
 			//Lav ny karakter
@@ -102,6 +106,7 @@ namespace BK_GUI
 			}
 		}
 
+		//Lavet af Søren
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
         {
             FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
@@ -110,6 +115,7 @@ namespace BK_GUI
             this.Close();
         }
 
+		//Lavet af René
         private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
         {
 			IScenarie scenarie = brugerklient.HentNuværendeScenarie();
@@ -132,6 +138,7 @@ namespace BK_GUI
 			this.Show();
         }
 
+		//Lavet af Thorbjørn
 		private void lstkaraktere_MouseClick(object sender, MouseEventArgs e)
 		{
 			ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
@@ -142,6 +149,7 @@ namespace BK_GUI
 			
 		}
 
+		//Lavet af Søren
 		public void FjernKontroler()
 		{
 			foreach (Control control in kontroller)
@@ -155,6 +163,7 @@ namespace BK_GUI
 		}
 
 		#region ListeMetoder
+		//Lavet af Søren
 		public void OpdaterListView()
 		{
 			IKarakter ikarakter;
@@ -181,6 +190,7 @@ namespace BK_GUI
 			}
 		}
 
+		//Lavet af Søren
 		public void OpretAttributter()
 		{
 		    this.Width = 560;
@@ -287,6 +297,7 @@ namespace BK_GUI
 			}
 		}
 
+		//Lavet af Denny
 	    private void SetAttributter()
 	    {
 	        this.Width = 560;

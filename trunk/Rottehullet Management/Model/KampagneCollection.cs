@@ -15,12 +15,14 @@ namespace Model
 			kampagner = new List<Kampagne>();
 		}
 
+		//Lavet af René
 		public void OpretKampagne(string navn, long kampagneID, KampagneStatus status)
 		{
 			Kampagne kampagne = new Kampagne(navn, kampagneID, KampagneStatus.Oprettet);
 			kampagner.Add(kampagne);
 		}
 
+		//Lavet af Søren
 		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
 			Kampagne kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
@@ -30,6 +32,7 @@ namespace Model
 
         /// <summary>
         /// genopret single attribut
+		/// Lavet af René
         /// </summary>
         /// <param name="kamID">kampagne ID</param>
         /// <param name="attributID">attributtens ID</param>
@@ -46,6 +49,7 @@ namespace Model
             return null;
         }
 
+		//Lavet af René
         public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type)
         {
             Kampagne kampagne = FindKampagne(kamID);
@@ -56,6 +60,7 @@ namespace Model
             return null;
         }
 
+		//Lavet af René
         public Kampagne FindKampagne(long kampagneID)
         {
             foreach (Kampagne kampagne in kampagner)
@@ -68,6 +73,7 @@ namespace Model
             return null;
         }
 
+		//Lavet af René
 		public Kampagne FindKampagne(string navn)
 		{
 			foreach (Kampagne kampagne in kampagner)
@@ -78,6 +84,7 @@ namespace Model
 			return null;
 		}
 
+		//Lavet af René
 		public Scenarie FindScenarie(long scenarieID)
 		{
 			foreach (Kampagne kampagne in kampagner)

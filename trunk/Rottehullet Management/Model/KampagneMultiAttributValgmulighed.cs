@@ -8,6 +8,7 @@ namespace Model
 {
 	public class KampagneMultiAttributValgmulighed : IKampagneMultiAttributValgmulighed
 	{
+		//Klasse lavet af René
 		long id;
 		string værdi;
 
@@ -16,8 +17,6 @@ namespace Model
 			this.id = id;
 			this.værdi = værdi;
 		}
-
-
 
 		public long Id
 		{

@@ -19,6 +19,7 @@ namespace BK_GUI
             brugerklient = new BrugerKlient();
         }
 
+		//Lavet af Denny
         private void lblOpretBruger_Click(object sender, EventArgs e)
         {
             FrmOpretBruger opretbruger = new FrmOpretBruger();
@@ -27,6 +28,7 @@ namespace BK_GUI
             this.Show();
         }
 
+		//Lavet af Søren og Thorbjørn
         private void btnLogin_Click(object sender, EventArgs e)
         {
 			//Inputvalidering
