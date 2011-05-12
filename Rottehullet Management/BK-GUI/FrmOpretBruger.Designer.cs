@@ -250,7 +250,6 @@
             this.MaximizeBox = false;
             this.Name = "FrmOpretBruger";
             this.Text = "Opret Bruger";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -80,7 +80,6 @@
             this.MaximizeBox = false;
             this.Name = "FrmLoginKampagneValg";
             this.Text = "Kampagne valg";
-            this.Load += new System.EventHandler(this.FrmLoginKampagneValg_Load);
             this.ResumeLayout(false);
 
         }

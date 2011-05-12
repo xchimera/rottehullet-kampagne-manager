@@ -13,6 +13,7 @@ namespace Rottehullet_Management
 {
 	public partial class FrmScenarieOverblik : Form
 	{
+		//Klasse lavet af René
 		private KampagneManager kampagneManager;
 
 		public FrmScenarieOverblik(KampagneManager kampagneManager)

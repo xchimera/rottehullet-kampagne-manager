@@ -36,6 +36,7 @@ namespace BK_Controller
 
         /// <summary>
         /// bruges til at logge ind som admin, topbruger eller superbruger
+		/// Lavet af Søren
         /// </summary>
         /// <param name="email">brugerens brugernavn</param>
         /// <param name="kodeord">brugerens kodeord</param>
@@ -109,6 +110,7 @@ namespace BK_Controller
             }
         }
 
+		//Lavet af Søren (og René)
         public bool HentAlleKampagner()
         {
             cmd.CommandText = "HentAlleKampagner";
@@ -193,6 +195,7 @@ namespace BK_Controller
             }
         }
 
+		//Lavet af Søren og Thorbjørn
         public bool HentKarakterer(long brugerID)
         {
             SqlDataReader reader;
@@ -358,9 +361,10 @@ namespace BK_Controller
             }
         }
 
+		//Lavet af Søren
         public bool OpdaterKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, long gammelkarakterID, KarakterStatus status)
         {
-            if (NyKarakter(værdiiterator, valgID, kampagneID, brugerID, status))
+            if (OpretKarakter(værdiiterator, valgID, kampagneID, brugerID, status))
             {
                 cmd.CommandText = "OpdaterKarakterStatus";
                 cmd.Parameters.Clear();
@@ -393,8 +397,8 @@ namespace BK_Controller
             return false;
         }
 
-
-        public bool NyKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, KarakterStatus status)
+		//Lavet af Søren og Thorbjørn
+        public bool OpretKarakter(IEnumerator værdiiterator, IEnumerator valgID, long kampagneID, long brugerID, KarakterStatus status)
         {
             cmd.Parameters.Clear();
             SqlParameter par;
@@ -500,6 +504,7 @@ namespace BK_Controller
             }
         }
 
+		//Lavet af René
 		public long TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{
 			cmd.CommandText = "TilmeldKarakterTilScenarie";
@@ -538,6 +543,8 @@ namespace BK_Controller
 				return -1;
 			}
 		}
+
+		//Lavet af René
 		public bool HentAlleScenarier()
 		{
 			cmd.CommandText = "HentAlleScenarier";
@@ -597,6 +604,7 @@ namespace BK_Controller
 			}
 		}
 
+		//Lavet af René
 		public bool HentTilmeldingerTilBruger(Bruger bruger)
 		{
 			cmd.CommandText = "HentTilmeldingerTilBruger";

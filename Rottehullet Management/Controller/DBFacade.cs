@@ -33,18 +33,11 @@ namespace Controller
 
 
 
-		/// <summary>
-		/// bruges til at logge ind som admin, topbruger eller superbruger
-		/// </summary>
-		/// <param name="email">brugerens brugernavn</param>
-		/// <param name="kodeord">brugerens kodeord</param>
-		/// <returns>returnerer true hvis brugeren findes, ellers false</returns>
-		/// 
-
-		#region Login/Logout
+		#region Login
 
 		/// <summary>
 		/// her tjekkes om brugeren er topbruger eller superbruger på nogen kampagner
+		/// Lavet af Thorbjørn og Søren
 		/// </summary>
 		/// <param name="brugerID">brugerens id</param>
 		public void CheckRettighed(long brugerID)
@@ -70,7 +63,7 @@ namespace Controller
 				{
 					kampagneid = Convert.ToString(reader["kamID"]);
 					kampagnenavn = (string)reader["navn"];
-					brugertype = "0"; //senere lav en enum?
+					brugertype = "0";//Topbruger
 
 					kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
 				}
@@ -96,7 +89,7 @@ namespace Controller
 				{
 					kampagneid = Convert.ToString(reader["KamID"]);
 					kampagnenavn = (string)reader["navn"];
-					brugertype = "1"; //senere lav en enum?
+					brugertype = "1";//Superbruger
 
 					kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
 				}
@@ -112,6 +105,14 @@ namespace Controller
 			}
 		}
 
+		/// <summary>
+		/// bruges til at logge ind som admin, topbruger eller superbruger
+		/// Lavet af Søren
+		/// </summary>
+		/// <param name="email">brugerens brugernavn</param>
+		/// <param name="kodeord">brugerens kodeord</param>
+		/// <returns>returnerer true hvis brugeren findes, ellers false</returns>
+		/// 
 		public long Login(string email, string kodeord)
 		{
 			long brugerid = 0;
@@ -162,6 +163,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af Denny
         public bool HentBrugereTilAdmin()
         {
             SqlDataReader reader;
@@ -180,7 +182,7 @@ namespace Controller
                 {
                     brugerID = (long)reader["brugerID"];
                     navn = (string)reader["navn"];
-                    kampagnemanager.OpretBruger(brugerID, navn);
+                    kampagnemanager.GenopretBruger(brugerID, navn);
                 }
                 conn.Close();
                 reader.Dispose();
@@ -195,13 +197,10 @@ namespace Controller
                 return false;
             }
         }
-
-
-
 		#endregion
 
 		#region Kampagne
-
+		//Lavet af Søren og René
 		public bool HentKampagne(long kamID)
 		{
 			//Opretning af selve kampagnen
@@ -256,6 +255,7 @@ namespace Controller
 			return true;
 		}
 
+		//Lavet af René og Thorbjørn
 		public bool HentBrugereOgKaraktererTilKampagne(Kampagne kampagne)
 		{
 			cmd.CommandText = "HentBrugereOgKaraktererTilKampagne";
@@ -340,6 +340,7 @@ namespace Controller
 			return true;
 		}
 
+		//Lavet af René og Thorbjørn
 		public bool HentMultiAttributterTilKarakterer(List<Karakter> karakterer, Kampagne kampagne)
 		{
 			cmd.CommandText = "HentAlleKampagnensKarakteresMultiAttributter";
@@ -440,7 +441,7 @@ namespace Controller
 		}
 
 		/// <summary>
-		/// bruges til at rette kampagnens beskrivelse
+		/// bruges til at rette kampagnens beskrivelse, lavet af Søren
 		/// </summary>
 		/// <param name="beskrivelse">kampagnens beskrivelse</param>
 		/// <param name="kampagneID">kampagnens id der skal rettes på</param>
@@ -477,7 +478,7 @@ namespace Controller
 		}
 
 		/// <summary>
-		/// bruges til at rette kampagnens hjemmeside adresse
+		/// bruges til at rette kampagnens hjemmeside adresse, lavet af Søren
 		/// </summary>
 		/// <param name="hjemmeside">kampagnens hjemmeside adresse</param>
 		/// <param name="kampagneID">kampagnens id der skal rettes på</param>
@@ -514,7 +515,7 @@ namespace Controller
 		}
 
 		/// <summary>
-		/// bruges til at rette et kampagnenavn
+		/// bruges til at rette et kampagnenavn, lavet af Søren
 		/// </summary>
 		/// <param name="navn">kampagnens navn</param>
 		/// <param name="kampagneID">kampagnens id der skal rettes på</param>
@@ -550,6 +551,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af Søren
 		public bool RetKampagneStatus(long id, KampagneStatus status)
 		{
 			cmd.Parameters.Clear();
@@ -583,6 +585,7 @@ namespace Controller
 
 		/// <summary>
 		/// bruges til at tilknytte en bruger som superbruger til en kampagne
+		/// Lavet af Søren
 		/// </summary>
 		/// <param name="brugerID">brugerens id</param>
 		/// <param name="kampagneID">kampagnens id der skal rettes på</param>
@@ -621,6 +624,7 @@ namespace Controller
 		#endregion
 
 		#region scenarie
+		//Lavet af René
 		public bool HentScenarierTilKampagne(long kampagneID)
 		{
 			cmd.CommandText = "HentScenarierTilKampagne";
@@ -664,6 +668,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo, long scenarieID)
 		{
 			cmd.CommandText = "RetScenarie";
@@ -731,6 +736,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public long TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo, long kampagneID)
 		{
 			cmd.CommandText = "OpretScenarie";
@@ -902,6 +908,7 @@ namespace Controller
 		#endregion
 
 		#region Karakter
+		//Lavet af Thorbjørn
 		public bool RetKarakterStatus(long id, KarakterStatus status)
 		{
 			cmd.Parameters.Clear();
@@ -936,6 +943,7 @@ namespace Controller
 		#endregion
 
 		#region Tilmeldinger
+		//Lavet af René
 		public bool GenOpretAlleTilmeldinger()
 		{
 			cmd.CommandText = "HentAlleTilmeldinger";
@@ -985,6 +993,7 @@ namespace Controller
 		#endregion
 
 		#region Attributter
+		//Lavet af Thorbjørn
 		public bool HentAttributter(long kamID)
 		{
 			SqlParameter par;
@@ -1054,6 +1063,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af Thorbjørn
 		public long OpretKampagneAttribut(string navn, int type, long kampagneID, int position)
 		{
 			cmd.Parameters.Clear();
@@ -1098,6 +1108,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public long OpretKampagneMultiAttributEntry(long attributID, string værdi)
 		{
 			cmd.Parameters.Clear();
@@ -1134,6 +1145,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public bool RetAttribut(long attID, string navn, int type, long kampagneID, int position)
 		{
 			cmd.Parameters.Clear();
@@ -1178,6 +1190,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af Thorbjørn
 		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
 		{
 			cmd.Parameters.Clear();
@@ -1214,6 +1227,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public bool SletAttribut(long attID)
 		{
 			cmd.Parameters.Clear();
@@ -1242,6 +1256,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af René
 		public bool SletMultiAttributEntry(long entryId)
 		{
 			cmd.Parameters.Clear();

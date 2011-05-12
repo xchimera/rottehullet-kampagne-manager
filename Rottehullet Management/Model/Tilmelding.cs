@@ -15,6 +15,7 @@ namespace Model
 		int antalOvernatninger;
 		#endregion
 
+		//Lavet af René
 		public Tilmelding(Karakter karakter, Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			this.karakter = karakter;

@@ -36,6 +36,7 @@ namespace BK_Controller
 			nuværendeScenarie = null;
 		}
 
+		//Lavet af Denny
 		public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			long brugerID = brugerdbfacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
@@ -48,6 +49,7 @@ namespace BK_Controller
 			return false;
 		}
 
+		//Lavet af Thorbjørn og René
 		public long Login(string email, string kodeord)
 		{
 			kodeord = KrypterKodeord(kodeord);
@@ -56,11 +58,13 @@ namespace BK_Controller
 			return brugerID;
 		}
 
+		//Lavet af Søren
 		public void GenopretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 		}
 
+		////Lavet af René
 		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{
 			long id = brugerdbfacade.TilmeldKarakterTilScenarie(karakterID, scenarieID, antalOvernatninger, spiser);
@@ -73,33 +77,39 @@ namespace BK_Controller
 			return false;
 		}
 
+		//Lavet af René
 		public void GenopretScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			nuværendeScenarie = nuværendeKampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 		}
 
+		//Lavet af René
 		public IScenarie HentNuværendeScenarie()
 		{
 			return nuværendeScenarie;
 		}
 
+		//Lavet af René
 		internal Scenarie FindScenarie(long scenarieID)
 		{
 			return kampagnecollection.FindScenarie(scenarieID);
 		}
 
+		//Lavet af Søren
 		public void GenopretKarakter(long karakterID, long kampagneID)
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
 			bruger.TilføjKarakter(karakterID, kampagne);
 		}
 
+		//Lavet af Søren
         public void GenopretKarakter(long karakterID, long kampagneID, KarakterStatus status)
         {
             Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
             bruger.GenopretKarakter(karakterID, kampagne, status);
         }
 
+		//Lavet af René
 		public void GenopretAttributVærdi(long karakterID, long kampagneID, long attributID, string værdi, long karakterattributID)
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
@@ -108,6 +118,7 @@ namespace BK_Controller
             bruger.TilføjAttribut(karakterID, attribut, værdi, karakterattributID);
 		}
 
+		//Lavet af René
 		public void GenopretMultiattributVærdi(long karakterID, long kampagneID, long attributID, long multientryID, long karakterattributID)
 		{
 			Kampagne kampagne = kampagnecollection.FindKampagne(kampagneID);
@@ -116,17 +127,19 @@ namespace BK_Controller
 			bruger.TilføjAttribut(karakterID, attribut, valg, karakterattributID);
 		}
 
+		//Lavet af Søren
 		public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
 			return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type);
 		}
 
+		//Lavet af Søren
 		public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
 			return kampagnecollection.GenopretMultiAttribut(kamID, attributID, navn, type);
-			//return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
 		}
 
+		//Lavet af Søren
 		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, long topbrugerID, KampagneStatus status)
 		{
 			Bruger bruger;
@@ -139,6 +152,7 @@ namespace BK_Controller
 			return false;
 		}
 
+		//Lavet af Søren
 		public bool GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
 			if (kampagnecollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, status) != null)
@@ -168,11 +182,12 @@ namespace BK_Controller
 			return bruger.GetVærdiIterator(karakterID);
 		}
 
-		public System.Collections.IEnumerator GetValgmulighederIterator(long attributID, long kampagneID)
+		public IEnumerator GetValgmulighederIterator(long attributID, long kampagneID)
 		{
 			return kampagnecollection.GetValgmulighederIterator(kampagneID, attributID);
 		}
 
+		//Lavet af Søren
 		public IEnumerator GetAttributIterator(long kampagneID)
 		{
 			IEnumerator kampagne = kampagnecollection.GetKampagneIterator();
@@ -189,7 +204,7 @@ namespace BK_Controller
 
         public bool NyKarakter(IEnumerator værdi, IEnumerator valgID, KarakterStatus status)
         {
-            if (brugerdbfacade.NyKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, status))
+            if (brugerdbfacade.OpretKarakter(værdi, valgID, nuværendeKampagne.KampagneID, bruger.BrugerID, status))
             {
                 return true;
             }
@@ -207,6 +222,7 @@ namespace BK_Controller
 
 		/// <summary>
 		/// Henter en kampagne og returnere den. (Bruges kun i DBFacaden)
+		/// Lavet af René
 		/// </summary>
 		/// <param name="kampagneID"></param>
 		/// <returns></returns>
@@ -215,6 +231,7 @@ namespace BK_Controller
 			return kampagnecollection.FindKampagne(kampagneID);
 		}
 
+		//Lavet af Søren
         public IKampagne FindKampagne(long kampagneID)
         {
             nuværendeKampagne = kampagnecollection.FindKampagne(kampagneID);
@@ -222,6 +239,7 @@ namespace BK_Controller
             return nuværendeKampagne;
         }
 
+		//Lavet af Thorbjørn
 		public string KrypterKodeord(string kodeord)
 		{
 			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
@@ -247,6 +265,7 @@ namespace BK_Controller
 			}
 		}
 
+		//Lavet af René
 		public bool TjekOmBrugerErTilmeldtNuværendeScenarie()
 		{
 			if (bruger.TjekOmTilmeldtTilScenarie(nuværendeScenarie))

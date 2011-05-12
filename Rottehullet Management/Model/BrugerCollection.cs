@@ -17,7 +17,7 @@ namespace Model
 
         #region Metoder
 
-
+		//Lavet af René
         public Bruger OpretBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
         {
             listBrugere.Add(new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi)); // smider den nye bruger i en liste (collection af brugere)
@@ -25,11 +25,13 @@ namespace Model
         }
 
         //til brug af admin da der kun skal bruges brugerID og navn
+		//Lavet af Søren og Denny
         public void OpretBruger(long brugerID, string navn)
         {
             listBrugere.Add(new Bruger(brugerID, "", navn, DateTime.Now, 0, 0, false, false, "", ""));
         }
 
+		//Lavet af René
         public Bruger FindBruger(long brugerID)
         {
             foreach (Bruger bruger in listBrugere)
@@ -42,6 +44,7 @@ namespace Model
             return null;
         }
 
+		//Lavet af Thorbjørn
 		public Karakter FindKarakter(long karakterID)
 		{
 			Karakter karakter;
@@ -57,6 +60,7 @@ namespace Model
 			return null;
 		}
 
+		//Lavet af Thorbjørn
 		public Bruger FindKaraktersBruger(long karakterID)
 		{
 			Karakter karakter;
@@ -77,6 +81,7 @@ namespace Model
             return listBrugere.GetEnumerator();
         }
 
+		//Lavet af René
 		public List<Karakter> HentAlleKarakterer()
 		{
 			List<Karakter> karakterliste = new List<Karakter>();
@@ -94,6 +99,7 @@ namespace Model
 			return karakterliste;
 		}
 
+		//Lavet af Thorbjørn
 		public List<Karakter> HentAlleKaraktererPåKampagne(long kampagneID)
 		{
 			List<Karakter> karakterliste = new List<Karakter>();
@@ -111,11 +117,13 @@ namespace Model
 			return karakterliste;
 		}
 
+		//Lavet af René
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID, Kampagne kampagne)
 		{
 			return bruger.TilføjKarakter(karakterID, kampagne);
 		}
 
+		//Lavet af Thorbjørn
 		public void TømKarakterer()
 		{
 			foreach (Bruger bruger in listBrugere)

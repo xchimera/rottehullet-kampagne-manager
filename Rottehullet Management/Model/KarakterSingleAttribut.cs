@@ -7,6 +7,7 @@ namespace Model
 {
 	class KarakterSingleAttribut : KarakterAttribut
 	{
+		//Klasse lavet af René
 		string værdi;
 
 		public KarakterSingleAttribut(string værdi, KampagneAttribut attribut, long id)

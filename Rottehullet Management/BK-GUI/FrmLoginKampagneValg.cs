@@ -15,6 +15,8 @@ namespace BK_GUI
     public partial class FrmLoginKampagneValg : Form
     {
         BrugerKlient brugerklient;
+
+		//Lavet af Søren
         public FrmLoginKampagneValg(BrugerKlient brugerklient)
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace BK_GUI
             OpdaterListView();
         }
 
+		//Lavet af Søren
         private void OpdaterListView()
         {
             IKampagne ikampagne;
@@ -45,6 +48,7 @@ namespace BK_GUI
 
         }
 
+		//Lavet af Søren
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
             if (lstKampagner.SelectedIndices.Count > 0)
@@ -62,13 +66,8 @@ namespace BK_GUI
 			}
 		}
 
-
-		private void FrmLoginKampagneValg_Load(object sender, EventArgs e)
-		{
-
-		}
-
-        private void lstKampagner_MouseDoubleClick(object sender, MouseEventArgs e)
+		//Lavet af Denny
+		private void lstKampagner_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (lstKampagner.SelectedIndices.Count > 0)
             {

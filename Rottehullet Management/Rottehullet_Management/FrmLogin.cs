@@ -20,6 +20,7 @@ namespace Rottehullet_Management
             kampagnemanager = new KampagneManager();
         }
 
+		//Lavet af Søren og Thorbjørn
         private void btnLogin_Click(object sender, EventArgs e)
         {
 			//Inputvalidering

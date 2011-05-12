@@ -42,6 +42,7 @@ namespace Model
 
 		/// <summary>
 		/// Tilføjer et scenarie til den pågældende Kampagne
+		/// Lavet af René
 		/// </summary>
 		/// <param name="titel"></param>
 		/// <param name="beskrivelse"></param>
@@ -58,6 +59,7 @@ namespace Model
 			return scenarie;
 		}
 
+		//Lavet af René
 		public Scenarie FindScenarie(long scenarieID)
 		{
 			foreach (Scenarie scenarie in scenarier)
@@ -68,6 +70,7 @@ namespace Model
 			return null;
 		}
 
+		//Lavet af René
 		public Scenarie HentNuværendeScenarie()
 		{
 			if (scenarier.Count > 0)
@@ -80,6 +83,7 @@ namespace Model
 			}
 		}
 
+		//Lavet af René
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneAttribut singleattribut = new KampagneAttribut(navn, type, attributID);
@@ -87,6 +91,7 @@ namespace Model
             return singleattribut;
         }
 
+		//Lavet af René
         public KampagneMultiAttribut GenopretMultiAttribut(long attributID, string navn, KampagneAttributType type)
         {
             KampagneMultiAttribut multiattribut = new KampagneMultiAttribut(navn, type, attributID);
@@ -94,6 +99,7 @@ namespace Model
             return multiattribut;
         }
 
+		//Lavet af René
 		public KampagneAttribut FindAttribut(long id)
 		{
 			foreach (KampagneAttribut attribut in attributter)
@@ -106,6 +112,7 @@ namespace Model
 			return null;
 		}
 
+		//Lavet af René
 		public KampagneAttribut FindAttribut(string navn)
 		{
 			foreach (KampagneAttribut attribut in attributter)
@@ -131,6 +138,7 @@ namespace Model
 
 		/// <summary>
 		/// Opretter en single attribut og tilføjer den til listen
+		/// Lavet af René
 		/// </summary>
 		/// <param name="navn"></param>
 		/// <param name="type"></param>
@@ -142,12 +150,14 @@ namespace Model
 			attributter.Insert(position, attribut);
 		}
 
+		//Lavet af René
 		public void TilføjMultiAttribut(string navn, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, long kampagneAttributID, int position)
 		{
 			KampagneMultiAttribut attribut = new KampagneMultiAttribut(navn, type, valgmuligheder, kampagneAttributID);
 			attributter.Insert(position, attribut);
 		}
 
+		//Lavet af René
 		public void RetSingleAttribut(int id, KampagneAttributType type, int position)
 		{
 			KampagneAttribut attribut = FindAttribut(id);
@@ -155,6 +165,7 @@ namespace Model
 			attribut.Type = type;
 		}
 
+		//Lavet af René
 		public void RetMultiAttribut(int id, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, int position)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)FindAttribut(id);
@@ -163,6 +174,7 @@ namespace Model
 			attribut.Valgmuligheder = valgmuligheder;
 		}
 
+		//Lavet af René
 		public void FlytAttribut(KampagneAttribut attribut, int position)
 		{
 			attributter.Remove(attribut);
@@ -171,6 +183,7 @@ namespace Model
 
 		/// <summary>
 		/// Fjerner en attribut i listen udfra et id
+		/// Lavet af René
 		/// </summary>
 		/// <param name="position"></param>
 		public void SletAttribut(long id)
@@ -187,6 +200,7 @@ namespace Model
 
 		/// <summary>
 		/// Tømmer listen over attributter.
+		/// Lavet af René
 		/// </summary>
 		public void SletAttributter()
 		{

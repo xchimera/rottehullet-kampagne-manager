@@ -27,6 +27,7 @@ namespace Rottehullet_Management
 			lstValgmuligheder.Enabled = false;
 		}
 
+		//Lavet af René
 		private void cboType_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cboType.SelectedIndex == 2)
@@ -45,6 +46,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnTilføj_Click(object sender, EventArgs e)
 		{
 			if (txtNavn.Text == "")
@@ -74,6 +76,7 @@ namespace Rottehullet_Management
 			this.Close();
 		}
 
+		//Lavet af René
 		private void btnTilføjValgmulighed_Click(object sender, EventArgs e)
 		{
 			if (txtValgmulighed.Text == "")
@@ -86,6 +89,7 @@ namespace Rottehullet_Management
 			lstValgmuligheder.Items.Add(item);
 		}
 
+		//Lavet af René
 		private void btnSletValgmulighed_Click(object sender, EventArgs e)
 		{
 			if (lstValgmuligheder.SelectedItems.Count == 1)

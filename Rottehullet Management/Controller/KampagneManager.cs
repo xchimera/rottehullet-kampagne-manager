@@ -30,14 +30,28 @@ namespace Controller
 		}
 
 		#region Bruger
-		public Bruger FindBruger(long brugerID)
+		//Lavet af René
+		internal Bruger FindBruger(long brugerID)
 		{
 			return brugercollection.FindBruger(brugerID);
 		}
 
+		//Lavet af Thorbjørn
 		public IBruger FindKaraktersBruger(long karakterID)
 		{
 			return (IBruger)brugercollection.FindKaraktersBruger(karakterID);
+		}
+
+		/// <summary>
+		/// Henter alle brugere ind med navn og brugerID til brug i
+		/// Valg Af Superbruger vinduet
+		/// Lavet af Denny
+		/// </summary>
+		/// <param name="brugerID"></param>
+		/// <param name="navn"></param>
+		public void GenopretBruger(long brugerID, string navn)
+		{
+			brugercollection.OpretBruger(brugerID, navn);
 		}
 
 		public IEnumerator GetBrugerIterator()
@@ -45,28 +59,13 @@ namespace Controller
 			return brugercollection.GetBrugerIterator();
 		}
 
-		public bool Opretbruger(long brugerID, string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
-		{
-			if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
-			{
-				if (dbFacade.OpretBruger(email, kodeord, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi))
-
-					brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
-				return true;
-			}
-			return false;
-		}
-
-        public void OpretBruger(long brugerID, string navn)
-        {
-            brugercollection.OpretBruger(brugerID, navn);
-        }
-
+		//Lavet af Thorbjørn
 		public Bruger TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			return brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
 
+		//Lavet af Denny
         public bool HentBrugereTilAdmin()
         {
             return dbFacade.HentBrugereTilAdmin();
@@ -74,7 +73,6 @@ namespace Controller
 		#endregion
 
 		#region Karakter
-		//
 		public IEnumerator AlleKaraktererEnumerator()
 		{
 			return brugercollection.HentAlleKarakterer().GetEnumerator();
@@ -90,6 +88,7 @@ namespace Controller
 			return (IKarakter)brugercollection.FindKarakter(karakterID);
 		}
 
+		//Lavet af Thorbjørn
 		public bool SætKarakterStatus(IKarakter kar, KarakterStatus status)
 		{
 			Karakter karakter = (Karakter)kar;
@@ -101,13 +100,14 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public Karakter TilføjKarakter(Bruger bruger, long karakterID)
 		{
 			return brugercollection.TilføjKarakter(bruger, karakterID, kampagne);
 		}
 		#endregion
 
-		#region Login/Logout
+		#region Login/Reset
 		public IEnumerable GetBrugersKampagneIterator()
 		{
 			return nuværendeBrugersRettigheder;
@@ -118,6 +118,7 @@ namespace Controller
 			return nuværendeBrugersRettigheder.GetEnumerator();
 		}
 
+		//Lavet af Thorbjørn
 		public static string KrypterKodeord(string kodeord)
 		{
 			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
@@ -143,6 +144,7 @@ namespace Controller
 			}
 		}
 
+		//Lavet af Søren og Thorbjørn
 		public long Login(string email, string kodeord)
 		{
 			kodeord = KrypterKodeord(kodeord);
@@ -151,12 +153,14 @@ namespace Controller
 			return brugerID;
 		}
 
+		//Lavet af Thorbjørn
 		public void IndsætRettighed(string kampagneID, string navn, string type)
 		{
 			string[] kampagnearr = new string[3] { kampagneID, navn, type };
 			nuværendeBrugersRettigheder.Add(kampagnearr);
 		}
 
+		//Lavet af Thorbjørn
 		public void RetBrugerRettigheder(long kampagneID, string navn)
 		{
 			foreach (string[] kampagne in nuværendeBrugersRettigheder)
@@ -170,25 +174,50 @@ namespace Controller
 
 		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
 		//når den nye kampagne bliver åbnet
+		//Lavet af Thorbjørn
 		public void ResetKampagne()
 		{
 			brugercollection.TømKarakterer();
 			nuværendeScenarie = null;
 		}
+
+		//Lavet af Thorbjørn
+		public BrugerRettighed SætNuværendeRettighed()
+		{
+			foreach (string[] item in nuværendeBrugersRettigheder)
+			{
+				if (Kampagne.KampagneID == Convert.ToInt64(item[0]))
+				{
+					if (item[2] == "0")
+					{
+						nuværendeRettighed = BrugerRettighed.Topbruger;
+					}
+					else
+					{
+						nuværendeRettighed = BrugerRettighed.Superbruger;
+					}
+				}
+			}
+			return nuværendeRettighed;
+		}
+			
 		#endregion
 
 		#region Kampagne
+		//Lavet af Søren
 		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
 			kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
 			return kampagne;
 		}
 
+		//Lavet af Thorbjørn
 		public int GetAntalKampagner()
 		{
 			return nuværendeBrugersRettigheder.Count();
 		}
 
+		//Lavet af René, Søren og Thorbjørn
 		public bool HentKampagneFraDatabase(long kamID)
 		{
 			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && 
@@ -201,13 +230,15 @@ namespace Controller
 			return false;
 		}
 
+		//Bruges når Adminen opretter en kampagne
+		//Lavet af Søren og Thorbjørn
 		public bool OpretKampagne(string navn, long topbrugerID)
 		{
 			long kampagneID = dbFacade.OpretKampagne(navn, topbrugerID);
 			if (kampagneID > 0)
 			{
 				kampagne = new Kampagne(navn, kampagneID, KampagneStatus.Oprettet);
-				if (TilføjSingleAttribut("Navn",KampagneAttributType.Singleline,0))
+				if (TilføjSingleAttribut("Navn", KampagneAttributType.Singleline, 0))
 				{
 					return true;
 				}
@@ -215,6 +246,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af Søren
 		public bool RetKampagneBeskrivelse(string beskrivelse, long kampagneID)
 		{
 			if (dbFacade.RetKampagneBeskrivelse(beskrivelse, kampagneID))
@@ -225,6 +257,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af Søren
 		public bool RetKampagneHjemmeside(string hjemmeside, long kampagneID)
 		{
 			if (dbFacade.RetKampagneHjemmeside(hjemmeside, kampagneID))
@@ -235,6 +268,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af Søren
 		public bool RetKampagneNavn(string navn, long kampagneID)
 		{
 			if (dbFacade.RetKampagneNavn(navn, kampagneID))
@@ -245,6 +279,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af Thorbjørn
 		public bool RetKampagneStatus(long kampagneID, KampagneStatus status)
 		{
 			if (dbFacade.RetKampagneStatus(kampagneID, status))
@@ -255,6 +290,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af Denny
 		public bool TilknytSuperbruger(long brugerID, long kampagneID)
 		{
 			if (dbFacade.TilknytSuperbruger(brugerID, kampagneID))
@@ -262,11 +298,6 @@ namespace Controller
 				return true;
 			}
 			return false;
-		}
-
-		public IKampagne Kampagne
-		{
-			get { return kampagne; }
 		}
 
 	    public long NuværendebrugerId
@@ -288,15 +319,16 @@ namespace Controller
 			return kampagne.FindAttribut(navn);
 		}
 
+		//Lavet af René
 		public KampagneAttribut GenopretAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
 			return kampagne.GenopretAttribut(attributID, navn, type);
 		}
 
+		//Lavet af René
 		public KampagneMultiAttribut GenopretMultiAttribut(long kamID, long attributID, string navn, KampagneAttributType type, int position)
 		{
 			return kampagne.GenopretMultiAttribut(attributID, navn, type);
-			//return kampagnecollection.GenopretAttribut(kamID, attributID, navn, type, valgmuligheder);
 		}
 
         public IEnumerator GetAttributIterator()
@@ -304,6 +336,7 @@ namespace Controller
             return kampagne.HentAttributter();
 		}
 
+		//Lavet af René
 		public IEnumerator HentValgmuligheder()
 		{
 			if (nuværendeAttribut.Type == KampagneAttributType.Combo)
@@ -314,6 +347,7 @@ namespace Controller
 			return null;
 		}
 
+		//Lavet af René
 		public bool RetAttribut(string navn, KampagneAttributType type, int position)
 		{
 			if (dbFacade.RetAttribut(nuværendeAttribut.KampagneAttributID, navn, (int)type, kampagne.KampagneID, position))
@@ -326,6 +360,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public bool RetKampagneMultiAttributEntry(long id, long attributID, string værdi)
 		{
 			KampagneMultiAttribut attribut = (KampagneMultiAttribut)kampagne.FindAttribut(id);
@@ -345,6 +380,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public bool SletAttribut(long attID)
 		{
 			if (dbFacade.SletAttribut(attID))
@@ -355,6 +391,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public bool SletMultiAttributValgmulighed(long entryID)
 		{
 			if (dbFacade.SletMultiAttributEntry(entryID))
@@ -368,6 +405,7 @@ namespace Controller
 		/* TODO:
 		 * lav en out string, der beskriver, hvad for en fejl, der sker
 		 */
+		//Lavet af René
 		public bool TilføjMultiAttribut(string navn, KampagneAttributType type, int position, List<string> valgmuligheder)
 		{
 			long id = dbFacade.OpretKampagneAttribut(navn, (int)type, kampagne.KampagneID, position);
@@ -392,6 +430,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public long TilføjMultiAttributEntry(string værdi)
 		{
 			long entryID = dbFacade.OpretKampagneMultiAttributEntry(nuværendeAttribut.KampagneAttributID, værdi);
@@ -404,6 +443,7 @@ namespace Controller
 			return -1;
 		}
 
+		//Lavet af René
 		public bool TilføjSingleAttribut(string navn, KampagneAttributType type, int position)
 		{
 			long id = dbFacade.OpretKampagneAttribut(navn, (int)type, kampagne.KampagneID, position);
@@ -418,17 +458,19 @@ namespace Controller
 		#endregion
 
 		#region Scenarie
-
+		//Lavet af René
 		public Scenarie FindScenarie(long scenarieID)
 		{
 			return kampagne.FindScenarie(scenarieID);
 		}
 
+		//Lavet af René
 		public void GenopretScenarie(long id, string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			nuværendeScenarie = kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 		}
 
+		//Lavet af Thorbjørn
 		public IEnumerator HentDeltagere()
 		{
 			if (nuværendeScenarie != null)
@@ -445,6 +487,8 @@ namespace Controller
 		{
 			return nuværendeScenarie;
 		}
+
+		//Lavet af René
 		public bool RetScenarie(string titel, string beskrivelse, DateTime tid, string sted, double pris, int overnatning, bool spisning, bool spisningValgfri, bool overnatningValgfri, string andetInfo)
 		{
 			if (dbFacade.RetScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningValgfri, overnatningValgfri, andetInfo, nuværendeScenarie.Id))
@@ -464,6 +508,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public bool TilføjScenarie(string titel, string beskrivelse, DateTime tid, string sted, float pris, int overnatning, bool spisning, bool spisningTvungen, bool overnatningTvungen, string andetInfo)
 		{
 			long id = dbFacade.TilføjScenarie(titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo, kampagne.KampagneID);
@@ -475,6 +520,7 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
 		public List<ITilmelding> HentScenarieTilmeldinger()
 		{
 			List<ITilmelding> tilmeldinger = new List<ITilmelding>();
@@ -488,23 +534,9 @@ namespace Controller
 		}
 		#endregion
 
-		public BrugerRettighed SætNuværendeRettighed()
+		public IKampagne Kampagne
 		{
-			foreach (string[] item in nuværendeBrugersRettigheder)
-			{
-				if (Kampagne.KampagneID == Convert.ToInt64(item[0]))
-				{
-					if (item[2] == "0")
-					{
-						nuværendeRettighed = BrugerRettighed.Topbruger;
-					}
-					else
-					{
-						nuværendeRettighed = BrugerRettighed.Superbruger;
-					}
-				}
-			}
-			return nuværendeRettighed;
+			get { return kampagne; }
 		}
 
 		public BrugerRettighed NuværendeRettighed

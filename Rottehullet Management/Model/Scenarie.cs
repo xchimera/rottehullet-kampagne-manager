@@ -34,6 +34,7 @@ namespace Model
 		}
 
 		#region Metoder
+		//Lavet af René
 		public List<IKarakter> HentDeltagere()
 		{
 			List<IKarakter> karakterer = new List<IKarakter>();
@@ -46,11 +47,13 @@ namespace Model
 			return karakterer;
 		}
 
+		//Lavet af René
 		public List<Tilmelding> HentTilmeldinger()
 		{
 			return tilmeldinger;
 		}
 
+		//Lavet af René
 		internal void TilføjTilmelding(Tilmelding tilmelding)
 		{
 			tilmeldinger.Add(tilmelding);

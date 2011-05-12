@@ -7,6 +7,8 @@ namespace Model
 {
 	public class KarakterMultiAttribut : KarakterAttribut
 	{
+		//Klasse lavet af René
+
 		KampagneMultiAttributValgmulighed valg;
 
 		public KarakterMultiAttribut(KampagneMultiAttributValgmulighed valg, KampagneAttribut attribut, long id)

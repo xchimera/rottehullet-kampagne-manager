@@ -10,6 +10,7 @@ namespace Model
 {
 	public class KampagneMultiAttribut : KampagneAttribut, IKampagneMultiAttribut
 	{
+		//Klasse lavet af René
 		private List<KampagneMultiAttributValgmulighed> valgmuligheder;
 
 		public KampagneMultiAttribut(string navn, KampagneAttributType type, List<KampagneMultiAttributValgmulighed> valgmuligheder, long kampagneAttributID)

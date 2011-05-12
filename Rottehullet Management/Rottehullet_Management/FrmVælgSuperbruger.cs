@@ -16,6 +16,8 @@ namespace Rottehullet_Management
     {
         KampagneManager kampagnemanager;
         IKampagne kampagne;
+
+		//Lavet af Denny
         public FrmVælgSuperbruger(KampagneManager kampagnemanager, IKampagne kampagne)
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Rottehullet_Management
             OpdaterListView();
         }
 
+		//Lavet af Denny
         private void OpdaterListView()
         {
             IBruger ibruger;
@@ -46,7 +49,7 @@ namespace Rottehullet_Management
             }
         }
 
-
+		//Lavet af Denny
         private void btnVælgSuperbruger_Click(object sender, EventArgs e)
         {
             int index = lstBrugere.SelectedIndices[0];

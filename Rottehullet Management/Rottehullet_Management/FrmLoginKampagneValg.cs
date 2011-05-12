@@ -16,7 +16,8 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagnemanager;
         List<string[]> kampagneliste;
-        
+
+		//Lavet af Søren
         public FrmLoginKampagneValg(KampagneManager kampagnemanager)
 		{
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Rottehullet_Management
             OpdaterListView();			
 		}
 
+		//Lavet af Søren
         private void OpdaterListView()
         {
             string[] kampagne;
@@ -47,22 +49,8 @@ namespace Rottehullet_Management
 			lstKampagner.Items[0].Selected = true;
         }
 
-
-		//private void startKampagne(long kampagneID, string navn)
-		//{
-		//    if (kampagnemanager.HentKampagneFraDatabase(kampagneID))
-		//    {
-		//        FrmHovedside hovedside = new FrmHovedside(navn, kampagnemanager);
-		//        this.Hide();
-		//        hovedside.ShowDialog();
-		//        this.Close();
-		//    }
-		//    else
-		//    {
-		//        MessageBox.Show("Der skete en fejl under adgangen til denne kampagne.");
-		//    }
-		//}
-
+		//Lavet af Søren
+		//Inputvalidering lavet af Thorbjørn
         private void btnVælgKampagne_Click(object sender, EventArgs e)
         {
 			if (lstKampagner.SelectedIndices.Count > 0)
@@ -88,6 +76,8 @@ namespace Rottehullet_Management
            
         }
 
+		//Lavet af Denny
+		//Inputvalidering lavet af Thorbjørn
         private void lstKampagner_DoubleClick(object sender, EventArgs e)
         {
             if (lstKampagner.SelectedIndices.Count > 0)

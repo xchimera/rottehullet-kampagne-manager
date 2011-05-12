@@ -9,6 +9,7 @@ namespace Model
 {
 	public class KampagneAttribut : IKampagneAttribut
 	{
+		//Klassen lavet af René
 		private long kampagneAttributID;
 		private string navn;
 		private KampagneAttributType type;

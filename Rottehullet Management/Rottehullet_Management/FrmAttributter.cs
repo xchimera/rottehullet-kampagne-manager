@@ -17,6 +17,7 @@ namespace Rottehullet_Management
 	{
 		KampagneManager kampagneManager;
 
+		//Lavet af René
 		public FrmAttributter(KampagneManager kampagneManager)
 		{
 			this.kampagneManager = kampagneManager;
@@ -24,6 +25,7 @@ namespace Rottehullet_Management
 			opdaterListe();
 		}
 
+		//Lavet af René
 		private void opdaterListe()
 		{
 			lstAttributter.Items.Clear();
@@ -53,6 +55,7 @@ namespace Rottehullet_Management
 			}
 		}
 
+		//Lavet af René
 		private void btnTilføjAttribut_Click(object sender, EventArgs e)
 		{
 			FrmTilføjAttribut form = new FrmTilføjAttribut(kampagneManager, lstAttributter.Items.Count);
@@ -60,6 +63,8 @@ namespace Rottehullet_Management
 			opdaterListe();
 		}
 
+		//Lavet af René
+		//Inputvalidering lavet af Thorbjørn
 		private void btnRetAttribut_Click(object sender, EventArgs e)
 		{
 			if (lstAttributter.SelectedIndices.Count > 0)
@@ -75,6 +80,8 @@ namespace Rottehullet_Management
 			
 		}
 
+		//Lavet af René
+		//Dialogbox lavet af Thorbjørn
 		private void btnSletAttribut_Click(object sender, EventArgs e)
 		{
 			if (lstAttributter.SelectedIndices.Count > 0)

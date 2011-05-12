@@ -17,6 +17,7 @@ namespace BK_GUI
 		long karakterID;
 		IScenarie scenarie;
 
+		//Lavet af René
 		public FrmScenarieTilmelding(BrugerKlient brugerKlient, long karakterID, IScenarie scenarie)
 		{
 			InitializeComponent();
@@ -49,6 +50,7 @@ namespace BK_GUI
 			this.Close();
 		}
 
+		//Lavet af René
 		private void btnTilmeld_Click(object sender, EventArgs e)
 		{
 			int overnatninger;

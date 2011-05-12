@@ -38,12 +38,14 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
+		//Lavet af René
         public Karakter TilføjKarakter(long karakterID, Kampagne kampagne)
         {
             karakterer.Add(new Karakter(karakterID, kampagne, Enum.KarakterStatus.Nyoprettet, this));
 			return karakterer[karakterer.Count() - 1];
         }
 
+		//Lavet af René
 		public Karakter GenopretKarakter(long karakterID, Kampagne kampagne, Enum.KarakterStatus status)
 		{
 			Karakter karakter = new Karakter(karakterID, kampagne, status, this);
@@ -51,24 +53,28 @@ namespace Model
 			return karakter;
 		}
 
+		//Lavet af René
 		public void TilføjAttribut(long karakterID, KampagneAttribut attribut, string værdi, long id)
         {
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attribut, værdi, id);
         }
 
+		//Lavet af René
         public void TilføjAttribut(long karakterID, KampagneAttribut attribut, KampagneMultiAttributValgmulighed valg, long id)
         {
             Karakter karakter = FindKarakter(karakterID);
             karakter.TilføjVærdi(attribut, valg, id);
         }
 
+		//Lavet af René
 		public void TilmeldKarakterTilScenarie(long karakterID, Scenarie scenarie, bool spiser, int antalOvernatninger)
 		{
 			Karakter karakter = FindKarakter(karakterID);
 			karakter.TilmeldTilScenarie(scenarie, spiser, antalOvernatninger);
 		}
 
+		//Lavet af René
 		public bool TjekOmTilmeldtTilScenarie(Scenarie scenarie)
 		{
 			foreach (Karakter karakter in karakterer)
@@ -80,7 +86,8 @@ namespace Model
 			}
 			return false;
 		}
-		
+
+		//Lavet af René
         public Karakter FindKarakter(long karakterID)
         {
             foreach (Karakter karakter in karakterer)
@@ -93,6 +100,7 @@ namespace Model
             return null;
         }
 
+		//Lavet af Thorbjørn
 		public IEnumerator FindGamleKarakterer(IKarakter karakterInd)
 		{
 			List<IKarakter> gamleKarakterer = new List<IKarakter>();
@@ -107,6 +115,7 @@ namespace Model
 			return gamleKarakterer.GetEnumerator();
 		}
 
+		//Lavet af Thorbjørn
 		public IEnumerator GetKampagnesKarakterIterator(long kampagneID)
 		{
 			List<Karakter> kampagneskarakterer = new List<Karakter>();
@@ -120,6 +129,7 @@ namespace Model
 			return kampagneskarakterer.GetEnumerator();
 		}
 
+		//Lavet af Søren
 		public IEnumerator GetVærdiIterator(long karakterID)
         {
             Karakter karakter = FindKarakter(karakterID);
@@ -141,6 +151,7 @@ namespace Model
             return karakter;
         }
 
+		//Lavet af Thorbjørn
 		public void TømKarakterer()
 		{
 			karakterer = new List<Karakter>();
