@@ -27,7 +27,15 @@ namespace InputBox
             txtText.Text = text;
         }
 
-        private void btnOk_Click_1(object sender, EventArgs e)
+		public InputBoxSingleline(string text,string text2)
+		{
+			InitializeComponent();
+			this.text = text;
+			txtText.Text = text;
+			lbl1.Text = text2;
+		}
+
+		private void btnOk_Click_1(object sender, EventArgs e)
         {
             text = txtText.Text;
             lastButton = (int)buttonpressed.Ok;

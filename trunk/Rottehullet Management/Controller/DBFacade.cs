@@ -32,6 +32,35 @@ namespace Controller
 		#endregion
 
 
+		#region Admin
+		//Lavet af Thorbjørn
+		public bool RetAdminKodeord(string kodeord)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "RetAdminKodeord";
+			SqlParameter par;
+
+			par = new SqlParameter("@adminkode", SqlDbType.NVarChar);
+			par.Value = kodeord;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+		#endregion
 
 		#region Login
 

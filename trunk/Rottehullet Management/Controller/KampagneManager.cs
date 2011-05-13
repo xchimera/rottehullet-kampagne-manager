@@ -29,6 +29,17 @@ namespace Controller
 			nuværendeScenarie = null;
 		}
 
+		#region Admin
+		public bool RetAdminKodeord(string kodeord)
+		{
+			if (dbFacade.RetAdminKodeord(KrypterKodeord(kodeord)))
+			{
+				return true;
+			}
+			return false;
+		}
+		#endregion
+
 		#region Bruger
 		//Lavet af René
 		internal Bruger FindBruger(long brugerID)
