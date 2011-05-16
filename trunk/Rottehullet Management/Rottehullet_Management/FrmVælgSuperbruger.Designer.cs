@@ -33,6 +33,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnVælgSuperbruger = new System.Windows.Forms.Button();
             this.btnAnnuller = new System.Windows.Forms.Button();
+            this.btnFravælgSuperbruger = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstBrugere
@@ -70,19 +71,30 @@
             // 
             // btnAnnuller
             // 
-            this.btnAnnuller.Location = new System.Drawing.Point(208, 329);
+            this.btnAnnuller.Location = new System.Drawing.Point(143, 359);
             this.btnAnnuller.Name = "btnAnnuller";
             this.btnAnnuller.Size = new System.Drawing.Size(75, 23);
             this.btnAnnuller.TabIndex = 2;
-            this.btnAnnuller.Text = "Annuller";
+            this.btnAnnuller.Text = "Luk";
             this.btnAnnuller.UseVisualStyleBackColor = true;
             this.btnAnnuller.Click += new System.EventHandler(this.btnAnnuller_Click);
+            // 
+            // btnFravælgSuperbruger
+            // 
+            this.btnFravælgSuperbruger.Location = new System.Drawing.Point(186, 330);
+            this.btnFravælgSuperbruger.Name = "btnFravælgSuperbruger";
+            this.btnFravælgSuperbruger.Size = new System.Drawing.Size(119, 23);
+            this.btnFravælgSuperbruger.TabIndex = 3;
+            this.btnFravælgSuperbruger.Text = "Fravælg superbruger";
+            this.btnFravælgSuperbruger.UseVisualStyleBackColor = true;
+            this.btnFravælgSuperbruger.Click += new System.EventHandler(this.btnFravælgSuperbruger_Click);
             // 
             // FrmVælgSuperbruger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(370, 428);
+            this.Controls.Add(this.btnFravælgSuperbruger);
             this.Controls.Add(this.btnAnnuller);
             this.Controls.Add(this.btnVælgSuperbruger);
             this.Controls.Add(this.lstBrugere);
@@ -101,5 +113,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button btnVælgSuperbruger;
         private System.Windows.Forms.Button btnAnnuller;
+        private System.Windows.Forms.Button btnFravælgSuperbruger;
 	}
 }

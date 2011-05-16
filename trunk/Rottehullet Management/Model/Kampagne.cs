@@ -17,6 +17,7 @@ namespace Model
 		private string navn, hjemmeside, beskrivelse;
         private KampagneStatus status;
 		private List<Karakter> karaktererPåKampagne;
+        private List<long> superbrugere;
 
 		#endregion
 
@@ -27,6 +28,7 @@ namespace Model
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
 			karaktererPåKampagne = new List<Karakter>();
+            superbrugere = new List<long>();
 		}
 
 		public Kampagne(long kampagneID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
@@ -38,7 +40,9 @@ namespace Model
 			this.status = status;
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
+            superbrugere = new List<long>();
 			karaktererPåKampagne = new List<Karakter>();
+
 		}
 
 		/// <summary>
@@ -110,6 +114,25 @@ namespace Model
             return multiattribut;
         }
 
+        //Tjekker om superbrugeren allerede findes inden den bliver tilføjet
+        //Lavet af Søren
+        public void TilføjSuperbruger(long brugerID)
+        {
+            if (!superbrugere.Contains(brugerID))
+            {
+                superbrugere.Add(brugerID);
+            }
+        }
+
+        public bool FravælgSuperbruger(long brugerID)
+        {
+            if (superbrugere.Remove(brugerID))
+            {
+                return true;
+            }
+            return false;
+        }
+
 		//Lavet af René
 		public KampagneAttribut FindAttribut(long id)
 		{
@@ -145,6 +168,11 @@ namespace Model
         {
             KampagneMultiAttribut kampagnemultiattribut = (KampagneMultiAttribut)FindAttribut(attributID);
             return kampagnemultiattribut.GetValgmulighederIterator();
+        }
+
+        public IEnumerator GetSuperbrugerIterator()
+        {
+            return superbrugere.GetEnumerator();
         }
 
 		/// <summary>

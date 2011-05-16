@@ -469,6 +469,8 @@ namespace Controller
 			}
 		}
 
+
+
 		/// <summary>
 		/// bruges til at rette kampagnens beskrivelse, lavet af Søren
 		/// </summary>
@@ -649,6 +651,38 @@ namespace Controller
 				return false;
 			}
 		}
+
+        public bool FravælgSuperbruger(long brugerID, long kampagneID)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "FravælgSuperbruger";
+
+            SqlParameter par = new SqlParameter("@brugerID", SqlDbType.BigInt);
+            par.Value = brugerID;
+            cmd.Parameters.Add(par);
+
+            par = new SqlParameter("@kampagneID", SqlDbType.BigInt);
+            par.Value = brugerID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+            
+        }
 
 		#endregion
 
@@ -933,6 +967,38 @@ namespace Controller
 			}
 			//return sqlfejl;
 		}
+        // Lavet af søren
+        public bool HentSuperbruger(long kamID)
+        {
+            SqlDataReader reader;
+            cmd.CommandText = "HentSuperbrugerTilKampagne";
+            cmd.Parameters.Clear();
+
+            SqlParameter par = new SqlParameter("kamID", SqlDbType.BigInt);
+            par.Value = kamID;
+            cmd.Parameters.Add(par);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    kampagnemanager.TilføjSuperbruger((long)reader["brugerID"]);
+                }
+                conn.Close();
+                return true;
+            }
+            catch (SqlException)
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                return false;
+            }
+        }
 
 		#endregion
 
