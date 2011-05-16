@@ -71,17 +71,51 @@ namespace Controller
 			return brugercollection.GetBrugerIterator();
 		}
 
+        public IEnumerator GetSuperbrugerIterator()
+        {
+            return kampagne.GetSuperbrugerIterator();
+        }
+
 		//Lavet af Thorbjørn
 		public Bruger TilføjBruger(long brugerID, string email, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
 			return brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
+        //Lavet af Søren
+        public bool HentSuperbruger()
+        {
+            if (dbFacade.HentSuperbruger(kampagne.KampagneID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Lavet af Søren
+        public void TilføjSuperbruger(long brugerID)
+        {
+            kampagne.TilføjSuperbruger(brugerID);
+        }
+
+        //Lavet af Søren
+        public bool FravælgSuperbruger(long brugerID)
+        {
+            if(dbFacade.FravælgSuperbruger(brugerID, kampagne.KampagneID))
+            {
+                if(kampagne.FravælgSuperbruger(brugerID))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
 		//Lavet af Denny
         public bool HentBrugereTilAdmin()
         {
             return dbFacade.HentBrugereTilAdmin();
         }
+
 		#endregion
 
 		#region Karakter
@@ -307,6 +341,7 @@ namespace Controller
 		{
 			if (dbFacade.TilknytSuperbruger(brugerID, kampagneID))
 			{
+                TilføjSuperbruger(brugerID);
 				return true;
 			}
 			return false;

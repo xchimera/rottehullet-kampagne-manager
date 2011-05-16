@@ -45,6 +45,7 @@ namespace Rottehullet_Management
 			}
 			OpdaterLstKarakterer();
 			OpdaterLstTilmeldte();
+            kampagnemanager.HentSuperbruger();
         }
 
 		#region Tilstandsstyring
