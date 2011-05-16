@@ -191,6 +191,7 @@
 			this.btnPrintKarakterer.TabIndex = 17;
 			this.btnPrintKarakterer.Text = "Print";
 			this.btnPrintKarakterer.UseVisualStyleBackColor = true;
+			this.btnPrintKarakterer.Click += new System.EventHandler(this.btnPrintKarakterer_Click);
 			// 
 			// btnVælgSuperbruger
 			// 

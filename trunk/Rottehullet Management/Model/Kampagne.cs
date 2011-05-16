@@ -38,6 +38,7 @@ namespace Model
 			this.status = status;
 			attributter = new List<KampagneAttribut>();
 			scenarier = new List<Scenarie>();
+			karaktererPåKampagne = new List<Karakter>();
 		}
 
 		/// <summary>
@@ -57,6 +58,16 @@ namespace Model
 			Scenarie scenarie = new Scenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
 			scenarier.Add(scenarie);
 			return scenarie;
+		}
+
+		public IEnumerator HentKarakterer()
+		{
+			return karaktererPåKampagne.GetEnumerator();
+		}
+
+		public void TilføjKarakter(Karakter karakter)
+		{
+			karaktererPåKampagne.Add(karakter);
 		}
 
 		//Lavet af René

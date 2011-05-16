@@ -37,6 +37,16 @@ namespace Model
 			set { spiser = value; }
 		}
 
+		public string SpiserString
+		{
+			get
+			{
+				if (spiser == true)
+					return "Ja";
+				return "Nej";
+			}
+		}
+
 		public Scenarie Scenarie
 		{
 			get { return scenarie; }
@@ -75,6 +85,21 @@ namespace Model
 		public string BrugerAllergi
 		{
 			get { return karakter.Bruger.Allergi; }
+		}
+
+		public int BrugerAlder
+		{
+			get { return karakter.BrugerAlder; }
+		}
+
+		public string BrugerVeganer
+		{
+			get { return karakter.BrugerVeganer; }
+		}
+
+		public string BrugerVegetar
+		{
+			get { return karakter.BrugerVegetar; }
 		}
 	}
 }
