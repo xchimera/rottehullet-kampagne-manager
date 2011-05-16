@@ -312,6 +312,27 @@ namespace Controller
 			return false;
 		}
 
+		//Lavet af René
+		public List<IKarakter> HentKaraktererTilKampagne()
+		{
+			List<IKarakter> karakterer = new List<IKarakter>();
+
+			IEnumerator iterator = kampagne.HentKarakterer();
+			iterator.Reset();
+
+			while (iterator.MoveNext())
+			{
+				karakterer.Add((IKarakter)iterator.Current);
+			}
+
+			return karakterer;
+		}
+
+		public IKampagne Kampagne
+		{
+			get { return kampagne; }
+		}
+
 	    public long NuværendebrugerId
 	    {
 	        get { return nuværendebrugerID; }
@@ -545,11 +566,6 @@ namespace Controller
 			return tilmeldinger;
 		}
 		#endregion
-
-		public IKampagne Kampagne
-		{
-			get { return kampagne; }
-		}
 
 		public BrugerRettighed NuværendeRettighed
 		{

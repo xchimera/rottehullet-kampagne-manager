@@ -25,6 +25,7 @@ namespace Model
 			this.bruger = bruger;
 			attributter = new Dictionary<string, KarakterAttribut>();
 			scenarieTilmeldinger = new List<Tilmelding>();
+			kampagne.TilføjKarakter(this);
 		}
 
 		#region metoder
@@ -148,6 +149,11 @@ namespace Model
 			get { return bruger; }
 		}
 
+		public string Navn
+		{
+			get { return this["Navn"]; }
+		}
+
 		public string this[string attributNavn]
 		{
 			get
@@ -163,6 +169,56 @@ namespace Model
 				}
 				return null;
 			}
+		}
+
+		public string BrugersNavn
+		{
+			get { return bruger.Navn; }
+		}
+
+		public string BrugerAllergi
+		{
+			get { return bruger.Allergi; }
+		}
+
+		public string BrugerVeganer
+		{
+			get
+			{
+				if (bruger.Veganer == true)
+					return "Ja";
+				return "Nej";
+			}
+		}
+
+		public string BrugerVegetar
+		{
+			get
+			{
+				if (bruger.Vegetar == true)
+					return "Ja";
+				return "Nej";
+			}
+		}
+
+		public long BrugerTlf
+		{
+			get { return bruger.Tlf; }
+		}
+
+		public long BrugerNødTlf
+		{
+			get { return bruger.NødTlf; }
+		}
+
+		public string BrugerAndetInfo
+		{
+			get { return bruger.Andet; }
+		}
+
+		public int BrugerAlder
+		{
+			get { return bruger.Alder; }
 		}
 		#endregion
 	}

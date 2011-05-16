@@ -17,5 +17,14 @@ namespace Interfaces
 		IBruger Bruger { get; }
 		string this[string attributNavn] { get; }
 		string FindAttributVærdi(long kampagneattributID);
+		string BrugersNavn { get; }
+		string BrugerAllergi { get; }
+		string BrugerVeganer { get; }
+		string BrugerVegetar { get; }
+		string BrugerAndetInfo { get; }
+		int BrugerAlder { get; }
+		long BrugerTlf { get; }
+		long BrugerNødTlf { get; }
+		string Navn { get; }
     }
 }

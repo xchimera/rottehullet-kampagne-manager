@@ -289,5 +289,11 @@ namespace Rottehullet_Management
 			FrmKarakter karaktervindue = new FrmKarakter(kampagnemanager, ibruger, ikarakter, this);
 			karaktervindue.ShowDialog();
 		}
+
+		private void btnPrintKarakterer_Click(object sender, EventArgs e)
+		{
+			FrmKampagneKaraktererOverblik form = new FrmKampagneKaraktererOverblik(kampagnemanager);
+			form.Show();
+		}
     }
 }

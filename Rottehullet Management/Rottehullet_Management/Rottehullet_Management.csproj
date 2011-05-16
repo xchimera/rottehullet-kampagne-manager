@@ -64,6 +64,12 @@
     <Compile Include="FrmAttributter.Designer.cs">
       <DependentUpon>FrmAttributter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmKampagneKaraktererOverblik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKampagneKaraktererOverblik.Designer.cs">
+      <DependentUpon>FrmKampagneKaraktererOverblik.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmKarakter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     <EmbeddedResource Include="FrmHovedside.resx">
       <DependentUpon>FrmHovedside.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmKampagneKaraktererOverblik.resx">
+      <DependentUpon>FrmKampagneKaraktererOverblik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmKarakter.resx">
       <DependentUpon>FrmKarakter.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +190,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RapKampagneKarakterer.rdlc" />
     <EmbeddedResource Include="RapScenarie.rdlc" />
     <None Include="Properties\DataSources\Interfaces.IScenarie.datasource" />
     <None Include="Properties\DataSources\Interfaces.ITilmelding.datasource" />
