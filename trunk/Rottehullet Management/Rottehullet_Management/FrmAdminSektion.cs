@@ -29,6 +29,7 @@ namespace Rottehullet_Management
 
         }
 
+		//Lavet Thorbjørn
 		private void btnAdminkode_Click(object sender, EventArgs e)
 		{
 			InputBoxSingleline singleline = new InputBoxSingleline("","Nyt Adminkodeord");

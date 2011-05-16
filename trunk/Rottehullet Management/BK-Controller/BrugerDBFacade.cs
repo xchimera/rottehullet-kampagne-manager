@@ -504,6 +504,67 @@ namespace BK_Controller
             }
         }
 
+		//Lavet af Thorbjørn
+		public bool RetBruger(long brugerID, string navn, DateTime fødselsdag, long tlf, long nødtlf, bool vegetar, bool veganer, string allergi, string andet)
+		{
+			cmd.Parameters.Clear();
+			cmd.CommandText = "RetBruger";
+			SqlParameter par;
+
+			par = new SqlParameter("@brugerID", SqlDbType.BigInt);
+			par.Value = brugerID;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@navn", SqlDbType.NChar);
+			par.Value = navn;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@fdsldag", SqlDbType.Date);
+			par.Value = fødselsdag;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@tlf", SqlDbType.BigInt);
+			par.Value = tlf;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@nød_tlf", SqlDbType.BigInt);
+			par.Value = nødtlf;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@vegetar", SqlDbType.Bit);
+			par.Value = vegetar;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@veganer", SqlDbType.Bit);
+			par.Value = veganer;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@allergi", SqlDbType.NChar);
+			par.Value = allergi;
+			cmd.Parameters.Add(par);
+
+			par = new SqlParameter("@andet", SqlDbType.NChar);
+			par.Value = andet;
+			cmd.Parameters.Add(par);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				return true;
+			}
+			catch (SqlException)
+			{
+				if (conn.State == ConnectionState.Open)
+				{
+					conn.Close();
+				}
+				return false;
+			}
+		}
+
 		//Lavet af René
 		public long TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{

@@ -79,5 +79,11 @@ namespace BK_GUI
                 this.Close();
             }
         }
+
+		private void btnbtnRedigerBrugerInfo_Click(object sender, EventArgs e)
+		{
+			FrmRetBruger frmretbruger = new FrmRetBruger(brugerklient);
+			frmretbruger.ShowDialog();
+		}
     }
 }

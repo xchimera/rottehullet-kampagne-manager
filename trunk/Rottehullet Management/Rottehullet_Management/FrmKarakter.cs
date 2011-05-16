@@ -28,7 +28,7 @@ namespace Rottehullet_Management
 			this.karakter = karakter;
 			this.hvdside = hovedside;
 			txtNavn.Text = bruger.Navn;
-			txtAlder.Text = (DateTime.Now.Year - bruger.Fødselsdag.Year).ToString();
+			txtAlder.Text = bruger.Alder.ToString();
 			txtEmail.Text = bruger.Email;
 			txtTelefon.Text = bruger.Tlf.ToString();
 			txtKontaktperson.Text = bruger.NødTlf.ToString();

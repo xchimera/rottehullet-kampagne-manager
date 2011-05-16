@@ -38,6 +38,18 @@ namespace Model
             karakterer = new List<Karakter>();
         }
 
+		public void RetBruger(string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string andet, string allergi)
+		{
+			this.navn = navn;
+			this.fødselsdag = fødselsdag;
+			this.tlf = tlf;
+			this.nød_tlf = nød_tlf;
+			this.vegetar = vegetar;
+			this.veganer = veganer;
+			this.allergi = allergi;
+			this.andet = andet;
+		}
+
 		//Lavet af René
         public Karakter TilføjKarakter(long karakterID, Kampagne kampagne)
         {
@@ -158,6 +170,18 @@ namespace Model
 		}
 
 		#region properties
+		//Lavet af Thorbjørn
+		public int Alder
+		{
+			get {int fuldeår = Convert.ToInt32(DateTime.Now.Year-fødselsdag.Year);
+				if (DateTime.Now.Month < fødselsdag.Month || (DateTime.Now.Month == fødselsdag.Month && DateTime.Now.Day < fødselsdag.Day))
+				{
+					fuldeår--;
+				}
+				return fuldeår;}
+		}
+
+
 		public string Andet
 		{
 			get { return andet; }

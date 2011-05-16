@@ -28,59 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstKampagner = new System.Windows.Forms.ListView();
-            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnVælgKampagne = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // lstKampagner
-            // 
-            this.lstKampagner.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.lstKampagner = new System.Windows.Forms.ListView();
+			this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnVælgKampagne = new System.Windows.Forms.Button();
+			this.btnRedigerBrugerInfo = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// lstKampagner
+			// 
+			this.lstKampagner.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.Navn});
-            this.lstKampagner.FullRowSelect = true;
-            this.lstKampagner.Location = new System.Drawing.Point(12, 12);
-            this.lstKampagner.Name = "lstKampagner";
-            this.lstKampagner.Size = new System.Drawing.Size(260, 159);
-            this.lstKampagner.TabIndex = 0;
-            this.lstKampagner.UseCompatibleStateImageBehavior = false;
-            this.lstKampagner.View = System.Windows.Forms.View.Details;
-            this.lstKampagner.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstKampagner_MouseDoubleClick);
-            // 
-            // ID
-            // 
-            this.ID.Text = "";
-            this.ID.Width = 0;
-            // 
-            // Navn
-            // 
-            this.Navn.Text = "Navn";
-            this.Navn.Width = 256;
-            // 
-            // btnVælgKampagne
-            // 
-            this.btnVælgKampagne.Location = new System.Drawing.Point(93, 177);
-            this.btnVælgKampagne.Name = "btnVælgKampagne";
-            this.btnVælgKampagne.Size = new System.Drawing.Size(94, 23);
-            this.btnVælgKampagne.TabIndex = 1;
-            this.btnVælgKampagne.Text = "Vælg kampagne";
-            this.btnVælgKampagne.UseVisualStyleBackColor = true;
-            this.btnVælgKampagne.Click += new System.EventHandler(this.btnVælgKampagne_Click);
-            // 
-            // FrmLoginKampagneValg
-            // 
-            this.AcceptButton = this.btnVælgKampagne;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.btnVælgKampagne);
-            this.Controls.Add(this.lstKampagner);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "FrmLoginKampagneValg";
-            this.Text = "Kampagne valg";
-            this.ResumeLayout(false);
+			this.lstKampagner.FullRowSelect = true;
+			this.lstKampagner.Location = new System.Drawing.Point(12, 12);
+			this.lstKampagner.Name = "lstKampagner";
+			this.lstKampagner.Size = new System.Drawing.Size(260, 159);
+			this.lstKampagner.TabIndex = 0;
+			this.lstKampagner.UseCompatibleStateImageBehavior = false;
+			this.lstKampagner.View = System.Windows.Forms.View.Details;
+			this.lstKampagner.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstKampagner_MouseDoubleClick);
+			// 
+			// ID
+			// 
+			this.ID.Text = "";
+			this.ID.Width = 0;
+			// 
+			// Navn
+			// 
+			this.Navn.Text = "Navn";
+			this.Navn.Width = 256;
+			// 
+			// btnVælgKampagne
+			// 
+			this.btnVælgKampagne.Location = new System.Drawing.Point(12, 177);
+			this.btnVælgKampagne.Name = "btnVælgKampagne";
+			this.btnVælgKampagne.Size = new System.Drawing.Size(94, 23);
+			this.btnVælgKampagne.TabIndex = 1;
+			this.btnVælgKampagne.Text = "Vælg kampagne";
+			this.btnVælgKampagne.UseVisualStyleBackColor = true;
+			this.btnVælgKampagne.Click += new System.EventHandler(this.btnVælgKampagne_Click);
+			// 
+			// btnRedigerBrugerInfo
+			// 
+			this.btnRedigerBrugerInfo.Location = new System.Drawing.Point(178, 177);
+			this.btnRedigerBrugerInfo.Name = "btnRedigerBrugerInfo";
+			this.btnRedigerBrugerInfo.Size = new System.Drawing.Size(94, 44);
+			this.btnRedigerBrugerInfo.TabIndex = 2;
+			this.btnRedigerBrugerInfo.Text = "Rediger Bruger Information";
+			this.btnRedigerBrugerInfo.UseVisualStyleBackColor = true;
+			this.btnRedigerBrugerInfo.Click += new System.EventHandler(this.btnbtnRedigerBrugerInfo_Click);
+			// 
+			// FrmLoginKampagneValg
+			// 
+			this.AcceptButton = this.btnVælgKampagne;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(284, 249);
+			this.Controls.Add(this.btnRedigerBrugerInfo);
+			this.Controls.Add(this.btnVælgKampagne);
+			this.Controls.Add(this.lstKampagner);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
+			this.Name = "FrmLoginKampagneValg";
+			this.Text = "Kampagne valg";
+			this.ResumeLayout(false);
 
         }
 
@@ -90,5 +102,6 @@
         private System.Windows.Forms.Button btnVælgKampagne;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Navn;
+		private System.Windows.Forms.Button btnRedigerBrugerInfo;
     }
 }

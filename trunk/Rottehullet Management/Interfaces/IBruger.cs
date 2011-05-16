@@ -11,6 +11,7 @@ namespace Interfaces
 		long BrugerID { get; }
 		string Email { get; }
 		string Navn { get; }
+		int Alder { get; }
 		DateTime Fødselsdag { get; }
 		long Tlf { get; }
 		long NødTlf { get; }
