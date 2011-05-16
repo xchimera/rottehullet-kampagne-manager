@@ -49,6 +49,18 @@ namespace BK_Controller
 			return false;
 		}
 
+		//Thorbjørn
+		public bool RetBruger(string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer,
+								string allergi, string andet)
+		{
+			if (brugerdbfacade.RetBruger(bruger.BrugerID,navn,fødselsdag,tlf,nød_tlf,vegetar,veganer,allergi,andet))
+			{
+				bruger.RetBruger(navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
+				return true;
+			}
+			return false;
+		}
+
 		//Lavet af Thorbjørn og René
 		public long Login(string email, string kodeord)
 		{
@@ -271,6 +283,11 @@ namespace BK_Controller
 			if (bruger.TjekOmTilmeldtTilScenarie(nuværendeScenarie))
 				return true;
 			return false;
+		}
+
+		public IBruger Bruger
+		{
+			get { return (IBruger)bruger; }
 		}
 	}
 }

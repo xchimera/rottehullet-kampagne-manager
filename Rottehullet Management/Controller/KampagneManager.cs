@@ -30,6 +30,7 @@ namespace Controller
 		}
 
 		#region Admin
+		//Lavet af Thorbjørn
 		public bool RetAdminKodeord(string kodeord)
 		{
 			if (dbFacade.RetAdminKodeord(KrypterKodeord(kodeord)))

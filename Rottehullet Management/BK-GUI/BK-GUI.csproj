@@ -88,6 +88,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrmRetBruger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRetBruger.Designer.cs">
+      <DependentUpon>FrmRetBruger.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmHovedSide.resx">
       <DependentUpon>FrmHovedSide.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +119,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="FrmRetBruger.resx">
+      <DependentUpon>FrmRetBruger.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
