@@ -64,5 +64,29 @@ namespace BK_GUI
         {
             this.Close();
         }
+
+        private void chkVegetar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkVegetar.Checked)
+            {
+                chkVeganer.Enabled = false;
+            }
+            else if (!chkVegetar.Checked)
+            {
+                chkVeganer.Enabled = true;
+            }
+        }
+
+        private void chkVeganer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkVeganer.Checked)
+            {
+                chkVegetar.Enabled = false;
+            }
+            else if (!chkVeganer.Checked)
+            {
+                chkVegetar.Enabled = true;
+            }
+        }
     }
 }

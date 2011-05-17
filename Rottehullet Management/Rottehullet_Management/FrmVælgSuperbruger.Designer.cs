@@ -34,6 +34,8 @@
             this.btnVælgSuperbruger = new System.Windows.Forms.Button();
             this.btnAnnuller = new System.Windows.Forms.Button();
             this.btnFravælgSuperbruger = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSøgBruger = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lstBrugere
@@ -89,11 +91,30 @@
             this.btnFravælgSuperbruger.UseVisualStyleBackColor = true;
             this.btnFravælgSuperbruger.Click += new System.EventHandler(this.btnFravælgSuperbruger_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(44, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Søg";
+            // 
+            // txtSøgBruger
+            // 
+            this.txtSøgBruger.Location = new System.Drawing.Point(80, 13);
+            this.txtSøgBruger.Name = "txtSøgBruger";
+            this.txtSøgBruger.Size = new System.Drawing.Size(100, 20);
+            this.txtSøgBruger.TabIndex = 5;
+            this.txtSøgBruger.TextChanged += new System.EventHandler(this.txtSøgBruger_TextChanged);
+            // 
             // FrmVælgSuperbruger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(370, 428);
+            this.Controls.Add(this.txtSøgBruger);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFravælgSuperbruger);
             this.Controls.Add(this.btnAnnuller);
             this.Controls.Add(this.btnVælgSuperbruger);
@@ -103,6 +124,7 @@
             this.Name = "FrmVælgSuperbruger";
             this.Text = "Vælg superbruger";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
@@ -114,5 +136,7 @@
         private System.Windows.Forms.Button btnVælgSuperbruger;
         private System.Windows.Forms.Button btnAnnuller;
         private System.Windows.Forms.Button btnFravælgSuperbruger;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSøgBruger;
 	}
 }

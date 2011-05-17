@@ -61,6 +61,42 @@ namespace Rottehullet_Management
             }
         }
 
+        //Lavet af Søren
+        private void txtSøgBruger_TextChanged(object sender, EventArgs e)
+        {
+            IBruger ibruger;
+            IEnumerator brugeriterator = kampagnemanager.GetBrugerIterator();
+            string text;
+
+            if (txtSøgBruger.Text == "")
+            {
+                OpdaterListView();
+                return;
+            }
+
+            brugeriterator.Reset();
+            lstBrugere.Items.Clear();
+
+            while (brugeriterator.MoveNext())
+            {
+                ibruger = (IBruger)brugeriterator.Current;
+                text = txtSøgBruger.Text.ToString();
+
+                if (Convert.ToString((ibruger.BrugerID)).ToUpper().IndexOf(text.ToUpper()) != -1 || (ibruger.Navn).ToUpper().IndexOf(text.ToUpper()) != -1)
+                {
+                    if (kampagnemanager.NuværendebrugerId != ibruger.BrugerID)
+                    {
+                        ListViewItem brugere = new ListViewItem();
+
+                        brugere.Text = ibruger.BrugerID.ToString();
+                        brugere.SubItems.Add(ibruger.Navn);
+
+                        lstBrugere.Items.Add(brugere);
+                    }
+                }
+            }
+        }
+
 		//Lavet af Denny og Søren
         private void btnVælgSuperbruger_Click(object sender, EventArgs e)
         {
