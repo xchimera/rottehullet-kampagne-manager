@@ -60,6 +60,13 @@ namespace BK_GUI.Properties {
             }
         }
         
+        internal static byte[] data {
+            get {
+                object obj = ResourceManager.GetObject("data", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap RP_Management_LOGO {
             get {
                 object obj = ResourceManager.GetObject("RP-Management LOGO", resourceCulture);

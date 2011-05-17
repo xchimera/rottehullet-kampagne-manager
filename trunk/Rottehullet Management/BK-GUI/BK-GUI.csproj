@@ -122,6 +122,7 @@
     <EmbeddedResource Include="FrmRetBruger.resx">
       <DependentUpon>FrmRetBruger.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\data.dat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
