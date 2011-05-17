@@ -85,5 +85,43 @@ namespace BK_GUI
 			FrmRetBruger frmretbruger = new FrmRetBruger(brugerklient);
 			frmretbruger.ShowDialog();
 		}
+
+        private void lstKampagner_MouseClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
+
+            IKampagne ikampagne;
+            IScenarie iscenarie;
+            IEnumerator kampagneiterator = brugerklient.GetKampagneIterator();
+            
+            kampagneiterator.Reset();
+            while (kampagneiterator.MoveNext())
+            {
+                ikampagne = (IKampagne)kampagneiterator.Current;
+                if (ikampagne.KampagneID == Convert.ToInt64(item.SubItems[0].Text))
+                {
+                    txtNavn.Text = ikampagne.Navn;
+                    txtHjemmeside.Text = ikampagne.Hjemmeside;
+                    txtBeskrivelse.Text = ikampagne.Beskrivelse;
+
+                    iscenarie = (IScenarie)ikampagne.HentNæsteScenarie();
+                    if (iscenarie != null)
+                    {
+                        txtNavn.Text = iscenarie.Titel;
+                        txtPris.Text = iscenarie.Pris.ToString();
+                        txtDato.Text = iscenarie.Tid.ToShortDateString();
+                        txtScenarieBeskrivelse.Text = iscenarie.Beskrivelse;
+                    }
+                    else
+                    {
+                        txtNavn.Text = "";
+                        txtPris.Text = "";
+                        txtDato.Text = "";
+                        txtScenarieBeskrivelse.Text = "";
+                    }
+                }
+            }
+        
+        }
     }
 }
