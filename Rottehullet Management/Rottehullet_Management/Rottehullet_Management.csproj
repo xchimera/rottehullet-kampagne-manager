@@ -192,6 +192,7 @@
     </Compile>
     <EmbeddedResource Include="RapKampagneKarakterer.rdlc" />
     <EmbeddedResource Include="RapScenarie.rdlc" />
+    <None Include="bin\Debug\data.dat" />
     <None Include="Properties\DataSources\Interfaces.IScenarie.datasource" />
     <None Include="Properties\DataSources\Interfaces.ITilmelding.datasource" />
     <None Include="Properties\Settings.settings">
@@ -222,9 +223,7 @@
       <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="RP-Management - ICON.ico" />
   </ItemGroup>
