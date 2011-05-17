@@ -98,6 +98,18 @@ namespace Model
 			}
 		}
 
+        public IScenarie HentNæsteScenarie()
+        {
+            if (scenarier.Count > 0)
+            {
+                return scenarier[scenarier.Count - 1];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 		//Lavet af René
         public KampagneAttribut GenopretAttribut(long attributID, string navn, KampagneAttributType type)
         {

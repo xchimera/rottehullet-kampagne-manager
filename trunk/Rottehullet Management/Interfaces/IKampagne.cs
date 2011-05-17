@@ -15,6 +15,7 @@ namespace Interfaces
 		string Hjemmeside { get; }
         KampagneStatus Status { get; }
         IEnumerator HentAttributter();
+        IScenarie HentNæsteScenarie();
 
 	}
 }
