@@ -192,7 +192,6 @@
     </Compile>
     <EmbeddedResource Include="RapKampagneKarakterer.rdlc" />
     <EmbeddedResource Include="RapScenarie.rdlc" />
-    <None Include="data.dat" />
     <None Include="Properties\DataSources\Interfaces.IScenarie.datasource" />
     <None Include="Properties\DataSources\Interfaces.ITilmelding.datasource" />
     <None Include="Properties\Settings.settings">
