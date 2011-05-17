@@ -31,8 +31,90 @@ namespace Controller
 
 		#region Admin
 		//Lavet af Thorbjørn
+		public bool RetDatabaseFil(string databasestreng)
+		{
+			try
+			{
+				databasestreng = Enkrypt(databasestreng);
+				System.IO.StreamWriter fil = new System.IO.StreamWriter("data.dat");
+				fil.WriteLine(databasestreng);
+				fil.Close();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			
+		}
+
+		//Lavet af Thorbjørn
+		public string Dekrypt(string streng)
+		{
+			byte[] resultat;
+			UTF8Encoding utf8 = new UTF8Encoding();
+
+			//Laver vores nøgle "detteErEnNøgle" om til en 128 bit nøgle ved at lave den om til et MD5 hash
+			MD5CryptoServiceProvider hash = new MD5CryptoServiceProvider();
+			byte[] nøgle = hash.ComputeHash(utf8.GetBytes("detteErEnNøgle"));
+			nøgle = utf8.GetBytes("4D92199549E0F2EF009B4160");
+
+			TripleDESCryptoServiceProvider algoritme = new TripleDESCryptoServiceProvider();
+			algoritme.Key = nøgle;
+			algoritme.Mode = CipherMode.ECB;//Vi vil kun kode en gang
+			algoritme.Padding = PaddingMode.PKCS7;//padding for extra bytes i hver blok
+
+			byte[] data = Convert.FromBase64String(streng);
+
+			try
+			{
+				ICryptoTransform dekryption = algoritme.CreateDecryptor();
+				resultat = dekryption.TransformFinalBlock(data, 0, data.Length);
+			}
+			finally
+			{
+				algoritme.Clear();
+				hash.Clear();
+			}
+			return utf8.GetString(resultat);
+		}
+
+		//Lavet af Thorbjørn
+		public string Enkrypt(string streng)
+		{
+			byte[] resultat;
+			UTF8Encoding utf8 = new UTF8Encoding();
+
+			//Laver vores nøgle "detteErEnNøgle" om til en 128 bit nøgle ved at lave den om til et MD5 hash
+			MD5CryptoServiceProvider hash = new MD5CryptoServiceProvider();
+			byte[] nøgle = hash.ComputeHash(utf8.GetBytes("detteErEnNøgle"));
+			nøgle = utf8.GetBytes("4D92199549E0F2EF009B4160");
+
+			TripleDESCryptoServiceProvider algoritme = new TripleDESCryptoServiceProvider();
+			algoritme.Key = nøgle;
+			algoritme.Mode = CipherMode.ECB;//Vi vil kun kode en gang
+			algoritme.Padding = PaddingMode.PKCS7;//padding for extra bytes i hver blok
+
+			byte[] data = utf8.GetBytes(streng);
+
+			try
+			{
+				ICryptoTransform enkryption = algoritme.CreateEncryptor();
+				resultat = enkryption.TransformFinalBlock(data, 0, data.Length);
+			}
+			finally
+			{
+				algoritme.Clear();
+				hash.Clear();
+			}
+			return Convert.ToBase64String(resultat);
+		}
+
+		//Lavet af Thorbjørn
 		public bool RetAdminKodeord(string kodeord)
 		{
+
+
 			if (dbFacade.RetAdminKodeord(KrypterKodeord(kodeord)))
 			{
 				return true;
@@ -164,6 +246,7 @@ namespace Controller
 			return nuværendeBrugersRettigheder.GetEnumerator();
 		}
 
+		//Krypterer en streng med et MD5 hash og sender resultatet tilbage
 		//Lavet af Thorbjørn
 		public static string KrypterKodeord(string kodeord)
 		{
@@ -173,15 +256,16 @@ namespace Controller
 				System.Security.Cryptography.MD5CryptoServiceProvider kryptograf;
 				kryptograf = new System.Security.Cryptography.MD5CryptoServiceProvider();
 				byte[] hash = kryptograf.ComputeHash(tekstIBytes);
-				string ret = "";
+				string returstreng = "";
+				//Denne foreach løkke laver C#'s MD5 om til PHP's MD5
 				foreach (byte a in hash)
 				{
 					if (a < 16)
-						ret += "0" + a.ToString("x");
+						returstreng += "0" + a.ToString("x");
 					else
-						ret += a.ToString("x");
+						returstreng += a.ToString("x");
 				}
-				return ret;
+				return returstreng;
 			}
 			catch
 			{

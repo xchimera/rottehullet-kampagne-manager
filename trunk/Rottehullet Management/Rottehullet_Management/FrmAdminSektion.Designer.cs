@@ -70,6 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnOpretKampagne;
-        private System.Windows.Forms.Button btnAdminkode;
+		private System.Windows.Forms.Button btnAdminkode;
     }
 }
