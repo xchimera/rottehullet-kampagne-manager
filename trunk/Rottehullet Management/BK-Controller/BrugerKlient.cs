@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Text;
 using System.Security.Cryptography;
+using System.IO;
 using Model;
 using Controller;
 using Enum;
@@ -62,9 +63,10 @@ namespace BK_Controller
 		}
 
 		//Lavet af Thorbjørn og René
-		public long Login(string email, string kodeord)
+		public long Login(string email, string kodeord, bool hashedKodeord)
 		{
-			kodeord = KrypterKodeord(kodeord);
+			if (!hashedKodeord)
+				kodeord = KrypterKodeord(kodeord);
 			long brugerID = brugerdbfacade.Login(email, kodeord);
 			brugerdbfacade.HentTilmeldingerTilBruger(bruger);
 			return brugerID;
@@ -241,6 +243,48 @@ namespace BK_Controller
 		internal Kampagne HentKampagne(long kampagneID)
 		{
 			return kampagnecollection.FindKampagne(kampagneID);
+		}
+
+		public bool hentLoginData(out string brugernavn, out string password)
+		{
+			try
+			{
+				StreamReader hentdata = File.OpenText("DATA1");
+				brugernavn = hentdata.ReadLine();
+				password = hentdata.ReadLine();
+				hentdata.Dispose();
+				hentdata.Close();
+				return true;
+			}
+			catch (FileNotFoundException)
+			{
+				brugernavn = "";
+				password = "";
+				return false;
+			}
+		}
+
+		//Lavet af René
+		public void GemLoginData(string brugernavn, string password)
+		{
+			//Laver en ny tom fil, så der ikke opstår problemer med gamle data
+			File.Create("DATA1").Dispose();
+
+			StreamWriter skrivTilFil = File.CreateText("DATA1");
+			skrivTilFil.WriteLine(brugernavn);
+			skrivTilFil.WriteLine(KrypterKodeord(password));
+			skrivTilFil.Dispose();
+			skrivTilFil.Close();
+		}
+
+		//Lavet af René
+		public void GemLoginData(string brugernavn)
+		{
+			File.Create("DATA1").Dispose();
+			StreamWriter skrivTilFil = File.CreateText("DATA1");
+			skrivTilFil.WriteLine(brugernavn);
+			skrivTilFil.Dispose();
+			skrivTilFil.Close();
 		}
 
 		//Lavet af Søren
