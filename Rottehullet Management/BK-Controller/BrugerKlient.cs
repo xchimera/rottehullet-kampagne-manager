@@ -321,6 +321,37 @@ namespace BK_Controller
 			}
 		}
 
+		//Lavet af Thorbjørn
+		public string Dekrypt(string streng)
+		{
+			byte[] resultat;
+			UTF8Encoding utf8 = new UTF8Encoding();
+
+			//Laver vores nøgle "detteErEnNøgle" om til en 128 bit nøgle ved at lave den om til et MD5 hash
+			MD5CryptoServiceProvider hash = new MD5CryptoServiceProvider();
+			byte[] nøgle = hash.ComputeHash(utf8.GetBytes("detteErEnNøgle"));
+			nøgle = utf8.GetBytes("4D92199549E0F2EF009B4160");
+
+			TripleDESCryptoServiceProvider algoritme = new TripleDESCryptoServiceProvider();
+			algoritme.Key = nøgle;
+			algoritme.Mode = CipherMode.ECB;//Vi vil kun kode en gang
+			algoritme.Padding = PaddingMode.PKCS7;//padding for extra bytes i hver blok
+
+			byte[] data = Convert.FromBase64String(streng);
+
+			try
+			{
+				ICryptoTransform dekryption = algoritme.CreateDecryptor();
+				resultat = dekryption.TransformFinalBlock(data, 0, data.Length);
+			}
+			finally
+			{
+				algoritme.Clear();
+				hash.Clear();
+			}
+			return utf8.GetString(resultat);
+		}
+
 		//Lavet af René
 		public bool TjekOmBrugerErTilmeldtNuværendeScenarie()
 		{

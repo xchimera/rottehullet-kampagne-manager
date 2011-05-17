@@ -16,7 +16,8 @@ namespace BK_Controller
     {
         #region constructor og globale variabler
 
-        private string sqlconnection = @"Data Source= linux1.tietgen.dk;Initial Catalog=gruppe101.5;User Id=gruppe101.5;Password=9esUdrAc";
+		private string sqlconnection;
+		//private string sqlconnection = @"Data Source= linux1.tietgen.dk;Initial Catalog=gruppe101.5;User Id=gruppe101.5;Password=9esUdrAc";
 
         SqlCommand cmd;
         SqlConnection conn;
@@ -25,7 +26,12 @@ namespace BK_Controller
 
         public BrugerDBFacade(BrugerKlient brugerklient)
         {
-            cmd = new SqlCommand();
+			System.IO.StreamReader fil = new System.IO.StreamReader("data.dat");
+			sqlconnection = fil.ReadLine();
+			fil.Close();
+			sqlconnection = brugerklient.Dekrypt(sqlconnection);
+
+			cmd = new SqlCommand();
             conn = new SqlConnection(sqlconnection);
             cmd.Connection = conn;
             cmd.CommandType = CommandType.StoredProcedure;
