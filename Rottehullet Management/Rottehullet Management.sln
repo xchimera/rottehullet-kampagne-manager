@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{98FC9C98-5A42-4070-889E-BAA515A72CF1}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -133,6 +135,16 @@ Global
 		{0233EC57-1D74-4CA5-82FD-37D2FE921A72}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0233EC57-1D74-4CA5-82FD-37D2FE921A72}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0233EC57-1D74-4CA5-82FD-37D2FE921A72}.Release|x86.ActiveCfg = Release|Any CPU
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Debug|x86.ActiveCfg = Debug|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Debug|x86.Build.0 = Debug|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Release|Any CPU.ActiveCfg = Release|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Release|Mixed Platforms.Build.0 = Release|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Release|x86.ActiveCfg = Release|x86
+		{98FC9C98-5A42-4070-889E-BAA515A72CF1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
