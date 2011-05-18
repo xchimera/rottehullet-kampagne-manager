@@ -83,7 +83,9 @@ namespace Controller
 			SqlDataReader reader;
 			string kampagneid;
 			string kampagnenavn;
-			string brugertype;
+            long topbrugerID;
+			BrugerRettighed brugertype;
+            KampagneStatus kampagnestatus;
 
 			par = new SqlParameter("@brugerID", SqlDbType.NVarChar);
 			par.Value = brugerID;
@@ -98,9 +100,18 @@ namespace Controller
 				{
 					kampagneid = Convert.ToString(reader["kamID"]);
 					kampagnenavn = (string)reader["navn"];
-					brugertype = "0";//Topbruger
+                    topbrugerID = (long)reader["topbrugerID"];
+                    kampagnestatus = (KampagneStatus)reader["status"];
+                    if (topbrugerID == brugerID)
+                    {
+                        brugertype = BrugerRettighed.Topbruger;
+                    }
+                    else
+                    {
+                        brugertype = BrugerRettighed.Superbruger;
+                    }
 
-					kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
+					
 				}
 				reader.Dispose();
 				conn.Close();
@@ -113,31 +124,8 @@ namespace Controller
 				}
 			}
 
-			cmd.CommandText = "CheckOmSuperbruger";
 
-			try
-			{
-				conn.Open();
-				reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					kampagneid = Convert.ToString(reader["KamID"]);
-					kampagnenavn = (string)reader["navn"];
-					brugertype = "1";//Superbruger
-
-					kampagnemanager.IndsætRettighed(kampagneid, kampagnenavn, brugertype);
-				}
-				reader.Dispose();
-				conn.Close();
-			}
-			catch (SqlException)
-			{
-				if (conn.State == ConnectionState.Open)
-				{
-					conn.Close();
-				}
-			}
+		
 		}
 
 		/// <summary>
