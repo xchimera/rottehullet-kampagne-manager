@@ -33,7 +33,7 @@ namespace BK_GUI
 				{
 					txtKodeord.Text = password;
 					hashedKodeord = true;
-					chkHuskKodeord.Checked = true;
+					chkHuskAdgangskode.Checked = true;
 				}
 				else
 					hashedKodeord = false;
@@ -75,7 +75,7 @@ namespace BK_GUI
             {
                 FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
                 this.Hide();
-				if (chkHuskBrugernavn.Checked && chkHuskKodeord.Checked)
+				if (chkHuskBrugernavn.Checked && chkHuskAdgangskode.Checked)
 					brugerklient.GemLoginData(txtBrugernavn.Text, txtKodeord.Text);
 				else if (chkHuskBrugernavn.Checked)
 					brugerklient.GemLoginData(txtBrugernavn.Text);
@@ -97,14 +97,14 @@ namespace BK_GUI
 
 		private void chkHuskBrugernavn_CheckedChanged(object sender, EventArgs e)
 		{
-			chkHuskKodeord.Enabled = chkHuskBrugernavn.Checked;
+			chkHuskAdgangskode.Enabled = chkHuskBrugernavn.Checked;
 			if (!chkHuskBrugernavn.Checked)
-				chkHuskKodeord.Checked = false;
+				chkHuskAdgangskode.Checked = false;
 		}
 
-		private void chkHuskKodeord_CheckedChanged(object sender, EventArgs e)
+		private void chkHuskAdgangskode_CheckedChanged(object sender, EventArgs e)
 		{
-			if (chkHuskKodeord.Checked)
+			if (chkHuskAdgangskode.Checked && !hashedKodeord)
 				MessageBox.Show("Brug kun denne funktion på din private computer", "Vigtigt", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 

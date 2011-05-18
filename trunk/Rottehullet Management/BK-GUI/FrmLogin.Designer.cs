@@ -36,7 +36,7 @@
 			this.lblOpretBruger = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.chkHuskBrugernavn = new System.Windows.Forms.CheckBox();
-			this.chkHuskKodeord = new System.Windows.Forms.CheckBox();
+			this.chkHuskAdgangskode = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -70,9 +70,9 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(56, 237);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(47, 13);
+			this.label2.Size = new System.Drawing.Size(73, 13);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "Kodeord";
+			this.label2.Text = "Adgangskode";
 			// 
 			// btnLogin
 			// 
@@ -115,17 +115,17 @@
 			this.chkHuskBrugernavn.UseVisualStyleBackColor = true;
 			this.chkHuskBrugernavn.CheckedChanged += new System.EventHandler(this.chkHuskBrugernavn_CheckedChanged);
 			// 
-			// chkHuskKodeord
+			// chkHuskAdgangskode
 			// 
-			this.chkHuskKodeord.AutoSize = true;
-			this.chkHuskKodeord.Enabled = false;
-			this.chkHuskKodeord.Location = new System.Drawing.Point(139, 308);
-			this.chkHuskKodeord.Name = "chkHuskKodeord";
-			this.chkHuskKodeord.Size = new System.Drawing.Size(94, 17);
-			this.chkHuskKodeord.TabIndex = 8;
-			this.chkHuskKodeord.Text = "Husk Kodeord";
-			this.chkHuskKodeord.UseVisualStyleBackColor = true;
-			this.chkHuskKodeord.CheckedChanged += new System.EventHandler(this.chkHuskKodeord_CheckedChanged);
+			this.chkHuskAdgangskode.AutoSize = true;
+			this.chkHuskAdgangskode.Enabled = false;
+			this.chkHuskAdgangskode.Location = new System.Drawing.Point(139, 308);
+			this.chkHuskAdgangskode.Name = "chkHuskAdgangskode";
+			this.chkHuskAdgangskode.Size = new System.Drawing.Size(120, 17);
+			this.chkHuskAdgangskode.TabIndex = 8;
+			this.chkHuskAdgangskode.Text = "Husk Adgangskode";
+			this.chkHuskAdgangskode.UseVisualStyleBackColor = true;
+			this.chkHuskAdgangskode.CheckedChanged += new System.EventHandler(this.chkHuskAdgangskode_CheckedChanged);
 			// 
 			// FrmLogin
 			// 
@@ -134,7 +134,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(369, 350);
-			this.Controls.Add(this.chkHuskKodeord);
+			this.Controls.Add(this.chkHuskAdgangskode);
 			this.Controls.Add(this.chkHuskBrugernavn);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.lblOpretBruger);
@@ -164,6 +164,6 @@
         private System.Windows.Forms.Label lblOpretBruger;
         private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.CheckBox chkHuskBrugernavn;
-		private System.Windows.Forms.CheckBox chkHuskKodeord;
+		private System.Windows.Forms.CheckBox chkHuskAdgangskode;
     }
 }
