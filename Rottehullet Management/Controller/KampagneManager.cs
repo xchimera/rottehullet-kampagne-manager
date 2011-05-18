@@ -265,14 +265,10 @@ namespace Controller
 			skrivTilFil.Dispose();
 			skrivTilFil.Close();
 		}
-		public IEnumerable GetBrugersKampagneIterator()
-		{
-			return nuværendeBrugersRettigheder;
-		}
 
 		public IEnumerator GetBrugersRettighder()
 		{
-			return nuværendeBrugersRettigheder.GetEnumerator();
+			return brugerrettigheder.GetEnumerator();
 		}
 
 		public bool hentLoginData(out string brugernavn, out string password)
@@ -339,18 +335,6 @@ namespace Controller
             kampagnecollection.OpretKampagne(navn, kampagneID, kampagnestatus);
 		}
 
-		//Lavet af Thorbjørn
-		public void RetBrugerRettigheder(long kampagneID, string navn)
-		{
-			foreach (string[] kampagne in nuværendeBrugersRettigheder)
-			{
-				if (kampagne[0] == kampagneID.ToString())
-				{
-					kampagne[1] = navn;
-				}
-			}
-		}
-
 		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
 		//når den nye kampagne bliver åbnet
 		//Lavet af Thorbjørn
@@ -360,25 +344,7 @@ namespace Controller
 			nuværendeScenarie = null;
 		}
 
-		//Lavet af Thorbjørn
-		public BrugerRettighed SætNuværendeRettighed()
-		{
-			foreach (string[] item in nuværendeBrugersRettigheder)
-			{
-				if (Kampagne.KampagneID == Convert.ToInt64(item[0]))
-				{
-					if (item[2] == "0")
-					{
-						nuværendeRettighed = BrugerRettighed.Topbruger;
-					}
-					else
-					{
-						nuværendeRettighed = BrugerRettighed.Superbruger;
-					}
-				}
-			}
-			return nuværendeRettighed;
-		}
+
 			
 		#endregion
 
@@ -391,10 +357,10 @@ namespace Controller
 		}
 
 		//Lavet af Thorbjørn
-		public int GetAntalKampagner()
-		{
-			return nuværendeBrugersRettigheder.Count();
-		}
+        //public int GetAntalKampagner()
+        //{
+        //    return nuværendeBrugersRettigheder.Count();
+        //}
 
 		//Lavet af René, Søren og Thorbjørn
 		public bool HentKampagneFraDatabase(long kamID)

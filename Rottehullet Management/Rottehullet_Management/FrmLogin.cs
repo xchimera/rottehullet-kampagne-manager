@@ -73,11 +73,7 @@ namespace Rottehullet_Management
             }
             else if(brugerID > 0)
             {
-				//Følgende laver en liste over kampagner i hvilken brugeren er superbruger eller topbruger
-				foreach (string[] kampagne in kampagnemanager.GetBrugersKampagneIterator())
-				{
-					kampagner.Add(kampagne);
-				}
+
 				//Hvis brugeren er med i en enkel kampagne, så hopper vi direkte til den kampagnes side
 				if (kampagner.Count == 1)
 				{
