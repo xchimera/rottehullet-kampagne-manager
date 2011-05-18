@@ -50,5 +50,13 @@ namespace Rottehullet_Management
 				}
 			}
 		}
+
+		private void btnSkiftTopbruger_Click(object sender, EventArgs e)
+		{
+			FrmSkiftTopbruger form = new FrmSkiftTopbruger(kampagnemanager);
+			this.Hide();
+			form.ShowDialog();
+			this.Show();
+		}
     }
 }
