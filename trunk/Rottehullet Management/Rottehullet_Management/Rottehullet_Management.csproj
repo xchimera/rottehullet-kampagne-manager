@@ -124,6 +124,12 @@
     <Compile Include="FrmScenarieOverblik.Designer.cs">
       <DependentUpon>FrmScenarieOverblik.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSkiftTopbruger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSkiftTopbruger.Designer.cs">
+      <DependentUpon>FrmSkiftTopbruger.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTilføjAttribut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmScenarieOverblik.resx">
       <DependentUpon>FrmScenarieOverblik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSkiftTopbruger.resx">
+      <DependentUpon>FrmSkiftTopbruger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTilføjAttribut.resx">
       <DependentUpon>FrmTilføjAttribut.cs</DependentUpon>

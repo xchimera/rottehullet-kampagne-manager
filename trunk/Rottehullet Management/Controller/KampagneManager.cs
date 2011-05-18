@@ -13,24 +13,25 @@ namespace Controller
 {
 	public class KampagneManager
 	{
-        Dictionary<long, BrugerRettighed> brugerrettigheder;
+        Dictionary<long, BrugerRettighed> brugerRettigheder;
         KampagneCollection kampagnecollection;
 		BrugerCollection brugercollection;
 		Kampagne kampagne;
 		DBFacade dbFacade;
 		KampagneAttribut nuværendeAttribut;
 		Scenarie nuværendeScenarie;
+		KampagneCollection kampagneCollection;
 	    private long nuværendebrugerID;
 		BrugerRettighed nuværendeRettighed;
 
 		public KampagneManager()
 		{
-            brugerrettigheder = new Dictionary<long, BrugerRettighed>();
 			dbFacade = new DBFacade(this);
 			brugercollection = new BrugerCollection();
-            kampagnecollection = new KampagneCollection();
+			kampagneCollection = new KampagneCollection();
 			nuværendeAttribut = null;
 			nuværendeScenarie = null;
+			brugerRettigheder = new Dictionary<long, BrugerRettighed>();
 		}
 
 		#region Admin

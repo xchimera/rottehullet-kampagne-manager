@@ -66,9 +66,7 @@ namespace Rottehullet_Management
                 kampagnemanager.HentBrugereTilAdmin();
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
 				this.Hide();
-				if (chkHuskBrugernavn.Checked && chkHuskAdgangskode.Checked)
-					kampagnemanager.GemLoginData(txtBrugernavn.Text, txtKodeord.Text);
-				else if (chkHuskBrugernavn.Checked)
+				if (chkHuskBrugernavn.Checked)
 					kampagnemanager.GemLoginData(txtBrugernavn.Text);
                 adminsektion.ShowDialog();
                 this.Close();
@@ -87,6 +85,10 @@ namespace Rottehullet_Management
 					{
 						FrmHovedside hovedside = new FrmHovedside(kampagner[0][1], kampagnemanager);
 						this.Hide();
+						if (chkHuskBrugernavn.Checked && chkHuskAdgangskode.Checked)
+							kampagnemanager.GemLoginData(txtBrugernavn.Text, txtKodeord.Text);
+						else if (chkHuskBrugernavn.Checked)
+							kampagnemanager.GemLoginData(txtBrugernavn.Text);
 						hovedside.ShowDialog();
 						this.Close();
 					}
