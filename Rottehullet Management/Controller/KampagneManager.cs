@@ -13,7 +13,8 @@ namespace Controller
 {
 	public class KampagneManager
 	{
-		List<string[]> nuværendeBrugersRettigheder = new List<string[]>();
+        Dictionary<long, BrugerRettighed> brugerrettigheder;
+        KampagneCollection kampagnecollection;
 		BrugerCollection brugercollection;
 		Kampagne kampagne;
 		DBFacade dbFacade;
@@ -24,8 +25,10 @@ namespace Controller
 
 		public KampagneManager()
 		{
+            brugerrettigheder = new Dictionary<long, BrugerRettighed>();
 			dbFacade = new DBFacade(this);
 			brugercollection = new BrugerCollection();
+            kampagnecollection = new KampagneCollection();
 			nuværendeAttribut = null;
 			nuværendeScenarie = null;
 		}
@@ -329,10 +332,10 @@ namespace Controller
 		}
 
 		//Lavet af Thorbjørn
-		public void IndsætRettighed(string kampagneID, string navn, string type)
+		public void IndsætRettighed(long kampagneID, string navn,KampagneStatus kampagnestatus, BrugerRettighed brugertype)
 		{
-			string[] kampagnearr = new string[3] { kampagneID, navn, type };
-			nuværendeBrugersRettigheder.Add(kampagnearr);
+            brugerrettigheder.Add(kampagneID, brugertype);
+            kampagnecollection.OpretKampagne(navn, kampagneID, kampagnestatus);
 		}
 
 		//Lavet af Thorbjørn
