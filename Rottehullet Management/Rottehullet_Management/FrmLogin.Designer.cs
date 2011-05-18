@@ -33,6 +33,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnLogin = new System.Windows.Forms.Button();
+			this.chkHuskBrugernavn = new System.Windows.Forms.CheckBox();
+			this.chkHuskAdgangskode = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// txtBrugernavn
@@ -78,12 +80,37 @@
 			this.btnLogin.UseVisualStyleBackColor = true;
 			this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
 			// 
+			// chkHuskBrugernavn
+			// 
+			this.chkHuskBrugernavn.AutoSize = true;
+			this.chkHuskBrugernavn.Location = new System.Drawing.Point(85, 103);
+			this.chkHuskBrugernavn.Name = "chkHuskBrugernavn";
+			this.chkHuskBrugernavn.Size = new System.Drawing.Size(109, 17);
+			this.chkHuskBrugernavn.TabIndex = 5;
+			this.chkHuskBrugernavn.Text = "Husk Brugernavn";
+			this.chkHuskBrugernavn.UseVisualStyleBackColor = true;
+			this.chkHuskBrugernavn.CheckedChanged += new System.EventHandler(this.chkHuskBrugernavn_CheckedChanged);
+			// 
+			// chkHuskAdgangskode
+			// 
+			this.chkHuskAdgangskode.AutoSize = true;
+			this.chkHuskAdgangskode.Enabled = false;
+			this.chkHuskAdgangskode.Location = new System.Drawing.Point(85, 127);
+			this.chkHuskAdgangskode.Name = "chkHuskAdgangskode";
+			this.chkHuskAdgangskode.Size = new System.Drawing.Size(120, 17);
+			this.chkHuskAdgangskode.TabIndex = 6;
+			this.chkHuskAdgangskode.Text = "Husk Adgangskode";
+			this.chkHuskAdgangskode.UseVisualStyleBackColor = true;
+			this.chkHuskAdgangskode.CheckedChanged += new System.EventHandler(this.chkHuskAdgangskode_CheckedChanged);
+			// 
 			// FrmLogin
 			// 
 			this.AcceptButton = this.btnLogin;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(276, 109);
+			this.ClientSize = new System.Drawing.Size(276, 152);
+			this.Controls.Add(this.chkHuskAdgangskode);
+			this.Controls.Add(this.chkHuskBrugernavn);
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -107,6 +134,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
+		private System.Windows.Forms.CheckBox chkHuskBrugernavn;
+		private System.Windows.Forms.CheckBox chkHuskAdgangskode;
     }
 }
 

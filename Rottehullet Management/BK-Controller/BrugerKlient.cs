@@ -63,9 +63,9 @@ namespace BK_Controller
 		}
 
 		//Lavet af Thorbjørn og René
-		public long Login(string email, string kodeord, bool hashedKodeord)
+		public long Login(string email, string kodeord, bool hashedAdgangskode)
 		{
-			if (!hashedKodeord)
+			if (!hashedAdgangskode)
 				kodeord = KrypterKodeord(kodeord);
 			long brugerID = brugerdbfacade.Login(email, kodeord);
 			brugerdbfacade.HentTilmeldingerTilBruger(bruger);
@@ -78,7 +78,7 @@ namespace BK_Controller
 			bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
 		}
 
-		////Lavet af René
+		//Lavet af René
 		public bool TilmeldKarakterTilScenarie(long karakterID, long scenarieID, int antalOvernatninger, bool spiser)
 		{
 			long id = brugerdbfacade.TilmeldKarakterTilScenarie(karakterID, scenarieID, antalOvernatninger, spiser);
@@ -280,7 +280,9 @@ namespace BK_Controller
 		//Lavet af René
 		public void GemLoginData(string brugernavn)
 		{
+			//Laver en ny tom fil, så der ikke opstår problemer med gamle data
 			File.Create("DATA1").Dispose();
+
 			StreamWriter skrivTilFil = File.CreateText("DATA1");
 			skrivTilFil.WriteLine(brugernavn);
 			skrivTilFil.Dispose();

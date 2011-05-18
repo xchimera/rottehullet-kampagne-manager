@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.IO;
 using Model;
 using Interfaces;
 using Enum;
@@ -236,6 +237,30 @@ namespace Controller
 		#endregion
 
 		#region Login/Reset
+		//Lavet af René
+		public void GemLoginData(string brugernavn, string password)
+		{
+			//Laver en ny tom fil, så der ikke opstår problemer med gamle data
+			File.Create("DATA2").Dispose();
+
+			StreamWriter skrivTilFil = File.CreateText("DATA1");
+			skrivTilFil.WriteLine(brugernavn);
+			skrivTilFil.WriteLine(KrypterKodeord(password));
+			skrivTilFil.Dispose();
+			skrivTilFil.Close();
+		}
+
+		//Lavet af René
+		public void GemLoginData(string brugernavn)
+		{
+			//Laver en ny tom fil, så der ikke opstår problemer med gamle data
+			File.Create("DATA2").Dispose();
+
+			StreamWriter skrivTilFil = File.CreateText("DATA1");
+			skrivTilFil.WriteLine(brugernavn);
+			skrivTilFil.Dispose();
+			skrivTilFil.Close();
+		}
 		public IEnumerable GetBrugersKampagneIterator()
 		{
 			return nuværendeBrugersRettigheder;
@@ -244,6 +269,25 @@ namespace Controller
 		public IEnumerator GetBrugersRettighder()
 		{
 			return nuværendeBrugersRettigheder.GetEnumerator();
+		}
+
+		public bool hentLoginData(out string brugernavn, out string password)
+		{
+			try
+			{
+				StreamReader hentdata = File.OpenText("DATA1");
+				brugernavn = hentdata.ReadLine();
+				password = hentdata.ReadLine();
+				hentdata.Dispose();
+				hentdata.Close();
+				return true;
+			}
+			catch (FileNotFoundException)
+			{
+				brugernavn = "";
+				password = "";
+				return false;
+			}
 		}
 
 		//Krypterer en streng med et MD5 hash og sender resultatet tilbage
@@ -275,9 +319,10 @@ namespace Controller
 		}
 
 		//Lavet af Søren og Thorbjørn
-		public long Login(string email, string kodeord)
+		public long Login(string email, string kodeord, bool hashedAdgangskode)
 		{
-			kodeord = KrypterKodeord(kodeord);
+			if (!hashedAdgangskode)
+				kodeord = KrypterKodeord(kodeord);
 			long brugerID = dbFacade.Login(email, kodeord);
 			nuværendebrugerID = brugerID;
 			return brugerID;

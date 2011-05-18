@@ -12,12 +12,33 @@ namespace Rottehullet_Management
 {
     public partial class FrmLogin : Form
     {
-        KampagneManager kampagnemanager;
+		KampagneManager kampagnemanager;
+		bool hashedKodeord;
 
         public FrmLogin()
         {
             InitializeComponent();
-            kampagnemanager = new KampagneManager();
+			kampagnemanager = new KampagneManager();
+			string brugernavn, password;
+			bool filLoaded = kampagnemanager.hentLoginData(out brugernavn, out password);
+			if (filLoaded)
+			{
+				if (brugernavn != null)
+				{
+					txtBrugernavn.Text = brugernavn;
+					chkHuskBrugernavn.Checked = true;
+				}
+				if (password != null && password.Length == 32)
+				{
+					txtKodeord.Text = password;
+					hashedKodeord = true;
+					chkHuskAdgangskode.Checked = true;
+				}
+				else
+					hashedKodeord = false;
+			}
+			else
+				hashedKodeord = false;
         }
 
 		//Lavet af Søren og Thorbjørn
@@ -37,14 +58,18 @@ namespace Rottehullet_Management
 				return;
 			}
 			//Checker databasen for brugerens brugerID
-            long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text); //Sender brugerID tilbage og 
+            long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text, hashedKodeord); //Sender brugerID tilbage og 
 			List<string[]> kampagner = new List<string[]>();
 			//Admin-brugeren har brugerID 1
 			if (brugerID == 1)
             {
                 kampagnemanager.HentBrugereTilAdmin();
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
-                this.Hide();
+				this.Hide();
+				if (chkHuskBrugernavn.Checked && chkHuskAdgangskode.Checked)
+					kampagnemanager.GemLoginData(txtBrugernavn.Text, txtKodeord.Text);
+				else if (chkHuskBrugernavn.Checked)
+					kampagnemanager.GemLoginData(txtBrugernavn.Text);
                 adminsektion.ShowDialog();
                 this.Close();
             }
@@ -94,5 +119,18 @@ namespace Rottehullet_Management
                 txtKodeord.Text = "";
             }
         }
+
+		private void chkHuskBrugernavn_CheckedChanged(object sender, EventArgs e)
+		{
+			chkHuskAdgangskode.Enabled = chkHuskBrugernavn.Checked;
+			if (!chkHuskBrugernavn.Checked)
+				chkHuskAdgangskode.Checked = false;
+		}
+
+		private void chkHuskAdgangskode_CheckedChanged(object sender, EventArgs e)
+		{
+			if (chkHuskAdgangskode.Checked && !hashedKodeord)
+				MessageBox.Show("Brug kun denne funktion på din private computer", "Vigtigt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
     }
 }
