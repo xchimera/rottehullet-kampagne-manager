@@ -201,8 +201,8 @@ namespace BK_GUI
 			int x = 5;
 			Panel opretattributpanel = new Panel();
 			opretattributpanel.AutoScroll = true;
-			opretattributpanel.Size = new Size(290, 400);
-			opretattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+            opretattributpanel.Size = new Size(290, 580);
+			opretattributpanel.Location = new Point(x + lstkaraktere.Width + 15 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
 			opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
 			this.Controls.Add(opretattributpanel);
 			kontroller.Add(opretattributpanel);
@@ -314,8 +314,8 @@ namespace BK_GUI
             IEnumerator værdi = ikarakter.HentVærdier();
             Panel setattributpanel = new Panel();
             setattributpanel.AutoScroll = true;
-            setattributpanel.Size = new Size(290, 400);
-            setattributpanel.Location = new Point(x + lstkaraktere.Width + 5 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+            setattributpanel.Size = new Size(290, 580);
+            setattributpanel.Location = new Point(x + lstkaraktere.Width + 15 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
             setattributpanel.BorderStyle = BorderStyle.Fixed3D;
             this.Controls.Add(setattributpanel);
             kontroller.Add(setattributpanel);
@@ -424,6 +424,20 @@ namespace BK_GUI
 
 		#endregion
 
-		
+        private void FrmHovedSide_Load(object sender, EventArgs e)
+        {
+            IScenarie iscenarie = ikampagne.HentNæsteScenarie();
+            txtNavn.Text = iscenarie.Titel;
+            txtTidspunkt.Text = iscenarie.Tid.ToShortTimeString() + " " + iscenarie.Tid.ToShortDateString();
+            txtSted.Text = iscenarie.Sted;
+            txtPris.Text = iscenarie.Pris.ToString();
+            txtBeskrivelse.Text = iscenarie.Beskrivelse.ToString();
+            txtOvernatninger.Text = iscenarie.Overnatning.ToString();
+            txtAndetInfo.Text = iscenarie.AndetInfo;
+
+        }
+
+
+
     }
 }
