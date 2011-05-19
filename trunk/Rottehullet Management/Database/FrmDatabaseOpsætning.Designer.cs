@@ -1,6 +1,6 @@
 ﻿namespace Database
 {
-	partial class DatabaseOpsætning
+	partial class FrmDatabaseOpsætning
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -39,13 +39,15 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnFyldDatabase = new System.Windows.Forms.Button();
+			this.btnEksport = new System.Windows.Forms.Button();
+			this.btnImport = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnOpdaterDatabase
 			// 
-			this.btnOpdaterDatabase.Location = new System.Drawing.Point(20, 118);
+			this.btnOpdaterDatabase.Location = new System.Drawing.Point(12, 118);
 			this.btnOpdaterDatabase.Name = "btnOpdaterDatabase";
-			this.btnOpdaterDatabase.Size = new System.Drawing.Size(75, 36);
+			this.btnOpdaterDatabase.Size = new System.Drawing.Size(83, 36);
 			this.btnOpdaterDatabase.TabIndex = 14;
 			this.btnOpdaterDatabase.Text = "Skab Databasefil";
 			this.btnOpdaterDatabase.UseVisualStyleBackColor = true;
@@ -53,12 +55,13 @@
 			// 
 			// btnAnnuller
 			// 
-			this.btnAnnuller.Location = new System.Drawing.Point(182, 118);
+			this.btnAnnuller.Location = new System.Drawing.Point(190, 160);
 			this.btnAnnuller.Name = "btnAnnuller";
-			this.btnAnnuller.Size = new System.Drawing.Size(75, 36);
+			this.btnAnnuller.Size = new System.Drawing.Size(82, 36);
 			this.btnAnnuller.TabIndex = 15;
 			this.btnAnnuller.Text = "Afslut";
 			this.btnAnnuller.UseVisualStyleBackColor = true;
+			this.btnAnnuller.Click += new System.EventHandler(this.btnAnnuller_Click);
 			// 
 			// txtPassword
 			// 
@@ -126,18 +129,39 @@
 			// 
 			// btnFyldDatabase
 			// 
-			this.btnFyldDatabase.Location = new System.Drawing.Point(101, 118);
+			this.btnFyldDatabase.Location = new System.Drawing.Point(189, 119);
 			this.btnFyldDatabase.Name = "btnFyldDatabase";
-			this.btnFyldDatabase.Size = new System.Drawing.Size(75, 35);
+			this.btnFyldDatabase.Size = new System.Drawing.Size(83, 35);
 			this.btnFyldDatabase.TabIndex = 16;
 			this.btnFyldDatabase.Text = "Fyld Database";
 			this.btnFyldDatabase.UseVisualStyleBackColor = true;
+			this.btnFyldDatabase.Click += new System.EventHandler(this.btnFyldDatabase_Click);
 			// 
-			// Form1
+			// btnEksport
+			// 
+			this.btnEksport.Location = new System.Drawing.Point(101, 160);
+			this.btnEksport.Name = "btnEksport";
+			this.btnEksport.Size = new System.Drawing.Size(83, 36);
+			this.btnEksport.TabIndex = 17;
+			this.btnEksport.Text = "Eksporter Database";
+			this.btnEksport.UseVisualStyleBackColor = true;
+			// 
+			// btnImport
+			// 
+			this.btnImport.Location = new System.Drawing.Point(102, 119);
+			this.btnImport.Name = "btnImport";
+			this.btnImport.Size = new System.Drawing.Size(82, 36);
+			this.btnImport.TabIndex = 18;
+			this.btnImport.Text = "Importer Database";
+			this.btnImport.UseVisualStyleBackColor = true;
+			// 
+			// DatabaseOpsætning
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 164);
+			this.ClientSize = new System.Drawing.Size(284, 237);
+			this.Controls.Add(this.btnImport);
+			this.Controls.Add(this.btnEksport);
 			this.Controls.Add(this.btnFyldDatabase);
 			this.Controls.Add(this.btnOpdaterDatabase);
 			this.Controls.Add(this.btnAnnuller);
@@ -149,7 +173,7 @@
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Name = "Form1";
+			this.Name = "DatabaseOpsætning";
 			this.Text = "Form1";
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -169,6 +193,8 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnFyldDatabase;
+		private System.Windows.Forms.Button btnEksport;
+		private System.Windows.Forms.Button btnImport;
 	}
 }
 

@@ -15,7 +15,7 @@ namespace Database
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new DatabaseOpsætning());
+			Application.Run(new FrmDatabaseOpsætning());
 		}
 	}
 }

@@ -47,16 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseController.cs" />
-    <Compile Include="DatabaseOpsætning.cs">
+    <Compile Include="FrmDatabaseOpsætning.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DatabaseOpsætning.Designer.cs">
-      <DependentUpon>DatabaseOpsætning.cs</DependentUpon>
+    <Compile Include="FrmDatabaseOpsætning.Designer.cs">
+      <DependentUpon>FrmDatabaseOpsætning.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBFacade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DatabaseOpsætning.resx">
-      <DependentUpon>DatabaseOpsætning.cs</DependentUpon>
+    <EmbeddedResource Include="FrmDatabaseOpsætning.resx">
+      <DependentUpon>FrmDatabaseOpsætning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
