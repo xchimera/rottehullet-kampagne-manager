@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Controller;
+using Interfaces;
 
 namespace Rottehullet_Management
 {
@@ -59,7 +60,6 @@ namespace Rottehullet_Management
 			}
 			//Checker databasen for brugerens brugerID
             long brugerID = kampagnemanager.Login(txtBrugernavn.Text, txtKodeord.Text, hashedKodeord); //Sender brugerID tilbage og 
-			List<string[]> kampagner = new List<string[]>();
 			//Admin-brugeren har brugerID 1
 			if (brugerID == 1)
             {
@@ -73,13 +73,12 @@ namespace Rottehullet_Management
             }
             else if(brugerID > 0)
             {
-
 				//Hvis brugeren er med i en enkel kampagne, så hopper vi direkte til den kampagnes side
-				if (kampagner.Count == 1)
+				if (kampagnemanager.GetAntalKampagner() == 1)
 				{
-					if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(kampagner[0][0])))
+					if (kampagnemanager.HentKampagneInfo())
 					{
-						FrmHovedside hovedside = new FrmHovedside(kampagner[0][1], kampagnemanager);
+						FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
 						this.Hide();
 						if (chkHuskBrugernavn.Checked && chkHuskAdgangskode.Checked)
 							kampagnemanager.GemLoginData(txtBrugernavn.Text, txtKodeord.Text);
@@ -94,7 +93,7 @@ namespace Rottehullet_Management
 					}
 				}
 				//Hvis brugeren er i mere end en kampagne bliver han sent til KampagneValg siden, hvor han kan vælge en kampagne
-				else if (kampagner.Count > 1)
+				else if (kampagnemanager.GetAntalKampagner() > 1)
 				{
 					FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
 					this.Hide();

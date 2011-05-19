@@ -15,34 +15,32 @@ namespace Rottehullet_Management
 	public partial class FrmLoginKampagneValg : Form
 	{
 		KampagneManager kampagnemanager;
-        List<string[]> kampagneliste;
 
 		//Lavet af Søren
         public FrmLoginKampagneValg(KampagneManager kampagnemanager)
 		{
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
-            kampagneliste = new List<string[]>();
             OpdaterListView();			
 		}
 
 		//Lavet af Søren
         private void OpdaterListView()
         {
-            string[] kampagne;
-            IEnumerator kampagneiterator = kampagnemanager.GetBrugersRettighder();
+            IKampagne kampagne;
+            IEnumerator kampagneiterator = kampagnemanager.GetKampagneIterator();
             kampagneiterator.Reset();
             lstKampagner.Items.Clear();
             
 
             while (kampagneiterator.MoveNext())
             {
-                kampagne = (string[])kampagneiterator.Current;
+                kampagne = (IKampagne)kampagneiterator.Current;
                 ListViewItem item = new ListViewItem();
 
 
-                item.Text = Convert.ToString(kampagne[0]);
-                item.SubItems.Add(Convert.ToString(kampagne[1]));
+                item.Text = kampagne.KampagneID.ToString();
+                item.SubItems.Add(kampagne.Navn);
 
                 lstKampagner.Items.Add(item);
             }
@@ -57,16 +55,16 @@ namespace Rottehullet_Management
 			{
 				ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
 
-				if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
+				if (kampagnemanager.HentKampagneInfo(long.Parse(item.SubItems[0].Text)))
 				{
-					FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
+					FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
 					this.Hide();
 					hovedside.ShowDialog();
-					this.Close();
+					this.Show();
 				}
 				else
 				{
-					MessageBox.Show("Der skete en fejl ved indlæsningen af denne kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				    MessageBox.Show("Der skete en fejl ved indlæsningen af denne kampagne", "Databasefejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 			else
@@ -84,12 +82,12 @@ namespace Rottehullet_Management
             {
                 ListViewItem item = lstKampagner.Items[lstKampagner.SelectedIndices[0]];
 
-                if (kampagnemanager.HentKampagneFraDatabase(Convert.ToInt64(item.SubItems[0].Text)))
-                {
-                    FrmHovedside hovedside = new FrmHovedside(item.SubItems[1].Text, kampagnemanager);
-                    this.Hide();
-                    hovedside.ShowDialog();
-                    this.Close();
+				if (kampagnemanager.HentKampagneInfo(long.Parse(item.SubItems[0].Text)))
+				{
+					FrmHovedside hovedside = new FrmHovedside(kampagnemanager);
+					this.Hide();
+					hovedside.ShowDialog();
+					this.Show();
                 }
                 else
                 {

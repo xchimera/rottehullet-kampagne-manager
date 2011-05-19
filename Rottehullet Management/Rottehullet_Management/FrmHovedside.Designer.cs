@@ -289,6 +289,7 @@
 			this.MaximizeBox = false;
 			this.Name = "FrmHovedside";
 			this.Text = "Kampagne Manager";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHovedside_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

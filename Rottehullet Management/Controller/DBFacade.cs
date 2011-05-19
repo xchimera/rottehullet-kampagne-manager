@@ -75,14 +75,16 @@ namespace Controller
 		/// Lavet af Thorbjørn og Søren
 		/// </summary>
 		/// <param name="brugerID">brugerens id</param>
-		public void CheckRettighed(long brugerID)
+		public bool HentKampagnerHvorBrugerenHarRettigheder(long brugerID)
 		{
-			cmd.CommandText = "CheckOmTopbruger";
+			cmd.CommandText = "HentKampagnerHvorBrugerenHarRettigheder";
 			cmd.Parameters.Clear();
 			SqlParameter par;
 			SqlDataReader reader;
-			string kampagneid;
+			long kampagneid;
 			string kampagnenavn;
+			string beskrivelse;
+			string hjemmeside;
             long topbrugerID;
 			BrugerRettighed brugertype;
             KampagneStatus kampagnestatus;
@@ -98,9 +100,11 @@ namespace Controller
 
 				while (reader.Read())
 				{
-					kampagneid = Convert.ToString(reader["kamID"]);
+					kampagneid = (long)reader["kamID"];
 					kampagnenavn = (string)reader["navn"];
+					beskrivelse = (string)reader["beskrivelse"];
                     topbrugerID = (long)reader["topbrugerID"];
+					hjemmeside = (string)reader["hjemmeside"];
                     kampagnestatus = (KampagneStatus)reader["status"];
                     if (topbrugerID == brugerID)
                     {
@@ -110,11 +114,12 @@ namespace Controller
                     {
                         brugertype = BrugerRettighed.Superbruger;
                     }
-
-					
+					kampagnemanager.GenopretKampagne(kampagneid, kampagnenavn, beskrivelse, hjemmeside, kampagnestatus);
+					kampagnemanager.IndsætRettighed(kampagneid, brugertype);
 				}
 				reader.Dispose();
 				conn.Close();
+				return true;
 			}
 			catch (SqlException)
 			{
@@ -122,10 +127,8 @@ namespace Controller
 				{
 					conn.Close();
 				}
+				return false;
 			}
-
-
-		
 		}
 
 		/// <summary>
@@ -168,7 +171,7 @@ namespace Controller
 				conn.Close();
 				reader.Dispose();
 
-				CheckRettighed(brugerid);
+				HentKampagnerHvorBrugerenHarRettigheder(brugerid);
 				if (brugerid > 0)
 				{
 					return brugerid;
@@ -265,7 +268,6 @@ namespace Controller
 
 				reader.Dispose();
 				conn.Close();
-				HentScenarierTilKampagne(kamID);
 			}
 			catch (SqlException)
 			{

@@ -14,7 +14,6 @@ namespace Controller
 	public class KampagneManager
 	{
         Dictionary<long, BrugerRettighed> brugerRettigheder;
-        KampagneCollection kampagnecollection;
 		BrugerCollection brugercollection;
 		Kampagne kampagne;
 		DBFacade dbFacade;
@@ -268,7 +267,7 @@ namespace Controller
 
 		public IEnumerator GetBrugersRettighder()
 		{
-			return brugerrettigheder.GetEnumerator();
+			return brugerRettigheder.GetEnumerator();
 		}
 
 		public bool hentLoginData(out string brugernavn, out string password)
@@ -329,10 +328,9 @@ namespace Controller
 		}
 
 		//Lavet af Thorbjørn
-		public void IndsætRettighed(long kampagneID, string navn,KampagneStatus kampagnestatus, BrugerRettighed brugertype)
+		public void IndsætRettighed(long kampagneID, BrugerRettighed brugertype)
 		{
-            brugerrettigheder.Add(kampagneID, brugertype);
-            kampagnecollection.OpretKampagne(navn, kampagneID, kampagnestatus);
+            brugerRettigheder.Add(kampagneID, brugertype);
 		}
 
 		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
@@ -352,20 +350,21 @@ namespace Controller
 		//Lavet af Søren
 		public Kampagne GenopretKampagne(long kamID, string navn, string beskrivelse, string hjemmeside, KampagneStatus status)
 		{
-			kampagne = new Kampagne(kamID, navn, beskrivelse, hjemmeside, status);
+			kampagne = kampagneCollection.GenopretKampagne(kamID, navn, beskrivelse, hjemmeside, status);
 			return kampagne;
 		}
 
-		//Lavet af Thorbjørn
-        //public int GetAntalKampagner()
-        //{
-        //    return nuværendeBrugersRettigheder.Count();
-        //}
+		//Lavet af Søren og René
+        public int GetAntalKampagner()
+        {
+            return kampagneCollection.AntalKampagner();
+        }
 
 		//Lavet af René, Søren og Thorbjørn
-		public bool HentKampagneFraDatabase(long kamID)
+		public bool HentKampagneInfo(long kamID)
 		{
-			if (dbFacade.HentKampagne(kamID) && dbFacade.HentAttributter(kamID) && 
+			kampagne = kampagneCollection.FindKampagne(kamID);
+			if (dbFacade.HentScenarierTilKampagne(kampagne.KampagneID) && dbFacade.HentAttributter(kamID) && 
 				dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne) && 
 				dbFacade.HentMultiAttributterTilKarakterer(brugercollection.HentAlleKarakterer(), kampagne) &&
 				dbFacade.GenOpretAlleTilmeldinger())
@@ -373,6 +372,33 @@ namespace Controller
 				return true;
 			}
 			return false;
+		}
+
+		public bool HentKampagneInfo()
+		{
+			kampagne = kampagneCollection.HentEnesteKampagne();
+			if (dbFacade.HentScenarierTilKampagne(kampagne.KampagneID) && dbFacade.HentAttributter(kampagne.KampagneID) &&
+				dbFacade.HentBrugereOgKaraktererTilKampagne(kampagne) &&
+				dbFacade.HentMultiAttributterTilKarakterer(brugercollection.HentAlleKarakterer(), kampagne) &&
+				dbFacade.GenOpretAlleTilmeldinger())
+			{
+				return true;
+			}
+			return false;
+		}
+
+		public IEnumerator GetKampagneIterator()
+		{
+			IEnumerator iterator = kampagneCollection.GetKampagneIterator();
+			List<IKampagne> kampagner = new List<IKampagne>();
+
+			iterator.Reset();
+			while (iterator.MoveNext())
+			{
+				kampagner.Add((IKampagne)iterator.Current);
+			}
+
+			return kampagner.GetEnumerator();
 		}
 
 		//Bruges når Adminen opretter en kampagne
