@@ -98,6 +98,16 @@ namespace Model
 			return null;
 		}
 
+		public int AntalKampagner()
+		{
+			return kampagner.Count;
+		}
+
+		public Kampagne HentEnesteKampagne()
+		{
+			return kampagner[0];
+		}
+
         public IEnumerator GetKampagneIterator()
         {
             return kampagner.GetEnumerator();

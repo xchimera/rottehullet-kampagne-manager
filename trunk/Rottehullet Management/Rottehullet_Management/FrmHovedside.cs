@@ -17,21 +17,19 @@ namespace Rottehullet_Management
     {
         KampagneManager kampagnemanager;
 		IKampagne kampagne;
-        long kampagneID;
         
 		//Lavet af Thorbjørn
-        public FrmHovedside(string navn, KampagneManager kampagnemanager)
+        public FrmHovedside(KampagneManager kampagnemanager)
         {
             InitializeComponent();
             this.kampagnemanager = kampagnemanager;
 			kampagne = kampagnemanager.Kampagne;
-            this.kampagneID = kampagne.KampagneID;
             txtNavn.Text = kampagne.Navn;
 			txtHjemmeside.Text = kampagne.Hjemmeside;
 			txtBeskrivelse.Text = kampagne.Beskrivelse;
 			txtNavn.Select(0, 0);
 			//Sætter brugerens rettighedsniveau på Kampagnemanager, og viser knapper som kun er relevante for Superbrugeren
-			if (kampagnemanager.SætNuværendeRettighed() == Enum.BrugerRettighed.Topbruger)
+			if (kampagnemanager.NuværendeRettighed == Enum.BrugerRettighed.Topbruger)
 			{
 				Tilstand_Topbruger();
 			}
@@ -168,8 +166,7 @@ namespace Rottehullet_Management
                 if (singleline.Text != "")
                 {
                     txtNavn.Text = singleline.Text;
-                    kampagnemanager.RetKampagneNavn(txtNavn.Text, kampagneID);
-                    kampagnemanager.RetBrugerRettigheder(kampagneID, txtNavn.Text);
+                    kampagnemanager.RetKampagneNavn(txtNavn.Text, kampagne.KampagneID);
                 }
             }
         }
@@ -201,11 +198,13 @@ namespace Rottehullet_Management
 		//Lavet af Thorbjørn
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
 		{
-			FrmLoginKampagneValg loginKampagneValg = new FrmLoginKampagneValg(kampagnemanager);
-			this.Hide();
 			kampagnemanager.ResetKampagne();
-			loginKampagneValg.ShowDialog();
 			this.Close();
+		}
+
+		private void FrmHovedside_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			kampagnemanager.ResetKampagne();
 		}
 
 		//Lavet af René
