@@ -258,6 +258,11 @@ namespace Model
 			attributter.Clear();
 		}
 
+		public void TømScenarier()
+		{
+			scenarier.Clear();
+		}
+
 		#region properties
 		public long KampagneID
 		{
