@@ -333,12 +333,14 @@ namespace Controller
             brugerRettigheder.Add(kampagneID, brugertype);
 		}
 
-		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modelen
+		//Bruges når en bruger skifter kampagne, så karakterer fra en kampagne ikke stadig er i modellen
 		//når den nye kampagne bliver åbnet
 		//Lavet af Thorbjørn
 		public void ResetKampagne()
 		{
 			brugercollection.TømKarakterer();
+			kampagne.SletAttributter();
+			kampagne.TømScenarier();
 			nuværendeScenarie = null;
 		}
 
