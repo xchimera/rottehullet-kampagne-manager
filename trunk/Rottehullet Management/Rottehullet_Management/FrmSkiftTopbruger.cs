@@ -12,9 +12,17 @@ namespace Rottehullet_Management
 {
 	public partial class FrmSkiftTopbruger : Form
 	{
+		KampagneManager kampagneManager;
+
 		public FrmSkiftTopbruger(KampagneManager kampagneManager)
 		{
 			InitializeComponent();
+			this.kampagneManager = kampagneManager;
+		}
+
+		private void opdaterKampagneListe()
+		{
+
 		}
 	}
 }
