@@ -64,6 +64,8 @@ namespace Rottehullet_Management
 			if (brugerID == 1)
             {
                 kampagnemanager.HentBrugereTilAdmin();
+				//TODO:
+				//Lav metode til at hente alle kampagner
                 FrmAdminSektion adminsektion = new FrmAdminSektion(kampagnemanager);
 				this.Hide();
 				if (chkHuskBrugernavn.Checked)
