@@ -33,6 +33,11 @@ namespace Controller
 			brugerRettigheder = new Dictionary<long, BrugerRettighed>();
 		}
 
+		public bool Connect()
+		{
+			return dbFacade.Connect();
+		}
+
 		#region Admin
 		//Lavet af Thorbjørn
 		public bool RetDatabaseFil(string databasestreng)
