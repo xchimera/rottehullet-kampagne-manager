@@ -26,17 +26,31 @@ namespace BK_Controller
 
         public BrugerDBFacade(BrugerKlient brugerklient)
         {
-			System.IO.StreamReader fil = new System.IO.StreamReader("data.dat");
-			sqlconnection = fil.ReadLine();
-			fil.Close();
-			sqlconnection = brugerklient.Dekrypt(sqlconnection);
+          this.brugerklient = brugerklient;
+        }
+
+		//Lavet af Thorbjørn
+		public bool Connect()
+		{
+			try
+			{
+				System.IO.StreamReader fil = new System.IO.StreamReader("data.dat");
+				sqlconnection = fil.ReadLine();
+				fil.Close();
+				sqlconnection = brugerklient.Dekrypt(sqlconnection);
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 
 			cmd = new SqlCommand();
-            conn = new SqlConnection(sqlconnection);
-            cmd.Connection = conn;
-            cmd.CommandType = CommandType.StoredProcedure;
-            this.brugerklient = brugerklient;
-        }
+			conn = new SqlConnection(sqlconnection);
+			cmd.Connection = conn;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+			return true;
+		}
         #endregion
 
 

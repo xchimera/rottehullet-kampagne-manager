@@ -20,6 +20,10 @@ namespace BK_GUI
         {
             InitializeComponent();
 			brugerklient = new BrugerKlient();
+			if (!brugerklient.Connect())
+			{
+				MessageBox.Show("Login til databasen har fejlet/nMangler måske data.dat.", "Database/Systemfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 			string brugernavn, password;
 			bool filLoaded = brugerklient.hentLoginData(out brugernavn, out password);
 			if (filLoaded)

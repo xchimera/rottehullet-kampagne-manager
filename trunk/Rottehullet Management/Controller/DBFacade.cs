@@ -24,16 +24,30 @@ namespace Controller
 
 		public DBFacade(KampagneManager kampagnemanager)
 		{
-			System.IO.StreamReader fil = new System.IO.StreamReader("data.dat");
-			sqlconnection = fil.ReadLine();
-			fil.Close();
-			sqlconnection = kampagnemanager.Dekrypt(sqlconnection);
+			this.kampagnemanager = kampagnemanager;
+		}
 
+		//Lavet af Thorbjørn
+		public bool Connect()
+		{
+			try
+			{
+				System.IO.StreamReader fil = new System.IO.StreamReader("data.dat");
+				sqlconnection = fil.ReadLine();
+				fil.Close();
+				sqlconnection = kampagnemanager.Dekrypt(sqlconnection);
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			
 			cmd = new SqlCommand();
 			conn = new SqlConnection(sqlconnection);
 			cmd.Connection = conn;
 			cmd.CommandType = CommandType.StoredProcedure;
-			this.kampagnemanager = kampagnemanager;
+
+			return true;
 		}
 		#endregion
 

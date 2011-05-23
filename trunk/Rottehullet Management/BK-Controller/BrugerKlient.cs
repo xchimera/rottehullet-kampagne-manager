@@ -37,6 +37,11 @@ namespace BK_Controller
 			nuværendeScenarie = null;
 		}
 
+		public bool Connect()
+		{
+			return brugerdbfacade.Connect();
+		}
+
 		//Lavet af Denny
 		public bool Opretbruger(string email, string kodeord, string navn, DateTime fødselsdag, long tlf, long nød_tlf, bool vegetar, bool veganer, string allergi, string andet)
 		{
