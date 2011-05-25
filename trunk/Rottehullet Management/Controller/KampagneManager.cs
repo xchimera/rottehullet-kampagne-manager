@@ -40,24 +40,6 @@ namespace Controller
 
 		#region Admin
 		//Lavet af Thorbjørn
-		public bool RetDatabaseFil(string databasestreng)
-		{
-			try
-			{
-				databasestreng = Enkrypt(databasestreng);
-				System.IO.StreamWriter fil = new System.IO.StreamWriter("data.dat");
-				fil.WriteLine(databasestreng);
-				fil.Close();
-				return true;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-			
-		}
-
-		//Lavet af Thorbjørn
 		public string Dekrypt(string streng)
 		{
 			byte[] resultat;
@@ -172,6 +154,7 @@ namespace Controller
 		{
 			return brugercollection.OpretBruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, allergi, andet);
 		}
+
         //Lavet af Søren
         public bool HentSuperbruger()
         {
@@ -296,7 +279,7 @@ namespace Controller
 
 		//Krypterer en streng med et MD5 hash og sender resultatet tilbage
 		//Lavet af Thorbjørn
-		public static string KrypterKodeord(string kodeord)
+		public string KrypterKodeord(string kodeord)
 		{
 			byte[] tekstIBytes = Encoding.Default.GetBytes(kodeord);
 			try
