@@ -79,7 +79,7 @@ namespace Rottehullet_Management
 		//Lavet af Thorbjørn
 		private void btnAfslåKarakter_Click(object sender, EventArgs e)
 		{
-			IKarakter forrigekarakter = kampagnemanager.FindKarakter(Convert.ToInt64(lstGamleKarakterer.Items[lstGamleKarakterer.Items.Count-1].Text));
+			IKarakter forrigekarakter = kampagnemanager.FindKarakter(Convert.ToInt64(lstGamleKarakterer.Items[lstGamleKarakterer.Items.Count-1].Text)); //TODO: giver fejl hvis der ikke er en gammel karakter
 			if (kampagnemanager.SætKarakterStatus(karakter, Enum.KarakterStatus.Afslået) && kampagnemanager.SætKarakterStatus(forrigekarakter, Enum.KarakterStatus.Opdateret))
 			{
 				btnGodkendKarakter.Enabled = false;
