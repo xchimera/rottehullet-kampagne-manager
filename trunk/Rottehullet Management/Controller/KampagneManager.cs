@@ -311,7 +311,8 @@ namespace Controller
 			if (!hashedAdgangskode)
 				kodeord = KrypterKodeord(kodeord);
 			long brugerID = dbFacade.Login(email, kodeord);
-			nuværendebrugerID = brugerID;
+			if (brugerID > 0)
+				nuværendebrugerID = brugerID;
 			return brugerID;
 		}
 
