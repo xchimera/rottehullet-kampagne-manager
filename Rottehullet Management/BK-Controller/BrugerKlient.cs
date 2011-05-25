@@ -73,7 +73,8 @@ namespace BK_Controller
 			if (!hashedAdgangskode)
 				kodeord = KrypterKodeord(kodeord);
 			long brugerID = brugerdbfacade.Login(email, kodeord);
-			brugerdbfacade.HentTilmeldingerTilBruger(bruger);
+			if (brugerID > 0)
+				brugerdbfacade.HentTilmeldingerTilBruger(bruger);
 			return brugerID;
 		}
 

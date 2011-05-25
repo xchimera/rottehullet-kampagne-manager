@@ -13,26 +13,26 @@ using Enum;
 
 namespace BK_GUI
 {
-    public partial class FrmHovedSide : Form
-    {
-        BrugerKlient brugerklient;
-        IKampagne ikampagne;
-        List<Control> kontroller;
-        List<List<long>> listvalgID;
+	public partial class FrmHovedSide : Form
+	{
+		BrugerKlient brugerklient;
+		IKampagne ikampagne;
+		List<Control> kontroller;
+		List<List<long>> listvalgID;
 		TilstandBruger tilstand;
 		long nuværendeKarakterID;
 
 		//Lavet af Thorbjørn
-        public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
-        {
-            InitializeComponent();
-            this.brugerklient = brugerklient;
-            kontroller = new List<Control>();
-            listvalgID = new List<List<long>>();
-            ikampagne = brugerklient.FindKampagne(kampagneID);
+		public FrmHovedSide(BrugerKlient brugerklient, long kampagneID)
+		{
+			InitializeComponent();
+			this.brugerklient = brugerklient;
+			kontroller = new List<Control>();
+			listvalgID = new List<List<long>>();
+			ikampagne = brugerklient.FindKampagne(kampagneID);
 			//Loaded Karakter
-			TilstandIngenLoadedKarakter();            
-        }
+			TilstandIngenLoadedKarakter();
+		}
 
 		#region TilstandsStyring
 		//Lavet af Thorbjørn
@@ -108,16 +108,16 @@ namespace BK_GUI
 
 		//Lavet af Søren
 		private void btnSkiftKampagne_Click(object sender, EventArgs e)
-        {
-            FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
-            this.Hide();
-            loginkampagnevalg.ShowDialog();
-            this.Close();
-        }
+		{
+			FrmLoginKampagneValg loginkampagnevalg = new FrmLoginKampagneValg(brugerklient);
+			this.Hide();
+			loginkampagnevalg.ShowDialog();
+			this.Close();
+		}
 
 		//Lavet af René
-        private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
-        {
+		private void btnTilmeldTilScenarie_Click(object sender, EventArgs e)
+		{
 			IScenarie scenarie = brugerklient.HentNuværendeScenarie();
 
 			if (scenarie == null)
@@ -136,7 +136,7 @@ namespace BK_GUI
 			this.Hide();
 			scenarietilmelding.ShowDialog();
 			this.Show();
-        }
+		}
 
 		//Lavet af Thorbjørn
 		private void lstkaraktere_MouseClick(object sender, MouseEventArgs e)
@@ -146,7 +146,7 @@ namespace BK_GUI
 			TilstandNyesteKarakter();
 			FjernKontroler();
 			SetAttributter();
-			
+
 		}
 
 		//Lavet af Søren
@@ -159,7 +159,7 @@ namespace BK_GUI
 			kontroller.Clear();
 			listvalgID.Clear();
 			this.Update();
-		    this.Width = 287;
+			this.Width = 287;
 		}
 
 		#region ListeMetoder
@@ -193,7 +193,7 @@ namespace BK_GUI
 		//Lavet af Søren
 		public void OpretAttributter()
 		{
-		    this.Width = 560;
+			this.Width = 560;
 			IKampagneAttribut ikampagneattribut;
 			IKampagneMultiAttributValgmulighed valgmulighed;
 			IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
@@ -201,7 +201,7 @@ namespace BK_GUI
 			int x = 5;
 			Panel opretattributpanel = new Panel();
 			opretattributpanel.AutoScroll = true;
-            opretattributpanel.Size = new Size(290, 580);
+			opretattributpanel.Size = new Size(290, 580);
 			opretattributpanel.Location = new Point(x + lstkaraktere.Width + 15 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
 			opretattributpanel.BorderStyle = BorderStyle.Fixed3D;
 			this.Controls.Add(opretattributpanel);
@@ -298,27 +298,27 @@ namespace BK_GUI
 		}
 
 		//Lavet af Denny
-	    private void SetAttributter()
-	    {
-	        this.Width = 560;
-            IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
-            ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
-            IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
-            IKampagneAttribut ikampagneattribut ;
-            IKampagneMultiAttributValgmulighed valgmulighed;
+		private void SetAttributter()
+		{
+			this.Width = 560;
+			IEnumerator attributiterator = brugerklient.GetAttributIterator(ikampagne.KampagneID);
+			ListViewItem item = lstkaraktere.Items[lstkaraktere.SelectedIndices[0]];
+			IKarakter ikarakter = brugerklient.GetKarakter(Convert.ToInt64(item.SubItems[0].Text));
+			IKampagneAttribut ikampagneattribut;
+			IKampagneMultiAttributValgmulighed valgmulighed;
 
 
-            int y = 5;
-            int x = 5;
-            IEnumerator karakterattribut = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
-            IEnumerator værdi = ikarakter.HentVærdier();
-            Panel setattributpanel = new Panel();
-            setattributpanel.AutoScroll = true;
-            setattributpanel.Size = new Size(290, 580);
-            setattributpanel.Location = new Point(x + lstkaraktere.Width + 15 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
-            setattributpanel.BorderStyle = BorderStyle.Fixed3D;
-            this.Controls.Add(setattributpanel);
-            kontroller.Add(setattributpanel);
+			int y = 5;
+			int x = 5;
+			IEnumerator karakterattribut = brugerklient.GetVærdiIterator(ikarakter.KarakterID);
+			IEnumerator værdi = ikarakter.HentVærdier();
+			Panel setattributpanel = new Panel();
+			setattributpanel.AutoScroll = true;
+			setattributpanel.Size = new Size(290, 580);
+			setattributpanel.Location = new Point(x + lstkaraktere.Width + 15 + lstkaraktere.Location.X, lstkaraktere.Location.Y);
+			setattributpanel.BorderStyle = BorderStyle.Fixed3D;
+			this.Controls.Add(setattributpanel);
+			kontroller.Add(setattributpanel);
 
 			Label lblkarakterstatus = new Label();
 			lblkarakterstatus.RightToLeft = RightToLeft.No;
@@ -327,117 +327,116 @@ namespace BK_GUI
 			this.Controls.Add(lblkarakterstatus);
 			setattributpanel.Controls.Add(lblkarakterstatus);
 			y += lblkarakterstatus.Height + 5;
-                           
+
 			værdi.Reset();
-            karakterattribut.Reset();
-            attributiterator.Reset();
-            while (karakterattribut.MoveNext() && værdi.MoveNext() && attributiterator.MoveNext())
-            {
-                ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
-                IKarakterAttribut ikarakterattribut = (IKarakterAttribut)karakterattribut.Current;
-                if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Singleline)
-                {
-                    // -- label --
-                    Label label = new Label();
-                    label.RightToLeft = RightToLeft.No;
-                    label.Location = new Point(x, y);
-                    label.Text = ikampagneattribut.Navn;
+			karakterattribut.Reset();
+			attributiterator.Reset();
+			while (karakterattribut.MoveNext() && værdi.MoveNext() && attributiterator.MoveNext())
+			{
+				ikampagneattribut = (IKampagneAttribut)attributiterator.Current;
+				IKarakterAttribut ikarakterattribut = (IKarakterAttribut)karakterattribut.Current;
+				if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Singleline)
+				{
+					// -- label --
+					Label label = new Label();
+					label.RightToLeft = RightToLeft.No;
+					label.Location = new Point(x, y);
+					label.Text = ikampagneattribut.Navn;
 
-                    // -- textbox --
-                    TextBox textbox = new TextBox();
-                    textbox.Location = new Point(x + label.Width + 10, y);
-                    textbox.Text = værdi.Current.ToString();
-                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
+					// -- textbox --
+					TextBox textbox = new TextBox();
+					textbox.Location = new Point(x + label.Width + 10, y);
+					textbox.Text = værdi.Current.ToString();
+					textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
 
-                    // -- controladd --))
-                    this.Controls.Add(textbox);
-                    this.Controls.Add(label);
-                    y += textbox.Height + 5;
-                    kontroller.Add(textbox);
-                    kontroller.Add(label);
-                    setattributpanel.Controls.Add(textbox);
-                    setattributpanel.Controls.Add(label);
+					// -- controladd --))
+					this.Controls.Add(textbox);
+					this.Controls.Add(label);
+					y += textbox.Height + 5;
+					kontroller.Add(textbox);
+					kontroller.Add(label);
+					setattributpanel.Controls.Add(textbox);
+					setattributpanel.Controls.Add(label);
 
-                }
-                if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
-                {
-                    // -- label --
-                    Label label = new Label();
-                    label.RightToLeft = RightToLeft.No;
-                    label.Text = ikampagneattribut.Navn;
-                    label.Location = new Point(x, y);
+				}
+				if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Multiline)
+				{
+					// -- label --
+					Label label = new Label();
+					label.RightToLeft = RightToLeft.No;
+					label.Text = ikampagneattribut.Navn;
+					label.Location = new Point(x, y);
 
-                    // -- textbox --
-                    TextBox textbox = new TextBox();
-                    textbox.Multiline = true;
-                    textbox.Location = new Point(x + label.Width + 10, y);
-                    textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
-                    textbox.Text = værdi.Current.ToString();
-                    textbox.Size = new System.Drawing.Size(150, 100);
+					// -- textbox --
+					TextBox textbox = new TextBox();
+					textbox.Multiline = true;
+					textbox.Location = new Point(x + label.Width + 10, y);
+					textbox.Name = ikampagneattribut.KampagneAttributID.ToString();
+					textbox.Text = værdi.Current.ToString();
+					textbox.Size = new System.Drawing.Size(150, 100);
 
-                    // -- controladd --
-                    this.Controls.Add(textbox);
-                    this.Controls.Add(label);
-                    y += textbox.Height + 5;
-                    kontroller.Add(textbox);
-                    kontroller.Add(label);
-                    setattributpanel.Controls.Add(textbox);
-                    setattributpanel.Controls.Add(label);
+					// -- controladd --
+					this.Controls.Add(textbox);
+					this.Controls.Add(label);
+					y += textbox.Height + 5;
+					kontroller.Add(textbox);
+					kontroller.Add(label);
+					setattributpanel.Controls.Add(textbox);
+					setattributpanel.Controls.Add(label);
 
-                }
-                if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Combo)
-                {
-                    List<long> valgIDer = new List<long>();
-                    // -- label --
-                    Label label = new Label();
-                    label.Text = ikampagneattribut.Navn;
-                    label.Location = new Point(x, y);
-                    label.RightToLeft = System.Windows.Forms.RightToLeft.No;
+				}
+				if (ikarakterattribut.Kampagneattribut.Type == KampagneAttributType.Combo)
+				{
+					List<long> valgIDer = new List<long>();
+					// -- label --
+					Label label = new Label();
+					label.Text = ikampagneattribut.Navn;
+					label.Location = new Point(x, y);
+					label.RightToLeft = System.Windows.Forms.RightToLeft.No;
 
-                    // -- ComboBox --
-                    IEnumerator valgmuligheder =
-                        brugerklient.GetValgmulighederIterator(ikarakterattribut.Kampagneattribut.KampagneAttributID,
-                                                               ikampagne.KampagneID);
-                    ComboBox combobox = new ComboBox();
-                    combobox.Location = new Point(x + label.Width + 10, y);
-                    combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
-                    while (valgmuligheder.MoveNext())
-                    {
-                        valgmulighed = (IKampagneMultiAttributValgmulighed)valgmuligheder.Current;
-                        combobox.Items.Add(valgmulighed.Værdi);
-                        combobox.SelectedItem = værdi.Current;
-                        valgIDer.Add(valgmulighed.Id);
-                    }
+					// -- ComboBox --
+					IEnumerator valgmuligheder =
+						brugerklient.GetValgmulighederIterator(ikarakterattribut.Kampagneattribut.KampagneAttributID,
+															   ikampagne.KampagneID);
+					ComboBox combobox = new ComboBox();
+					combobox.Location = new Point(x + label.Width + 10, y);
+					combobox.Name = ikampagneattribut.KampagneAttributID.ToString();
+					while (valgmuligheder.MoveNext())
+					{
+						valgmulighed = (IKampagneMultiAttributValgmulighed)valgmuligheder.Current;
+						combobox.Items.Add(valgmulighed.Værdi);
+						combobox.SelectedItem = værdi.Current;
+						valgIDer.Add(valgmulighed.Id);
+					}
 
-                    // -- kontroladd --
-                    y += combobox.Height + 5;
-                    this.Controls.Add(combobox);
-                    this.Controls.Add(label);
-                    kontroller.Add(combobox);
-                    kontroller.Add(label);
-                    listvalgID.Add(valgIDer);
-                    setattributpanel.Controls.Add(combobox);
-                    setattributpanel.Controls.Add(label);
-                }
-            }
-        }
+					// -- kontroladd --
+					y += combobox.Height + 5;
+					this.Controls.Add(combobox);
+					this.Controls.Add(label);
+					kontroller.Add(combobox);
+					kontroller.Add(label);
+					listvalgID.Add(valgIDer);
+					setattributpanel.Controls.Add(combobox);
+					setattributpanel.Controls.Add(label);
+				}
+			}
+		}
 
 		#endregion
 
-        private void FrmHovedSide_Load(object sender, EventArgs e)
-        {
-            IScenarie iscenarie = ikampagne.HentNæsteScenarie();
-            txtNavn.Text = iscenarie.Titel;
-            txtTidspunkt.Text = iscenarie.Tid.ToShortTimeString() + " " + iscenarie.Tid.ToShortDateString();
-            txtSted.Text = iscenarie.Sted;
-            txtPris.Text = iscenarie.Pris.ToString();
-            txtBeskrivelse.Text = iscenarie.Beskrivelse.ToString();
-            txtOvernatninger.Text = iscenarie.Overnatning.ToString();
-            txtAndetInfo.Text = iscenarie.AndetInfo;
-
-        }
-
-
-
-    }
+		private void FrmHovedSide_Load(object sender, EventArgs e)
+		{
+			IScenarie iscenarie = ikampagne.HentNæsteScenarie();
+			if (iscenarie != null)
+			{
+				txtNavn.Text = iscenarie.Titel;
+				txtTidspunkt.Text = iscenarie.Tid.ToShortTimeString() + " " + iscenarie.Tid.ToShortDateString();
+				txtSted.Text = iscenarie.Sted;
+				txtPris.Text = iscenarie.Pris.ToString();
+				txtBeskrivelse.Text = iscenarie.Beskrivelse.ToString();
+				txtOvernatninger.Text = iscenarie.Overnatning.ToString();
+				txtAndetInfo.Text = iscenarie.AndetInfo;
+			}
+		}
+	}
 }
