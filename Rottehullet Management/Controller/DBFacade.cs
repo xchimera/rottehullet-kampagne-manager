@@ -104,7 +104,7 @@ namespace Controller
             long topbrugerID;
 			BrugerRettighed brugertype;
             KampagneStatus kampagnestatus;
-
+            
 			par = new SqlParameter("@brugerID", SqlDbType.NVarChar);
 			par.Value = brugerID;
 			cmd.Parameters.Add(par);
