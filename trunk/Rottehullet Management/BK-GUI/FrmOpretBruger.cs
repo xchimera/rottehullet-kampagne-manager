@@ -6,12 +6,12 @@ namespace BK_GUI
 {
     public partial class FrmOpretBruger : Form
     {
-        private readonly BrugerKlient brugerklient;
+        private BrugerKlient brugerklient;
 
-        public FrmOpretBruger()
+        public FrmOpretBruger(BrugerKlient brugerklient)
         {
             InitializeComponent();
-            brugerklient = new BrugerKlient();
+            this.brugerklient = brugerklient;
         }
 
 		//Lavet af Denny

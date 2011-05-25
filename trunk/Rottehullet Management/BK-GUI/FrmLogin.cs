@@ -50,7 +50,7 @@ namespace BK_GUI
 		//Lavet af Denny
         private void lblOpretBruger_Click(object sender, EventArgs e)
         {
-            FrmOpretBruger opretbruger = new FrmOpretBruger();
+            FrmOpretBruger opretbruger = new FrmOpretBruger(brugerklient);
             this.Hide();
             opretbruger.ShowDialog();
             this.Show();
