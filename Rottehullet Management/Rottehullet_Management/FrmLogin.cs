@@ -23,6 +23,7 @@ namespace Rottehullet_Management
 			if (!kampagnemanager.Connect())
 			{
 				MessageBox.Show("Login til databasen har fejlet/nMangler måske data.dat.", "Database/Systemfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				this.Close();
 			}
 
 			string brugernavn, password;
