@@ -31,18 +31,21 @@ namespace BK_GUI
 			txtInfo.Text += "Pris: " + scenarie.Pris + " kr" + Environment.NewLine + Environment.NewLine;
 			txtInfo.Text += "Tidspunkt: kl." + scenarie.Tid.Hour + ":" + scenarie.Tid.Minute + " " + scenarie.Tid.Day + "/" + scenarie.Tid.Month + "-" + scenarie.Tid.Year;
 
-			lblTotaleOvernatninger.Text = "(Ud af " + scenarie.Overnatning +  ")";
+			lblTotaleOvernatninger.Text = "(Ud af " + scenarie.Overnatning + ")";
 
-			if (scenarie.OvernatningTvungen == true)
+			if (scenarie.OvernatningTvungen == true || scenarie.Overnatning == 0)
 			{
 				txtOvernatning.Text = scenarie.Overnatning.ToString();
 				txtOvernatning.ReadOnly = true;
 			}
+
 			if (scenarie.SpisningTvungen == true)
 			{
 				chkSpisning.Checked = true;
 				//chkSpisning.
 			}
+			else if (scenarie.Spisning == false)
+				chkSpisning.Enabled = false;
 		}
 
 		private void btnAnnuller_Click(object sender, EventArgs e)
