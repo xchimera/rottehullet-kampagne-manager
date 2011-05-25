@@ -40,13 +40,13 @@
         "Entry"
         {
         "MsmKey" = "8:_71E16D46EC17EF7459390DE88FE0D4A8"
-        "OwnerKey" = "8:_8199CC0864CDBEB2AC85EB81A7BB60E0"
+        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_71E16D46EC17EF7459390DE88FE0D4A8"
-        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
+        "OwnerKey" = "8:_8199CC0864CDBEB2AC85EB81A7BB60E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E40101D789DB3E12C22E3917072327F0"
-        "OwnerKey" = "8:_8199CC0864CDBEB2AC85EB81A7BB60E0"
+        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E40101D789DB3E12C22E3917072327F0"
-        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
+        "OwnerKey" = "8:_8199CC0864CDBEB2AC85EB81A7BB60E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,12 +142,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AF2A96F4C0051DCE0E26F1D56A1C494C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -193,6 +187,12 @@
         "OwnerKey" = "8:_E40101D789DB3E12C22E3917072327F0"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_015A38E221A54EB1891476DEA3918473"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -211,6 +211,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -227,6 +235,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -623,7 +652,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RPManagementSpilleder"
         "ProductCode" = "8:{07317F61-2099-46B5-9890-53BB2C46A20A}"
-        "PackageCode" = "8:{5A2593DB-661A-46EE-B730-27B88696CB62}"
+        "PackageCode" = "8:{7884F12E-3B27-455B-A578-0D0AF1911247}"
         "UpgradeCode" = "8:{39E13A7E-EE80-4F91-A7CB-331878D297CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -743,9 +772,9 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_12AC94D3A21344999723574508FB942C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AF47EE7B7D5344329BE6BA1DA003F326"
             {
-            "Name" = "8:RP Mangement Spilleder"
+            "Name" = "8:RP Management Spilleder"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
