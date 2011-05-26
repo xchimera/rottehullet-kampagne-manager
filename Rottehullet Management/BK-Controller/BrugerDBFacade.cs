@@ -659,18 +659,21 @@ namespace BK_Controller
 						kampagne = brugerklient.HentKampagne(kampagneID);
 						nuværendeKampagneID = kampagneID;
 					}
-					id = (long)reader["scenarieID"];
-					titel = (string)reader["titel"];
-					beskrivelse = (string)reader["beskrivelse"];
-					sted = (string)reader["sted"];
-					andetInfo = (string)reader["andetInfo"];
-					pris = Convert.ToDouble(reader["pris"]);
-					tid = (DateTime)reader["dato"];
-					overnatning = (int)reader["overnatning"];
-					spisning = (bool)reader["spisning"];
-					spisningTvungen = (bool)reader["spisningTvungen"];
-					overnatningTvungen = (bool)reader["overnatningTvungen"];
-					kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+					if (kampagne != null)
+					{
+						id = (long)reader["scenarieID"];
+						titel = (string)reader["titel"];
+						beskrivelse = (string)reader["beskrivelse"];
+						sted = (string)reader["sted"];
+						andetInfo = (string)reader["andetInfo"];
+						pris = Convert.ToDouble(reader["pris"]);
+						tid = (DateTime)reader["dato"];
+						overnatning = (int)reader["overnatning"];
+						spisning = (bool)reader["spisning"];
+						spisningTvungen = (bool)reader["spisningTvungen"];
+						overnatningTvungen = (bool)reader["overnatningTvungen"];
+						kampagne.TilføjScenarie(id, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+					}
 				}
 				conn.Close();
 				return true;
