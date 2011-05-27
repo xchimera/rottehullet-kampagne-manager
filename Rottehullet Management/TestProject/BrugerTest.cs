@@ -9,11 +9,11 @@ namespace TestProject
     
     
     /// <summary>
-    ///This is a test class for KarakterTest and is intended
-    ///to contain all KarakterTest Unit Tests
+    ///This is a test class for BrugerTest and is intended
+    ///to contain all BrugerTest Unit Tests
     ///</summary>
 	[TestClass()]
-	public class KarakterTest
+	public class BrugerTest
 	{
 
 
@@ -67,14 +67,36 @@ namespace TestProject
 
 
 		/// <summary>
-		///A test for Karakter Constructor
+		///A test for Bruger Constructor
 		///</summary>
 		[TestMethod()]
-		public void KarakterConstructorTest()
+		public void BrugerConstructorTest()
 		{
+			long brugerID = 1; // TODO: Initialize to an appropriate value
+			string email = "navn@mail.dk"; // TODO: Initialize to an appropriate value
+			string navn = "Frans Pedersen"; // TODO: Initialize to an appropriate value
+			DateTime fødselsdag = new DateTime(1967, 11, 20); // TODO: Initialize to an appropriate value
+			long tlf = 20202020; // TODO: Initialize to an appropriate value
+			long nød_tlf = 30303030; // TODO: Initialize to an appropriate value
+			bool vegetar = false; // TODO: Initialize to an appropriate value
+			bool veganer = true; // TODO: Initialize to an appropriate value
+			string andet = "aragnofobi"; // TODO: Initialize to an appropriate value
+			string allergi = "latex"; // TODO: Initialize to an appropriate value
+			Bruger target = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
+			Assert.AreEqual(brugerID, target.BrugerID);
+			Assert.AreEqual(email, target.Email);
+			Assert.AreEqual(navn, target.Navn);
+			Assert.AreEqual(fødselsdag, target.Fødselsdag);
+			Assert.AreEqual(tlf, target.Tlf);
+			Assert.AreEqual(nød_tlf, target.NødTlf);
+			Assert.AreEqual(vegetar, target.Vegetar);
+			Assert.AreEqual(veganer, target.Veganer);
+			Assert.AreEqual(andet, target.Andet);
+			Assert.AreEqual(allergi, target.Allergi);
+			
 			//Oprettelse af kampagne
 			string kampagneNavn = "TestKampagne";
-			long kampagneID = 0;
+			long kampagneID = 1;
 
 			KampagneStatus kampagneStatus = KampagneStatus.Åben;
 			Kampagne kampagne = new Kampagne(kampagneNavn, kampagneID, kampagneStatus);
@@ -85,7 +107,7 @@ namespace TestProject
 			Assert.AreEqual(kampagneNavn, actualnavn);
 			long actualID = kampagne.KampagneID;
 			Assert.AreEqual(kampagneID, actualID);
-			
+
 			// Oprettelse af single attribut
 			string navn1 = "Navn";
 			KampagneAttributType type = KampagneAttributType.Singleline;
@@ -120,29 +142,29 @@ namespace TestProject
 			actualentry = actualAttribut.Valgmuligheder[2];
 			Assert.AreEqual(entry3, actualentry);
 
-			long brugerID = 1;
-			string email = "test@test.dk";
-			string navn = "Hans Jensen";
-			DateTime fødselsdag = new DateTime(1980, 11, 1);
-			long tlf = 22141414;
-			long nød_tlf = 23141414;
-			bool vegetar = false;
-			bool veganer = false;
-			string andet = "kørestolsbruger";
-			string allergi = "oksekød";
-			Bruger bruger = new Bruger(brugerID, email, navn, fødselsdag, tlf, nød_tlf, vegetar, veganer, andet, allergi);
-
-			long karakterID = 2; // TODO: Initialize to an appropriate value
+			long karakterID = 1; // TODO: Initialize to an appropriate value
 			KarakterStatus status = KarakterStatus.Nyoprettet; // TODO: Initialize to an appropriate value
-			Karakter target = new Karakter(karakterID, kampagne, status, bruger);
-			string Karakternavn = "Thorleif";
-			target.TilføjVærdi(kampagne.FindAttribut(kampagneSingleAttributID), Karakternavn, 1);
-			target.TilføjVærdi(kampagne.FindAttribut(kampagneMultiAttributID), entry2, 0);
+			target.TilføjKarakter(karakterID, kampagne);
 
-			Assert.AreEqual(karakterID, target.KarakterID);
-			Assert.AreEqual(status, target.Status);
-			Assert.AreEqual(Karakternavn, target["Navn"]);
-			Assert.AreEqual(entry2.Værdi, target[navn1]);
+			long karakterID2 = 2;
+			target.TilføjKarakter(karakterID2, kampagne);
+
+			Karakter karakter = target.FindKarakter(1);
+			Assert.AreEqual(karakterID, karakter.KarakterID);
+			string karakterNavn = "Thorleif";
+			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneSingleAttributID), karakterNavn, 1);
+			Assert.AreEqual(karakterNavn, karakter["Navn"]);
+			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneMultiAttributID), entry2, 0);
+			Assert.AreEqual(entry2.Værdi, karakter[navn1]);
+
+
+			karakter = target.FindKarakter(2);
+			Assert.AreEqual(karakterID2, karakter.KarakterID);
+			karakterNavn = "Bogeyman";
+			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneSingleAttributID), karakterNavn, 1);
+			Assert.AreEqual(karakterNavn, karakter["Navn"]);
+			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneMultiAttributID), entry3, 0);
+			Assert.AreEqual(entry3.Værdi, karakter[navn1]);
 		}
 	}
 }
