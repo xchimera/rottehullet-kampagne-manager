@@ -86,24 +86,31 @@ namespace TestProject
 			Assert.AreEqual(navn, actualnavn);
 			long actualID = target.KampagneID;
 			Assert.AreEqual(kampagneID, actualID);
+
+			// Oprettelse af single attribut
+			string singleNavn = "Navn";
+			KampagneAttributType singleType = KampagneAttributType.Singleline;
+			long kampagneSingleAttributID = 1;
+			int singlePosition = 0;
+			target.TilføjSingleAttribut(singleNavn, singleType, kampagneSingleAttributID, singlePosition);
 			
 			//Oprettelse af multiattribut
-			string navn1 = "TestVariabel";
+			string MultiNavn = "TestVariabel";
 			KampagneAttributType type = KampagneAttributType.Combo;
 			KampagneMultiAttributValgmulighed entry1 = new KampagneMultiAttributValgmulighed(0, "Entry1");
 			KampagneMultiAttributValgmulighed entry2 = new KampagneMultiAttributValgmulighed(1, "Entry2");
 			KampagneMultiAttributValgmulighed entry3 = new KampagneMultiAttributValgmulighed(2, "Entry3");
 			List<KampagneMultiAttributValgmulighed> valgmuligheder = new List<KampagneMultiAttributValgmulighed> { entry1, entry2, entry3 };
 			long kampagneAttributID = 0;
-			int position = 0;
-			target.TilføjMultiAttribut(navn1, type, valgmuligheder, kampagneAttributID, position);
+			int position = 1;
+			target.TilføjMultiAttribut(MultiNavn, type, valgmuligheder, kampagneAttributID, position);
 
 			//Test af opsætning af skabelse af multiattribut
 			int id = 0;
 			KampagneMultiAttribut actualAttribut;
 			actualAttribut = (KampagneMultiAttribut)(target.FindAttribut(id));
 			actualnavn = actualAttribut.Navn;
-			Assert.AreEqual(navn1, actualnavn);
+			Assert.AreEqual(MultiNavn, actualnavn);
 			KampagneAttributType actualtype = actualAttribut.Type;
 			Assert.AreEqual(type, actualtype);
 			KampagneMultiAttributValgmulighed actualentry = actualAttribut.Valgmuligheder[0];
@@ -112,6 +119,12 @@ namespace TestProject
 			Assert.AreEqual(entry2, actualentry);
 			actualentry = actualAttribut.Valgmuligheder[2];
 			Assert.AreEqual(entry3, actualentry);
+
+			//Test af singleattribut
+			KampagneAttribut attribut = (KampagneAttribut)target.FindAttribut(kampagneSingleAttributID);
+			Assert.AreEqual(singleNavn, attribut.Navn);
+			Assert.AreEqual(kampagneSingleAttributID, attribut.KampagneAttributID);
+			Assert.AreEqual(singleType, attribut.Type);
 
 			//Ændring af entry
 			id = 0;

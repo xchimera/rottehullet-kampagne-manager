@@ -3,15 +3,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using Enum;
+using Interfaces;
 
 namespace TestProject
 {
-    
-    
-    /// <summary>
-    ///This is a test class for BrugerTest and is intended
-    ///to contain all BrugerTest Unit Tests
-    ///</summary>
+
+
+	/// <summary>
+	///This is a test class for BrugerTest and is intended
+	///to contain all BrugerTest Unit Tests
+	///</summary>
 	[TestClass()]
 	public class BrugerTest
 	{
@@ -93,14 +94,13 @@ namespace TestProject
 			Assert.AreEqual(veganer, target.Veganer);
 			Assert.AreEqual(andet, target.Andet);
 			Assert.AreEqual(allergi, target.Allergi);
-			
+
 			//Oprettelse af kampagne
 			string kampagneNavn = "TestKampagne";
 			long kampagneID = 1;
 
 			KampagneStatus kampagneStatus = KampagneStatus.Åben;
 			Kampagne kampagne = new Kampagne(kampagneNavn, kampagneID, kampagneStatus);
-
 
 			//Test af opsætning af kampagne
 			string actualnavn = kampagne.Navn;
@@ -142,8 +142,21 @@ namespace TestProject
 			actualentry = actualAttribut.Valgmuligheder[2];
 			Assert.AreEqual(entry3, actualentry);
 
+			
+			long scenarieID = 0;
+			string titel = "Scenarie";
+			string beskrivelse = "Dette er et scenarie";
+			DateTime tid = DateTime.Now;
+			string sted = "et sted";
+			double pris = 15.24;
+			int overnatning = 2;
+			bool spisning = true;
+			bool spisningTvungen = true;
+			bool overnatningTvungen = true;
+			string andetInfo = "mere info";
+			Scenarie scenarie = kampagne.TilføjScenarie(scenarieID, titel, beskrivelse, tid, sted, pris, overnatning, spisning, spisningTvungen, overnatningTvungen, andetInfo);
+
 			long karakterID = 1; // TODO: Initialize to an appropriate value
-			KarakterStatus status = KarakterStatus.Nyoprettet; // TODO: Initialize to an appropriate value
 			target.TilføjKarakter(karakterID, kampagne);
 
 			long karakterID2 = 2;
@@ -156,6 +169,7 @@ namespace TestProject
 			Assert.AreEqual(karakterNavn, karakter["Navn"]);
 			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneMultiAttributID), entry2, 0);
 			Assert.AreEqual(entry2.Værdi, karakter[navn1]);
+			Assert.AreEqual(kampagne.Navn, karakter.Kampagne.Navn);
 
 
 			karakter = target.FindKarakter(2);
@@ -165,6 +179,16 @@ namespace TestProject
 			Assert.AreEqual(karakterNavn, karakter["Navn"]);
 			karakter.TilføjVærdi(kampagne.FindAttribut(kampagneMultiAttributID), entry3, 0);
 			Assert.AreEqual(entry3.Værdi, karakter[navn1]);
+
+			target.TilmeldKarakterTilScenarie(karakterID2, scenarie, true, 2);
+			Assert.AreEqual(true, target.TjekOmTilmeldtTilScenarie(scenarie));
+
+			Assert.AreEqual(1, scenarie.AntalDeltagere);
+			List<IKarakter> karakterListe = scenarie.HentDeltagere();
+			Assert.AreEqual(karakterID2, karakterListe[0].KarakterID);
+
+			karakter = target.FindKarakter(karakterID2);
+			Assert.AreEqual(true, karakter.ErTilmeldtTilScenarie(scenarie));
 		}
 	}
 }
