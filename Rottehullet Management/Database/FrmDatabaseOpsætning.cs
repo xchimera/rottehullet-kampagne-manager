@@ -18,10 +18,13 @@ namespace Database
 			InitializeComponent();
 			contr = new DatabaseController();
 			string[] databasevariable = contr.HentDatabaseVariable();//Henter database variablene fra data.dat
-			txtDataSource.Text = databasevariable[0];
-			txtCatalogue.Text = databasevariable[1];
-			txtUserID.Text = databasevariable[2];
-			txtPassword.Text = databasevariable[3];
+			if (databasevariable[0]!=null)
+			{
+				txtDataSource.Text = databasevariable[0];
+				txtCatalogue.Text = databasevariable[1];
+				txtUserID.Text = databasevariable[2];
+				txtPassword.Text = databasevariable[3];
+			}			
 		}
 
 		//Lavet af Thorbjørn
