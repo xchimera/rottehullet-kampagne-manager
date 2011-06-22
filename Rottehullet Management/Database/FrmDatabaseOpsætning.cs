@@ -18,7 +18,7 @@ namespace Database
 			InitializeComponent();
 			contr = new DatabaseController();
 			string[] databasevariable = contr.HentDatabaseVariable();//Henter database variablene fra data.dat
-			if (databasevariable[0]!=null)
+			if (databasevariable!=null)
 			{
 				txtDataSource.Text = databasevariable[0];
 				txtCatalogue.Text = databasevariable[1];
